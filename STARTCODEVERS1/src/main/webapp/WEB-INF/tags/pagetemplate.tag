@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="<%=request.getContextPath()%>/css/style.css">
 
     <link rel="stylesheet" href="<%=request.getContextPath()%>/css/footer.css">
+    <link rel="stylesheet" href="<%=request.getContextPath()%>/css/frontpage.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Oswald&family=Roboto:wght@300&family=Rubik:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -52,10 +53,12 @@
     </nav>
 </header>
 
-<div id="body" class="container mt-4" style="min-height: 400px;">
+<div id="body" class="container mt-4" style="min-height: 400px; min-width: 100%">
     <h1><jsp:invoke fragment="header"/></h1>
     <jsp:doBody/>
 </div>
+<br>
+<br>
 
 <!-- Footer -->
 <footer class="footer">
