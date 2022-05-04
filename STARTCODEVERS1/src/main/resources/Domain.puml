@@ -1,0 +1,19 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+object customer
+object admin
+object order
+object bom
+object user
+
+user *-- customer
+customer *-- order
+order *-- bom
+user *-- admin
+admin *-- customer
+
+
+
+
+@enduml
