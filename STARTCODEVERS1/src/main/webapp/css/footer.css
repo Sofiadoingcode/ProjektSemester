@@ -1,0 +1,44 @@
+
+.footer{
+    background-color: #193f76;
+
+}
+
+.footer-box{
+    font-size: 1.4rem;
+    color: white;
+
+}
+
+.footer-headers {
+    font-weight: bold;
+    letter-spacing: 0.001px;
+}
+
+.footer-allcontact-box{
+    display: grid;
+    grid-template-columns: 1fr 7fr;
+}
+
+.footer-symbols-box{
+
+}
+
+.footer-contact-box{
+
+
+}
+.email-box{
+    margin-bottom: 20px;
+
+}
+
+.email-box-ext {
+    margin-top: 33px;
+
+}
+
+.footer-address-box{
+    margin-top: 115px;
+}
+
