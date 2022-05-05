@@ -14,7 +14,7 @@
     </jsp:attribute>
 
     <jsp:body>
-        <div class="container align-items-start">
+        <div class="container align-items-center">
             <h1> Design din egen Carport</h1>
 
             <br>
@@ -50,16 +50,19 @@
 
                 <h3>Tag</h3>
                 <div class="row">
-                    <div class="input-group">
-                        <label class="input-group-text" for="inputGroupSelect01">Tag</label>
-                        <select class="form-select" name="tag" id="inputGroupSelect02">
-                            <option selected>Choose</option>
-                            <option value="1">plasttrapez</option>
-                            <option value="2">ståltag</option>
-                            <option value="3">betontag</option>
+                    <div class=" col-md-4">
+                        <div class="input-group">
+                            <label class="input-group-text" for="inputGroupSelect01">materiale</label>
+                            <select class="form-select" name="tag" id="inputGroupSelect02">
+                                <option selected>Choose</option>
+                                <option value="1">plasttrapez</option>
+                                <option value="2">ståltag</option>
+                                <option value="3">betontag</option>
 
-                        </select>
+                            </select>
+                        </div>
                     </div>
+                    <br>
                     <div class="col-md-4">
                         <div class="input-group">
                             <label class="input-group-text" for="inputGroupSelect01">Tag</label>
@@ -96,14 +99,14 @@
                 <br>
 
                 <div class="row align-items-start">
-                    <div class="col-md-3">
+                    <div class="col-md-2">
                         <div class="input-group mb-3">
                             <input type="number" class="form-control" name="length" placeholder="længde"
                                    aria-label="" aria-describedby="">
                             <span class="input-group-text" id="shedLength">m</span>
                         </div>
                     </div>
-                    <div class="col-md-3">
+                    <div class="col-md-2">
                         <div class="input-group mb-3">
                             <input type="number" class="form-control" name=width" placeholder="brede"
                                    aria-label="" aria-describedby="">
@@ -113,6 +116,30 @@
 
                     <br>
 
+
+
+                <br>
+                <h3>Personlig information</h3>
+
+                <div class="row">
+                    <div class="col-md-2">
+                        <div class="form-floating">
+                            <input type="text" class="form-control" name="name" id="floatingName"
+                                   placeholder="Password">
+                            <label for="floatingName">Navn</label>
+                        </div>
+
+                    </div>
+                    <div class="col-md-2">
+                        <div class="form-floating mb-3">
+                            <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+                            <label for="floatingInput">Email address</label>
+                        </div>
+                    </div>
+
+
+                </div>
+                    <br>
                     <div class="gy-6 row align-content-start">
                         <!-- Button trigger modal -->
                         <div class="col">
@@ -128,6 +155,8 @@
 
 
                     </div>
+                </div>
+
             </form>
         </div>
 
