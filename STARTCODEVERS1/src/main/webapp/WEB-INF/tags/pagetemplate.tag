@@ -43,7 +43,7 @@
                 <div class="navbar-nav">
                     <a class="nav-item nav-link" href="${pageContext.request.contextPath}/requestList.jsp" style="color: white; padding-left: 25px; padding-right: 25px;">Anmodninger</a>
                     <a class="nav-item nav-link" href="${pageContext.request.contextPath}/fc/about?command=about" style="color: white; padding-left: 25px; padding-right: 25px;">Om os</a>
-                    <a class="nav-item nav-link" href="${pageContext.request.contextPath}/fc" style="color: white; padding-left: 25px; padding-right: 25px;">Bestil carport</a>
+                    <a class="nav-item nav-link" href="${pageContext.request.contextPath}/orderintroduction.jsp" style="color: white; padding-left: 25px; padding-right: 25px;">Bestil carport</a>
                     <a class="nav-item nav-link" href="${pageContext.request.contextPath}/fc" style="color: white; padding-left: 25px; padding-right: 25px;">Kontakt os</a>
                     <c:if test="${sessionScope.user == null }">
                         <a class="nav-item nav-link" href="${pageContext.request.contextPath}/login.jsp" style="color: white; padding-left: 25px; padding-right: 15px;">Login</a>
