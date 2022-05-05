@@ -6,25 +6,46 @@
 
 <t:pagetemplate>
     <jsp:attribute name="header">
-             Login
+
     </jsp:attribute>
 
     <jsp:attribute name="footer">
-            Login
+            Log ind
     </jsp:attribute>
 
     <jsp:body>
 
-        <h3>You can log in here</h3>
+        <div id="login-div">
+            <div id="loginForm-div">
+            <div id="logInHeader">
+                <h1 id="logInHeaderText">Log ind</h1>
+            </div>
+            <div id="loginForm">
+                <div action="fc/login" method="post">
+                    <input type="hidden" name="command" value="login"/>
+                    <div id="loginFormUser">
+                        <label class="loginFormText" for="username">Brugernavn: </label>
+                        <input type="text" id="username" name="username" required
+                        oninvalid="this.setCustomValidity('Indtast brugernavn')"
+                        oninput="this.setCustomValidity('')"/>
+                    </div>
+                    <div id="loginFormPass">
+                        <label id="passwordLabel" class="loginFormText" for="password">Kodeord: </label>
+                        <input type="password" id="password" name="password" required
+                        oninvalid="this.setCustomValidity('Indtast kodeord')"
+                        oninput="this.setCustomValidity('')"/>
+                    </div>
+                    <div id="login-btn-div">
+                        <input type="submit" id="login-btn" class="loginFormText" value="Log ind"/>
+                    </div>
+                </form>
+                </div>
+            </div>
+            </div>
+                <div id="loginFlag-div">
+                    <img id="loginFlag" src="images/FogFlag.png">
+                </div>
 
-        <form action="fc/login" method="post">
-            <input type="hidden" name="command" value="login"/>
-            <label for="username">Username: </label>
-            <input type="text" id="username" name="username"/>
-            <label for="password">Password: </label>
-            <input type="password" id="password" name="password"/>
-            <input type="submit"  value="Log in"/>
-        </form>
-
+        </div>
     </jsp:body>
 </t:pagetemplate>
