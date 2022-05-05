@@ -27,7 +27,7 @@
 </head>
 <body>
 <header>
-    <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #193f76;">
+    <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #193f76; font-size: 13px">
         <div class="container">
             <a class="navbar-brand" href="index.jsp">
                 <img src="${pageContext.request.contextPath}/images/fogLogo.png" width="85px;" class="img-fluid"/>
