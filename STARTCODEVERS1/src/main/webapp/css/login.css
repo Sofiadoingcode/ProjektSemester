@@ -1,8 +1,8 @@
-#login-div{
+#login-div-login{
     position: relative;
     margin-left: 110px;
 }
-#logInHeader{
+#logInHeader-login{
     margin-bottom: 25px;
 }
 #logInHeaderText{
@@ -30,7 +30,7 @@
     top:0px;
     left:350px;
 }
-#loginForm{
+#loginForm-login{
     max-width: 250px;
 }
 #loginForm-div{

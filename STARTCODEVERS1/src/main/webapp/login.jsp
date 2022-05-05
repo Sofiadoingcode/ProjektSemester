@@ -15,12 +15,12 @@
 
     <jsp:body>
 
-        <div id="login-div">
+        <div id="login-div-login">
             <div id="loginForm-div">
-            <div id="logInHeader">
+            <div id="logInHeader-login">
                 <h1 id="logInHeaderText">Log ind</h1>
             </div>
-            <div id="loginForm">
+            <div id="loginForm-login">
                 <div action="fc/login" method="post">
                     <input type="hidden" name="command" value="login"/>
                     <div id="loginFormUser">
@@ -35,7 +35,7 @@
                         oninvalid="this.setCustomValidity('Indtast kodeord')"
                         oninput="this.setCustomValidity('')"/>
                     </div>
-                    <div id="login-btn-div">
+                    <div id="login-btn-login-div">
                         <input type="submit" id="login-btn" class="loginFormText" value="Log ind"/>
                     </div>
                 </form>
