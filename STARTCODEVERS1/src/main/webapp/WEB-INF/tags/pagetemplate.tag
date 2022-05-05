@@ -39,7 +39,7 @@
             <div class="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
                 <div class="navbar-nav">
                     <a class="nav-item nav-link" href="${pageContext.request.contextPath}/fc/about?command=about" style="color: white; padding-left: 25px; padding-right: 25px;">About us</a>
-                    <a class="nav-item nav-link" href="${pageContext.request.contextPath}/fc" style="color: white; padding-left: 25px; padding-right: 25px;">Order carport</a>
+                    <a class="nav-item nav-link" href="${pageContext.request.contextPath}/orderCarport.jsp" style="color: white; padding-left: 25px; padding-right: 25px;">Order carport</a>
                     <a class="nav-item nav-link" href="${pageContext.request.contextPath}/fc" style="color: white; padding-left: 25px; padding-right: 25px;">Contact us</a>
                     <c:if test="${sessionScope.user == null }">
                         <a class="nav-item nav-link" href="${pageContext.request.contextPath}/login.jsp" style="color: white; padding-left: 25px; padding-right: 15px;">Login</a>

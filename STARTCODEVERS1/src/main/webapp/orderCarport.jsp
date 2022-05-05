@@ -14,8 +14,11 @@
     </jsp:attribute>
 
     <jsp:body>
+        <div class="container align-items-start">
+            <h1> Design din egen Carport</h1>
 
-        <div class="container">
+            <br>
+            <br>
 
             <form>
                 <div class="row align-items-start">
@@ -44,9 +47,21 @@
 
 
                 </div>
+
+                <h3>Tag</h3>
                 <div class="row">
+                    <div class="input-group">
+                        <label class="input-group-text" for="inputGroupSelect01">Tag</label>
+                        <select class="form-select" name="tag" id="inputGroupSelect02">
+                            <option selected>Choose</option>
+                            <option value="1">plasttrapez</option>
+                            <option value="2">ståltag</option>
+                            <option value="3">betontag</option>
+
+                        </select>
+                    </div>
                     <div class="col-md-4">
-                        <div class="input-group col-md-4">
+                        <div class="input-group">
                             <label class="input-group-text" for="inputGroupSelect01">Tag</label>
                             <select class="form-select" name="tag" id="inputGroupSelect01">
                                 <option selected>Choose</option>
@@ -56,24 +71,63 @@
                             </select>
                         </div>
                     </div>
+                    <div class="col-md-4" id="inputCheck1">
+                        <div class="input-group mb-3">
+                            <input type="number" class="form-control" name="angle" placeholder="0"
+                                   aria-label="" aria-describedby="">
+                            <span class="input-group-text" id="width">angle</span>
+                        </div>
+                    </div>
+                </div>
+                <br>
+
+                <h3>Skur</h3>
+
+                <br>
+
+
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                    <label class="form-check-label" for="flexCheckDefault">
+                        Skur
+                    </label>
                 </div>
 
+                <br>
 
-                <div class="container gy-6 row">
-                    <!-- Button trigger modal -->
-                    <div class="col">
-                        <button type="button" class=" btn-primary" data-bs-toggle="modal"
-                                data-bs-target="#exampleModal">
-                            Se tegning
-                        </button>
+                <div class="row align-items-start">
+                    <div class="col-md-3">
+                        <div class="input-group mb-3">
+                            <input type="number" class="form-control" name="length" placeholder="længde"
+                                   aria-label="" aria-describedby="">
+                            <span class="input-group-text" id="shedLength">m</span>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="input-group mb-3">
+                            <input type="number" class="form-control" name=width" placeholder="brede"
+                                   aria-label="" aria-describedby="">
+                            <span class="input-group-text" id="shedWidth">m</span>
+                        </div>
                     </div>
 
-                    <div class="col">
-                        <input type="submit" value="Submit">
+                    <br>
+
+                    <div class="gy-6 row align-content-start">
+                        <!-- Button trigger modal -->
+                        <div class="col">
+                            <button type="button" class=" btn-primary" data-bs-toggle="modal"
+                                    data-bs-target="#exampleModal">
+                                Se tegning
+                            </button>
+                        </div>
+
+                        <div class="col">
+                            <input type="submit" value="Submit">
+                        </div>
+
+
                     </div>
-
-
-                </div>
             </form>
         </div>
 
@@ -95,7 +149,6 @@
                 </div>
             </div>
         </div>
-
 
 
         <script>
