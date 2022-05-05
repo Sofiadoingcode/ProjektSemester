@@ -1,9 +1,33 @@
-*{
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
+#username, #password {
+    width: 13%;
+    margin: 4px 0;
+    display: inline-block;
+    border: 2px solid silver;
+}
+#password, #passwordLabel{
+    position: relative;
+    top:50px;
+    right:266px;
+}
+#loginForm, #logInHeader{
+    margin-left: 15px;
+}
+#logInHeader{
+    margin-bottom: 15px;
+}
+#login-btn{
+    position: relative;
+    top:100px;
+    right:464px;
+    background-color: #193f76;
+    color: #fff;
+    border: 1px solid silver;
+}
+#loginFlag{
+    width: 800px;
+    height: 488px;
+    margin-left: 707px;
+    position:absolute;
+    top:110px;
 }
 
-html{
-    font-size: 62.5%;
-}

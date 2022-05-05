@@ -12,7 +12,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title><jsp:invoke fragment="header"/></title>
     <link rel="stylesheet" href="<%=request.getContextPath()%>/css/style.css">
-
+    <link rel="stylesheet" href="<%=request.getContextPath()%>/css/login.css">
     <link rel="stylesheet" href="<%=request.getContextPath()%>/css/footer.css">
     <link rel="stylesheet" href="<%=request.getContextPath()%>/css/frontpage.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">

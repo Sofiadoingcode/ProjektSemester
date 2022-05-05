@@ -6,7 +6,7 @@
 
 <t:pagetemplate>
     <jsp:attribute name="header">
-             Log ind
+
     </jsp:attribute>
 
     <jsp:attribute name="footer">
@@ -14,23 +14,26 @@
     </jsp:attribute>
 
     <jsp:body>
-        <!DOCTYPE html>
-        <html lang="da">
-        <head>
-        <link rel="stylesheet" href="/css/login.css">
-        </head>
-        <body>
-        <div>
+
+
+        <h1 id="logInHeader">Log ind</h1>
+        <div id="loginForm">
         <form action="fc/login" method="post">
-            <input type="hidden" name="command" value="login" required/>
+            <input type="hidden" name="command" value="login"/>
             <label for="username">Brugernavn: </label>
-            <input type="text" id="username" name="username"/>
-            <label for="password">Kodeord: </label>
-            <input type="password" id="password" name="password" required/>
-            <input type="submit"  value="Log ind"/>
+            <input type="text" id="username" name="username" required
+                   oninvalid="this.setCustomValidity('Indtast brugernavn')"
+                   oninput="this.setCustomValidity('')"/>
+            <label id="passwordLabel" for="password">Kodeord: </label>
+            <input type="password" id="password" name="password" required
+                   oninvalid="this.setCustomValidity('Indtast kodeord')"
+                   oninput="this.setCustomValidity('')"/>
+            <input type="submit" id="login-btn"  value="Log ind"/>
         </form>
-        <img src="images/FogFlag.png">
         </div>
-        </body>
+        <div>
+        <img id="loginFlag" src="images/FogFlag.png">
+        </div>
+
     </jsp:body>
 </t:pagetemplate>
