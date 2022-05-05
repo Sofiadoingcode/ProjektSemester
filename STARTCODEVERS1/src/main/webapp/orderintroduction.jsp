@@ -170,14 +170,17 @@
                                                         <div class="gy-6 row align-content-start">
                                                                 <!-- Button trigger modal -->
                                                                 <div class="col">
-                                                                        <button type="button" class=" btn-primary" data-bs-toggle="modal"
-                                                                                data-bs-target="#exampleModal">
+                                                                        <button type="button" class=" btn-primary" >
                                                                                 Se tegning
                                                                         </button>
                                                                 </div>
 
                                                                 <div class="col">
-                                                                        <input type="submit" value="Submit">
+
+                                                                        <button type="button" class="" data-bs-toggle="modal"
+                                                                                data-bs-target="#exampleModal">
+                                                                                Submit
+                                                                        </button>
                                                                 </div>
 
 
@@ -192,11 +195,11 @@
                                         <div class="modal-dialog">
                                                 <div class="modal-content">
                                                         <div class="modal-header">
-                                                                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                                                                <h5 class="modal-title" id="exampleModalLabel">Tak for din forespørgelse</h5>
                                                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                         </div>
                                                         <div class="modal-body">
-                                                                Insert carport tegning here
+                                                                Kodeord og brugernavn...
                                                         </div>
                                                         <div class="modal-footer">
                                                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -227,6 +230,8 @@
 
 
                 </section>
+
+
 
 
 
