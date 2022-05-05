@@ -1,0 +1,49 @@
+
+.ointro-header-section{
+    padding: 3rem 1rem;
+}
+
+.ointro-header-box{
+
+    max-width: 500rem;
+    text-align: center;
+    background-color: #193f76;
+
+
+}
+
+.ointro-header{
+    font-size: 50px;
+    font-weight: bolder;
+    color: white;
+
+}
+
+.ointro-about-header{
+    font-size: 30px;
+
+}
+
+.ointro-form-section{
+    padding: 3rem 1rem;
+}
+
+.ointro-form-box{
+    max-width: 500rem;
+    background-color: #d1d9e4;
+
+}
+
+.form-box-header-box{
+    padding: 2rem 0rem;
+    text-align: center;
+
+}
+
+.form-box-header{
+    font-size: 30px;
+    font-weight: bolder;
+
+
+
+}
