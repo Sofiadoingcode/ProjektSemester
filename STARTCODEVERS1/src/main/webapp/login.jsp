@@ -14,6 +14,12 @@
     </jsp:attribute>
 
     <jsp:body>
+        <!DOCTYPE html>
+        <html lang="da">
+        <head>
+        <link rel="stylesheet" href="/css/login.css">
+        </head>
+        <body>
         <div>
         <form action="fc/login" method="post">
             <input type="hidden" name="command" value="login" required/>
@@ -25,5 +31,6 @@
         </form>
         <img src="images/FogFlag.png">
         </div>
+        </body>
     </jsp:body>
 </t:pagetemplate>
