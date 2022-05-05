@@ -15,10 +15,12 @@
 
     <link rel="stylesheet" href="<%=request.getContextPath()%>/css/footer.css">
     <link rel="stylesheet" href="<%=request.getContextPath()%>/css/frontpage.css">
+    <link rel="stylesheet" href="<%=request.getContextPath()%>/css/requestlistpage.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Oswald&family=Roboto:wght@300&family=Rubik:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://fonts.sandbox.google.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+
 
 
     <!-- Bootstrap CSS -->
@@ -29,7 +31,7 @@
 <header>
     <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #193f76; font-size: 13px">
         <div class="container">
-            <a class="navbar-brand" href="index.jsp">
+            <a class="navbar-brand" href="${pageContext.request.contextPath}/index.jsp">
                 <img src="${pageContext.request.contextPath}/images/fogLogo.png" width="85px;" class="img-fluid"/>
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
@@ -38,9 +40,10 @@
             </button>
             <div class="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
                 <div class="navbar-nav">
-                    <a class="nav-item nav-link" href="${pageContext.request.contextPath}/fc/about?command=about" style="color: white; padding-left: 25px; padding-right: 25px;">About us</a>
-                    <a class="nav-item nav-link" href="${pageContext.request.contextPath}/fc" style="color: white; padding-left: 25px; padding-right: 25px;">Order carport</a>
-                    <a class="nav-item nav-link" href="${pageContext.request.contextPath}/fc" style="color: white; padding-left: 25px; padding-right: 25px;">Contact us</a>
+                    <a class="nav-item nav-link" href="${pageContext.request.contextPath}/requestList.jsp" style="color: white; padding-left: 25px; padding-right: 25px;">Anmodninger</a>
+                    <a class="nav-item nav-link" href="${pageContext.request.contextPath}/fc/about?command=about" style="color: white; padding-left: 25px; padding-right: 25px;">Om os</a>
+                    <a class="nav-item nav-link" href="${pageContext.request.contextPath}/fc" style="color: white; padding-left: 25px; padding-right: 25px;">Bestil carport</a>
+                    <a class="nav-item nav-link" href="${pageContext.request.contextPath}/fc" style="color: white; padding-left: 25px; padding-right: 25px;">Kontakt os</a>
                     <c:if test="${sessionScope.user == null }">
                         <a class="nav-item nav-link" href="${pageContext.request.contextPath}/login.jsp" style="color: white; padding-left: 25px; padding-right: 15px;">Login</a>
                     </c:if>
