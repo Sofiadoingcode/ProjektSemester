@@ -1,0 +1,94 @@
+
+
+.index-header-section{
+    padding: 3rem 1rem;
+
+}
+
+
+.foglogo22{
+    max-width: 25rem;
+}
+
+.index-header-box{
+    max-width: 500rem;
+    align-items: center;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+
+}
+
+.index-col-header{
+    margin-left: 50px;
+
+}
+
+.index-section{
+
+    background-color: #d1d9e4;
+    padding: 0rem 6rem;
+}
+
+.index-box {
+    max-width: 500rem;
+    margin: 10px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    align-items: center;
+
+}
+
+.fogflagImg {
+    width: 100%;
+}
+
+
+
+.index-description{
+    font-size: 2rem;
+    line-height: 1.6;
+    margin-bottom: 4.8rem;
+}
+
+.index-heading-primary{
+    font-size: 3rem;
+    font-weight: 700;
+    line-height: 1.05;
+    color: #333;
+    letter-spacing: -0.5px;
+    margin-bottom: 3.2rem;
+}
+
+.btn-index:link, .btn-index:visited {
+    display: inline-block;
+    text-decoration: none;
+    letter-spacing: 0.01px;
+    font-size: 2rem;
+    font-weight: 600;
+    padding: 1.6rem 3.2rem;
+    border-radius: 0px;
+
+    transition: all 0.3s;
+}
+
+.btn-index--full:link, .btn-index--full:visited{
+    background-color: #193f76;
+    color: #fff;
+}
+
+
+.btn-index--login:link, .btn-index--login:visited{
+    color: #333333;
+}
+
+
+.btn-index--full:hover, .btn-index--full:active{
+    background-color: #122c53;
+
+}
+
+.index-gallery-section{
+    padding: 2rem 0rem;
+}
+
