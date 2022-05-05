@@ -1,33 +1,46 @@
-#username, #password {
-    width: 13%;
-    margin: 4px 0;
-    display: inline-block;
-    border: 2px solid silver;
-}
-#password, #passwordLabel{
+#login-div{
     position: relative;
-    top:50px;
-    right:266px;
-}
-#loginForm, #logInHeader{
-    margin-left: 15px;
+    margin-left: 110px;
 }
 #logInHeader{
-    margin-bottom: 15px;
+    margin-bottom: 25px;
+}
+#logInHeaderText{
+    font-weight: bold;
+    font-size: 32px;
+}
+.loginFormText{
+    font-size: 18px;
+}
+#loginFormUser, #loginFormPass{
+    margin-bottom: 10px;
+
+}
+#username{
+    margin-left: 4px;
+}
+#password{
+    margin-left: 27px;
+    margin-top: 0px;
+}
+#loginFlag-div, #loginFlag{
+    width: 650px;
+    max-height: 400px;
+    position:absolute;
+    top:0px;
+    left:350px;
+}
+#loginForm{
+    max-width: 250px;
+}
+#loginForm-div{
+
+    max-width: 350px;
 }
 #login-btn{
-    position: relative;
-    top:100px;
-    right:464px;
     background-color: #193f76;
     color: #fff;
     border: 1px solid silver;
+    padding:4px;
+    border-radius: 2px;
 }
-#loginFlag{
-    width: 800px;
-    height: 488px;
-    margin-left: 707px;
-    position:absolute;
-    top:110px;
-}
-

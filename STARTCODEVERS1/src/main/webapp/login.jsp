@@ -15,25 +15,37 @@
 
     <jsp:body>
 
+        <div id="login-div">
+            <div id="loginForm-div">
+            <div id="logInHeader">
+                <h1 id="logInHeaderText">Log ind</h1>
+            </div>
+            <div id="loginForm">
+                <div action="fc/login" method="post">
+                    <input type="hidden" name="command" value="login"/>
+                    <div id="loginFormUser">
+                        <label class="loginFormText" for="username">Brugernavn: </label>
+                        <input type="text" id="username" name="username" required
+                        oninvalid="this.setCustomValidity('Indtast brugernavn')"
+                        oninput="this.setCustomValidity('')"/>
+                    </div>
+                    <div id="loginFormPass">
+                        <label id="passwordLabel" class="loginFormText" for="password">Kodeord: </label>
+                        <input type="password" id="password" name="password" required
+                        oninvalid="this.setCustomValidity('Indtast kodeord')"
+                        oninput="this.setCustomValidity('')"/>
+                    </div>
+                    <div id="login-btn-div">
+                        <input type="submit" id="login-btn" class="loginFormText" value="Log ind"/>
+                    </div>
+                </form>
+                </div>
+            </div>
+            </div>
+                <div id="loginFlag-div">
+                    <img id="loginFlag" src="images/FogFlag.png">
+                </div>
 
-        <h1 id="logInHeader">Log ind</h1>
-        <div id="loginForm">
-        <form action="fc/login" method="post">
-            <input type="hidden" name="command" value="login"/>
-            <label for="username">Brugernavn: </label>
-            <input type="text" id="username" name="username" required
-                   oninvalid="this.setCustomValidity('Indtast brugernavn')"
-                   oninput="this.setCustomValidity('')"/>
-            <label id="passwordLabel" for="password">Kodeord: </label>
-            <input type="password" id="password" name="password" required
-                   oninvalid="this.setCustomValidity('Indtast kodeord')"
-                   oninput="this.setCustomValidity('')"/>
-            <input type="submit" id="login-btn"  value="Log ind"/>
-        </form>
         </div>
-        <div>
-        <img id="loginFlag" src="images/FogFlag.png">
-        </div>
-
     </jsp:body>
 </t:pagetemplate>
