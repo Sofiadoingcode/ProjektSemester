@@ -19,8 +19,32 @@ public class CustomerMapper implements ICustomerMapper{
     }
 
     @Override
-    public Customer getAllNonAcceptedRequests() throws DatabaseException {
-        return null;
+    public List<Customer> getAllNonAcceptedRequests() throws DatabaseException {
+        List<Customer> customerList = new ArrayList<>();
+        String sql = "SELECT idcustomer, name, zipcode, phonenumber, email, c.city, o.isAccepted FROM `customer` \n" +
+                "INNER JOIN city c USING(zipcode) \n" +
+                "INNER JOIN `order` o USING(idCustomer)\n" +
+                "WHERE isAccepted = '0'";
+        try (Connection connection = connectionPool.getConnection()) {
+            try (PreparedStatement ps = connection.prepareStatement(sql)) {
+                ResultSet rs = ps.executeQuery();
+                while (rs.next()) {
+                    int customerID = rs.getInt("idCustomer");
+                    String name = rs.getString("name");
+                    int zipcode = rs.getInt("zipcode");
+                    String city = rs.getString("city");
+                    String phonenumber = rs.getString("phonenumber");
+                    String email = rs.getString("email");
+                    Customer customer = new Customer(customerID, name, zipcode, city, phonenumber, email);
+                    customerList.add(customer);
+
+                }
+            }
+        } catch (SQLException ex) {
+            throw new DatabaseException(ex, "Fejl under indlæsning fra databasen");
+        }
+
+        return customerList;
     }
 
     @Override

@@ -7,7 +7,8 @@ import java.util.List;
 
 public interface ICustomerMapper {
 
-    public Customer getAllNonAcceptedRequests() throws DatabaseException;
+
+    public List<Customer> getAllNonAcceptedRequests() throws DatabaseException;
     public List<Customer> getAllAcceptedRequests() throws DatabaseException;
     public Customer getAllPaidRequests() throws DatabaseException;
 
