@@ -66,7 +66,7 @@
                                                         </div>
                                                         <div class="col">
                                                                 <div class="input-group mb-3">
-                                                                        <input type="number" class="form-control" name=width" placeholder="brede"
+                                                                        <input type="number" class="form-control" name=width" placeholder="bredde"
                                                                                aria-label="Recipient's username" aria-describedby="basic-addon2">
                                                                         <span class="input-group-text" id="width">m</span>
                                                                 </div>

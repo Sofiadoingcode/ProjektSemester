@@ -7,12 +7,19 @@ public class User
     private String username;
     private String password;
     private String role;
+    private int idRole;
 
     public User(String username, String password, String role)
     {
         this.username = username;
         this.password = password;
         this.role = role;
+    }
+    public User(String username, String password, int idRole)
+    {
+        this.username = username;
+        this.password = password;
+        this.idRole = idRole;
     }
 
 
@@ -71,5 +78,13 @@ public class User
     public int hashCode()
     {
         return Objects.hash(getUsername(), getPassword(), getRole());
+    }
+
+    public int getIdRole() {
+        return idRole;
+    }
+
+    public void setIdRole(int idRole) {
+        this.idRole = idRole;
     }
 }

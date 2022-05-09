@@ -32,6 +32,13 @@ public class Login extends Command
         User user = UserFacade.login(username, password, connectionPool);
         session = request.getSession();
         session.setAttribute("user", user); // adding user object to session scope
-        return "index";
+
+        if(user.getIdRole()==2){
+            return "ViewCarportOrder";
+        }
+        else{
+            return "index";
+        }
+
     }
 }

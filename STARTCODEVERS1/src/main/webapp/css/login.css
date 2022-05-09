@@ -31,6 +31,7 @@
     position:absolute;
     top:0px;
     left:350px;
+    margin:0 auto;
 }
 #loginForm-login{
     max-width: 250px;

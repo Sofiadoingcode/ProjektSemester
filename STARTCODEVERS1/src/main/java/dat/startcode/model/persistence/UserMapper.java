@@ -34,7 +34,7 @@ public class UserMapper implements IUserMapper
                 ResultSet rs = ps.executeQuery();
                 if (rs.next())
                 {
-                    String role = rs.getString("role");
+                    int role = rs.getInt("idrole");
                     user = new User(username, password, role);
                 } else
                 {
@@ -45,6 +45,8 @@ public class UserMapper implements IUserMapper
         {
             throw new DatabaseException(ex, "Error logging in. Something went wrong with the database");
         }
+
+
         return user;
     }
 

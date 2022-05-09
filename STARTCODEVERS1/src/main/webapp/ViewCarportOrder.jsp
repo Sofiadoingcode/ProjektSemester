@@ -72,7 +72,7 @@
                 <!-- Button trigger modal -->
                 <div class="col">
                     <button type="submit" class=" btn-primary" value="Køb" >
-                            data-bs-target="#exampleModal">
+                            Køb
                     </button>
                 </div>
 
