@@ -4,6 +4,7 @@ import dat.startcode.model.entities.User;
 import dat.startcode.model.exceptions.DatabaseException;
 
 import java.sql.*;
+import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -109,5 +110,15 @@ public class UserMapper implements IUserMapper
         return user;
     }
 
+    public String createRandomPasswordAlgorithm() {
+        String chars = "12345678901234567890ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+        Random rnd = new Random();
+        String randomPassword = "";
+        for (int i = 0; i < 6; i++)
+            randomPassword += (chars.charAt(rnd.nextInt(chars.length())));
+
+
+        return randomPassword;
+    }
 
 }
