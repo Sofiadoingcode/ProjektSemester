@@ -18,10 +18,12 @@
 }
 #username{
     margin-left: 4px;
+    padding: 1px;
+
 }
 #password{
     margin-left: 27px;
-    margin-top: 0px;
+    padding:1px;
 }
 #loginFlag-div, #loginFlag{
     width: 650px;

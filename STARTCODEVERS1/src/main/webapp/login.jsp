@@ -21,7 +21,7 @@
                 <h1 id="logInHeaderText">Log ind</h1>
             </div>
             <div id="loginForm-login">
-                <div action="fc/login" method="post">
+                <form action="fc/login" method="post">
                     <input type="hidden" name="command" value="login"/>
                     <div id="loginFormUser">
                         <label class="loginFormText" for="username">Brugernavn: </label>
@@ -38,8 +38,8 @@
                     <div id="login-btn-login-div">
                         <input type="submit" id="login-btn" class="loginFormText" value="Log ind"/>
                     </div>
+
                 </form>
-                </div>
             </div>
             </div>
                 <div id="loginFlag-div">
