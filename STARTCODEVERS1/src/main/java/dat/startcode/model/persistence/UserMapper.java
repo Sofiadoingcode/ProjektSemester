@@ -16,6 +16,48 @@ public class UserMapper implements IUserMapper
         this.connectionPool = connectionPool;
     }
 
+
+    public User createTempUser(String name, String email){
+        Logger.getLogger("web").log(Level.INFO, "");
+        int idKey = 0;
+
+        User user;
+
+        String username = email;
+        String password = createRandomPassword;
+
+
+        String sql = "insert into user (username, password, role) values (?,?,?)";
+        try (Connection connection = connectionPool.getConnection())
+        {
+            try (PreparedStatement ps = connection.prepareStatement(sql))
+            {
+                ps.setString(1, username);
+                ps.setString(2, password);
+                ps.setString(3, role);
+                int rowsAffected = ps.executeUpdate();
+                if (rowsAffected == 1)
+                {
+                    user = new User(username, password, role);
+                } else
+                {
+                    throw new DatabaseException("The user with username = " + username + " could not be inserted into the database");
+                }
+            }
+        }
+        catch (SQLException ex)
+        {
+            throw new DatabaseException(ex, "Could not insert username into database");
+
+
+
+        ResultSet generatedKeys = ps1.getGeneratedKeys();
+        if (generatedKeys.next()) {
+            idKey = generatedKeys.getInt(1);
+        }
+        return user;
+    }
+
     @Override
     public User login(String username, String password) throws DatabaseException
     {
