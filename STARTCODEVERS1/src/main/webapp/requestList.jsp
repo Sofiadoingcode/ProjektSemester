@@ -53,7 +53,7 @@
                             <td class="tableRows-RequestList">
                                 <form>
                                     <button type="submit" name="seeOrder" formaction="seeOrderlineServlet"
-                                            class="seeorder-btn">See Order
+                                            class="seeorder-btn">Se Stykliste
                                     </button>
                                 </form>
                             </td>
@@ -115,8 +115,8 @@
                             <td class="tableRows-RequestList">${requests.city}</td>
                             <td class="tableRows-RequestList">
                                 <form>
-                                    <button type="submit" name="seeOrder" formaction="seeOrder.jsp" class="seeorder-btn">See
-                                        Order
+                                    <button type="submit" name="seeOrder" formaction="seeOrder.jsp" class="seeorder-btn">
+                                        Se Stykliste
                                     </button>
                                 </form>
                             </td>
@@ -173,8 +173,8 @@
                             <td class="tableRows-RequestList">${requests.city}</td>
                             <td class="tableRows-RequestList">
                                 <form>
-                                    <button type="submit" name="seeOrder" formaction="seeOrder.jsp" class="seeorder-btn">See
-                                        Order
+                                    <button type="submit" name="seeOrder" formaction="seeOrder.jsp" class="seeorder-btn">
+                                        Se Stykliste
                                     </button>
                                 </form>
                             </td>
