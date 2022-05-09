@@ -16,7 +16,6 @@ abstract class Command
         commands.put("login", new Login());
         commands.put("logout", new Logout());
         commands.put("about", new About());
-        commands.put("requestList", new RequestList());
     }
 
     static Command from( HttpServletRequest request ) {
