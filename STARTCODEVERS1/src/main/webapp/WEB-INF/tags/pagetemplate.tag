@@ -41,7 +41,7 @@
             </button>
             <div class="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
                 <div class="navbar-nav">
-                    <a class="nav-item nav-link" href="${pageContext.request.contextPath}/requestList.jsp" style="color: white; padding-left: 25px; padding-right: 25px;">Anmodninger</a>
+                    <a class="nav-item nav-link" href="${pageContext.request.contextPath}/fc/requestList?command=requestList" style="color: white; padding-left: 25px; padding-right: 25px;">Anmodninger</a>
                     <a class="nav-item nav-link" href="${pageContext.request.contextPath}/fc/about?command=about" style="color: white; padding-left: 25px; padding-right: 25px;">Om os</a>
                     <a class="nav-item nav-link" href="${pageContext.request.contextPath}/orderintroduction.jsp" style="color: white; padding-left: 25px; padding-right: 25px;">Bestil carport</a>
                     <a class="nav-item nav-link" href="${pageContext.request.contextPath}/fc" style="color: white; padding-left: 25px; padding-right: 25px;">Kontakt os</a>
