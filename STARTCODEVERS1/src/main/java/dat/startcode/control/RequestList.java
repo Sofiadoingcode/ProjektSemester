@@ -18,19 +18,21 @@ public class RequestList extends Command {
 
     @Override
     String execute(HttpServletRequest request, HttpServletResponse response) throws DatabaseException {
-        System.out.println("AAA");
+
         HttpSession session = request.getSession();
         session.setAttribute("user", null);
 
-        System.out.println("BBB");
+
         ConnectionPool connectionPool = ApplicationStart.getConnectionPool();
+
         CustomerMapper customerMapper = new CustomerMapper(connectionPool);
 
-        System.out.println("CCC");
-        List<Customer> nonAcceptedRequests = customerMapper.getAllNonAcceptedRequests();
-        request.setAttribute("nonAcceptedRequests", nonAcceptedRequests);
 
-        System.out.println("DDD");
+        List<Customer> nonAcceptedRequests = customerMapper.getAllNonAcceptedRequests();
+        List<Customer> acceptedRequests = customerMapper.getAllAcceptedRequests();
+        request.setAttribute("nonAcceptedRequests", nonAcceptedRequests);
+        request.setAttribute("acceptedRequests", acceptedRequests);
+
         return "requestList";
 
     }
