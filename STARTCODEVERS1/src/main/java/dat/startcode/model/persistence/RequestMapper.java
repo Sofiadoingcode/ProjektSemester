@@ -11,8 +11,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class RequestMapper {
-    int idShed = 0;
-    int idCarport=0;
+    private int idShed = 0;
+    private int idCarport=0;
 
     ConnectionPool connectionPool;
 
