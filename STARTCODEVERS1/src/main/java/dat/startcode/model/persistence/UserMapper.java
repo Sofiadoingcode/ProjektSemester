@@ -17,43 +17,32 @@ public class UserMapper implements IUserMapper
     }
 
 
-    public User createTempUser(String name, String email){
+
+    public User createTempUser(String name, String email) throws DatabaseException {
         Logger.getLogger("web").log(Level.INFO, "");
         int idKey = 0;
 
         User user;
 
         String username = email;
-        String password = createRandomPassword;
+        String password = createRandomPasswordAlgorithm();
 
 
-        String sql = "insert into user (username, password, role) values (?,?,?)";
-        try (Connection connection = connectionPool.getConnection())
-        {
-            try (PreparedStatement ps = connection.prepareStatement(sql))
-            {
-                ps.setString(1, username);
+        String sql = "insert into user (username, password, role) values (?,?,1)";
+        try (Connection connection = connectionPool.getConnection()) {
+            try (PreparedStatement ps = connection.prepareStatement(sql)) {
+                ps.setString(1, email);
                 ps.setString(2, password);
-                ps.setString(3, role);
                 int rowsAffected = ps.executeUpdate();
-                if (rowsAffected == 1)
-                {
-                    user = new User(username, password, role);
-                } else
-                {
-                    throw new DatabaseException("The user with username = " + username + " could not be inserted into the database");
+                if (rowsAffected == 1) {
+                    user = new User(email, password, "customer");
+                } else {
+                    throw new DatabaseException("The user with username = " + email + " could not be inserted into the database");
                 }
             }
-        }
-        catch (SQLException ex)
-        {
-            throw new DatabaseException(ex, "Could not insert username into database");
+        } catch (SQLException ex) {
+         throw new DatabaseException(ex, "Something went wrong");
 
-
-
-        ResultSet generatedKeys = ps1.getGeneratedKeys();
-        if (generatedKeys.next()) {
-            idKey = generatedKeys.getInt(1);
         }
         return user;
     }
