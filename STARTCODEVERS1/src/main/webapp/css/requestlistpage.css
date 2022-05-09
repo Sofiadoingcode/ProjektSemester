@@ -172,3 +172,26 @@
     width: 90%;
 }
 
+.tables-title{
+    max-width: 500rem;
+    text-align: center;
+    background-color: #193f76;
+}
+
+.requestlist-tables-title{
+    font-size: 20px;
+    font-weight: bolder;
+    color: white;
+
+}
+
+.orders-header-box {
+    max-width: 500rem;
+    text-align: center;
+    background-color: #e8ecf1;
+}
+
+.orders-header {
+    font-weight: bolder;
+
+}
