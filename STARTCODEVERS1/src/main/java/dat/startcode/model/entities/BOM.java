@@ -78,6 +78,9 @@ public class BOM {
             addTreeStuff("spærtræ ubh.", 2, length);
 
         }
+        addTreeStuff("trykimp. Brædt", 2, length, 25, 200);
+
+
 
         //todo:fix length and amount
         addTreeStuff("trykimp. Brædt", 2, length, 25, 200);
@@ -89,7 +92,12 @@ public class BOM {
 
         int amountOfSpears = calculateSpearAmount(length);
         addTreeStuff("spærtræ ubh.", amountOfSpears, width);
+        addScrewsNStuff("universal 190 mm højre", amountOfSpears);
+        addScrewsNStuff("universal 190 mm venstre", amountOfSpears);
 
+
+        //Todo:think about length
+        addTreeStuff("Plastmo Ecolite blåtonet",(int)Math.ceil(width/100),length);
 
 
 
@@ -97,7 +105,7 @@ public class BOM {
         addTreeStuff("trykimp. Stolpe", polNumber, height + 1);
 
 
-        while (true) {
+       /* while (true) {
             // CHECK IF ALL CRITERIA FOR CARPORT ARE MET//
 
 
@@ -115,11 +123,9 @@ public class BOM {
             fullbom.add(newProductline);
             break;
         }
-
+*/
 
         addScrewsNStuff("hulbånd 1x20 mm. 10 mtr.", 2);
-        addScrewsNStuff("universal 190 mm højre", amountOfSpears);
-        addScrewsNStuff("universal 190 mm venstre", amountOfSpears);
 
         addScrewsNStuff("Skruer", 1, 60, 4.5);
 
