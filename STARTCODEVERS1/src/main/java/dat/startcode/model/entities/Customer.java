@@ -7,18 +7,28 @@ public class Customer {
     private String city;
     private String phonenumber;
     private String email;
+    private int idorder;
 
-    public Customer(int id, String name, int zipcode, String city, String phonenumber, String email) {
+    public Customer(int id, String name, int zipcode, String city, String phonenumber, String email, int idorder) {
         this.id = id;
         this.name = name;
         this.zipcode = zipcode;
         this.city = city;
         this.phonenumber = phonenumber;
         this.email = email;
+        this.idorder = idorder;
     }
 
     public int getId() {
         return id;
+    }
+
+    public int getIdorder() {
+        return idorder;
+    }
+
+    public void setIdorder(int idorder) {
+        this.idorder = idorder;
     }
 
     public void setId(int id) {

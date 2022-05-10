@@ -10,7 +10,7 @@ public interface ICustomerMapper {
 
     public List<Customer> getAllNonAcceptedRequests() throws DatabaseException;
     public List<Customer> getAllAcceptedRequests() throws DatabaseException;
-    public Customer getAllPaidRequests() throws DatabaseException;
+    public List<Customer> getAllPaidRequests() throws DatabaseException;
 
 
 

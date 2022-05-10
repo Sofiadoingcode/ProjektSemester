@@ -67,7 +67,7 @@
                                         </svg>
                                     </button>
 
-                                    <button type="submit" name="delete" formaction="deleteOrder" formmethod="post"
+                                    <button type="submit" name="delete" value="${request.idorder}" formaction="fc/deleteRequest?command=deleteRequest" formmethod="post"
                                             class="orders-btn-DeleteX orders-delete">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                              class="bi bi-x" viewBox="0 0 16 16">
@@ -131,7 +131,7 @@
                                         </svg>
                                     </button>
 
-                                    <button type="submit" name="delete" formaction="deleteOrder" formmethod="post"
+                                    <button type="submit" name="delete" value="${requests.idorder}" formaction="fc/deleteRequest?command=deleteRequest" formmethod="post"
                                             class="orders-btn orders-btn-DeleteX orders-delete">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                              class="bi bi-x" viewBox="0 0 16 16">
@@ -164,7 +164,7 @@
                     <td class="tableHeader-RequestList">Handling</td>
 
                     </thead>
-                    <c:forEach var="requests" items="${requestScope.acceptedRequests}">
+                    <c:forEach var="requests" items="${requestScope.paidRequests}">
                         <tr class="orders-tr">
 
                             <td class="tableRows-RequestList">${requests.name}</td>
@@ -189,7 +189,7 @@
                                         </svg>
                                     </button>
 
-                                    <button type="submit" name="delete" formaction="deleteOrder" formmethod="post"
+                                    <button type="submit" name="delete" value="${requests.idorder}" formaction="fc/deleteRequest?command=deleteRequest" formmethod="post"
                                             class="orders-btn orders-btn-DeleteX orders-delete">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                              class="bi bi-x" viewBox="0 0 16 16">
