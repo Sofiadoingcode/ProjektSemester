@@ -27,7 +27,7 @@ public class ShowTempUser extends Command
     {
         User user;
         UserMapper userMapper = new UserMapper(connectionPool);
-        user=userMapper.createTempUser(request.getParameter("name"), request.getParameter("email"));
+        user=userMapper.createTempUser(request.getParameter("email"));
         request.setAttribute("tempUser", user);
 
             return "orderintroduction.jsp";
