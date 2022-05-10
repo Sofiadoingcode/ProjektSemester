@@ -21,12 +21,8 @@ public class UserMapper implements IUserMapper
 
     public User createTempUser(String name, String email) throws DatabaseException {
         Logger.getLogger("web").log(Level.INFO, "");
-        int idKey = 0;
-
         User user;
-        
         String password = createRandomPasswordAlgorithm();
-
 
         String sql = "insert into user (username, password, role) values (?,?,1)";
         try (Connection connection = connectionPool.getConnection()) {
