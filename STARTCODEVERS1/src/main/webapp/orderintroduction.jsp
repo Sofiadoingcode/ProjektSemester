@@ -7,6 +7,14 @@
 <t:pagetemplate>
 
         <jsp:body>
+                <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+                <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+                <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+                <script>
+                        $(document).ready(function(){
+                                $("#exampleModal").modal('show');
+                        });
+                </script>
                 <section class="ointro-header-section">
                         <div class="ointro-header-box">
 
@@ -47,7 +55,7 @@
                                         <br>
                                         <br>
 
-                                        <form action="fc/showTempUser">
+                                        <form action="fc/showTempUser?command=showTempUser" method="post">
                                                 <div class="row align-items-start">
 
                                                         <div class="col">
@@ -152,14 +160,18 @@
                                                                 <div class="col-md-2">
                                                                         <div class="form-floating">
                                                                                 <input type="text" class="form-control" name="name" id="floatingName"
-                                                                                       placeholder="Password">
+                                                                                       placeholder="Password" required
+                                                                                       oninvalid="this.setCustomValidity('Indtast navn')"
+                                                                                       oninput="this.setCustomValidity('')">
                                                                                 <label for="floatingName">Navn</label>
                                                                         </div>
 
                                                                 </div>
                                                                 <div class="col-md-2">
                                                                         <div class="form-floating mb-3">
-                                                                                <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+                                                                                <input type="email" class="form-control" id="floatingInput" name="email" placeholder="name@example.com" required
+                                                                                       oninvalid="this.setCustomValidity('Indtast email')"
+                                                                                       oninput="this.setCustomValidity('')">
                                                                                 <label for="floatingInput">Email address</label>
                                                                         </div>
                                                                 </div>
@@ -177,8 +189,7 @@
 
                                                                 <div class="col">
 
-                                                                        <button type="submit" class="" data-bs-toggle="modal"
-                                                                                data-bs-target="#exampleModal">
+                                                                        <button type="submit" class="">
                                                                                 Submit
                                                                         </button>
                                                                 </div>
@@ -191,6 +202,7 @@
                                 </div>
 
                                 <!-- Modal -->
+                                <c:if test="${requestScope.tempUser!=null}">
                                 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                         <div class="modal-dialog">
                                                 <div class="modal-content">
@@ -199,7 +211,9 @@
                                                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                         </div>
                                                         <div class="modal-body">
-                                                                Kodeord og brugernavn...
+                                                                Brugernavn: ${requestScope.tempUser.username}
+                                                                <br>
+                                                                Kodeord: ${requestScope.tempUser.password}
                                                         </div>
                                                         <div class="modal-footer">
                                                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -208,8 +222,7 @@
                                                 </div>
                                         </div>
                                 </div>
-
-
+                                </c:if>
                                 <script>
 
                                         /*

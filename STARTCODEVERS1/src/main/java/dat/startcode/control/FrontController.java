@@ -36,7 +36,7 @@ public class FrontController extends HttpServlet {
                 response.sendRedirect(request.getServletContext().getContextPath() + "/index.jsp");
             } else
             {
-                request.getRequestDispatcher("/" + view + ".jsp").forward(request, response);
+                request.getRequestDispatcher("/" + view).forward(request, response);
             }
         } catch ( UnsupportedEncodingException | DatabaseException e )
         {

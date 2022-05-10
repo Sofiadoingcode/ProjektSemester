@@ -12,6 +12,6 @@ public class About extends Command
     {
         String hilsen = "Her kan du se hvordan man sender indhold til en jsp-side.";
         request.setAttribute("hilsen", hilsen);
-        return "about";
+        return "about.jsp";
     }
 }

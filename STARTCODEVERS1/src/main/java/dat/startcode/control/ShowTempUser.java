@@ -3,6 +3,7 @@ package dat.startcode.control;
 import dat.startcode.model.config.ApplicationStart;
 import dat.startcode.model.entities.User;
 import dat.startcode.model.exceptions.DatabaseException;
+import dat.startcode.model.persistence.UserMapper;
 import dat.startcode.model.services.UserFacade;
 import dat.startcode.model.persistence.ConnectionPool;
 
@@ -24,9 +25,12 @@ public class ShowTempUser extends Command
     @Override
     String execute(HttpServletRequest request, HttpServletResponse response) throws DatabaseException
     {
-        
+        User user;
+        UserMapper userMapper = new UserMapper(connectionPool);
+        user=userMapper.createTempUser(request.getParameter("name"), request.getParameter("email"));
+        request.setAttribute("tempUser", user);
 
-            return "ViewCarportOrder";
+            return "orderintroduction.jsp";
 
 
     }

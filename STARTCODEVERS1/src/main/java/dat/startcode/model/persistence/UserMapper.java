@@ -23,7 +23,7 @@ public class UserMapper implements IUserMapper
         User user;
         String password = createRandomPasswordAlgorithm();
 
-        String sql = "insert into user (username, password, role) values (?,?,1)";
+        String sql = "insert into user (username, password, idrole) values (?,?,2)";
         try (Connection connection = connectionPool.getConnection()) {
             try (PreparedStatement ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
                 ps.setString(1, email);

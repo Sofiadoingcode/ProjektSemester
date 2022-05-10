@@ -35,7 +35,7 @@ public class Login extends Command
         session.setAttribute("user", user); // adding user object to session scope
 
         if(user.getIdRole()==2){
-            return "ViewCarportOrder";
+            return "ViewCarportOrder.jsp";
         }
         else{
             return "index";
