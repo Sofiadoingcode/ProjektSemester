@@ -33,6 +33,8 @@ public class RequestList extends Command {
         request.setAttribute("nonAcceptedRequests", nonAcceptedRequests);
         request.setAttribute("acceptedRequests", acceptedRequests);
 
+
+
         return "requestList";
 
     }
