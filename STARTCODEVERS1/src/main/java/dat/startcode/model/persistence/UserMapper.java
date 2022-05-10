@@ -19,17 +19,23 @@ public class UserMapper implements IUserMapper
 
     public User createTempUser(String name, String email) throws DatabaseException {
         Logger.getLogger("web").log(Level.INFO, "");
+        int idUser=0;
         User user;
         String password = createRandomPasswordAlgorithm();
 
         String sql = "insert into user (username, password, idrole) values (?,?,2)";
         try (Connection connection = connectionPool.getConnection()) {
-            try (PreparedStatement ps = connection.prepareStatement(sql)) {
+            try (PreparedStatement ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
                 ps.setString(1, email);
                 ps.setString(2, password);
+
+                ResultSet generatedKeys = ps.getGeneratedKeys();
+                if (generatedKeys.next()) {
+                    idUser = generatedKeys.getInt(1);
+                }
                 int rowsAffected = ps.executeUpdate();
                 if (rowsAffected == 1) {
-                    user = new User(email, password, "customer");
+                    user = new User(email, password, 1, idUser);
                 } else {
                     throw new DatabaseException("The user with username = " + email + " could not be inserted into the database");
                 }
@@ -59,7 +65,7 @@ public class UserMapper implements IUserMapper
                 ResultSet rs = ps.executeQuery();
                 if (rs.next())
                 {
-                    String role = rs.getString("role");
+                    int role = rs.getInt("idrole");
                     user = new User(username, password, role);
                 } else
                 {
@@ -70,11 +76,13 @@ public class UserMapper implements IUserMapper
         {
             throw new DatabaseException(ex, "Error logging in. Something went wrong with the database");
         }
+
+
         return user;
     }
 
     @Override
-    public User createUser(String username, String password, String role) throws DatabaseException
+    public User createUser(String username, String password, int role) throws DatabaseException
     {
         Logger.getLogger("web").log(Level.INFO, "");
         User user;
@@ -85,7 +93,7 @@ public class UserMapper implements IUserMapper
             {
                 ps.setString(1, username);
                 ps.setString(2, password);
-                ps.setString(3, role);
+                ps.setInt(3, role);
                 int rowsAffected = ps.executeUpdate();
                 if (rowsAffected == 1)
                 {
