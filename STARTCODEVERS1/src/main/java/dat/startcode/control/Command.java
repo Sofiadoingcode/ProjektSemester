@@ -18,6 +18,8 @@ abstract class Command
         commands.put("about", new About());
         commands.put("requestList", new RequestList());
         commands.put("deleteRequest", new DeleteRequest());
+        commands.put("acceptRequest", new AcceptRequest());
+        commands.put("unAcceptRequest", new unAcceptRequest());
     }
 
     static Command from( HttpServletRequest request ) {
