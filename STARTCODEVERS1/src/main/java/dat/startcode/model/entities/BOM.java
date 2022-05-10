@@ -53,14 +53,24 @@ public class BOM {
 
             //todo: fix length and amounts
             //løsholter til skur
-            addTreeStuff("regular ub.", 4, shed_length);
-            addTreeStuff("regular ub.", 12, length - roofOverHangDistance * 2);
+            //addTreeStuff("regular ub.", 4, shed_length);
+            // addTreeStuff("regular ub.", 12, shed_width / 2);
 
             //todo: think about length
             //door
             addTreeStuff("lægte ubh.", 1, 420);
 
+            addScrewsNStuff("t hængsel", 2);
+            addScrewsNStuff("stalddørsgreb 50x75", 1);
 
+            int numberOfDecoBoards = calculateNumberOfDecoBoards(10);
+            addTreeStuff("trykimp. Brædt", numberOfDecoBoards, height, 19, 10);
+
+
+            int screwLno = calculateNumberRequired("Skruer", numberOfDecoBoards * 4, 7, 5);
+            addScrewsNStuff("Skruer", screwLno, 7, 5);
+            int screwSno = calculateNumberRequired("Skruer", numberOfDecoBoards * 3, 5, 5);
+            addScrewsNStuff("Skruer", screwSno, 5, 5);
         } else {
 
 
@@ -77,16 +87,14 @@ public class BOM {
         addTreeStuff("trykimp. Brædt", 1, width, 19, 200);
 
 
-
         int amountOfSpears = calculateSpearAmount(length);
         addTreeStuff("spærtræ ubh.", amountOfSpears, width);
 
 
+
+
         int polNumber = calculateNumberOfColomns();
-        addTreeStuff("trykimp. Stolpe",polNumber,height+1);
-
-
-
+        addTreeStuff("trykimp. Stolpe", polNumber, height + 1);
 
 
         while (true) {
@@ -113,10 +121,16 @@ public class BOM {
         addScrewsNStuff("universal 190 mm højre", amountOfSpears);
         addScrewsNStuff("universal 190 mm venstre", amountOfSpears);
 
-        int numberOfDecoBoards = 0;
+        addScrewsNStuff("Skruer", 1, 60, 4.5);
 
 
+        addScrewsNStuff("Beslag & Skruer", 3, 50, 4.5);
 
+
+        //todo: think about the amounts for these 2
+        addScrewsNStuff("bræddebolt 10 x 120 mm.", 18);
+        addScrewsNStuff("firkantskiver 40x40x11mm", 12);
+        //int numberOfDecoScrews = calculateNumberRequired("");
 
 
         return fullbom;
@@ -203,9 +217,9 @@ public class BOM {
 
     private ProductLine addScrewsNStuff(String name, int amount) {
 
-        Product product = searchProduct(name, (int) width, (int) height);
+        Product product = searchProduct(name);
 
-        ProductLine productLine = new ProductLine(name, amount, product.getPrice(),0);
+        ProductLine productLine = new ProductLine(name, amount, product.getPrice(), 0);
 
         fullbom.add(productLine);
 
@@ -213,28 +227,49 @@ public class BOM {
 
     }
 
+    private ProductLine addScrewsNStuff(String name, int amount, double width, double height) {
 
-    private int calculateNumberOfColomns(){
+        Product product = searchProduct(name, (int) width, (int) height);
+
+        ProductLine productLine = new ProductLine(name, amount, product.getPrice(), 0);
+
+        fullbom.add(productLine);
+
+        return productLine;
+
+    }
+
+    private int calculateNumberOfColomns() {
+        //Only 2 people knew how this code works, a mad man and god. Now only god knows. Please avoid writing in this code and let this be a warning for anyone that attempts to understand this code.
+
         int polNumber = 4;
-        int extraPolesX=0, extraPolesY=0;
-        int roofOverHang =1;
+        int extraPolesSides = 0, extraPolesFront = 0;
+        int roofOverHang = 1;
 
         double minPolDist = 4; //Maximum distance between poles;
-        if ( wantsShed){
+        if (wantsShed) {
             int shedPoles = 3;
 
-                if (shed_width < width){
-                    shedPoles+=2;
-                }
+            if (shed_width < width) {
+                shedPoles += 2;
+            }
 
-            extraPolesX += Math.ceil(shed_length/minPolDist) -1;
-            extraPolesY += Math.ceil(shed_length/minPolDist) -1;
+            extraPolesSides += Math.ceil(shed_length / minPolDist) - 1;
+            extraPolesFront += Math.ceil(shed_width / minPolDist) - 1;
 
-            polNumber+=shedPoles;
+
+            //might as well add holter now
+
+            addTreeStuff("regular ub", extraPolesSides * 4, shed_length);
+            addTreeStuff("regular ub", extraPolesFront * 6, shed_width);
+            addScrewsNStuff("vinkelbeslag 34", extraPolesSides * 4 + extraPolesFront * 6);
+
+
+            polNumber += shedPoles;
         }
 
-        extraPolesY += Math.ceil(length-shed_length-roofOverHang);
-        polNumber += extraPolesX + extraPolesY;
+        extraPolesFront += Math.ceil((width - shed_width - roofOverHang * 2) / minPolDist);
+        polNumber += extraPolesSides + extraPolesFront;
 
         return polNumber;
     }
@@ -246,14 +281,23 @@ public class BOM {
 
     }
 
-    private int calculateNumberRequired(String name, int number){
-
+    private int calculateNumberRequired(String name, int number) {
         Product product = searchProduct(name);
-
-        return (int)Math.ceil(number/product.getAmount());
+        return (int) Math.ceil((float) number / product.getAmount());
     }
 
+    private int calculateNumberRequired(String name, int number, int width, int height) {
+        Product product = searchProduct(name, width, height);
+        return (int) Math.ceil((float) number / product.getAmount());
+    }
+
+    private int calculateNumberOfDecoBoards(int width) {
+        Product product = searchProduct("trykimp. Brædt", width * 100, 19);
 
 
+        double perimeter = this.width * 2 + this.length * 2;
+
+        return (int) Math.ceil(perimeter / width);
+    }
 }
 

@@ -12,6 +12,8 @@ public class ProductLine {
         this.amount = amount;
         this.price = price;
         this.length = length;
+
+
     }
 
     public String getName() {
