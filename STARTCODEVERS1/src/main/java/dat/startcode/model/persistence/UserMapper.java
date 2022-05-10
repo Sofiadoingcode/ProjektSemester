@@ -24,8 +24,7 @@ public class UserMapper implements IUserMapper
         int idKey = 0;
 
         User user;
-
-        String username = email;
+        
         String password = createRandomPasswordAlgorithm();
 
 
