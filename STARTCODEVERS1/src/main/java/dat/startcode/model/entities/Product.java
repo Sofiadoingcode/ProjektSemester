@@ -1,17 +1,18 @@
 package dat.startcode.model.entities;
 
 public class Product {
-
+    private int productID;
     private String name, category, unit;
-    private double height,width, price;
+    private int height,width, price, amount;
 
-    public Product(String name, String category, String unit, double height, double width, double price) {
+
+    public Product(int id, String name, String category, String unit, int price) {
+        this.productID = id;
         this.name = name;
         this.category = category;
         this.unit = unit;
-        this.height = height;
-        this.width = width;
         this.price = price;
+        this.amount = 1;
     }
 
     public String getName() {
@@ -38,27 +39,57 @@ public class Product {
         this.unit = unit;
     }
 
-    public double getHeight() {
+    public int getProductID() {
+        return productID;
+    }
+
+    public void setProductID(int productID) {
+        this.productID = productID;
+    }
+
+    public int getHeight() {
         return height;
     }
 
-    public void setHeight(double height) {
+    public void setHeight(int height) {
         this.height = height;
     }
 
-    public double getWidth() {
+    public int getWidth() {
         return width;
     }
 
-    public void setWidth(double width) {
+    public void setWidth(int width) {
         this.width = width;
     }
 
-    public double getPrice() {
+    public int getPrice() {
         return price;
     }
 
-    public void setPrice(double price) {
+    public void setPrice(int price) {
         this.price = price;
+    }
+
+    public int getAmount() {
+        return amount;
+    }
+
+    public void setAmount(int amount) {
+        this.amount = amount;
+    }
+
+    @Override
+    public String toString() {
+        return "Product{" +
+                "productID=" + productID +
+                ", name='" + name + '\'' +
+                ", category='" + category + '\'' +
+                ", unit='" + unit + '\'' +
+                ", height=" + height +
+                ", width=" + width +
+                ", price=" + price +
+                ", amount=" + amount +
+                '}';
     }
 }

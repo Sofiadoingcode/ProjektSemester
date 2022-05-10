@@ -68,6 +68,8 @@ public class CustomerMapper implements ICustomerMapper{
                     Customer customer = new Customer(customerID, name, zipcode, city, phonenumber, email);
                     customerList.add(customer);
 
+
+
                 }
             }
         } catch (SQLException ex) {
