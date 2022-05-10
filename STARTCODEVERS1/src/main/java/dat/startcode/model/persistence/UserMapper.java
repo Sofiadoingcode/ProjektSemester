@@ -4,6 +4,7 @@ import dat.startcode.model.entities.User;
 import dat.startcode.model.exceptions.DatabaseException;
 
 import java.sql.*;
+import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -14,6 +15,30 @@ public class UserMapper implements IUserMapper
     public UserMapper(ConnectionPool connectionPool)
     {
         this.connectionPool = connectionPool;
+    }
+
+    public User createTempUser(String name, String email) throws DatabaseException {
+        Logger.getLogger("web").log(Level.INFO, "");
+        User user;
+        String password = createRandomPasswordAlgorithm();
+
+        String sql = "insert into user (username, password, role) values (?,?,1)";
+        try (Connection connection = connectionPool.getConnection()) {
+            try (PreparedStatement ps = connection.prepareStatement(sql)) {
+                ps.setString(1, email);
+                ps.setString(2, password);
+                int rowsAffected = ps.executeUpdate();
+                if (rowsAffected == 1) {
+                    user = new User(email, password, "customer");
+                } else {
+                    throw new DatabaseException("The user with username = " + email + " could not be inserted into the database");
+                }
+            }
+        } catch (SQLException ex) {
+            throw new DatabaseException(ex, "Something went wrong");
+
+        }
+        return user;
     }
 
     @Override
@@ -78,5 +103,16 @@ public class UserMapper implements IUserMapper
         return user;
     }
 
+
+    public String createRandomPasswordAlgorithm() {
+        String chars = "12345678901234567890ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+        Random rnd = new Random();
+        String randomPassword = "";
+        for (int i = 0; i < 6; i++)
+            randomPassword += (chars.charAt(rnd.nextInt(chars.length())));
+
+
+        return randomPassword;
+    }
 
 }
