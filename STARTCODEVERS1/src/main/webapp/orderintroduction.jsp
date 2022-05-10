@@ -99,9 +99,9 @@
                                                                                 oninvalid="this.setCustomValidity('Vælg tag materiale')"
                                                                                 oninput="this.setCustomValidity('')">
                                                                                 <option value="" selected disabled>Choose</option>
-                                                                                <option value="1">plasttrapez</option>
-                                                                                <option value="2">ståltag</option>
-                                                                                <option value="3">betontag</option>
+                                                                                <option value="1">Plasttrapez</option>
+                                                                                <option value="2">Ståltag</option>
+                                                                                <option value="3">Betontag</option>
 
                                                                         </select>
                                                                 </div>
