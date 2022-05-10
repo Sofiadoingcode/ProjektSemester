@@ -52,7 +52,7 @@
                             <td class="tableRows-RequestList">${request.city}</td>
                             <td class="tableRows-RequestList">
                                 <form>
-                                    <button type="submit" name="seeOrder" formaction="seeOrderlineServlet"
+                                    <button type="submit" name="seeStykliste" formaction="${pageContext.request.contextPath}/viewFullRequest.jsp"
                                             class="seeorder-btn">Se Stykliste
                                     </button>
                                 </form>
