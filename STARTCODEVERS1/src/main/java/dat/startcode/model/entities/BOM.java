@@ -37,6 +37,21 @@ public class BOM {
 
     }
 
+    public BOM(double height, double width, double length, boolean wantsShed, double shed_length, double shed_width, double roofAngle) throws DatabaseException {
+        this.height = height;
+        this.width = width;
+        this.length = length;
+        this.wantsShed = wantsShed;
+        this.shed_width = shed_width;
+        this.shed_length = shed_length;
+        connectionPool = new ConnectionPool();
+        productMapper = new ProductMapper(connectionPool);
+
+
+        products = productMapper.getAllProducts();
+
+    }
+
 
     public List<ProductLine> generateFullBom() {
 
@@ -60,7 +75,7 @@ public class BOM {
             //door
             addTreeStuff("lægte ubh.", 1, 420);
 
-            addScrewsNStuff("t hængsel", 2);
+           // addScrewsNStuff("t hængsel", 2);
             addScrewsNStuff("stalddørsgreb 50x75", 1);
 
             int numberOfDecoBoards = calculateNumberOfDecoBoards(10);
@@ -201,6 +216,13 @@ public class BOM {
 
         Product product = searchProduct(name);
 
+
+        if (product.getHeight()!=0 || product.getWidth()!=0){
+            name = product.getHeight() + " x " + product.getWidth() + " mm "+  name;
+
+        }
+
+
         ProductLine productLine = new ProductLine(name, amount, product.getPrice() * length, (int) length);
 
         fullbom.add(productLine);
@@ -212,6 +234,13 @@ public class BOM {
     private ProductLine addTreeStuff(String name, int amount, double length, double width, double height) {
 
         Product product = searchProduct(name, (int) width, (int) height);
+
+        if (product.getHeight()!=0 || product.getWidth()!=0){
+            name = product.getHeight() + " x " + product.getWidth() + " mm "+  name;
+
+        }
+
+
 
         ProductLine productLine = new ProductLine(name, amount, product.getPrice() * length, (int) length);
 
@@ -305,5 +334,12 @@ public class BOM {
 
         return (int) Math.ceil(perimeter / width);
     }
+
+
+    public void printBom(){
+        for (ProductLine productLine: fullbom)
+            System.out.println(productLine);
+    }
+
 }
 

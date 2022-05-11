@@ -48,4 +48,15 @@ public class ProductLine {
     public void setLength(int length) {
         this.length = length;
     }
+
+
+    @Override
+    public String toString() {
+        return "ProductLine{" +
+                "name='" + name + '\'' +
+                ", amount=" + amount +
+                ", price=" + price +
+                ", length=" + length +
+                '}';
+    }
 }
