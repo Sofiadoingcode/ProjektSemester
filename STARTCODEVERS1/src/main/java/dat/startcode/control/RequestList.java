@@ -36,6 +36,7 @@ public class RequestList extends Command {
         request.setAttribute("paidRequests", paidRequests);
 
 
+
         return "requestList.jsp";
 
     }

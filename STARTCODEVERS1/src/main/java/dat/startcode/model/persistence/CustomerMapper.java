@@ -12,11 +12,10 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class CustomerMapper implements ICustomerMapper{
+public class CustomerMapper implements ICustomerMapper {
     ConnectionPool connectionPool;
 
-    public CustomerMapper(ConnectionPool connectionPool)
-    {
+    public CustomerMapper(ConnectionPool connectionPool) {
         this.connectionPool = connectionPool;
     }
 
@@ -69,6 +68,8 @@ public class CustomerMapper implements ICustomerMapper{
 
                     Customer customer = new Customer(customerID, name, zipcode, city, phoneNumber, email, idorder);
                     customerList.add(customer);
+
+
 
                 }
             }
@@ -131,4 +132,38 @@ public class CustomerMapper implements ICustomerMapper{
         }
         return isDeleted;
     }
+
+    public boolean acceptRequest(int orderId) throws DatabaseException {
+        boolean isAccepted = false;
+        try (Connection connection = connectionPool.getConnection()) {
+            String sql = "UPDATE `fogarchive`.`order` SET `isAccepted` = '1' WHERE `idorder` = ?";
+            try (PreparedStatement ps = connection.prepareStatement(sql)) {
+                ps.setInt(1, orderId);
+                ps.executeUpdate();
+            } catch (Exception e) {
+                System.out.println(e);
+            }
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return isAccepted;
+    }
+
+    public boolean unAcceptRequest(int orderId) throws DatabaseException {
+        boolean isPaid = false;
+        try (Connection connection = connectionPool.getConnection()) {
+            String sql = "UPDATE `fogarchive`.`order` SET `isAccepted` = '0' WHERE `idorder` = ?";
+            System.out.println(orderId);
+            try (PreparedStatement ps = connection.prepareStatement(sql)) {
+                ps.setInt(1, orderId);
+                ps.executeUpdate();
+            } catch (Exception e) {
+                System.out.println(e);
+            }
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return isPaid;
+    }
+
 }
