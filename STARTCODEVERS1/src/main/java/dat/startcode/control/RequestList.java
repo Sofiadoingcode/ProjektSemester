@@ -19,8 +19,6 @@ public class RequestList extends Command {
     @Override
     String execute(HttpServletRequest request, HttpServletResponse response) throws DatabaseException {
 
-        HttpSession session = request.getSession();
-        session.setAttribute("user", null);
 
 
         ConnectionPool connectionPool = ApplicationStart.getConnectionPool();

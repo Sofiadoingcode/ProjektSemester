@@ -17,11 +17,8 @@ abstract class Command
         commands.put("logout", new Logout());
         commands.put("about", new About());
         commands.put("requestList", new RequestList());
-<<<<<<< Updated upstream
         commands.put("deleteRequest", new DeleteRequest());
-=======
-        commands.put("BOMList", new BOMList());
->>>>>>> Stashed changes
+        commands.put("BOMlist", new BOMList());
     }
 
     static Command from( HttpServletRequest request ) {

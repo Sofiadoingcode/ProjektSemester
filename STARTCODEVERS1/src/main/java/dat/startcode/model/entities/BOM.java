@@ -26,35 +26,35 @@ public class BOM {
 
 
 
-    public List<ProductLine> generateFullBom () {
-
-        List<ProductLine> fullbom = new ArrayList<>();
-
-        while() {
-            // CHECK IF ALL CRITERIA FOR CARPORT ARE MET//
-
-
-            //METHOD TO FIND THE RIGHT PRODUCT
-
-            String name = generateProductName();
-
-            int length = calculateProductLength();
-
-            int amount = calculateProductAmount();
-
-
-            double price = calculateFullPrice(amount);
-
-
-
-
-            ProductLine newProductline = new ProductLine(name, amount, price, length);
-            fullbom.add(newProductline);
-        }
-
-
-        return fullbom;
-    }
+//    public List<ProductLine> generateFullBom () {
+//
+//        List<ProductLine> fullbom = new ArrayList<>();
+//
+//        while(true) {
+//            // CHECK IF ALL CRITERIA FOR CARPORT ARE MET//
+//
+//
+//            //METHOD TO FIND THE RIGHT PRODUCT
+//
+//            String name = generateProductName();
+//
+//            int length = calculateProductLength();
+//
+//            int amount = calculateProductAmount();
+//
+//
+//            double price = calculateFullPrice(amount);
+//
+//
+//
+//
+//            ProductLine newProductline = new ProductLine(name, amount, price, length);
+//            fullbom.add(newProductline);
+//        }
+//
+//
+//        return ;
+//    }
 
 
 

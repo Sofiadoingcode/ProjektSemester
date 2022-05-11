@@ -39,20 +39,14 @@
 
                     </thead>
 
-                    <c:forEach var="request" items="${requestScope.nonAcceptedRequests}">
+                    <c:forEach var="productionlines" items="${requestScope.productionlines}">
                         <tr class="orders-tr">
 
-                            <td class="tableRows-RequestList">${request.name}</td>
-                            <td class="tableRows-RequestList">${request.email}</td>
-                            <td class="tableRows-RequestList">${request.phonenumber}</td>
-                            <td class="tableRows-RequestList">${request.city}</td>
-                            <td class="tableRows-RequestList">
-                                <form>
-                                    <button type="submit" name="seeStykliste" formaction="seeOrderlineServlet"
-                                            class="seeorder-btn">Se Stykliste
-                                    </button>
-                                </form>
-                            </td>
+                            <td class="tableRows-RequestList">${productionlines.name}</td>
+                            <td class="tableRows-RequestList">${productionlines.length}</td>
+                            <td class="tableRows-RequestList">${productionlines.amount}</td>
+                            <td class="tableRows-RequestList">${productionlines.unit}</td>
+                            <td class="tableRows-RequestList"></td>
 
 
 
