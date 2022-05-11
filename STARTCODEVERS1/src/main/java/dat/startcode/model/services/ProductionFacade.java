@@ -15,9 +15,7 @@ public class ProductionFacade {
         int unitID = productMapper.getUnitTypeID(unit);
         int nameID = productMapper.getNameID(name);
 
-        productMapper.createProduct2(nameID,categoryID,unitID,amount,height,width,price);
-
-
+        productMapper.createProduct(nameID,categoryID,unitID,amount,height,width,price);
 
     }
 

@@ -6,6 +6,7 @@ import dat.startcode.model.exceptions.DatabaseException;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -67,6 +68,37 @@ public class ProductMapper {
         return products;
     }
 
+    public HashMap<Integer, Integer> getLengths() throws DatabaseException {
+        List<Product> products = new ArrayList<>();
+
+        String sql = "SELECT * FROM fogarchive.length";
+        HashMap<Integer, Integer> lengths = new HashMap<>();
+
+        try (Connection connection = connectionPool.getConnection()) {
+            try (PreparedStatement ps = connection.prepareStatement(sql)) {
+                ResultSet rs = ps.executeQuery();
+
+                while (rs.next()) {
+
+
+                    int id = rs.getInt("idlength");
+                    int length = rs.getInt("length");
+                    lengths.put(id,length);
+
+
+                }
+
+
+            }
+        } catch (SQLException ex) {
+
+            throw new DatabaseException(ex, "Fejl under indlæsning fra databasen");
+
+        }
+
+
+        return lengths;
+    }
 
     public int getCategoryID(String category) throws DatabaseException {
 
@@ -144,13 +176,12 @@ public class ProductMapper {
         return nameID;
     }
 
-    public void createProduct2(int name, int category, int unit, int amount, int height, int width,
+    public void createProduct(int name, int category, int unit, int amount, int height, int width,
                                int price) throws DatabaseException {
         Logger.getLogger("web").log(Level.INFO, "");
 
 
         try (Connection connection = connectionPool.getConnection()) {
-
 
             String sql5 = "insert into product (`idname`, `idunit`, `idcategory`, `priceprmeasurment`, `height`, `width`, `amount`) values (?,?,?,?,?,?,?)";
             try (PreparedStatement ps = connection.prepareStatement(sql5)) {
@@ -165,8 +196,6 @@ public class ProductMapper {
                 ps.executeUpdate();
 
             }
-
-
         } catch (SQLException ex) {
             throw new DatabaseException(ex, "Trouble inserting product");
         }

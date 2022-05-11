@@ -15,26 +15,16 @@ public class test {
     public static void main(String[] args) {
        ConnectionPool connectionPool = new ConnectionPool();
        ProductMapper productMapper = new ProductMapper(connectionPool);
-
-
-       try {
-           ProductionFacade.createProduct("meganut","Beslag & Skruer","stk",3,100,100,5,connectionPool);
-       }catch (Exception e){
-
-           System.out.println(e);
-
-       }
-
-
-        /*
         try {
-            productMapper.createProduct("deeznuts", "Beslag & Skruer", "stk", 2, 5100, 5100, 69);
+            System.out.println(productMapper.getLengths());
+
         }catch (Exception e){
 
-            System.out.println("lol");
+            
         }
 
-*/
+
+
 
     }
 
