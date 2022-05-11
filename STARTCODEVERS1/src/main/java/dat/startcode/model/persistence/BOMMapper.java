@@ -76,7 +76,7 @@ public class BOMMapper implements IBOMMapper{
 
         try (Connection connection = connectionPool.getConnection()) {
             try (PreparedStatement ps = connection.prepareStatement(sql)) {
-                System.out.println("BBBB");
+
 
                 ps.setInt(1, bomid);
                 ResultSet rs = ps.executeQuery();

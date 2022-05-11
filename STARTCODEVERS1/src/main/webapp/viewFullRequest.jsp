@@ -39,13 +39,13 @@
 
                     </thead>
 
-                    <c:forEach var="productionlines" items="${requestScope.productionlines}">
+                    <c:forEach var="category1" items="${requestScope.category1BOM}">
                         <tr class="orders-tr">
 
-                            <td class="tableRows-RequestList">${productionlines.name}</td>
-                            <td class="tableRows-RequestList">${productionlines.length}</td>
-                            <td class="tableRows-RequestList">${productionlines.amount}</td>
-                            <td class="tableRows-RequestList">${productionlines.unit}</td>
+                            <td class="tableRows-RequestList">${category1.name}</td>
+                            <td class="tableRows-RequestList">${category1.length}</td>
+                            <td class="tableRows-RequestList">${category1.amount}</td>
+                            <td class="tableRows-RequestList">${category1.unit}</td>
                             <td class="tableRows-RequestList"></td>
 
 
@@ -75,20 +75,14 @@
 
                     </thead>
 
-                    <c:forEach var="request" items="${requestScope.nonAcceptedRequests}">
+                    <c:forEach var="category2" items="${requestScope.category2BOM}">
                         <tr class="orders-tr">
 
-                            <td class="tableRows-RequestList">${request.name}</td>
-                            <td class="tableRows-RequestList">${request.email}</td>
-                            <td class="tableRows-RequestList">${request.phonenumber}</td>
-                            <td class="tableRows-RequestList">${request.city}</td>
-                            <td class="tableRows-RequestList">
-                                <form>
-                                    <button type="submit" name="seeStykliste" formaction="seeOrderlineServlet"
-                                            class="seeorder-btn">Se Stykliste
-                                    </button>
-                                </form>
-                            </td>
+                            <td class="tableRows-RequestList">${category2.name}</td>
+                            <td class="tableRows-RequestList">${category2.length}</td>
+                            <td class="tableRows-RequestList">${category2.amount}</td>
+                            <td class="tableRows-RequestList">${category2.unit}</td>
+                            <td class="tableRows-RequestList"></td>
 
 
 

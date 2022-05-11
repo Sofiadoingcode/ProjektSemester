@@ -11,6 +11,7 @@ import dat.startcode.model.persistence.CustomerMapper;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
 import java.util.List;
 
 public class BOMList extends Command {
@@ -30,14 +31,28 @@ public class BOMList extends Command {
         BOMMapper bomMapper = new BOMMapper(connectionPool);
 
         try {
-            System.out.println("11");
-            BOMDTO bomdto = bomMapper.getBOM(orderId);
-            System.out.println("121212");
-            List<ProductionlineDTO> productionlines = bomMapper.getBOMProductlines(bomdto);
 
-            System.out.println("22");
+            BOMDTO bomdto = bomMapper.getBOM(orderId);
+
+            List<ProductionlineDTO> productionlines = bomMapper.getBOMProductlines(bomdto);
+            List<ProductionlineDTO> category1 = new ArrayList<>();
+            List<ProductionlineDTO> category2 = new ArrayList<>();
+            for(ProductionlineDTO dto: productionlines) {
+                if (dto.getCategory() == 1) {
+                    category1.add(dto);
+                } else if (dto.getCategory() == 2) {
+                    category2.add(dto);
+
+                }
+
+
+            }
+
+
+
             request.setAttribute("fullbom", bomdto);
-            request.setAttribute("productionlines", productionlines);
+            request.setAttribute("category1BOM", category1);
+            request.setAttribute("category2BOM", category2);
 
 
 
@@ -46,7 +61,7 @@ public class BOMList extends Command {
             System.out.println("ERROROORORORO");
             System.out.println(e);
         }
-        System.out.println("33");
+
         return "viewFullRequest.jsp";
     }
 
