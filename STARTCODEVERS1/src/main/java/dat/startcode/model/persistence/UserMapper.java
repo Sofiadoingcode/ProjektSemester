@@ -1,8 +1,6 @@
 package dat.startcode.model.persistence;
-
 import dat.startcode.model.entities.User;
 import dat.startcode.model.exceptions.DatabaseException;
-
 import java.sql.*;
 import java.util.Random;
 import java.util.logging.Level;
@@ -89,7 +87,7 @@ public class UserMapper implements IUserMapper
         String sql = "insert into user (username, password, role) values (?,?,?)";
         try (Connection connection = connectionPool.getConnection())
         {
-            try (PreparedStatement ps = connection.prepareStatement(sql))
+            try (PreparedStatement ps = connection.prepareStatement(sql,Statement.RETURN_GENERATED_KEYS))
             {
                 ps.setString(1, username);
                 ps.setString(2, password);
