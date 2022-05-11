@@ -113,7 +113,7 @@ public class ProductMapper {
                     System.out.println(nameID);
                 } else {
 
-                    PreparedStatement ps1 = connection.prepareStatement(sql4, Statement.RETURN_GENERATED_KEYS)) {
+                    try (PreparedStatement ps1 = connection.prepareStatement(sql4, Statement.RETURN_GENERATED_KEYS)) {
 
                         ps1.setString(1, name);
                         int rowsAffected = ps1.executeUpdate();

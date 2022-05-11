@@ -87,7 +87,7 @@ public class UserMapper implements IUserMapper
         String sql = "insert into user (username, password, role) values (?,?,?)";
         try (Connection connection = connectionPool.getConnection())
         {
-            try (PreparedStatement ps = connection.prepareStatement(sql,Statement.RETURN_GENERATED_KEYS))
+            try (PreparedStatement ps = connection.prepareStatement(sql))
             {
                 ps.setString(1, username);
                 ps.setString(2, password);
