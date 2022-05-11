@@ -122,6 +122,7 @@ public class CustomerMapper implements ICustomerMapper {
             try (PreparedStatement ps = connection.prepareStatement(sql)) {
                 ps.setInt(1, orderId);
                 ps.executeUpdate();
+                isDeleted = true;
             } catch (Exception E) {
                 System.out.println(E);
             }

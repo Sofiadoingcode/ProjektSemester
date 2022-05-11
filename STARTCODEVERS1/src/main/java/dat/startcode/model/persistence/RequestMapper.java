@@ -1,5 +1,6 @@
 package dat.startcode.model.persistence;
 
+import dat.startcode.model.entities.Request;
 import dat.startcode.model.entities.User;
 import dat.startcode.model.exceptions.DatabaseException;
 
@@ -12,10 +13,10 @@ import java.util.logging.Logger;
 
 public class RequestMapper {
     private int idShed = 0;
-    private int idCarport=0;
-    private int idCustomer=0;
-    private int idBom=0;
-    private int bomPrice=0;
+    private int idCarport = 0;
+    private int idCustomer = 0;
+    private int idBom = 0;
+    private int bomPrice = 0;
 
     ConnectionPool connectionPool;
 
@@ -44,10 +45,10 @@ public class RequestMapper {
                 }
 
             }
-        }catch (SQLException e) {
+        } catch (SQLException e) {
             throw new DatabaseException("Something went wrong with inserting request into database");
-            }
         }
+    }
 
     public void insertCarportChoices(int carportHeight, int carportLength, int carportWidth, String roofMaterial, String roofShape, int roofAngle) throws DatabaseException {
 
@@ -62,8 +63,8 @@ public class RequestMapper {
                 ps1.setInt(1, carportHeight);
                 ps1.setInt(2, carportLength);
                 ps1.setInt(3, carportWidth);
-                ps1.setString(4,roofMaterial);
-                ps1.setString(5,roofShape);
+                ps1.setString(4, roofMaterial);
+                ps1.setString(5, roofShape);
                 ps1.setInt(6, roofAngle);
                 ps1.setInt(7, idShed);
 
@@ -74,10 +75,11 @@ public class RequestMapper {
                 }
 
             }
-        }catch (SQLException e) {
+        } catch (SQLException e) {
             throw new DatabaseException("Something went wrong with inserting request into database");
         }
     }
+
     public void insertCustomer(String name, int zipCode, int phoneNumber, String email) throws DatabaseException {
 
 
@@ -91,7 +93,7 @@ public class RequestMapper {
                 ps1.setString(1, name);
                 ps1.setInt(2, zipCode);
                 ps1.setInt(3, phoneNumber);
-                ps1.setString(4,email);
+                ps1.setString(4, email);
 
                 //return the generated primary key from sql
                 ResultSet generatedKeys = ps1.getGeneratedKeys();
@@ -100,10 +102,11 @@ public class RequestMapper {
                 }
 
             }
-        }catch (SQLException e) {
+        } catch (SQLException e) {
             throw new DatabaseException("Something went wrong with inserting request into database");
         }
     }
+
     public void insertRequest(int idUser) throws DatabaseException {
 
 
@@ -122,10 +125,60 @@ public class RequestMapper {
                 ps1.setInt(6, idUser);
                 ps1.setInt(7, idCarport);
             }
-        }catch (SQLException e) {
+        } catch (SQLException e) {
             throw new DatabaseException("Something went wrong with inserting request into database");
         }
     }
+
+    public boolean checkIfAccepted(int idOrder) throws DatabaseException {
+        boolean hasItBeenAccepted = false;
+        try (Connection connection = connectionPool.getConnection()) {
+
+            String sql = "SELECT idorder, isAccepted from fogarchive.order WHERE idorder = ?";
+            try (PreparedStatement ps = connection.prepareStatement(sql)) {
+                ps.setInt(1, idOrder);
+                ResultSet rs = ps.executeQuery();
+                if (rs.next()) {
+                    hasItBeenAccepted = rs.getBoolean("isAccepted");
+                }
+            } catch (Exception E) {
+                System.out.println(E);
+            }
+
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return hasItBeenAccepted;
     }
+
+    public Request getRequestFromDB(int idUser){
+        Request request = null;
+        try (Connection connection = connectionPool.getConnection()) {
+
+            String sql = "SELECT idorder, idcustomer, idbom, isAccepted, isPaid, finalPrice, iduser, idcarportchoices FROM fogarchive.order WHERE iduser = ?";
+            try (PreparedStatement ps = connection.prepareStatement(sql)) {
+                ps.setInt(1, idCustomer);
+                ResultSet rs = ps.executeQuery();
+                if (rs.next()) {
+                    int idOrder = rs.getInt("idorder");
+                    int idCustomer = rs.getInt("idcustomer");
+                    int idBom = rs.getInt("idbom");
+                    boolean isAccepted = rs.getBoolean("isAccepted");
+                    boolean isPaid = rs.getBoolean("isPaid");
+                    int finalPrice = rs.getInt("finalPrice");
+                    int idCarportChoices = rs.getInt("idcarportchoices");
+                    System.out.println(isAccepted);
+                    request = new Request(idOrder, idCustomer, idBom, isAccepted, isPaid, finalPrice, idUser, idCarportChoices);
+                }
+            } catch (Exception E) {
+                System.out.println(E);
+            }
+
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return request;
+    }
+}
 
 
