@@ -15,7 +15,7 @@ public class test {
     public static void main(String[] args) {
         List<Product> products = new ArrayList<>();
         ProductMapper productMapper = new ProductMapper(new ConnectionPool());
-
+        ConnectionPool connectionPool = new ConnectionPool();
         /*
         try {
            products  = productMapper.getAllProducts();
@@ -27,7 +27,7 @@ public class test {
             System.out.println(p);
 */
         try {
-            BOM bom = new BOM(3, 6, 7.8, true, 2.1, 5.3, 0);
+            BOM bom = new BOM(3, 6, 7.8, true, 2.1, 5.3, 0, connectionPool);
             bom.generateFullBom();
             bom.printBom();
         }catch (DatabaseException e){

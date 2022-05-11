@@ -34,21 +34,25 @@ public class BOM {
 
 
         products = productMapper.getAllProducts();
+        printProductsList();
 
     }
 
-    public BOM(double height, double width, double length, boolean wantsShed, double shed_length, double shed_width, double roofAngle) throws DatabaseException {
+    public BOM(double height, double width, double length, boolean wantsShed, double shed_length, double shed_width, double roofAngle, ConnectionPool connectionPool) throws DatabaseException {
         this.height = height;
         this.width = width;
         this.length = length;
         this.wantsShed = wantsShed;
         this.shed_width = shed_width;
         this.shed_length = shed_length;
-        connectionPool = new ConnectionPool();
+
+
+
         productMapper = new ProductMapper(connectionPool);
 
 
         products = productMapper.getAllProducts();
+        printProductsList();
 
     }
 
@@ -75,11 +79,11 @@ public class BOM {
             //door
             addTreeStuff("lægte ubh.", 1, 420);
 
-           // addScrewsNStuff("t hængsel", 2);
+            addScrewsNStuff("t hængsel 390 mm", 2);
             addScrewsNStuff("stalddørsgreb 50x75", 1);
 
             int numberOfDecoBoards = calculateNumberOfDecoBoards(10);
-            addTreeStuff("trykimp. Brædt", numberOfDecoBoards, height, 19, 10);
+            addTreeStuff("trykimp. Brædt", numberOfDecoBoards, height, 19, 100);
 
 
             int screwLno = calculateNumberRequired("Skruer", numberOfDecoBoards * 4, 7, 5);
@@ -341,5 +345,9 @@ public class BOM {
             System.out.println(productLine);
     }
 
+    public void printProductsList(){
+        for (Product product: products)
+            System.out.println(product);
+    }
 }
 
