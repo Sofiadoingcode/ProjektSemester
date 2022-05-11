@@ -53,20 +53,101 @@
                 </div>
             </div>
 
-            <div class="row">
-                <div class="col">
-                    Height:
+        <div class="container align-items-center">
+
+            <br>
+            <br>
+
+
+                <div class="row align-items-start">
+
+                    <div class="col">
+                        <div class="input-group mb-3">
+                            <label for="height" class="input-group-text">Højde</label>
+                            <input type="number" class="form-control" name="height" placeholder="højde" readonly>
+                            <span class="input-group-text" id="height">m</span>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="input-group mb-3">
+                            <label for="length" class="input-group-text">Længde</label>
+                            <input type="number" class="form-control" name="length" placeholder="længde" readonly>
+                            <span class="input-group-text" id="length">m</span>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="input-group mb-3">
+                            <label for="width" class="input-group-text">Bredde</label>
+                            <input type="number" class="form-control" name=width" placeholder="bredde" readonly>
+                            <span class="input-group-text" id="width">m</span>
+                        </div>
+                    </div>
+
+
                 </div>
 
-                <div class="col">
-                    Width:
+                <h3>Tag</h3>
+                <div class="row">
+                    <div class=" col-md-4">
+                        <div class="input-group">
+                            <label class="input-group-text" for="materiale">materiale</label>
+                                <input type="text" class="form-control" name="materiale" id="materiale" placeholder="tag" readonly>
+                    </div>
+                    </div>
+                    <br>
+                    <div class="col-md-4">
+                        <div class="input-group">
+                            <label class="input-group-text" for="tag">Tag</label>
+                                <input type="text" class="form-control" name="tag" id="tag" placeholder="tag" readonly>
+                        </div>
+                    </div>
+                    <div class="col-md-4" id="inputCheck1">
+                        <div class="input-group mb-3">
+                            <label class="input-group-text" for="angle">Tag</label>
+                            <input type="number" class="form-control" name="angle" id="angle" placeholder="0" readonly>
+                            <span class="input-group-text" id="width">angle</span>
+                        </div>
+                    </div>
+                </div>
+                <br>
+
+                <h3>Skur</h3>
+
+                <br>
+
+
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                    <label class="form-check-label" for="flexCheckDefault">
+                        Skur
+                    </label>
                 </div>
 
-                <div class="col">
-                    Something else:
-                </div>
-            </div>
+                <br>
 
+                <div class="row align-items-start">
+                    <div class="col-md-2">
+                        <div class="input-group mb-3">
+                            <input type="number" class="form-control" name="length" placeholder="længde"
+                                   aria-label="" aria-describedby="">
+                            <span class="input-group-text" id="shedLength">m</span>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="input-group mb-3">
+                            <input type="number" class="form-control" name=width" placeholder="bredde"
+                                   aria-label="" aria-describedby="">
+                            <span class="input-group-text" id="shedWidth">m</span>
+                        </div>
+                    </div>
+
+                    <br>
+
+
+
+                    <br>
+                </div>
+        </div>
 
 
             <div class="gy-6 row align-content-start">
