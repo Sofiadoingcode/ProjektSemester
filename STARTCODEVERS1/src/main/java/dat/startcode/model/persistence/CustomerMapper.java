@@ -69,6 +69,8 @@ public class CustomerMapper implements ICustomerMapper {
                     Customer customer = new Customer(customerID, name, zipcode, city, phoneNumber, email, idorder);
                     customerList.add(customer);
 
+
+
                 }
             }
         } catch (SQLException ex) {
