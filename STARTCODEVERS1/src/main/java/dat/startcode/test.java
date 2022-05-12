@@ -12,16 +12,16 @@ import java.util.List;
 public class test {
 
     public static void main(String[] args) {
-        List<Product> products = new ArrayList<>();
-        ProductMapper productMapper = new ProductMapper(new ConnectionPool());
+       ConnectionPool connectionPool = new ConnectionPool();
+       ProductMapper productMapper = new ProductMapper(connectionPool);
         try {
-           products  = productMapper.getAllProducts();
-        } catch (DatabaseException e) {
-            e.printStackTrace();
+            productMapper.createProduct("deeznuts", "Beslag & Skruer", "stk", 2, 5100, 5100, 69);
+        }catch (Exception e){
+
+            System.out.println("lol");
         }
 
-        for(Product p: products)
-            System.out.println(p);
+
 
     }
 
