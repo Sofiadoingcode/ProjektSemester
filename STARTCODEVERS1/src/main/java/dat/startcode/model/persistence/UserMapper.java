@@ -110,6 +110,25 @@ public class UserMapper implements IUserMapper
         return user;
     }
 
+    public void createAdmin(String username, String password) throws DatabaseException
+    {
+        System.out.println("Ko");
+        Logger.getLogger("web").log(Level.INFO, "");
+        String sql = "insert into user (username, password, idrole) values (?,?,1)";
+        try (Connection connection = connectionPool.getConnection())
+        {
+            try (PreparedStatement ps = connection.prepareStatement(sql))
+            {
+                ps.setString(1, username);
+                ps.setString(2, password);
+                ps.executeUpdate();
+            }
+        }
+        catch (SQLException ex)
+        {
+            throw new DatabaseException(ex, "Could not insert username into database");
+        }
+    }
 
     public String createRandomPasswordAlgorithm() {
         String chars = "12345678901234567890ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";

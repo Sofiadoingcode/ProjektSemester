@@ -1,0 +1,57 @@
+
+.UsernameInputField{
+    width: 30rem;
+    height: 4.5rem;
+    border-radius: 2px;
+    margin-top: 10px;
+    border-color: #193f76;
+}
+
+.PasswordInputField{
+    width: 30rem;
+    height: 4.5rem;
+    border-radius: 2px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    border-color: #193f76;
+}
+
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: black;
+    text-indent: 5px;
+    font-size: 15px;
+}
+
+.btn-createnewadminspage-betal:link, .btn-createnewadminspage-betal:visited {
+    display: inline-block;
+    text-decoration: none;
+    letter-spacing: 0.02px;
+    font-size: 1.75rem;
+    font-weight: 500;
+    padding: 0.5rem 1rem;
+    border-radius: 2px;
+    transition: all 0.3s;
+    background-color: #193f76;
+    color: white;
+}
+
+.btn-createnewadminspage-betal:hover, .btn-createnewadminspage-betal:active{
+    background-color: darkblue;
+}
+
+.btn-createnewadminspage-delete:link, .btn-createnewadminspage-delete:visited {
+    display: inline-block;
+    text-decoration: none;
+    letter-spacing: 0.02px;
+    font-size: 1.75rem;
+    font-weight: 500;
+    padding: 0.5rem 1rem;
+    border-radius: 2px;
+    transition: all 0.3s;
+    background-color: #cc0000;
+    color: white;
+}
+
+.btn-createnewadminspage-delete:hover, .btn-createnewadminspage-delete:active{
+    background-color: #ff0000;
+}

@@ -22,6 +22,7 @@ abstract class Command
         commands.put("acceptRequest", new AcceptRequest());
         commands.put("unAcceptRequest", new unAcceptRequest());
         commands.put("BOMlist", new BOMList());
+        commands.put("createAdminAccount", new CreateAdminAccount());
 
     }
 

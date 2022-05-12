@@ -10,6 +10,12 @@ public class User
     private int idRole;
     private int idUser;
 
+    public User(String username, String password)
+    {
+        this.username = username;
+        this.password = password;
+    }
+
     public User(String username, String password, int idRole)
     {
         this.username = username;
