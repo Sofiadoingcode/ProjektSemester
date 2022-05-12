@@ -25,7 +25,7 @@ public class BOMMapper implements IBOMMapper{
     public BOMDTO getBOM(int orderID) throws DatabaseException {
 
 
-        BOMDTO bomdto = new BOMDTO(0, 0, "");
+        BOMDTO bomdto = new BOMDTO(0, 0, "", 0);
 
         String sql = "SELECT idbom, totalprice, `description`, o.idorder\n" +
                 "FROM BOM\n" +
@@ -46,7 +46,9 @@ public class BOMMapper implements IBOMMapper{
 
                     String description = rs.getString("description");
 
-                    bomdto = new BOMDTO(bomid, totalprice, description);
+                    int orderid = rs.getInt("idorder");
+
+                    bomdto = new BOMDTO(bomid, totalprice, description, orderid);
 
                 }
 

@@ -33,6 +33,8 @@ public class BOMList extends Command {
         try {
 
             BOMDTO bomdto = bomMapper.getBOM(orderId);
+            List<BOMDTO> bomdtos = new ArrayList<>();
+            bomdtos.add(bomdto);
 
             List<ProductionlineDTO> productionlines = bomMapper.getBOMProductlines(bomdto);
             List<ProductionlineDTO> category1 = new ArrayList<>();
@@ -50,7 +52,7 @@ public class BOMList extends Command {
 
 
 
-            request.setAttribute("fullbom", bomdto);
+            request.setAttribute("fullbom", bomdtos);
             request.setAttribute("category1BOM", category1);
             request.setAttribute("category2BOM", category2);
 
@@ -58,7 +60,6 @@ public class BOMList extends Command {
 
 
         } catch (DatabaseException e) {
-            System.out.println("ERROROORORORO");
             System.out.println(e);
         }
 

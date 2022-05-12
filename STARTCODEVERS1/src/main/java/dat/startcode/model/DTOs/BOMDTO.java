@@ -5,11 +5,13 @@ public class BOMDTO {
     int idbom;
     double totalprice;
     String description;
+    int orderid;
 
-    public BOMDTO(int idbom, double totalprice, String description) {
+    public BOMDTO(int idbom, double totalprice, String description, int orderid) {
         this.idbom = idbom;
         this.totalprice = totalprice;
         this.description = description;
+        this.orderid = orderid;
 
     }
 
@@ -39,5 +41,13 @@ public class BOMDTO {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public int getOrderid() {
+        return orderid;
+    }
+
+    public void setOrderid(int orderid) {
+        this.orderid = orderid;
     }
 }
