@@ -64,21 +64,21 @@
                     <div class="col">
                         <div class="input-group mb-3">
                             <label for="height" class="input-group-text">Højde</label>
-                            <input type="number" class="form-control" name="height" placeholder="højde" readonly>
+                            <input type="number" class="form-control" name="height" placeholder="højde" disabled>
                             <span class="input-group-text" id="height">m</span>
                         </div>
                     </div>
                     <div class="col">
                         <div class="input-group mb-3">
                             <label for="length" class="input-group-text">Længde</label>
-                            <input type="number" class="form-control" name="length" placeholder="længde" readonly>
+                            <input type="number" class="form-control" name="length" placeholder="længde" disabled>
                             <span class="input-group-text" id="length">m</span>
                         </div>
                     </div>
                     <div class="col">
                         <div class="input-group mb-3">
                             <label for="width" class="input-group-text">Bredde</label>
-                            <input type="number" class="form-control" name=width" placeholder="bredde" readonly>
+                            <input type="number" class="form-control" name=width" placeholder="bredde" disabled>
                             <span class="input-group-text" id="width">m</span>
                         </div>
                     </div>
@@ -91,20 +91,20 @@
                     <div class=" col-md-4">
                         <div class="input-group">
                             <label class="input-group-text" for="materiale">materiale</label>
-                                <input type="text" class="form-control" name="materiale" id="materiale" placeholder="tag" readonly>
+                                <input type="text" class="form-control" name="materiale" id="materiale" placeholder="tag" disabled>
                     </div>
                     </div>
                     <br>
                     <div class="col-md-4">
                         <div class="input-group">
                             <label class="input-group-text" for="tag">Tag</label>
-                                <input type="text" class="form-control" name="tag" id="tag" placeholder="tag" readonly>
+                                <input type="text" class="form-control" name="tag" id="tag" placeholder="tag" disabled>
                         </div>
                     </div>
                     <div class="col-md-4" id="inputCheck1">
                         <div class="input-group mb-3">
                             <label class="input-group-text" for="angle">Tag</label>
-                            <input type="number" class="form-control" name="angle" id="angle" placeholder="0" readonly>
+                            <input type="number" class="form-control" name="angle" id="angle" placeholder="0" disabled>
                             <span class="input-group-text" id="width">angle</span>
                         </div>
                     </div>
