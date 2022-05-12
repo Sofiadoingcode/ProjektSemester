@@ -21,6 +21,8 @@ abstract class Command
         commands.put("deleteRequest", new DeleteRequest());
         commands.put("acceptRequest", new AcceptRequest());
         commands.put("unAcceptRequest", new unAcceptRequest());
+        commands.put("BOMlist", new BOMList());
+
     }
 
     static Command from( HttpServletRequest request ) {

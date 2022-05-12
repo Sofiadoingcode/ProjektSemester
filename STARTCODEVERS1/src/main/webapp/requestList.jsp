@@ -52,7 +52,7 @@
                             <td class="tableRows-RequestList">${request.city}</td>
                             <td class="tableRows-RequestList">
                                 <form>
-                                    <button type="submit" name="seeOrder" formaction="seeOrderlineServlet"
+                                    <button type="submit" name="seeStykliste" value="${request.idorder}" formaction="fc/BOMlist?command=BOMlist" formmethod="post"
                                             class="seeorder-btn">Se Stykliste
                                     </button>
                                 </form>
