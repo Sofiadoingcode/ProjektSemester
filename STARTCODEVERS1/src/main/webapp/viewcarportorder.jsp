@@ -15,7 +15,6 @@
                 <div class="col-md-3">
                     <p>
                         Description
-
                     </p>
 
 

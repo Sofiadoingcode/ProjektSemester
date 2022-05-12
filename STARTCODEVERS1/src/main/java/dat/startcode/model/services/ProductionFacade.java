@@ -1,8 +1,11 @@
 package dat.startcode.model.services;
 
+import dat.startcode.model.entities.Product;
 import dat.startcode.model.exceptions.DatabaseException;
 import dat.startcode.model.persistence.ConnectionPool;
 import dat.startcode.model.persistence.ProductMapper;
+
+import java.util.List;
 
 public class ProductionFacade {
 
@@ -14,9 +17,19 @@ public class ProductionFacade {
         int categoryID = productMapper.getCategoryID(category);
         int unitID = productMapper.getUnitTypeID(unit);
         int nameID = productMapper.getNameID(name);
+        productMapper.createProduct(nameID, categoryID, unitID, amount, height, width, price);
 
-        productMapper.createProduct(nameID,categoryID,unitID,amount,height,width,price);
 
     }
+
+    public static List<Product> getProducts(ConnectionPool connectionPool)throws DatabaseException{
+
+        ProductMapper productMapper = new ProductMapper(connectionPool);
+        return productMapper.getAllProducts();
+
+    }
+
+
+
 
 }

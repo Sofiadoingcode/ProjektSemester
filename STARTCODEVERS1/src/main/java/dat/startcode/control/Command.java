@@ -1,5 +1,6 @@
 package dat.startcode.control;
 
+import dat.startcode.model.entities.Product;
 import dat.startcode.model.exceptions.DatabaseException;
 
 import javax.servlet.http.HttpServletRequest;
@@ -22,6 +23,8 @@ abstract class Command
         commands.put("acceptRequest", new AcceptRequest());
         commands.put("unAcceptRequest", new unAcceptRequest());
         commands.put("BOMlist", new BOMList());
+        commands.put("ViewProducts", new ViewProducts());
+
 
     }
 
