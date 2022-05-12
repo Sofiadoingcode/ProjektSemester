@@ -1,8 +1,10 @@
 package dat.startcode.control;
 
 import dat.startcode.model.config.ApplicationStart;
+import dat.startcode.model.entities.Request;
 import dat.startcode.model.entities.User;
 import dat.startcode.model.exceptions.DatabaseException;
+import dat.startcode.model.persistence.RequestMapper;
 import dat.startcode.model.services.UserFacade;
 import dat.startcode.model.persistence.ConnectionPool;
 
@@ -31,11 +33,15 @@ public class Login extends Command
 
 
         User user = UserFacade.login(username, password, connectionPool);
+        RequestMapper requestMapper = new RequestMapper(connectionPool);
+        Request usersRequest = requestMapper.getRequestFromDB(user.getIdUser());
+
         session = request.getSession();
         session.setAttribute("user", user); // adding user object to session scope
+        session.setAttribute("usersRequest", usersRequest);
 
         if(user.getIdRole()==2){
-            return "ViewCarportOrder.jsp";
+            return "viewcarportorder.jsp";
         }
         else{
             return "index";

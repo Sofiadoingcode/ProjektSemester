@@ -25,7 +25,6 @@ public class RequestList extends Command {
 
         CustomerMapper customerMapper = new CustomerMapper(connectionPool);
 
-
         List<Customer> nonAcceptedRequests = customerMapper.getAllNonAcceptedRequests();
         List<Customer> acceptedRequests = customerMapper.getAllAcceptedRequests();
         List<Customer> paidRequests = customerMapper.getAllPaidRequests();

@@ -7,21 +7,22 @@ import dat.startcode.model.persistence.CustomerMapper;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
-public class AcceptRequest extends Command{
+public class hasItBeenAccepted extends Command{
     private ConnectionPool connectionPool;
 
-    public AcceptRequest() {
+    public hasItBeenAccepted() {
         this.connectionPool = ApplicationStart.getConnectionPool();
     }
 
     @Override
     String execute(HttpServletRequest request, HttpServletResponse response) throws DatabaseException {
-        String idAccept = request.getParameter("accept");
-        int acceptId = Integer.parseInt(idAccept);
+        String idDelete = request.getParameter("delete");
+        int deleteId = Integer.parseInt(idDelete);
         CustomerMapper customerMapper = new CustomerMapper(connectionPool);
         try {
-            customerMapper.acceptRequest(acceptId);
+            customerMapper.deleteOrder(deleteId);
         } catch (DatabaseException e) {
             System.out.println(e);
         }

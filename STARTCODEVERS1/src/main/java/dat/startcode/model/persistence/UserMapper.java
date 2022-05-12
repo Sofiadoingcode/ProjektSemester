@@ -64,7 +64,8 @@ public class UserMapper implements IUserMapper
                 if (rs.next())
                 {
                     int role = rs.getInt("idrole");
-                    user = new User(username, password, role);
+                    int idUser = rs.getInt("iduser");
+                    user = new User(username, password, role, idUser);
                 } else
                 {
                     throw new DatabaseException("Wrong username or password");
