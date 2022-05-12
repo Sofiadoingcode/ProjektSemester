@@ -15,7 +15,6 @@ public class RequestMapper {
     private int idShed = 0;
     private int idCarport = 0;
     private int idCustomer = 0;
-    private int idBom = 0;
     private int bomPrice = 0;
 
     ConnectionPool connectionPool;
@@ -34,11 +33,14 @@ public class RequestMapper {
 
             String sql = "INSERT INTO `fogarchive`.`shed choices` (width, length, floormateriel) VALUES (?, ?,?) ";
             try (PreparedStatement ps1 = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
-                ps1.setInt(1, shedWidth);
-                ps1.setInt(2, shedLength);
-                ps1.setString(3, floorMaterial);
+
+                    ps1.setInt(1, shedWidth);
+                    ps1.setInt(2, shedLength);
+                    ps1.setString(3, floorMaterial);
+                ps1.executeUpdate();
 
                 //return the generated primary key from sql
+
                 ResultSet generatedKeys = ps1.getGeneratedKeys();
                 if (generatedKeys.next()) {
                     idShed = generatedKeys.getInt(1);
@@ -50,7 +52,7 @@ public class RequestMapper {
         }
     }
 
-    public void insertCarportChoices(int carportHeight, int carportLength, int carportWidth, String roofMaterial, String roofShape, int roofAngle) throws DatabaseException {
+    public void insertCarportChoicesShed(int carportHeight, int carportLength, int carportWidth, String roofMaterial, String roofShape, int roofAngle) throws DatabaseException {
 
 
         Logger.getLogger("web").log(Level.INFO, "");
@@ -58,7 +60,7 @@ public class RequestMapper {
 
         try (Connection connection = connectionPool.getConnection()) {
 
-            String sql = "INSERT INTO `fogarchive`.`carport choices` () VALUES (?, ?, ?, ?, ?, ?, ?) ";
+            String sql = "INSERT INTO `fogarchive`.`carport choices` (height, length, width, roofmateriel, roofshape, roofangle, idshed) VALUES (?, ?, ?, ?, ?, ?, ?) ";
             try (PreparedStatement ps1 = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
                 ps1.setInt(1, carportHeight);
                 ps1.setInt(2, carportLength);
@@ -67,6 +69,7 @@ public class RequestMapper {
                 ps1.setString(5, roofShape);
                 ps1.setInt(6, roofAngle);
                 ps1.setInt(7, idShed);
+                ps1.executeUpdate();
 
                 //return the generated primary key from sql
                 ResultSet generatedKeys = ps1.getGeneratedKeys();
@@ -78,7 +81,34 @@ public class RequestMapper {
             throw new DatabaseException("Something went wrong with inserting request into database");
         }
     }
+    public void insertCarportChoices(int carportHeight, int carportLength, int carportWidth, String roofMaterial, String roofShape, int roofAngle) throws DatabaseException {
 
+
+        Logger.getLogger("web").log(Level.INFO, "");
+
+
+        try (Connection connection = connectionPool.getConnection()) {
+
+            String sql = "INSERT INTO `fogarchive`.`carport choices` (height, length, width, roofmateriel, roofshape, roofangle) VALUES (?, ?, ?, ?, ?, ?) ";
+            try (PreparedStatement ps1 = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+                ps1.setInt(1, carportHeight);
+                ps1.setInt(2, carportLength);
+                ps1.setInt(3, carportWidth);
+                ps1.setString(4, roofMaterial);
+                ps1.setString(5, roofShape);
+                ps1.setInt(6, roofAngle);
+                ps1.executeUpdate();
+
+                //return the generated primary key from sql
+                ResultSet generatedKeys = ps1.getGeneratedKeys();
+                if (generatedKeys.next()) {
+                    idCarport = generatedKeys.getInt(1);
+                }
+            }
+        } catch (SQLException e) {
+            throw new DatabaseException("Something went wrong with inserting request into database");
+        }
+    }
     public void insertCustomer(String name, int zipCode, int phoneNumber, String email) throws DatabaseException {
 
 
@@ -87,12 +117,13 @@ public class RequestMapper {
 
         try (Connection connection = connectionPool.getConnection()) {
 
-            String sql = "INSERT INTO `fogarchive`.`customer` () VALUES (?, ?, ?, ?) ";
+            String sql = "INSERT INTO `fogarchive`.`customer` (name, zipcode, phonenumber, email) VALUES (?, ?, ?, ?) ";
             try (PreparedStatement ps1 = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
                 ps1.setString(1, name);
                 ps1.setInt(2, zipCode);
                 ps1.setInt(3, phoneNumber);
                 ps1.setString(4, email);
+                ps1.executeUpdate();
 
                 //return the generated primary key from sql
                 ResultSet generatedKeys = ps1.getGeneratedKeys();
@@ -106,7 +137,7 @@ public class RequestMapper {
         }
     }
 
-    public void insertRequest(int idUser) throws DatabaseException {
+    public void insertRequest(int idUser, int idBom) throws DatabaseException {
 
 
         Logger.getLogger("web").log(Level.INFO, "");
@@ -114,7 +145,7 @@ public class RequestMapper {
 
         try (Connection connection = connectionPool.getConnection()) {
 
-            String sql = "INSERT INTO `fogarchive`.`carport choices` () VALUES (?, ?, ?, ?, ?, ?, ?) ";
+            String sql = "INSERT INTO `fogarchive`.`order` (idcustomer, idbom, isAccepted, isPaid, finalPrice, iduser, idcarportchoices) VALUES (?, ?, ?, ?, ?, ?, ?) ";
             try (PreparedStatement ps1 = connection.prepareStatement(sql)) {
                 ps1.setInt(1, idCustomer);
                 ps1.setInt(2, idBom);
@@ -123,9 +154,56 @@ public class RequestMapper {
                 ps1.setInt(5, bomPrice);
                 ps1.setInt(6, idUser);
                 ps1.setInt(7, idCarport);
+                ps1.executeUpdate();
             }
         } catch (SQLException e) {
             throw new DatabaseException("Something went wrong with inserting request into database");
+        }
+    }
+    public void insertFullRequestShed(int shedWidth, int shedLength, String floorMaterial, int carportHeight, int carportLength, int carportWidth, String roofMaterial, String roofShape, int roofAngle, String name, int zipCode, int phoneNumber, String email, int idUser, int idBom){
+        try {
+            insertShedChoices(shedWidth, shedLength, floorMaterial);
+        }
+        catch (DatabaseException e) {
+            e.printStackTrace();
+        }
+        try {
+            insertCarportChoicesShed(carportHeight, carportLength, carportWidth, roofMaterial, roofShape, roofAngle);
+        }
+        catch (DatabaseException e) {
+            e.printStackTrace();
+        }
+        try {
+            insertCustomer(name, zipCode, phoneNumber, email);
+        }
+        catch (DatabaseException e) {
+            e.printStackTrace();
+        }
+        try {
+            insertRequest(idUser, idBom);
+        }
+        catch (DatabaseException e) {
+            e.printStackTrace();
+        }
+    }
+    public void insertFullRequest(int carportHeight, int carportLength, int carportWidth, String roofMaterial, String roofShape, int roofAngle, String name, int zipCode, int phoneNumber, String email, int idUser, int idBom){
+        try {
+            insertCarportChoices(carportHeight, carportLength, carportWidth, roofMaterial, roofShape, roofAngle);
+        }
+        catch (DatabaseException e) {
+            e.printStackTrace();
+        }
+        try {
+            insertCustomer(name, zipCode, phoneNumber, email);
+        }
+        catch (DatabaseException e) {
+            e.printStackTrace();
+        }
+        try {
+            insertRequest(idUser, idBom);
+        }
+        catch (DatabaseException e) {
+            e.printStackTrace();
         }
     }
 

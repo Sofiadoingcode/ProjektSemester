@@ -79,7 +79,7 @@
                                                         </div>
                                                         <div class="col">
                                                                 <div class="input-group mb-3">
-                                                                        <input type="number" class="form-control" name=width" placeholder="bredde"
+                                                                        <input type="number" class="form-control" name="width" placeholder="bredde"
                                                                                aria-label="Recipient's username" aria-describedby="basic-addon2" required
                                                                                oninvalid="this.setCustomValidity('Indtast bredde')"
                                                                                oninput="this.setCustomValidity('')">
@@ -95,7 +95,7 @@
                                                         <div class=" col-md-4">
                                                                 <div class="input-group">
                                                                         <label class="input-group-text" for="inputGroupSelect01">materiale</label>
-                                                                        <select class="form-select" name="tag" id="inputGroupSelect02" required
+                                                                        <select class="form-select" name="tagMateriale" id="inputGroupSelect02" required
                                                                                 oninvalid="this.setCustomValidity('Vælg tag materiale')"
                                                                                 oninput="this.setCustomValidity('')">
                                                                                 <option value="" selected disabled>Choose</option>
@@ -126,7 +126,7 @@
                                                                                aria-label="" aria-describedby="" required
                                                                                oninvalid="this.setCustomValidity('Indtast vinkel på tag')"
                                                                                oninput="this.setCustomValidity('')">
-                                                                        <span class="input-group-text" id="width">angle</span>
+                                                                        <span class="input-group-text" id="angle">angle</span>
                                                                 </div>
                                                         </div>
                                                 </div>
@@ -138,7 +138,7 @@
 
 
                                                 <div class="form-check">
-                                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                                        <input class="form-check-input" type="checkbox" name="shedCheckbox" value="shed" id="flexCheckDefault">
                                                         <label class="form-check-label" for="flexCheckDefault">
                                                                 Skur
                                                         </label>
@@ -149,16 +149,23 @@
                                                 <div class="row align-items-start">
                                                         <div class="col-md-2">
                                                                 <div class="input-group mb-3">
-                                                                        <input type="number" class="form-control" name="length" placeholder="længde"
+                                                                        <input type="number" class="form-control" name="shedLength" placeholder="længde"
                                                                                aria-label="" aria-describedby="">
                                                                         <span class="input-group-text" id="shedLength">m</span>
                                                                 </div>
                                                         </div>
                                                         <div class="col-md-2">
                                                                 <div class="input-group mb-3">
-                                                                        <input type="number" class="form-control" name=width" placeholder="bredde"
+                                                                        <input type="number" class="form-control" name="shedWidth" placeholder="bredde"
                                                                                aria-label="" aria-describedby="">
                                                                         <span class="input-group-text" id="shedWidth">m</span>
+                                                                </div>
+                                                        </div>
+                                                        <div class="col-md-2">
+                                                                <div class="input-group mb-3">
+                                                                        <input type="text" class="form-control" name="floorMaterial" placeholder="Materiale"
+                                                                               aria-label="" aria-describedby="">
+                                                                        <span class="input-group-text" id="shedMaterial">m</span>
                                                                 </div>
                                                         </div>
 
@@ -186,6 +193,22 @@
                                                                                        oninvalid="this.setCustomValidity('Indtast email')"
                                                                                        oninput="this.setCustomValidity('')">
                                                                                 <label for="floatingInput">Email address</label>
+                                                                        </div>
+                                                                </div>
+                                                                <div class="col-md-2">
+                                                                        <div class="form-floating mb-3">
+                                                                                <input type="text" pattern="[0-9]{4}" class="form-control" id="floatingzipCode" name="zipCode" placeholder="" required
+                                                                                       oninvalid="this.setCustomValidity('Indtast postnummer')"
+                                                                                       oninput="this.setCustomValidity('')">
+                                                                                <label for="floatingzipCode">Postnummer</label>
+                                                                        </div>
+                                                                </div>
+                                                                <div class="col-md-2">
+                                                                        <div class="form-floating mb-3">
+                                                                                <input type="text" pattern="[0-9]{8}" class="form-control" id="floatingPhoneNumber" name="phoneNumber" placeholder="" required
+                                                                                       oninvalid="this.setCustomValidity('Indtast telefonnummer')"
+                                                                                       oninput="this.setCustomValidity('')">
+                                                                                <label for="floatingPhoneNumber">Telefonnummer</label>
                                                                         </div>
                                                                 </div>
 

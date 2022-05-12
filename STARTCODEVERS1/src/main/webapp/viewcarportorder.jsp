@@ -107,7 +107,7 @@
                                 <label class="input-group-text" for="angle">Tag</label>
                                 <input type="number" class="form-control" name="angle" id="angle" placeholder="0"
                                        disabled>
-                                <span class="input-group-text" id="width">angle</span>
+                                <span class="input-group-text" id="angle2">angle</span>
                             </div>
                         </div>
                     </div>

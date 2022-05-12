@@ -31,7 +31,6 @@ public class Login extends Command
         String username = request.getParameter("username");
         String password = request.getParameter("password");
 
-
         User user = UserFacade.login(username, password, connectionPool);
         RequestMapper requestMapper = new RequestMapper(connectionPool);
         Request usersRequest = requestMapper.getRequestFromDB(user.getIdUser());
