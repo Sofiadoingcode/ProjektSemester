@@ -21,7 +21,6 @@ abstract class Command
         commands.put("deleteRequest", new DeleteRequest());
         commands.put("acceptRequest", new AcceptRequest());
         commands.put("unAcceptRequest", new unAcceptRequest());
-        commands.put("hasItBeenAccepted", new hasItBeenAccepted());
     }
 
     static Command from( HttpServletRequest request ) {
