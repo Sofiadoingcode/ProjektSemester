@@ -38,7 +38,6 @@ public class Login extends Command
 
         session = request.getSession();
         session.setAttribute("user", user); // adding user object to session scope
-        System.out.println(usersRequest);
         session.setAttribute("usersRequest", usersRequest);
 
         if(user.getIdRole()==2){

@@ -73,7 +73,6 @@ public class RequestMapper {
                 if (generatedKeys.next()) {
                     idCarport = generatedKeys.getInt(1);
                 }
-
             }
         } catch (SQLException e) {
             throw new DatabaseException("Something went wrong with inserting request into database");
@@ -130,34 +129,13 @@ public class RequestMapper {
         }
     }
 
-    public boolean checkIfAccepted(int idOrder) throws DatabaseException {
-        boolean hasItBeenAccepted = false;
-        try (Connection connection = connectionPool.getConnection()) {
-
-            String sql = "SELECT idorder, isAccepted from fogarchive.order WHERE idorder = ?";
-            try (PreparedStatement ps = connection.prepareStatement(sql)) {
-                ps.setInt(1, idOrder);
-                ResultSet rs = ps.executeQuery();
-                if (rs.next()) {
-                    hasItBeenAccepted = rs.getBoolean("isAccepted");
-                }
-            } catch (Exception E) {
-                System.out.println(E);
-            }
-
-        } catch (Exception e) {
-            System.out.println(e);
-        }
-        return hasItBeenAccepted;
-    }
-
     public Request getRequestFromDB(int idUser){
         Request request = null;
         try (Connection connection = connectionPool.getConnection()) {
 
             String sql = "SELECT idorder, idcustomer, idbom, isAccepted, isPaid, finalPrice, iduser, idcarportchoices FROM fogarchive.order WHERE iduser = ?";
             try (PreparedStatement ps = connection.prepareStatement(sql)) {
-                ps.setInt(1, idCustomer);
+                ps.setInt(1, idUser);
                 ResultSet rs = ps.executeQuery();
                 if (rs.next()) {
                     int idOrder = rs.getInt("idorder");
@@ -167,7 +145,6 @@ public class RequestMapper {
                     boolean isPaid = rs.getBoolean("isPaid");
                     int finalPrice = rs.getInt("finalPrice");
                     int idCarportChoices = rs.getInt("idcarportchoices");
-                    System.out.println(isAccepted);
                     request = new Request(idOrder, idCustomer, idBom, isAccepted, isPaid, finalPrice, idUser, idCarportChoices);
                 }
             } catch (Exception E) {
