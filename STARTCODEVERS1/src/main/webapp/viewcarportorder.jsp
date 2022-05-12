@@ -155,25 +155,37 @@
 
                     <div class="gy-6 row align-content-start">
                         <!-- Button trigger modal -->
-                        <c:if test="${sessionScope.usersRequest.accepted}">
+                        <c:if test="${sessionScope.usersRequest.accepted && !sessionScope.usersRequest.paid}">
+                            <div style="text-align: center">
+                            <p class="textPaymentMessageDecoration">Din forespørgsel er blevet accepteret!</p>
+                            <p class="textPaymentMessageDecoration">Betal nu!</p>
+                            </div>
 
                             <div style="margin-bottom: 5%" class="col">
                                 <form class="col">
 
-                                    <a href="${pageContext.request.contextPath}/#" style="margin-left: 20%"
+                                    <a href="${pageContext.request.contextPath}/#" style="margin-left: 48.5%"
                                        class="btn-viewcarportorder-betal">Betal</a>
                                 </form>
                             </div>
+                            <br>
 
                         </c:if>
 
+                        <c:if test="${sessionScope.usersRequest.accepted && sessionScope.usersRequest.paid}">
+
+                            <div style="text-align: center">
+                                <p class="textPaymentMessageDecoration">Din betaling er gået igennem</p>
+                                <p class="textPaymentMessageDecoration">Se din stykliste nu!!</p>
+                            </div>
 
                         <div style="margin-bottom: 5%; text-align: right" class="col">
                             <form>
-                                <a href="${pageContext.request.contextPath}/#" style="margin-right: 20%"
-                                   class="btn-viewcarportorder-betal">Submit</a>
+                                <a href="${pageContext.request.contextPath}/#" style="margin-right: 46%"
+                                   class="btn-viewcarportorder-betal">Se stykliste</a>
                             </form>
                         </div>
+                        </c:if>
                     </div>
                 </section>
 
