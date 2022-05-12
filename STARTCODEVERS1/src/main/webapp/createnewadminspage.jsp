@@ -23,22 +23,36 @@
     </jsp:attribute>
 
     <jsp:body>
-        <section style="text-align: center">
+        <section>
 
-            <form action="fc/createAdminAccount" method="post" style="text-align: center">
+            <div style="text-align: center">
 
-                <p style="font-size: 3.4rem; font-weight: 500">Kontokonfiguration</p>
-                <br>
-                <input style="margin-left: 10px" type="text" class="UsernameInputField" id="username" name="username"
-                       placeholder=" Username"/>
-                <br>
-                <input style="margin-left: 10px" type="password" class="PasswordInputField" id="password"
-                       name="password" placeholder=" Password"/>
-                <br>
-                <input type="submit" style="" class="btn-createnewadminspage-betal" value="Lav Konto">
-            </form>
+                <form>
 
-            <input type="submit" style="" class="btn-createnewadminspage-betal" value="Lav Konto">
+                    <p style="font-size: 3.4rem; font-weight: 500">Kontokonfiguration</p>
+                    <br>
+                    <input style="margin-left: 10px" type="text" class="UsernameInputField" id="username"
+                           name="username"
+                           placeholder=" Username" required
+                           oninvalid="this.setCustomValidity('Indtast brugernavn')"
+                           oninput="this.setCustomValidity('')"/>
+                    <br>
+                    <input style="margin-left: 10px" type="password" class="PasswordInputField" id="password"
+                           name="password"
+                           placeholder=" Password" required
+                           oninvalid="this.setCustomValidity('Indtast kodeord')"
+                           oninput="this.setCustomValidity('')"/>
+                    <br>
+                    <button type="submit" style="" formaction="fc/createAdminAccount?command=createAdminAccount"
+                            formmethod="post" class="btn-createnewadminspage-betal">Lav konto
+                    </button>
+
+                    <button type="submit" name="delete" value="${sessionScope.user.idUser}"
+                            formaction="fc/deleteAccount?command=deleteAccount" formmethod="post"
+                            class="btn-createnewadminspage-delete">Slet konto
+                    </button>
+                </form>
+            </div>
         </section>
 
     </jsp:body>

@@ -1,5 +1,6 @@
 package dat.startcode.control;
 
+import com.mysql.cj.Session;
 import dat.startcode.model.config.ApplicationStart;
 import dat.startcode.model.entities.User;
 import dat.startcode.model.exceptions.DatabaseException;
@@ -14,23 +15,35 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-public class CreateAdminAccount extends Command{
+public class DeleteAccount extends Command{
     private ConnectionPool connectionPool;
 
-    public CreateAdminAccount(){
+
+    public DeleteAccount(){
         this.connectionPool = ApplicationStart.getConnectionPool();
     }
 
     @Override
     String execute(HttpServletRequest request, HttpServletResponse response) throws DatabaseException {
-       String username = request.getParameter("username");
-       String password = request.getParameter("password");
-        UserMapper userMapper = new UserMapper(connectionPool);
+        HttpSession session = request.getSession();
+
+        String username = request.getParameter("username");
+        String password = request.getParameter("password");
+        String deleteId = request.getParameter("delete");
+        int idToDelete = Integer.parseInt(deleteId);
+        CustomerMapper customerMapper = new CustomerMapper(connectionPool);
         try {
-            userMapper.createAdmin(username, password);
+            customerMapper.deleteAccount(username, password);
+            int userIdInDB = customerMapper.checkDeletedId(username, password);
+            System.out.println("uiid = " + userIdInDB + " iTD = " + idToDelete);
+            if(userIdInDB == idToDelete){
+                session.invalidate();
+            }
         } catch (DatabaseException e) {
+            System.out.println(e);
         }
 
-        return "adminaccountcreationconfirmation.jsp";
+
+        return "adminaccountdeletionconfirmation.jsp";
     }
 }

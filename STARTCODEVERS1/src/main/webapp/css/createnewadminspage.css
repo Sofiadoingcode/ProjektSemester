@@ -22,7 +22,7 @@
     font-size: 15px;
 }
 
-.btn-createnewadminspage-betal:link, .btn-createnewadminspage-betal:visited {
+.btn-createnewadminspage-betal {
     display: inline-block;
     text-decoration: none;
     letter-spacing: 0.02px;
@@ -33,13 +33,17 @@
     transition: all 0.3s;
     background-color: #193f76;
     color: white;
+    border-color: #fff;
+    border-style: solid;
 }
 
 .btn-createnewadminspage-betal:hover, .btn-createnewadminspage-betal:active{
     background-color: darkblue;
 }
 
-.btn-createnewadminspage-delete:link, .btn-createnewadminspage-delete:visited {
+
+
+.btn-createnewadminspage-delete {
     display: inline-block;
     text-decoration: none;
     letter-spacing: 0.02px;
@@ -50,6 +54,8 @@
     transition: all 0.3s;
     background-color: #cc0000;
     color: white;
+    border-color: #fff;
+    border-style: solid;
 }
 
 .btn-createnewadminspage-delete:hover, .btn-createnewadminspage-delete:active{

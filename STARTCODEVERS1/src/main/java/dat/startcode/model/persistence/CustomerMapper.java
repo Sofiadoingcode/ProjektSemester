@@ -70,7 +70,6 @@ public class CustomerMapper implements ICustomerMapper {
                     customerList.add(customer);
 
 
-
                 }
             }
         } catch (SQLException ex) {
@@ -132,6 +131,47 @@ public class CustomerMapper implements ICustomerMapper {
             throw new DatabaseException("Elementet blev ikke fjernet3 ");
         }
         return isDeleted;
+    }
+
+    public boolean deleteAccount(String username, String password) throws DatabaseException {
+        boolean isDeleted = false;
+
+        try (Connection connection = connectionPool.getConnection()) {
+
+            String sql = "delete from `user` where username = ? AND password = ?";
+            try (PreparedStatement ps = connection.prepareStatement(sql)) {
+                ps.setString(1, username);
+                ps.setString(2, password);
+                ps.executeUpdate();
+                isDeleted = true;
+            } catch (Exception E) {
+                System.out.println(E);
+            }
+        } catch (SQLException e) {
+            throw new DatabaseException("Adminen blev ikke fjernet3 ");
+        }
+        return isDeleted;
+    }
+
+    public int checkDeletedId(String username, String password) throws DatabaseException {
+        String sql = "SELECT iduser, username, password FROM fogarchive.user WHERE username = ? AND password = ?";
+        int idUser = 0;
+        try (Connection connection = connectionPool.getConnection()) {
+            try (PreparedStatement ps = connection.prepareStatement(sql)) {
+                ps.setString(1, username);
+                ps.setString(2, password);
+                ResultSet rs = ps.executeQuery();
+
+                while (rs.next()){
+                    idUser = rs.getInt("iduser");
+                }
+            } catch (Exception E) {
+                System.out.println(E);
+            }
+        } catch (SQLException e) {
+            throw new DatabaseException("Adminen blev ikke fjernet3 ");
+        }
+        return idUser;
     }
 
     public boolean acceptRequest(int orderId) throws DatabaseException {
