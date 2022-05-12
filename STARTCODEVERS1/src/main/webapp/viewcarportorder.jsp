@@ -175,7 +175,7 @@
                         <c:if test="${sessionScope.usersRequest.accepted && sessionScope.usersRequest.paid}">
 
                             <div style="text-align: center">
-                                <p class="textPaymentMessageDecoration">Din betaling er gået igennem</p>
+                                <p class="textPaymentMessageDecoration">Din betaling er modtaget</p>
                                 <p class="textPaymentMessageDecoration">Se din stykliste nu!!</p>
                             </div>
 
