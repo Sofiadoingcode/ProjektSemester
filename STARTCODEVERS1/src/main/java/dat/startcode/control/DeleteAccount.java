@@ -33,9 +33,8 @@ public class DeleteAccount extends Command{
         int idToDelete = Integer.parseInt(deleteId);
         CustomerMapper customerMapper = new CustomerMapper(connectionPool);
         try {
-            customerMapper.deleteAccount(username, password);
             int userIdInDB = customerMapper.checkDeletedId(username, password);
-            System.out.println("uiid = " + userIdInDB + " iTD = " + idToDelete);
+            customerMapper.deleteAccount(username, password);
             if(userIdInDB == idToDelete){
                 session.invalidate();
             }

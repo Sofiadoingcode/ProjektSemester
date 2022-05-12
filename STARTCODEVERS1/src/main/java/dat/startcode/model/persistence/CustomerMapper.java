@@ -161,10 +161,10 @@ public class CustomerMapper implements ICustomerMapper {
                 ps.setString(1, username);
                 ps.setString(2, password);
                 ResultSet rs = ps.executeQuery();
-
-                while (rs.next()){
+                while (rs.next()) {
                     idUser = rs.getInt("iduser");
                 }
+
             } catch (Exception E) {
                 System.out.println(E);
             }
