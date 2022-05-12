@@ -15,7 +15,7 @@ public class UserMapper implements IUserMapper
         this.connectionPool = connectionPool;
     }
 
-    public User createTempUser(String name, String email) throws DatabaseException {
+    public User createTempUser(String email) throws DatabaseException {
         Logger.getLogger("web").log(Level.INFO, "");
         int idUser=0;
         User user;

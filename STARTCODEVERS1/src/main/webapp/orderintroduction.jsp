@@ -56,26 +56,33 @@
                                         <br>
 
                                         <form action="fc/showTempUser?command=showTempUser" method="post">
+
                                                 <div class="row align-items-start">
 
                                                         <div class="col">
                                                                 <div class="input-group mb-3">
                                                                         <input type="number" class="form-control" name="height" placeholder="højde"
-                                                                               aria-label="Recipient's username" aria-describedby="basic-addon2">
+                                                                               aria-label="Recipient's username" aria-describedby="basic-addon2" required
+                                                                               oninvalid="this.setCustomValidity('Indtast højde')"
+                                                                               oninput="this.setCustomValidity('')">
                                                                         <span class="input-group-text" id="height">m</span>
                                                                 </div>
                                                         </div>
                                                         <div class="col">
                                                                 <div class="input-group mb-3">
                                                                         <input type="number" class="form-control" name="length" placeholder="længde"
-                                                                               aria-label="Recipient's username" aria-describedby="basic-addon2">
+                                                                               aria-label="Recipient's username" aria-describedby="basic-addon2" required
+                                                                               oninvalid="this.setCustomValidity('Indtast længde')"
+                                                                               oninput="this.setCustomValidity('')">
                                                                         <span class="input-group-text" id="length">m</span>
                                                                 </div>
                                                         </div>
                                                         <div class="col">
                                                                 <div class="input-group mb-3">
                                                                         <input type="number" class="form-control" name=width" placeholder="bredde"
-                                                                               aria-label="Recipient's username" aria-describedby="basic-addon2">
+                                                                               aria-label="Recipient's username" aria-describedby="basic-addon2" required
+                                                                               oninvalid="this.setCustomValidity('Indtast bredde')"
+                                                                               oninput="this.setCustomValidity('')">
                                                                         <span class="input-group-text" id="width">m</span>
                                                                 </div>
                                                         </div>
@@ -88,11 +95,13 @@
                                                         <div class=" col-md-4">
                                                                 <div class="input-group">
                                                                         <label class="input-group-text" for="inputGroupSelect01">materiale</label>
-                                                                        <select class="form-select" name="tag" id="inputGroupSelect02">
-                                                                                <option selected>Choose</option>
-                                                                                <option value="1">plasttrapez</option>
-                                                                                <option value="2">ståltag</option>
-                                                                                <option value="3">betontag</option>
+                                                                        <select class="form-select" name="tag" id="inputGroupSelect02" required
+                                                                                oninvalid="this.setCustomValidity('Vælg tag materiale')"
+                                                                                oninput="this.setCustomValidity('')">
+                                                                                <option value="" selected disabled>Choose</option>
+                                                                                <option value="1">Plasttrapez</option>
+                                                                                <option value="2">Ståltag</option>
+                                                                                <option value="3">Betontag</option>
 
                                                                         </select>
                                                                 </div>
@@ -101,10 +110,12 @@
                                                         <div class="col-md-4">
                                                                 <div class="input-group">
                                                                         <label class="input-group-text" for="inputGroupSelect01">Tag</label>
-                                                                        <select class="form-select" name="tag" id="inputGroupSelect01">
-                                                                                <option selected>Choose</option>
+                                                                        <select class="form-select" name="tag" id="inputGroupSelect01" required
+                                                                                oninvalid="this.setCustomValidity('Vælg tag')"
+                                                                                oninput="this.setCustomValidity('')">
+                                                                                <option value="" selected disabled>Choose</option>
                                                                                 <option value="1">Flat tag</option>
-                                                                                <option value="2">Tag med resning</option>
+                                                                                <option value="2">Tag med rejsning</option>
                                                                                 <option value="3">Three</option>
                                                                         </select>
                                                                 </div>
@@ -112,7 +123,9 @@
                                                         <div class="col-md-4" id="inputCheck1">
                                                                 <div class="input-group mb-3">
                                                                         <input type="number" class="form-control" name="angle" placeholder="0"
-                                                                               aria-label="" aria-describedby="">
+                                                                               aria-label="" aria-describedby="" required
+                                                                               oninvalid="this.setCustomValidity('Indtast vinkel på tag')"
+                                                                               oninput="this.setCustomValidity('')">
                                                                         <span class="input-group-text" id="width">angle</span>
                                                                 </div>
                                                         </div>
@@ -143,7 +156,7 @@
                                                         </div>
                                                         <div class="col-md-2">
                                                                 <div class="input-group mb-3">
-                                                                        <input type="number" class="form-control" name=width" placeholder="brede"
+                                                                        <input type="number" class="form-control" name=width" placeholder="bredde"
                                                                                aria-label="" aria-describedby="">
                                                                         <span class="input-group-text" id="shedWidth">m</span>
                                                                 </div>
@@ -217,7 +230,7 @@
                                                         </div>
                                                         <div class="modal-footer">
                                                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                                                <button type="button" class="btn btn-primary">Login</button>
+                                                                <button type="button" class="btn btn-primary" formaction="/fc/login?command=login">Login</button>
                                                         </div>
                                                 </div>
                                         </div>
