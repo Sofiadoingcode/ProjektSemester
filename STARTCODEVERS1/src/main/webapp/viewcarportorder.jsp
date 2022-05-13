@@ -107,7 +107,7 @@
                                 <label class="input-group-text" for="angle">Hældning</label>
                                 <input type="number" class="form-control" name="angle" id="angle" placeholder="0"
                                        disabled>
-                                <span class="input-group-text" id="angle2">°</span>
+                                <span class="input-group-text" id="angleSymbol">°</span>
                             </div>
                         </div>
                     </div>
@@ -130,19 +130,27 @@
                     <div class="row align-items-start">
                         <div class="col-md-2">
                             <div class="input-group mb-3">
-                                <input type="number" class="form-control" name="length" placeholder="længde"
-                                       aria-label="" aria-describedby="">
-                                <span class="input-group-text" id="shedLength">m</span>
+                                <label class="input-group-text" for="shedLength">Længde</label>
+                                <input type="number" class="form-control" name="length" id="shedLength" placeholder="længde"
+                                       aria-label="" aria-describedby="" disabled>
+                                <span class="input-group-text" id="shedLengthm">m</span>
                             </div>
                         </div>
                         <div class="col-md-2">
                             <div class="input-group mb-3">
-                                <input type="number" class="form-control" name=width" placeholder="bredde"
-                                       aria-label="" aria-describedby="">
-                                <span class="input-group-text" id="shedWidth">m</span>
+                                <label class="input-group-text" for="shedWidth">Bredde</label>
+                                <input type="number" class="form-control" name=width" id="shedWidth" placeholder="bredde"
+                                       aria-label="" aria-describedby="" disabled>
+                                <span class="input-group-text" id="shedWidthm">m</span>
                             </div>
                         </div>
-
+                        <div class="col-md-2">
+                            <div class="input-group mb-3">
+                                <label class="input-group-text" for="shedMaterial">Gulvmateriale</label>
+                                <input type="text" class="form-control" name="floorMaterial" id="shedMaterial" placeholder="Gulvmateriale"
+                                       aria-label="" aria-describedby="" disabled>
+                            </div>
+                        </div>
                         <br>
 
 
