@@ -34,6 +34,9 @@
                         <input type="password" id="password" name="password" required
                         oninvalid="this.setCustomValidity('Indtast kodeord')"
                         oninput="this.setCustomValidity('')"/>
+                        <c:if test="${requestScope.wrongLogin}">
+                            <span>Forkert brugernavn eller kodeord</span>
+                        </c:if>
                     </div>
                     <div id="login-btn-login-div">
                         <input type="submit" id="login-btn" class="loginFormText" value="Log ind"/>

@@ -122,11 +122,12 @@
                                                         </div>
                                                         <div class="col-md-4" id="inputCheck1">
                                                                 <div class="input-group mb-3">
-                                                                        <input type="number" class="form-control" name="angle" placeholder="0"
+                                                                        <label class="input-group-text" for="angle">Hældning</label>
+                                                                        <input type="number" class="form-control" id="angle" name="angle" placeholder="0"
                                                                                aria-label="" aria-describedby="" required
-                                                                               oninvalid="this.setCustomValidity('Indtast vinkel på tag')"
+                                                                               oninvalid="this.setCustomValidity('Indtast hældning på tag')"
                                                                                oninput="this.setCustomValidity('')">
-                                                                        <span class="input-group-text" id="angle">angle</span>
+                                                                        <span class="input-group-text" id="angleSymbol">°</span>
                                                                 </div>
                                                         </div>
                                                 </div>
@@ -163,9 +164,8 @@
                                                         </div>
                                                         <div class="col-md-2">
                                                                 <div class="input-group mb-3">
-                                                                        <input type="text" class="form-control" name="floorMaterial" placeholder="Materiale"
+                                                                        <input type="text" class="form-control" name="floorMaterial" placeholder="Gulvmateriale"
                                                                                aria-label="" aria-describedby="">
-                                                                        <span class="input-group-text" id="shedMaterial">m</span>
                                                                 </div>
                                                         </div>
 

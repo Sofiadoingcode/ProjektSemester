@@ -23,15 +23,24 @@ public class Login extends Command
         this.connectionPool = ApplicationStart.getConnectionPool();
     }
 
+
     @Override
     String execute(HttpServletRequest request, HttpServletResponse response) throws DatabaseException
     {
         HttpSession session = request.getSession();
+        boolean wrongLogin=false;
         session.setAttribute("user", null); // adding empty user object to session scope
         String username = request.getParameter("username");
         String password = request.getParameter("password");
-
-        User user = UserFacade.login(username, password, connectionPool);
+        User user;
+        try {
+            user = UserFacade.login(username, password, connectionPool);
+        }
+        catch(DatabaseException e){
+            wrongLogin=true;
+            request.setAttribute("wrongLogin", wrongLogin);
+            return "login.jsp";
+        }
         RequestMapper requestMapper = new RequestMapper(connectionPool);
         Request usersRequest = requestMapper.getRequestFromDB(user.getIdUser());
 

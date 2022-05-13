@@ -104,10 +104,10 @@
                         </div>
                         <div class="col-md-4" id="inputCheck1">
                             <div class="input-group mb-3">
-                                <label class="input-group-text" for="angle">Tag</label>
+                                <label class="input-group-text" for="angle">Hældning</label>
                                 <input type="number" class="form-control" name="angle" id="angle" placeholder="0"
                                        disabled>
-                                <span class="input-group-text" id="angle2">angle</span>
+                                <span class="input-group-text" id="angle2">°</span>
                             </div>
                         </div>
                     </div>
