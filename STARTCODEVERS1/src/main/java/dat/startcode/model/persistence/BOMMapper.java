@@ -3,6 +3,7 @@ package dat.startcode.model.persistence;
 import dat.startcode.model.DTOs.BOMDTO;
 import dat.startcode.model.DTOs.ProductDTO;
 import dat.startcode.model.DTOs.ProductionlineDTO;
+import dat.startcode.model.entities.CarportChoices;
 import dat.startcode.model.entities.ProductLine;
 import dat.startcode.model.exceptions.DatabaseException;
 
@@ -130,17 +131,45 @@ public class BOMMapper implements IBOMMapper{
         return productionLines;
     }
 
+    @Override
+    public List<ProductDTO> getAllProductDTOs() throws DatabaseException {
+        List<ProductDTO> allProductDTOs = new ArrayList<>();
+
+        String sql = "SELECT *\n" +
+                "FROM product";
+
+        try (Connection connection = connectionPool.getConnection()) {
+            try (PreparedStatement ps = connection.prepareStatement(sql)) {
+
+                ResultSet rs = ps.executeQuery();
+                while (rs.next()) {
+                    int productid = rs.getInt("idProduct");
+
+                    ProductDTO productDTO = getFullProduct(productid);
+
+                    allProductDTOs.add(productDTO);
+
+                }
+            }
+        } catch (SQLException ex) {
+            throw new DatabaseException(ex, "Fejl under indlæsning fra databasen");
+        }
+
+
+        return allProductDTOs;
+    }
 
 
     private ProductDTO getFullProduct(int productID) throws DatabaseException {
 
 
-        ProductDTO productDTO = new ProductDTO(0,"","", 0,0,0,0,0);
+        ProductDTO productDTO = new ProductDTO(0,"","", 0,0,0,0,0, "");
 
-        String sql = "SELECT idproduct, n.`name`, u.`type`, idcategory, priceprmeasurment, height, width, amount\n" +
+        String sql = "SELECT idproduct, n.`name`, u.`type`, idcategory, priceprmeasurment, height, width, amount, pt.producttype\n" +
                 "FROM product\n" +
                 "INNER JOIN productname n USING (idname)\n" +
                 "INNER JOIN unit u USING (idunit)\n" +
+                "INNER JOIN producttype pt USING (idproducttype)\n" +
                 "WHERE idproduct = ?";
 
         try (Connection connection = connectionPool.getConnection()) {
@@ -157,8 +186,9 @@ public class BOMMapper implements IBOMMapper{
                     double height = rs.getDouble("height");
                     double width = rs.getDouble("width");
                     int amount = rs.getInt("amount");
+                    String producttype = rs.getString("producttype");
 
-                    productDTO = new ProductDTO(idproduct, name, unit, category, priceprmeasurment, height, width, amount);
+                    productDTO = new ProductDTO(idproduct, name, unit, category, priceprmeasurment, height, width, amount, producttype);
 
 
                 }
