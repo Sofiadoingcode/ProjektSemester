@@ -17,7 +17,7 @@ public class test {
 
         try {
 
-            ProductionFacade.createProduct("hej","Træ & Tagplader", "sæt", 10,10,10,10,connectionPool);
+            ProductionFacade.createProduct("hej","Træ & Tagplader", "sæt", 10,10,10,10,"rem",connectionPool);
 
 
         }catch (Exception e){

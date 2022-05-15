@@ -6,7 +6,7 @@
 <t:pagetemplate>
     <jsp:body>
 
-
+        <h1> Produkt Liste</h1>
         <div class="orderlist-tablediv ">
             <table class="orders-table tableStyle">
                 <thead class="orders-th">
@@ -19,6 +19,7 @@
                 <td class="tableHeader-RequestList">Antal</td>
                 <td class="tableHeader-RequestList">Højde</td>
                 <td class="tableHeader-RequestList">Bredte</td>
+                <td class="tableHeader-RequestList">Product type</td>
                 <td> button</td>
                 </thead>
 
@@ -99,6 +100,27 @@
                                                                 value="${product.width}" name="product_width"> <span
                                         class="input-group-append"> </span></div>
                             </td>
+
+                            <td class="tableRows-RequestList">
+                                <div class="form-floating">
+                                    <select class="form-select" name="product_producttype"
+                                            aria-label="Floating label select example">
+                                        <c:forEach var="option" items="${applicationScope.ProductTypeList}">
+                                            <c:choose>
+                                                <c:when test="${option.value.equals(product.productType)}">
+                                                    <option value="${option.value}" selected> ${option.value} </option>
+                                                </c:when>
+                                                <c:otherwise>
+                                                    <option value="${option.value}"> ${option.value} </option>
+                                                </c:otherwise>
+                                            </c:choose>
+
+                                        </c:forEach>
+                                    </select>
+                                    <label for="category">Produkt Type</label>
+                                </div>
+
+                            </td>
                             <td class="tableRows-RequestList">
                                 <button type="submit" name="product_id" value="${product.productID}"
                                         formaction="fc/modifyproduct?command=modifyproduct" formmethod="post"
@@ -120,64 +142,80 @@
         </div>
 
         <br>
+        <br>
+
+        <h1> Ny Produkt</h1>
+        <div class="d-flex justify-content-center">
+
+            <br>
+            <br>
+            <form action="fc/saveproduct?command=saveproduct" method="post">
 
 
-        <form action="fc/saveproduct?command=saveproduct" method="post">
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control" name="name" id="floatingInput"
+                           placeholder="name@example.com">
+                    <label for="floatingInput">Navn</label>
+                </div>
+                <br>
+                <div class="form-floating">
+                    <select class="form-select" id="category" name="category"
+                            aria-label="Floating label select example">
+
+                        <option value="Træ & Tagplader">Træ & Tagplader</option>
+                        <option value="Beslag & Skruer">Beslag & Skruer</option>
+                    </select>
+                    <label for="category">Kategori</label>
+                </div>
+                <br>
+                <div class="form-floating">
+                    <select class="form-select" id="type" name="unit" aria-label="Floating label select example">
+                        <option value="stk">stk</option>
+                        <option value="pakke">pakke</option>
+                        <option value="rulle">rulle</option>
+                        <option value="sæt">sæt</option>
+                    </select>
+                    <label for="type">Pakke types</label>
+                </div>
+
+                <br>
+                <div class="form-floating mb-3">
+                    <input type="number" class="form-control" name="amount" id="amount" placeholder="name@example.com">
+                    <label for="amount">amount</label>
+                </div>
+                <br>
+                <div class="form-floating mb-3">
+                    <input type="number" class="form-control" name="price" id="price" placeholder="name@example.com">
+                    <label for="price">pris</label>
+                </div>
+                <br>
+                <div class="form-floating mb-3">
+                    <input type="number" class="form-control" name="height" id="Height" placeholder="name@example.com">
+                    <label for="Height">Højde</label>
+                </div>
+                <br>
+                <div class="form-floating mb-3">
+                    <input type="number" class="form-control" name="width" id="Width" placeholder="name@example.com">
+                    <label for="width">Længde</label>
+                </div>
+                <br>
+                <div class="form-floating">
+                    <select class="form-select" name="product_producttype"
+                            aria-label="Floating label select example">
+                        <c:forEach var="option" items="${applicationScope.ProductTypeList}">
+                            <option value="${option.value}"> ${option.value} </option>
+                        </c:forEach>
+                    </select>
+                    <label for="category">Produkt Type</label>
+                </div>
+                <br>
+                <div id="login-btn-login-div">
+                    <input type="submit" id="login-btn" class="loginFormText" value="Lav Produkt"/>
+                </div>
 
 
-            <div class="form-floating mb-3">
-                <input type="text" class="form-control" name="name" id="floatingInput" placeholder="name@example.com">
-                <label for="floatingInput">Navn</label>
-            </div>
+            </form>
 
-            <div class="form-floating">
-                <select class="form-select" id="category" name="category" aria-label="Floating label select example">
-
-                    <option value="Træ & Tagplader">Træ & Tagplader</option>
-                    <option value="Beslag & Skruer">Beslag & Skruer</option>
-                </select>
-                <label for="category">Kategori</label>
-            </div>
-
-            <div class="form-floating">
-                <select class="form-select" id="type" name="unit" aria-label="Floating label select example">
-                    <option value="stk">stk</option>
-                    <option value="pakke">pakke</option>
-                    <option value="rulle">rulle</option>
-                    <option value="sæt">sæt</option>
-                </select>
-                <label for="type">Pakke types</label>
-            </div>
-
-
-            <div class="form-floating mb-3">
-                <input type="number" class="form-control" name="amount" id="amount" placeholder="name@example.com">
-                <label for="amount">amount</label>
-            </div>
-
-            <div class="form-floating mb-3">
-                <input type="number" class="form-control" name="price" id="price" placeholder="name@example.com">
-                <label for="price">pris</label>
-            </div>
-
-            <div class="form-floating mb-3">
-                <input type="number" class="form-control" name="height" id="Height" placeholder="name@example.com">
-                <label for="Height">Højde</label>
-            </div>
-
-            <div class="form-floating mb-3">
-                <input type="number" class="form-control" name="width" id="Width" placeholder="name@example.com">
-                <label for="width">Længde</label>
-            </div>
-
-
-            <button type="submit" value="Lav ny product" class="btn-viewcarportorder-betal">Lav ny product</button>
-
-            <div id="login-btn-login-div">
-                <input type="submit" id="login-btn" class="loginFormText" value="Log ind"/>
-            </div>
-        </form>
-
-
+        </div>
     </jsp:body>
 </t:pagetemplate>

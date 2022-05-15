@@ -2,7 +2,7 @@ package dat.startcode.model.entities;
 
 public class Product {
     private int productID;
-    private String name, category, unit;
+    private String name, category, unit, productType;
     private int height,width, price, amount;
 
 
@@ -43,9 +43,7 @@ public class Product {
         return productID;
     }
 
-    public void setProductID(int productID) {
-        this.productID = productID;
-    }
+
 
     public int getHeight() {
         return height;
@@ -79,6 +77,13 @@ public class Product {
         this.amount = amount;
     }
 
+    public String getProductType() {
+        return productType;
+    }
+
+    public void setProductType(String productType) {
+        this.productType = productType;
+    }
 
     @Override
     public String toString() {
