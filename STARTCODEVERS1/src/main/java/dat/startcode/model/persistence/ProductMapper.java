@@ -23,9 +23,10 @@ public class ProductMapper {
         List<Product> products = new ArrayList<>();
 
         String sql = "\tSELECT * from(((product \n" +
-                "    inner join productname on product.idname = productname.idproductnames)\n" +
+                "    inner join productname on product.idname = productname.idname)\n" +
                 "    inner join unit on product.idunit = unit.idunit)\n" +
-                "    inner join category on product.idcategory = category.idcategory)";
+                "    inner join category on product.idcategory = category.idcategory)" +
+                " order by idProduct";
 
         try (Connection connection = connectionPool.getConnection()) {
             try (PreparedStatement ps = connection.prepareStatement(sql)) {

@@ -38,15 +38,46 @@
                             </td>
 
                             <td class="tableRows-RequestList">
-                                <div class="input-group"><input type="text" class="form-control"
-                                                                value="${product.category}" name="product_category">
-                                    <span
-                                            class="input-group-append"> </span></div>
+
+
+                                <div class="form-floating">
+                                    <select class="form-select" name="product_category2"
+                                            aria-label="Floating label select example">
+                                        <c:forEach var="option" items="${applicationScope.CategoryList}">
+                                            <c:choose>
+                                                <c:when test="${option.value.equals(product.category)}">
+                                                    <option value="${option.value}" selected> ${option.value} </option>
+                                                </c:when>
+                                                <c:otherwise>
+                                                    <option value="${option.value}"> ${option.value} </option>
+                                                </c:otherwise>
+                                            </c:choose>
+
+                                        </c:forEach>
+                                    </select>
+                                    <label for="category">Kategori</label>
+                                </div>
+
                             </td>
                             <td class="tableRows-RequestList">
-                                <div class="input-group"><input type="text" class="form-control"
-                                                                value="${product.unit}" name="product_unit"> <span
-                                        class="input-group-append"> </span></div>
+
+                                <div class="form-floating">
+                                    <select class="form-select" name="product_unit"
+                                            aria-label="Floating label select example">
+                                        <c:forEach var="option" items="${applicationScope.UnitList}">
+                                            <c:choose>
+                                                <c:when test="${option.value.equals(product.unit)}">
+                                                    <option value="${option.value}" selected> ${option.value} </option>
+                                                </c:when>
+                                                <c:otherwise>
+                                                    <option value="${option.value}"> ${option.value} </option>
+                                                </c:otherwise>
+                                            </c:choose>
+
+                                        </c:forEach>
+                                    </select>
+                                    <label for="category">Pakke type</label>
+                                </div>
                             </td>
                             <td class="tableRows-RequestList">
                                 <div class="input-group"><input type="text" class="form-control"

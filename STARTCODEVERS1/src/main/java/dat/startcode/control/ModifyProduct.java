@@ -25,7 +25,7 @@ public class ModifyProduct extends Command {
 
         String name = request.getParameter("product_name");
         String unit = request.getParameter("product_unit");
-        String category = request.getParameter("product_category");
+        String category = request.getParameter("product_category2");
 
         int id = Integer.parseInt(request.getParameter("product_id"));
         int idname = productMapper.getNameID(name);
