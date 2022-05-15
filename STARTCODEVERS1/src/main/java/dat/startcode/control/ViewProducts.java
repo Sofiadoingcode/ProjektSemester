@@ -4,11 +4,13 @@ import dat.startcode.model.config.ApplicationStart;
 import dat.startcode.model.entities.Product;
 import dat.startcode.model.exceptions.DatabaseException;
 import dat.startcode.model.persistence.ConnectionPool;
+import dat.startcode.model.persistence.ProductMapper;
 import dat.startcode.model.services.ProductionFacade;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 
+import java.util.HashMap;
 import java.util.List;
 
 public class ViewProducts extends Command {
@@ -23,9 +25,15 @@ public class ViewProducts extends Command {
 
 
         List<Product> products = ProductionFacade.getProducts(connectionPool);
+
+        ProductMapper productMapper = new ProductMapper(connectionPool);
+        HashMap<Integer, String> Unitlist= productMapper.getUnits();
+        HashMap<Integer, String> CategoryList= productMapper.getCategories();
+
+
         request.getServletContext().setAttribute("ProductsList", products);
-
-
+        request.getServletContext().setAttribute("UnitList",Unitlist);
+        request.getServletContext().setAttribute("CategoryList",CategoryList);
         return "products.jsp";
     }
 }

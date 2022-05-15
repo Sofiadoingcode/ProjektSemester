@@ -315,5 +315,63 @@ public class ProductMapper {
 
     }
 
+
+    public HashMap<Integer, String> getCategories() throws DatabaseException {
+
+
+        String sql = "SELECT * FROM fogarchive.category";
+        HashMap<Integer, String> categories = new HashMap<>();
+
+        try (Connection connection = connectionPool.getConnection()) {
+            try (PreparedStatement ps = connection.prepareStatement(sql)) {
+                ResultSet rs = ps.executeQuery();
+
+                while (rs.next()) {
+                    int id = rs.getInt("idcategory");
+                    String category = rs.getString("category");
+                    categories.put(id,category);
+
+                }
+
+
+            }
+        } catch (SQLException ex) {
+
+            throw new DatabaseException(ex, "Couldnt load categories");
+
+        }
+
+
+        return categories;
+    }
+
+    public HashMap<Integer, String> getUnits() throws DatabaseException {
+
+
+        String sql = "SELECT * FROM fogarchive.unit";
+        HashMap<Integer, String> units = new HashMap<>();
+
+        try (Connection connection = connectionPool.getConnection()) {
+            try (PreparedStatement ps = connection.prepareStatement(sql)) {
+                ResultSet rs = ps.executeQuery();
+
+                while (rs.next()) {
+                    int id = rs.getInt("idunit");
+                    String unit = rs.getString("type");
+                    units.put(id,unit);
+
+                }
+
+
+            }
+        } catch (SQLException ex) {
+
+            throw new DatabaseException(ex, "Couldnt load categories");
+
+        }
+
+
+        return units;
+    }
 }
 
