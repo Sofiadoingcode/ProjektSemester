@@ -23,7 +23,7 @@ abstract class Command
         commands.put("unAcceptRequest", new unAcceptRequest());
         commands.put("BOMlist", new BOMList());
         commands.put("createRequest", new CreateRequest());
-
+        commands.put("tempLogin", new TempLogin());
     }
 
     static Command from( HttpServletRequest request ) {

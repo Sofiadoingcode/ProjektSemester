@@ -1,6 +1,8 @@
 package dat.startcode.model.persistence;
 
+import dat.startcode.model.entities.Carport;
 import dat.startcode.model.entities.Request;
+import dat.startcode.model.entities.Shed;
 import dat.startcode.model.entities.User;
 import dat.startcode.model.exceptions.DatabaseException;
 
@@ -34,9 +36,9 @@ public class RequestMapper {
             String sql = "INSERT INTO `fogarchive`.`shed choices` (width, length, floormateriel) VALUES (?, ?,?) ";
             try (PreparedStatement ps1 = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
 
-                    ps1.setInt(1, shedWidth);
-                    ps1.setInt(2, shedLength);
-                    ps1.setString(3, floorMaterial);
+                ps1.setInt(1, shedWidth);
+                ps1.setInt(2, shedLength);
+                ps1.setString(3, floorMaterial);
                 ps1.executeUpdate();
 
                 //return the generated primary key from sql
@@ -81,6 +83,7 @@ public class RequestMapper {
             throw new DatabaseException("Something went wrong with inserting request into database");
         }
     }
+
     public void insertCarportChoices(int carportHeight, int carportLength, int carportWidth, String roofMaterial, String roofShape, int roofAngle) throws DatabaseException {
 
 
@@ -109,6 +112,7 @@ public class RequestMapper {
             throw new DatabaseException("Something went wrong with inserting request into database");
         }
     }
+
     public void insertCustomer(String name, int zipCode, int phoneNumber, String email) throws DatabaseException {
 
 
@@ -160,54 +164,29 @@ public class RequestMapper {
             throw new DatabaseException("Something went wrong with inserting request into database");
         }
     }
-    public void insertFullRequestShed(int shedWidth, int shedLength, String floorMaterial, int carportHeight, int carportLength, int carportWidth, String roofMaterial, String roofShape, int roofAngle, String name, int zipCode, int phoneNumber, String email, int idUser, int idBom){
+
+    public void insertFullRequestShed(int shedWidth, int shedLength, String floorMaterial, int carportHeight, int carportLength, int carportWidth, String roofMaterial, String roofShape, int roofAngle, String name, int zipCode, int phoneNumber, String email, int idUser, int idBom) {
         try {
             insertShedChoices(shedWidth, shedLength, floorMaterial);
-        }
-        catch (DatabaseException e) {
-            e.printStackTrace();
-        }
-        try {
             insertCarportChoicesShed(carportHeight, carportLength, carportWidth, roofMaterial, roofShape, roofAngle);
-        }
-        catch (DatabaseException e) {
-            e.printStackTrace();
-        }
-        try {
             insertCustomer(name, zipCode, phoneNumber, email);
-        }
-        catch (DatabaseException e) {
-            e.printStackTrace();
-        }
-        try {
             insertRequest(idUser, idBom);
-        }
-        catch (DatabaseException e) {
-            e.printStackTrace();
-        }
-    }
-    public void insertFullRequest(int carportHeight, int carportLength, int carportWidth, String roofMaterial, String roofShape, int roofAngle, String name, int zipCode, int phoneNumber, String email, int idUser, int idBom){
-        try {
-            insertCarportChoices(carportHeight, carportLength, carportWidth, roofMaterial, roofShape, roofAngle);
-        }
-        catch (DatabaseException e) {
-            e.printStackTrace();
-        }
-        try {
-            insertCustomer(name, zipCode, phoneNumber, email);
-        }
-        catch (DatabaseException e) {
-            e.printStackTrace();
-        }
-        try {
-            insertRequest(idUser, idBom);
-        }
-        catch (DatabaseException e) {
+        } catch (DatabaseException e) {
             e.printStackTrace();
         }
     }
 
-    public Request getRequestFromDB(int idUser){
+    public void insertFullRequest(int carportHeight, int carportLength, int carportWidth, String roofMaterial, String roofShape, int roofAngle, String name, int zipCode, int phoneNumber, String email, int idUser, int idBom) {
+        try {
+            insertCarportChoices(carportHeight, carportLength, carportWidth, roofMaterial, roofShape, roofAngle);
+            insertCustomer(name, zipCode, phoneNumber, email);
+            insertRequest(idUser, idBom);
+        } catch (DatabaseException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public Request getRequestFromDB(int idUser) {
         Request request = null;
         try (Connection connection = connectionPool.getConnection()) {
 
@@ -234,6 +213,65 @@ public class RequestMapper {
         }
         return request;
     }
+
+    public Carport getCarportChoices(int carportChoicesId) throws DatabaseException {
+        Carport carport = null;
+
+        String sql = "SELECT * FROM fogarchive.`carport choices` where `idcarport choices`=?";
+
+        try (Connection connection = connectionPool.getConnection()) {
+            try (PreparedStatement ps = connection.prepareStatement(sql)) {
+                ps.setInt(1, carportChoicesId);
+                ResultSet rs = ps.executeQuery();
+                if (rs.next()) {
+                    int height = rs.getInt("height");
+                    int length = rs.getInt("length");
+                    int width = rs.getInt("width");
+                    String roofMaterial = rs.getString("roofmateriel");
+                    String roofShape = rs.getString("roofshape");
+                    int roofAngle = rs.getInt("roofangle");
+                    int idShed = rs.getInt("idshed");
+                    carport = new Carport(height, length, width, roofMaterial, roofShape, roofAngle, idShed);
+                }
+                else {
+                    throw new DatabaseException("Request has no idcarportchoices");
+                }
+            }
+
+        }
+        catch (SQLException ex)
+        {
+            throw new DatabaseException(ex, "Error getting carport choices. Something went wrong with the database");
+        }
+        return carport;
+    }
+    public Shed getShedChoices(int shedId) throws DatabaseException {
+        Shed shed = null;
+
+        String sql = "SELECT * FROM fogarchive.`shed choices` where `idshed choices`=?";
+
+        try (Connection connection = connectionPool.getConnection()) {
+            try (PreparedStatement ps = connection.prepareStatement(sql)) {
+                ps.setInt(1, shedId);
+                ResultSet rs = ps.executeQuery();
+                if (rs.next()) {
+                    int width = rs.getInt("width");
+                    int length = rs.getInt("length");
+                    String floorMaterial = rs.getString("floormateriel");
+                    shed = new Shed(width, length, floorMaterial);
+                }
+                else {
+                    throw new DatabaseException("Request has no idshedchoices");
+                }
+            }
+
+        }
+        catch (SQLException ex)
+        {
+            throw new DatabaseException(ex, "Error getting shed choices. Something went wrong with the database");
+        }
+        return shed;
+    }
+
+
 }
-
-

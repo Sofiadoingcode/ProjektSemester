@@ -99,9 +99,9 @@
                                                                                 oninvalid="this.setCustomValidity('Vælg tag materiale')"
                                                                                 oninput="this.setCustomValidity('')">
                                                                                 <option value="" selected disabled>Choose</option>
-                                                                                <option value="1">Plasttrapez</option>
-                                                                                <option value="2">Ståltag</option>
-                                                                                <option value="3">Betontag</option>
+                                                                                <option value="Plasttrapez">Plasttrapez</option>
+                                                                                <option value="Ståltag">Ståltag</option>
+                                                                                <option value="Betontag">Betontag</option>
 
                                                                         </select>
                                                                 </div>
@@ -114,9 +114,9 @@
                                                                                 oninvalid="this.setCustomValidity('Vælg tag')"
                                                                                 oninput="this.setCustomValidity('')">
                                                                                 <option value="" selected disabled>Choose</option>
-                                                                                <option value="1">Flat tag</option>
-                                                                                <option value="2">Tag med rejsning</option>
-                                                                                <option value="3">Three</option>
+                                                                                <option value="Flat tag">Flat tag</option>
+                                                                                <option value="Tag med rejsning">Tag med rejsning</option>
+                                                                                <option value="Three">Three</option>
                                                                         </select>
                                                                 </div>
                                                         </div>
@@ -253,7 +253,9 @@
                                                         </div>
                                                         <div class="modal-footer">
                                                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                                                <button type="button" class="btn btn-primary" formaction="/fc/login?command=login">Login</button>
+                                                                <form>
+                                                                <button type="submit" class="btn btn-primary" name="loginCredentials" formaction="fc/tempLogin?command=tempLogin" formmethod="post" value="${requestScope.tempUser.username} ${requestScope.tempUser.password}">Login</button>
+                                                                </form>
                                                         </div>
                                                 </div>
                                         </div>
