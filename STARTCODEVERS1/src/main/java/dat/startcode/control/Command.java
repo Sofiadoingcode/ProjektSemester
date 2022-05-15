@@ -24,8 +24,8 @@ abstract class Command
         commands.put("unAcceptRequest", new unAcceptRequest());
         commands.put("BOMlist", new BOMList());
         commands.put("ViewProducts", new ViewProducts());
-
-
+        commands.put("saveproduct",new SaveProduct());
+        commands.put("modifyproduct",new ModifyProduct());
     }
 
     static Command from( HttpServletRequest request ) {

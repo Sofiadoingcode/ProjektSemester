@@ -14,13 +14,15 @@ public class test {
 
     public static void main(String[] args) {
        ConnectionPool connectionPool = new ConnectionPool();
-       ProductMapper productMapper = new ProductMapper(connectionPool);
+
         try {
-            System.out.println(productMapper.getLengths());
+
+            ProductionFacade.createProduct("hej","Træ & Tagplader", "sæt", 10,10,10,10,connectionPool);
+
 
         }catch (Exception e){
 
-
+            System.out.println("something went wrong");
 
         }
 

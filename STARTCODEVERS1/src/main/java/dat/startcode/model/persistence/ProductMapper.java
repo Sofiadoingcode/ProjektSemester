@@ -263,24 +263,55 @@ public class ProductMapper {
             }
 
 
-            String sql5 = "insert into product (`idname`, `idunit`, `idcategory`, `priceprmeasurment`, `height`, `width`, `amount`) values (?,?,?,?,?,?,?)";
-            try (PreparedStatement ps = connection.prepareStatement(sql5)) {
+                String sql5 = "insert into product (`idname`, `idunit`, `idcategory`, `priceprmeasurment`, `height`, `width`, `amount`) values (?,?,?,?,?,?,?)";
+                try (PreparedStatement ps = connection.prepareStatement(sql5)) {
 
-                ps.setInt(1, nameID);
-                ps.setInt(2, unitID);
-                ps.setInt(3, categoryID);
-                ps.setInt(4, price);
-                ps.setInt(5, height);
-                ps.setInt(6, width);
-                ps.setInt(7, amount);
-                ps.executeUpdate();
+                    ps.setInt(1, nameID);
+                    ps.setInt(2, unitID);
+                    ps.setInt(3, categoryID);
+                    ps.setInt(4, price);
+                    ps.setInt(5, height);
+                    ps.setInt(6, width);
+                    ps.setInt(7, amount);
+                    ps.executeUpdate();
+
+
 
             }
-
 
         } catch (SQLException ex) {
             throw new DatabaseException(ex, "Could not insert username into database");
         }
+
+    }
+
+
+    public void modifyProduct(int id, int idname, int idunit, int idcategory, int price, int height, int width, int amount) throws DatabaseException{
+
+        String sql= "UPDATE `fogarchive`.`product` SET `idname` = ?, `idunit` = ?, `idcategory` = ?, `priceprmeasurment` = ?, `height` = ?, `width` = ?, `amount` = ? WHERE (`idProduct` = ?)";
+        try (Connection connection = connectionPool.getConnection()) {
+        try (PreparedStatement ps = connection.prepareStatement(sql)) {
+
+            ps.setInt(1, idname);
+            ps.setInt(2, idunit);
+            ps.setInt(3, idcategory);
+            ps.setInt(4, price);
+            ps.setInt(5, height);
+            ps.setInt(6, width);
+            ps.setInt(7, amount);
+            ps.setInt(8,id);
+            ps.executeUpdate();
+
+        }}catch (SQLException EX){
+            throw new DatabaseException(EX, "didnt work");
+        }
+
+
+
+
+
+
+
 
     }
 
