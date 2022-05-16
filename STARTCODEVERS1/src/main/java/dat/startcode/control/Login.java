@@ -30,40 +30,41 @@ public class Login extends Command
     String execute(HttpServletRequest request, HttpServletResponse response) throws DatabaseException
     {
         HttpSession session = request.getSession();
+        String ret="index";
         boolean wrongLogin=false;
         session.setAttribute("user", null); // adding empty user object to session scope
         String username = request.getParameter("username");
         String password = request.getParameter("password");
-        User user;
+        User user = new User(" "," ",0);
         try {
             user = UserFacade.login(username, password, connectionPool);
         }
         catch(DatabaseException e){
             wrongLogin=true;
             request.setAttribute("wrongLogin", wrongLogin);
-            return "login.jsp";
+            ret = "login.jsp";
         }
-        RequestMapper requestMapper = new RequestMapper(connectionPool);
-        Request usersRequest = requestMapper.getRequestFromDB(user.getIdUser());
-        Carport carport = null;
-        Shed shed = null;
-        if(usersRequest != null) {
-            carport = requestMapper.getCarportChoices(usersRequest.getIdcarportchoices());
-            if (carport.getIdShed() != 0) {
-                shed = requestMapper.getShedChoices(carport.getIdShed());
+        if(!wrongLogin) {
+            RequestMapper requestMapper = new RequestMapper(connectionPool);
+            Request usersRequest = requestMapper.getRequestFromDB(user.getIdUser());
+            Carport carport = null;
+            Shed shed = null;
+            if (usersRequest != null) {
+                carport = requestMapper.getCarportChoices(usersRequest.getIdcarportchoices());
+                if (carport.getIdShed() != 0) {
+                    shed = requestMapper.getShedChoices(carport.getIdShed());
+                }
             }
+            session = request.getSession();
+            session.setAttribute("user", user); // adding user object to session scope
+            session.setAttribute("usersRequest", usersRequest);
+            session.setAttribute("carportChoices", carport);
+            session.setAttribute("shedChoices", shed);
         }
-        session = request.getSession();
-        session.setAttribute("user", user); // adding user object to session scope
-        session.setAttribute("usersRequest", usersRequest);
-        session.setAttribute("carportChoices", carport);
-        session.setAttribute("shedChoices", shed);
         if(user.getIdRole()==2){
-            return "viewcarportorder.jsp";
-        }
-        else{
-            return "index";
+            ret = "viewcarportorder.jsp";
         }
 
+        return ret;
     }
 }
