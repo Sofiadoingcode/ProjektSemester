@@ -18,6 +18,7 @@
     <link rel="stylesheet" href="<%=request.getContextPath()%>/css/orderintro.css">
     <link rel="stylesheet" href="<%=request.getContextPath()%>/css/requestlistpage.css">
     <link rel="stylesheet" href="<%=request.getContextPath()%>/css/viewcarportorder.css">
+    <link rel="stylesheet" href="<%=request.getContextPath()%>/css/createnewadminspage.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Oswald&family=Roboto:wght@300&family=Rubik:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -45,6 +46,7 @@
 
                     <c:if test="${sessionScope.user.getIdRole()==1}">
                         <a class="nav-item nav-link" href="${pageContext.request.contextPath}/fc/requestList?command=requestList" style="color: white; padding-left: 25px; padding-right: 25px;">Anmodninger</a>
+                        <a class="nav-item nav-link" href="${pageContext.request.contextPath}/createnewadminspage.jsp" style="color: white; padding-left: 25px; padding-right: 25px;">Konti</a>
                     </c:if>
                         <a class="nav-item nav-link" href="${pageContext.request.contextPath}/fc/about?command=about" style="color: white; padding-left: 25px; padding-right: 25px;">Om os</a>
                     <c:if test="${sessionScope.user == null }">
