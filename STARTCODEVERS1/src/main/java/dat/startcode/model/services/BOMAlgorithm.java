@@ -128,7 +128,6 @@ public class BOMAlgorithm {
         return onlyThisItemProductionlines;
     }
 
-
     private List<ProductLine> calculateStolpeProductLines(List<ProductDTO> allproducts, double carportHeight, double carportWidth, double carportLength) {
         List<ProductLine> returnList = new ArrayList<>();
 
@@ -185,6 +184,19 @@ public class BOMAlgorithm {
         return returnList;
     }
 
+    private List<ProductDTO> getAllNeededProducts (List<ProductDTO> allproducts, String type) {
+        List<ProductDTO> returnList = new ArrayList<>();
+
+        for(ProductDTO p: allproducts) {
+            if(p.getProducttype().equals(type)){
+                returnList.add(p);
+
+            }
+
+        }
+
+        return returnList;
+    }
 
 
 //    private int getNeededProductID(List<ProductDTO> allproducts, String neededitem) {
