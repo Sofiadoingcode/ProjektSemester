@@ -71,6 +71,40 @@ public class ProductMapper {
         return products;
     }
 
+    public void deleteProduct(int id) throws DatabaseException{
+
+
+        Logger.getLogger("web").log(Level.INFO, "");
+        boolean isDeleted = false;
+
+
+        try (Connection connection = connectionPool.getConnection()) {
+
+            String sql1 = "delete from orderline where idOrder= ?";
+            try (PreparedStatement ps = connection.prepareStatement(sql1)) {
+                ps.setInt(1, id);
+                ps.executeUpdate();
+            } catch (Exception E) {
+                System.out.println(E);
+            }
+
+            String sql = "delete from `product` where idproduct = ?";
+
+            try (PreparedStatement ps = connection.prepareStatement(sql)) {
+                ps.setInt(1, id);
+                int rowsAffected = ps.executeUpdate();
+                if (rowsAffected == 1) {
+                    isDeleted = true;
+                } else {
+                    throw new DatabaseException("Database exception");
+                }
+            }
+        } catch (SQLException e) {
+            throw new DatabaseException("");
+        }
+        //return isDeleted;
+    }
+
     public HashMap<Integer, Integer> getLengths() throws DatabaseException {
         List<Product> products = new ArrayList<>();
 

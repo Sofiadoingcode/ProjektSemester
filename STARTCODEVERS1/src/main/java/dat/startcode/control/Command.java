@@ -26,6 +26,7 @@ abstract class Command
         commands.put("ViewProducts", new ViewProducts());
         commands.put("saveproduct",new SaveProduct());
         commands.put("modifyproduct",new ModifyProduct());
+        commands.put("deleteproduct",new DeleteProduct());
     }
 
     static Command from( HttpServletRequest request ) {
