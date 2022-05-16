@@ -27,11 +27,11 @@ public class UserMapper implements IUserMapper
                 ps.setString(1, email);
                 ps.setString(2, password);
 
+                int rowsAffected = ps.executeUpdate();
                 ResultSet generatedKeys = ps.getGeneratedKeys();
                 if (generatedKeys.next()) {
                     idUser = generatedKeys.getInt(1);
                 }
-                int rowsAffected = ps.executeUpdate();
                 if (rowsAffected == 1) {
                     user = new User(email, password, 1, idUser);
                 } else {
