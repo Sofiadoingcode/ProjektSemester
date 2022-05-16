@@ -25,15 +25,18 @@
                     <input type="hidden" name="command" value="login"/>
                     <div id="loginFormUser">
                         <label class="loginFormText" for="username">Brugernavn: </label>
-                        <input type="text" id="username" name="username" required
+                        <input type="text" id="username" name="username" value="${requestScope.username}" required
                         oninvalid="this.setCustomValidity('Indtast brugernavn')"
                         oninput="this.setCustomValidity('')"/>
                     </div>
                     <div id="loginFormPass">
                         <label id="passwordLabel" class="loginFormText" for="password">Kodeord: </label>
-                        <input type="password" id="password" name="password" required
+                        <input type="password" id="password" name="password" value="${requestScope.password}" required
                         oninvalid="this.setCustomValidity('Indtast kodeord')"
                         oninput="this.setCustomValidity('')"/>
+                        <c:if test="${requestScope.wrongLogin}">
+                            <span>Forkert brugernavn eller kodeord</span>
+                        </c:if>
                     </div>
                     <div id="login-btn-login-div">
                         <input type="submit" id="login-btn" class="loginFormText" value="Log ind"/>

@@ -79,7 +79,7 @@
                                                         </div>
                                                         <div class="col">
                                                                 <div class="input-group mb-3">
-                                                                        <input type="number" class="form-control" name=width" placeholder="bredde"
+                                                                        <input type="number" class="form-control" name="width" placeholder="bredde"
                                                                                aria-label="Recipient's username" aria-describedby="basic-addon2" required
                                                                                oninvalid="this.setCustomValidity('Indtast bredde')"
                                                                                oninput="this.setCustomValidity('')">
@@ -95,13 +95,13 @@
                                                         <div class=" col-md-4">
                                                                 <div class="input-group">
                                                                         <label class="input-group-text" for="inputGroupSelect01">materiale</label>
-                                                                        <select class="form-select" name="tag" id="inputGroupSelect02" required
+                                                                        <select class="form-select" name="tagMateriale" id="inputGroupSelect02" required
                                                                                 oninvalid="this.setCustomValidity('Vælg tag materiale')"
                                                                                 oninput="this.setCustomValidity('')">
                                                                                 <option value="" selected disabled>Choose</option>
-                                                                                <option value="1">Plasttrapez</option>
-                                                                                <option value="2">Ståltag</option>
-                                                                                <option value="3">Betontag</option>
+                                                                                <option value="Plasttrapez">Plasttrapez</option>
+                                                                                <option value="Ståltag">Ståltag</option>
+                                                                                <option value="Betontag">Betontag</option>
 
                                                                         </select>
                                                                 </div>
@@ -114,19 +114,20 @@
                                                                                 oninvalid="this.setCustomValidity('Vælg tag')"
                                                                                 oninput="this.setCustomValidity('')">
                                                                                 <option value="" selected disabled>Choose</option>
-                                                                                <option value="1">Flat tag</option>
-                                                                                <option value="2">Tag med rejsning</option>
-                                                                                <option value="3">Three</option>
+                                                                                <option value="Flat tag">Flat tag</option>
+                                                                                <option value="Tag med rejsning">Tag med rejsning</option>
+                                                                                <option value="Three">Three</option>
                                                                         </select>
                                                                 </div>
                                                         </div>
                                                         <div class="col-md-4" id="inputCheck1">
                                                                 <div class="input-group mb-3">
-                                                                        <input type="number" class="form-control" name="angle" placeholder="0"
+                                                                        <label class="input-group-text" for="angle">Hældning</label>
+                                                                        <input type="number" class="form-control" id="angle" name="angle" placeholder="0"
                                                                                aria-label="" aria-describedby="" required
-                                                                               oninvalid="this.setCustomValidity('Indtast vinkel på tag')"
+                                                                               oninvalid="this.setCustomValidity('Indtast hældning på tag')"
                                                                                oninput="this.setCustomValidity('')">
-                                                                        <span class="input-group-text" id="width">angle</span>
+                                                                        <span class="input-group-text" id="angleSymbol">°</span>
                                                                 </div>
                                                         </div>
                                                 </div>
@@ -138,7 +139,7 @@
 
 
                                                 <div class="form-check">
-                                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                                        <input class="form-check-input" type="checkbox" name="shedCheckbox" value="shed" id="flexCheckDefault">
                                                         <label class="form-check-label" for="flexCheckDefault">
                                                                 Skur
                                                         </label>
@@ -149,16 +150,22 @@
                                                 <div class="row align-items-start">
                                                         <div class="col-md-2">
                                                                 <div class="input-group mb-3">
-                                                                        <input type="number" class="form-control" name="length" placeholder="længde"
+                                                                        <input type="number" class="form-control" name="shedLength" placeholder="længde"
                                                                                aria-label="" aria-describedby="">
                                                                         <span class="input-group-text" id="shedLength">m</span>
                                                                 </div>
                                                         </div>
                                                         <div class="col-md-2">
                                                                 <div class="input-group mb-3">
-                                                                        <input type="number" class="form-control" name=width" placeholder="bredde"
+                                                                        <input type="number" class="form-control" name="shedWidth" placeholder="bredde"
                                                                                aria-label="" aria-describedby="">
                                                                         <span class="input-group-text" id="shedWidth">m</span>
+                                                                </div>
+                                                        </div>
+                                                        <div class="col-md-2">
+                                                                <div class="input-group mb-3">
+                                                                        <input type="text" class="form-control" name="floorMaterial" placeholder="Gulvmateriale"
+                                                                               aria-label="" aria-describedby="">
                                                                 </div>
                                                         </div>
 
@@ -186,6 +193,22 @@
                                                                                        oninvalid="this.setCustomValidity('Indtast email')"
                                                                                        oninput="this.setCustomValidity('')">
                                                                                 <label for="floatingInput">Email address</label>
+                                                                        </div>
+                                                                </div>
+                                                                <div class="col-md-2">
+                                                                        <div class="form-floating mb-3">
+                                                                                <input type="text" pattern="[0-9]{4}" class="form-control" id="floatingzipCode" name="zipCode" placeholder="" required
+                                                                                       oninvalid="this.setCustomValidity('Indtast postnummer')"
+                                                                                       oninput="this.setCustomValidity('')">
+                                                                                <label for="floatingzipCode">Postnummer</label>
+                                                                        </div>
+                                                                </div>
+                                                                <div class="col-md-2">
+                                                                        <div class="form-floating mb-3">
+                                                                                <input type="text" pattern="[0-9]{8}" class="form-control" id="floatingPhoneNumber" name="phoneNumber" placeholder="" required
+                                                                                       oninvalid="this.setCustomValidity('Indtast telefonnummer')"
+                                                                                       oninput="this.setCustomValidity('')">
+                                                                                <label for="floatingPhoneNumber">Telefonnummer</label>
                                                                         </div>
                                                                 </div>
 
@@ -230,7 +253,9 @@
                                                         </div>
                                                         <div class="modal-footer">
                                                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                                                <button type="button" class="btn btn-primary" formaction="/fc/login?command=login">Login</button>
+                                                                <form>
+                                                                <button type="submit" class="btn btn-primary" name="loginCredentials" formaction="fc/tempLogin?command=tempLogin" formmethod="post" value="${requestScope.tempUser.username} ${requestScope.tempUser.password}">Login</button>
+                                                                </form>
                                                         </div>
                                                 </div>
                                         </div>

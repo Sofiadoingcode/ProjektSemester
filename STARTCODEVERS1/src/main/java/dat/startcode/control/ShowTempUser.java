@@ -30,7 +30,7 @@ public class ShowTempUser extends Command
         user=userMapper.createTempUser(request.getParameter("email"));
         request.setAttribute("tempUser", user);
 
-            return "orderintroduction.jsp";
+            return "fc/createRequest?command=createRequest";
 
 
     }

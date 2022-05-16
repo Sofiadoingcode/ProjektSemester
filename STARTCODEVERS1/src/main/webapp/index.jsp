@@ -28,9 +28,11 @@
             <div class="index-box">
                 <div class="index-text-box">
                     <p class="index-description"> Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum hase like Aldus PageMaker including versions of Lorem Ipsum.</p>
+                    <c:if test="${sessionScope.user == null }">
+                        <a href="${pageContext.request.contextPath}/orderintroduction.jsp" class="btn-index btn-index--full">Lav din egen Carport</a>
 
-                        <a href="${pageContext.request.contextPath}/#" class="btn-index btn-index--full">Lav din egen Carport</a>
                         <a href="${pageContext.request.contextPath}/login.jsp" class="btn-index btn-index--login">Log Ind</a>
+                    </c:if>
 
 
                 </div>

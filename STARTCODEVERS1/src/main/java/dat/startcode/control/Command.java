@@ -30,6 +30,8 @@ abstract class Command
         commands.put("saveproduct",new SaveProduct());
         commands.put("modifyproduct",new ModifyProduct());
         commands.put("deleteproduct",new DeleteProduct());
+        commands.put("createRequest", new CreateRequest());
+        commands.put("tempLogin", new TempLogin());
 
 
     }
