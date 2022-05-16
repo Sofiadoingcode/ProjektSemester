@@ -42,7 +42,7 @@ public class FrontController extends HttpServlet {
         {
             Logger.getLogger("web").log(Level.SEVERE, e.getMessage());
             request.setAttribute("errormessage", e.getMessage());
-            request.getRequestDispatcher("error.jsp").forward(request, response);
+            request.getRequestDispatcher(request.getServletContext().getContextPath() + "/error.jsp").forward(request, response);
         }
     }
 
