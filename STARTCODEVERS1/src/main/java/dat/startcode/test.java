@@ -9,6 +9,7 @@ import dat.startcode.model.services.BOMAlgorithm;
 import dat.startcode.model.services.ProductionFacade;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class test {
@@ -33,9 +34,16 @@ public class test {
         }
         rems = bomAlgorithm.calculateRemProductLines(allproducts, 8, 8, 200);
 
-        spærs = bomAlgorithm.calculateSpærProductLines(allproducts, 8, 220, 220);
+        spærs = bomAlgorithm.calculateSpærProductLines(allproducts, 8, 450, 220);
+
+        HashMap<Integer, Integer> lengths = bomAlgorithm.loadAllLengths();
+
+        for (Integer value : lengths.values()) {
+            System.out.println(value);
+        }
 
         for (ProductLine spær : spærs) {
+            System.out.println(spær.getLengthID());
             System.out.println(spær.getAmount());
             System.out.println(spær.getTotalproductprice());
         }

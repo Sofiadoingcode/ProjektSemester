@@ -76,7 +76,7 @@ public class BOMAlgorithm {
 
     }
 
-    private HashMap<Integer, Integer> loadAllLengths() {
+    public HashMap<Integer, Integer> loadAllLengths() {
         HashMap<Integer, Integer> lengths = new HashMap<>();
 
         ProductMapper p = new ProductMapper(connectionPool);
@@ -210,13 +210,14 @@ public class BOMAlgorithm {
 
     public List<ProductLine> calculateSpærProductLines(List<ProductDTO> allproducts, double carportHeight, double carportWidth, double carportLength) {
         double carportWidthSpær = carportWidth;
-        double carportWidthSpærCalc = 0;
+        double carportLengthSpær = carportLength;
+        double carportLengthSpærCalc = 0;
         int maxLengthSpær=0;
         int minLengthSpær=0;
         int maxLengthSpærId=0;
         int minLengthSpærId=0;
         int spærMultiplier=0;
-        int spærWidth=0;
+        double spærWidth=0;
         List<ProductDTO> spærProducts = new ArrayList<>();
         List<ProductLine> returnList = new ArrayList<>();
 
@@ -228,10 +229,11 @@ public class BOMAlgorithm {
             }
         }
         ProductDTO spær = spærProducts.get(0);
+        spærWidth = spær.getWidth();
         spærWidth=spærWidth/10;
-        carportWidthSpærCalc=carportWidthSpær-spærWidth;
-        carportWidthSpærCalc=carportWidthSpærCalc/(60+spærWidth)+1;
-        spærMultiplier = (int) Math.ceil(carportWidthSpærCalc);
+        carportLengthSpærCalc=carportLengthSpær-spærWidth;
+        carportLengthSpærCalc=carportLengthSpærCalc/(60+spærWidth)+1;
+        spærMultiplier = (int) Math.ceil(carportLengthSpærCalc);
 
         for (Integer i : lengths.keySet()){
             if (lengths.get(i)>maxLengthSpær) {
@@ -248,7 +250,7 @@ public class BOMAlgorithm {
 
         while(carportWidthSpær>0){
             for (Integer i : lengths.keySet()){
-                if (lengths.get(i)>carportWidthSpær) {
+                if (lengths.get(i)>=carportWidthSpær) {
                     minLengthSpær = lengths.get(i);
                     if (lengths.get(i)<=minLengthSpær){
                         minLengthSpær = lengths.get(i);
