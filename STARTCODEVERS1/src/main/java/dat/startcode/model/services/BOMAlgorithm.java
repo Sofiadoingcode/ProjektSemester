@@ -250,7 +250,7 @@ public class BOMAlgorithm {
 
 
             if (allLargerLengths.isEmpty()) {
-                System.out.println("IF");
+
                 lengthID = biggestValueKey;
                 carportLengthLeft = carportLengthLeft - biggestValue + overlap;
 
@@ -262,7 +262,7 @@ public class BOMAlgorithm {
 
 
             } else if(!allLargerLengths.isEmpty()) {
-                System.out.println("ELSE IF");
+
                 int minimumValue = biggestValue;
                 int minimumValueKey = 0;
                 for (Integer key : allLargerLengths.keySet()) {
@@ -274,6 +274,7 @@ public class BOMAlgorithm {
                     }
 
                 }
+
 
                 lengthID = minimumValueKey;
 
@@ -293,13 +294,25 @@ public class BOMAlgorithm {
 
         List<ProductDTO> neededScrews = getAllNeededProducts(allproducts, "skrue");
 
+        double productAmount = 0;
+
         for(ProductDTO p: neededScrews) {
             if(p.getIdproduct() == 9) {
                 productID = p.getIdproduct();
+                productAmount = p.getAmount();
             }
         }
 
+        double fullCarportAreaM = fullCarportWidth/100 * carportLength/100;
+        int neededScrewsOverAll =  (int) Math.ceil(fullCarportAreaM * 12);
+
+        System.out.println(neededScrewsOverAll);
+
+        amount = (int) Math.ceil(neededScrewsOverAll/productAmount);
+
         lengthID = 0;
+
+        totalproductprice = calculateTotalProductPrice(allproducts, productID, amount, 0);
 
         ProductLine pr = new ProductLine(productID, amount, lengthID, totalproductprice);
 

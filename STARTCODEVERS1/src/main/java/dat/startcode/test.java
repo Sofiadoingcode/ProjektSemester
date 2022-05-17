@@ -22,7 +22,7 @@ public class test {
 
         List<ProductDTO> allproducts = bom.loadAllProducts();
 
-        List<ProductLine> productLines = bom.calculateTagProductLines(allproducts, 400, 600, 900);
+        List<ProductLine> productLines = bom.calculateTagProductLines(allproducts, 400, 450, 900);
 
         for(ProductLine p: productLines) {
             System.out.println(p.getProductID());
