@@ -19,7 +19,7 @@ public class BOMAlgorithm {
     }
 
 
-    public List<ProductLine> generateBOM (CarportChoices carportChoice) {
+    public List<ProductLine> generateBOM(CarportChoices carportChoice) {
 
         List<ProductLine> fullbom = new ArrayList<>();
 
@@ -30,18 +30,18 @@ public class BOMAlgorithm {
 
         List<String> shedNeededItems = returnNeededListShed();
 
-        for(int i = 0; i < carportNeededItems.size() + shedNeededItems.size() - 1; i++) {
+        for (int i = 0; i < carportNeededItems.size() + shedNeededItems.size() - 1; i++) {
 
             String neededItem = carportNeededItems.get(i);
 
-            if(i > carportNeededItems.size() - 1 ) {
+            if (i > carportNeededItems.size() - 1) {
                 // MAKE SHED
                 neededItem = shedNeededItems.get(i);
             }
 
             List<ProductLine> itemProductLines = generateItemProductlines(neededItem, allproducts, carportChoice);
 
-            for(ProductLine pl: itemProductLines) {
+            for (ProductLine pl : itemProductLines) {
                 fullbom.add(pl);
 
             }
@@ -90,7 +90,7 @@ public class BOMAlgorithm {
         return neededItems;
     }
 
-    private List<ProductLine> generateItemProductlines (String neededitem, List<ProductDTO> allproducts, CarportChoices carportChoice) {
+    private List<ProductLine> generateItemProductlines(String neededitem, List<ProductDTO> allproducts, CarportChoices carportChoice) {
         List<ProductLine> onlyThisItemProductionlines = new ArrayList<>();
 
         double carportHeight = carportChoice.getHeight();
@@ -130,8 +130,26 @@ public class BOMAlgorithm {
 
     private List<ProductLine> calculateStolpeProductLines(List<ProductDTO> allproducts, double carportHeight, double carportWidth, double carportLength) {
         List<ProductLine> returnList = new ArrayList<>();
+        List<ProductDTO> allStolper = getAllNeededProducts(allproducts, "stolpe");
+        double carportLengthWithoutExtra = carportLength-1.1;
+        int stolperHeight =
+        int antalStolper = 0;
+        double length = 0;
+        while (true) {
+            length += 3;
+            if (length < carportLengthWithoutExtra) {
+                antalStolper++;
+            }
+            else{
+                break;
+            }
+        }
+        int productId = getAllNeededProducts();
+        ProductLine stolpeTid = new ProductLine(6, antalStolper, , null);
 
-
+        ProductLine beslag = new ProductLine();
+        returnList.add(stolpeTid);
+        returnList.add(beslag);
         return returnList;
     }
 
@@ -158,7 +176,8 @@ public class BOMAlgorithm {
 
     private List<ProductLine> calculateHulbåndProductLines(List<ProductDTO> allproducts, double carportHeight, double carportWidth, double carportLength) {
         List<ProductLine> returnList = new ArrayList<>();
-
+        List<ProductDTO> allStolper = getAllNeededProducts(allproducts, "hulbånd");
+        double maengdeHulbaand = ;
 
         return returnList;
     }
@@ -184,11 +203,11 @@ public class BOMAlgorithm {
         return returnList;
     }
 
-    private List<ProductDTO> getAllNeededProducts (List<ProductDTO> allproducts, String type) {
+    private List<ProductDTO> getAllNeededProducts(List<ProductDTO> allproducts, String type) {
         List<ProductDTO> returnList = new ArrayList<>();
 
-        for(ProductDTO p: allproducts) {
-            if(p.getProducttype().equals(type)){
+        for (ProductDTO p : allproducts) {
+            if (p.getProducttype().equals(type)) {
                 returnList.add(p);
 
             }
@@ -217,8 +236,6 @@ public class BOMAlgorithm {
 //
 //        return 0;
 //    }
-
-
 
 
 }
