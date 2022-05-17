@@ -18,6 +18,14 @@ public class BOMAlgorithm {
 
     public BOMAlgorithm() {
         this.connectionPool = ApplicationStart.getConnectionPool();
+
+
+    }
+
+    public BOMAlgorithm(ConnectionPool connectionPool) throws DatabaseException {
+        this.connectionPool = connectionPool;
+
+
     }
 
 
@@ -56,7 +64,7 @@ public class BOMAlgorithm {
     }
 
 
-    private List<ProductDTO> loadAllProducts() {
+    public List<ProductDTO> loadAllProducts() {
         List<ProductDTO> allproducts = new ArrayList<>();
 
         BOMMapper bomMapper = new BOMMapper(connectionPool);
@@ -108,9 +116,9 @@ public class BOMAlgorithm {
     private List<ProductLine> generateItemProductlines (String neededitem, List<ProductDTO> allproducts, CarportChoices carportChoice) {
         List<ProductLine> onlyThisItemProductionlines = new ArrayList<>();
 
-        double carportHeight = carportChoice.getHeight();
-        double carportWidth = carportChoice.getWidth();
-        double carportLength = carportChoice.getLength();
+        double carportHeight = carportChoice.getHeight() * 100;
+        double carportWidth = carportChoice.getWidth() * 100 ;
+        double carportLength = carportChoice.getLength() * 100;
 
         switch (neededitem) {
             case "stolpe":
@@ -145,6 +153,7 @@ public class BOMAlgorithm {
 
     private List<ProductLine> calculateStolpeProductLines(List<ProductDTO> allproducts, double carportHeight, double carportWidth, double carportLength) {
         List<ProductLine> returnList = new ArrayList<>();
+
 
 
         return returnList;
@@ -185,8 +194,117 @@ public class BOMAlgorithm {
         return returnList;
     }
 
-    private List<ProductLine> calculateTagProductLines(List<ProductDTO> allproducts, double carportHeight, double carportWidth, double carportLength) {
+    public List<ProductLine> calculateTagProductLines(List<ProductDTO> allproducts, double carportHeight, double carportWidth, double carportLength) {
         List<ProductLine> returnList = new ArrayList<>();
+
+        List<ProductDTO> neededItemsOnly = getAllNeededProducts(allproducts, "tag");
+
+        double carportLengthLeft = carportLength + 5;
+
+        int productID = 0;
+        int amount = 0;
+        int lengthID = 0;
+        double totalproductprice = 0;
+
+        double overlap = 20;
+
+        for(ProductDTO p: neededItemsOnly) {
+            if(p.getIdproduct() == 8) {
+                productID = p.getIdproduct();
+            }
+        }
+
+        // FIRST FIND OUT HOW MANY THERE CAN BE WIDTH
+
+        double onePlateWidth = 109;
+
+        double fullCarportWidth = carportWidth;
+
+        double amountDouble = (fullCarportWidth - onePlateWidth) / (onePlateWidth - overlap);
+
+        amount = (int) Math.ceil(amountDouble);
+
+        // FIGURE OUT LENGTHS
+        HashMap<Integer, Integer> lengths = loadAllLengths();
+
+
+        boolean hasNotCalculatedEverything = true;
+
+        while(hasNotCalculatedEverything) {
+            HashMap<Integer, Integer> allLargerLengths = new HashMap<>();
+
+            int biggestValue = 0;
+            int biggestValueKey = 0;
+            for (Integer key : lengths.keySet()) {
+                int value = lengths.get(key);
+                if (value >= carportLengthLeft) {
+                    allLargerLengths.put(key, value);
+                }
+
+                if (value > biggestValue) {
+                    biggestValue = value;
+                    biggestValueKey = key;
+                }
+
+            }
+
+
+            if (allLargerLengths.isEmpty()) {
+                System.out.println("IF");
+                lengthID = biggestValueKey;
+                carportLengthLeft = carportLengthLeft - biggestValue + overlap;
+
+                totalproductprice = calculateTotalProductPrice(allproducts,productID, amount,biggestValue);
+
+                ProductLine pr = new ProductLine(productID, amount, lengthID, totalproductprice);
+
+                returnList.add(pr);
+
+
+            } else if(!allLargerLengths.isEmpty()) {
+                System.out.println("ELSE IF");
+                int minimumValue = biggestValue;
+                int minimumValueKey = 0;
+                for (Integer key : allLargerLengths.keySet()) {
+                    int value = lengths.get(key);
+
+                    if (value < minimumValue) {
+                        minimumValue = value;
+                        minimumValueKey = key;
+                    }
+
+                }
+
+                lengthID = minimumValueKey;
+
+                totalproductprice = calculateTotalProductPrice(allproducts,productID, amount,minimumValue);
+                System.out.println("TT: " + totalproductprice);
+                ProductLine pr = new ProductLine(productID, amount, lengthID, totalproductprice);
+
+                returnList.add(pr);
+
+                hasNotCalculatedEverything = false;
+            }
+
+        }
+
+
+        // REGN SKRUER UD
+
+        List<ProductDTO> neededScrews = getAllNeededProducts(allproducts, "skrue");
+
+        for(ProductDTO p: neededScrews) {
+            if(p.getIdproduct() == 9) {
+                productID = p.getIdproduct();
+            }
+        }
+
+        lengthID = 0;
+
+        ProductLine pr = new ProductLine(productID, amount, lengthID, totalproductprice);
+
+        returnList.add(pr);
+
 
 
         return returnList;
@@ -213,6 +331,7 @@ public class BOMAlgorithm {
         return returnList;
     }
 
+
     public double calculateTotalProductPrice (List<ProductDTO> allproducts, int productID, int amount, int length) {
         double totalProductPrice = 0;
 
@@ -230,6 +349,7 @@ public class BOMAlgorithm {
 
         return totalProductPrice;
     }
+
 
 
 //    private int getNeededProductID(List<ProductDTO> allproducts, String neededitem) {
