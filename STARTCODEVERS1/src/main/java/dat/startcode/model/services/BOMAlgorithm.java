@@ -140,7 +140,7 @@ public class BOMAlgorithm {
                 onlyThisItemProductionlines = calculateSternProductLines(allproducts, carportHeight, carportWidth, carportLength);
                 break;
             case "tag":
-                onlyThisItemProductionlines = calculateTagProductLines(allproducts, carportHeight, carportWidth, carportLength);
+                onlyThisItemProductionlines = calculateTagProductLines(allproducts, carportWidth, carportLength);
                 break;
             case "vandbræt":
                 onlyThisItemProductionlines = calculateVandbrætProductLines(allproducts, carportHeight, carportWidth, carportLength);
@@ -194,7 +194,7 @@ public class BOMAlgorithm {
         return returnList;
     }
 
-    private List<ProductLine> calculateTagProductLines(List<ProductDTO> allproducts, double carportHeight, double carportWidth, double carportLength) {
+    private List<ProductLine> calculateTagProductLines(List<ProductDTO> allproducts, double carportWidth, double carportLength) {
         List<ProductLine> returnList = new ArrayList<>();
 
         List<ProductDTO> neededItemsOnly = getAllNeededProducts(allproducts, "tag");
