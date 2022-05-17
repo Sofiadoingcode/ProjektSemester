@@ -151,8 +151,10 @@ public class BOMAlgorithm {
     }
 
     private List<ProductLine> calculateRemProductLines(List<ProductDTO> allproducts, double carportHeight, double carportWidth, double carportLength) {
+        int maxLengthRem=0;
         List<ProductDTO> remProducts = new ArrayList<>();
         List<ProductLine> returnList = new ArrayList<>();
+        HashMap<Integer, Integer> lengths = loadAllLengths();
         for (int i=0 ; i<allproducts.size(); i++){
             if(allproducts.get(i).getProducttype().equals("rem")){
                 remProducts.add(allproducts.get(i));
@@ -160,33 +162,16 @@ public class BOMAlgorithm {
         }
         ProductDTO rem = remProducts.get(0);
 
-        while(carportLength>0){
-
+        for (int i = 0 ; i<lengths.size() ; i++){
+            if (lengths.get(i)>maxLengthRem) {
+                maxLengthRem = lengths.get(i);
+            }
         }
-        while(carportLength>0){
 
+        while(carportLength>maxLengthRem){
+            
         }
-        while(carportLength>0){
 
-        }
-        while(carportLength>0){
-
-        }
-        while(carportLength>0){
-
-        }
-        while(carportLength>0){
-
-        }
-        while(carportLength>0){
-
-        }
-        while(carportLength>0){
-
-        }
-        while(carportLength>0){
-
-        }
 
 
         return returnList;
