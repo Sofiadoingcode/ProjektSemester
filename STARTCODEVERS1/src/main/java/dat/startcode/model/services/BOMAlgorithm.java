@@ -7,8 +7,10 @@ import dat.startcode.model.entities.ProductLine;
 import dat.startcode.model.exceptions.DatabaseException;
 import dat.startcode.model.persistence.BOMMapper;
 import dat.startcode.model.persistence.ConnectionPool;
+import dat.startcode.model.persistence.ProductMapper;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class BOMAlgorithm {
@@ -68,6 +70,19 @@ public class BOMAlgorithm {
 
         return allproducts;
 
+    }
+
+    private HashMap<Integer, Integer> loadAllLengths() {
+        HashMap<Integer, Integer> lengths = new HashMap<>();
+
+        ProductMapper p = new ProductMapper(connectionPool);
+        try {
+            lengths = p.getLengths();
+        } catch (DatabaseException e) {
+            e.printStackTrace();
+        }
+
+        return lengths;
     }
 
     private List<String> returnNeededListCarport() {
