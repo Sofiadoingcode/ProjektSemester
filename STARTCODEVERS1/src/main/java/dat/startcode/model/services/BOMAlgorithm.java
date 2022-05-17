@@ -64,7 +64,7 @@ public class BOMAlgorithm {
     }
 
 
-    public List<ProductDTO> loadAllProducts() {
+    private List<ProductDTO> loadAllProducts() {
         List<ProductDTO> allproducts = new ArrayList<>();
 
         BOMMapper bomMapper = new BOMMapper(connectionPool);
@@ -194,7 +194,7 @@ public class BOMAlgorithm {
         return returnList;
     }
 
-    public List<ProductLine> calculateTagProductLines(List<ProductDTO> allproducts, double carportHeight, double carportWidth, double carportLength) {
+    private List<ProductLine> calculateTagProductLines(List<ProductDTO> allproducts, double carportHeight, double carportWidth, double carportLength) {
         List<ProductLine> returnList = new ArrayList<>();
 
         List<ProductDTO> neededItemsOnly = getAllNeededProducts(allproducts, "tag");
@@ -344,7 +344,7 @@ public class BOMAlgorithm {
         return returnList;
     }
 
-    public double calculateTotalProductPrice(List<ProductDTO> allproducts, int productID, int amount, int length) {
+    private double calculateTotalProductPrice(List<ProductDTO> allproducts, int productID, int amount, int length) {
         double totalProductPrice = 0;
 
         double priceMeasurment = 0;

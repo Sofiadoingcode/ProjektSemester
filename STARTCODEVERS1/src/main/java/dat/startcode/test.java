@@ -16,22 +16,22 @@ import java.util.List;
 public class test {
 
     public static void main(String[] args) throws DatabaseException {
-       ConnectionPool connectionPool = new ConnectionPool();
-
-        BOMAlgorithm bom = new BOMAlgorithm(connectionPool);
-
-        List<ProductDTO> allproducts = bom.loadAllProducts();
-
-        List<ProductLine> productLines = bom.calculateTagProductLines(allproducts, 400, 450, 900);
-
-        for(ProductLine p: productLines) {
-            System.out.println(p.getProductID());
-            System.out.println(p.getAmount());
-            System.out.println(p.getLengthID());
-            System.out.println(p.getTotalproductprice());
-            System.out.println("  ");
-
-        }
+//       ConnectionPool connectionPool = new ConnectionPool();
+//
+//        BOMAlgorithm bom = new BOMAlgorithm(connectionPool);
+//
+//        List<ProductDTO> allproducts = bom.loadAllProducts();
+//
+//        List<ProductLine> productLines = bom.calculateTagProductLines(allproducts, 400, 450, 900);
+//
+//        for(ProductLine p: productLines) {
+//            System.out.println(p.getProductID());
+//            System.out.println(p.getAmount());
+//            System.out.println(p.getLengthID());
+//            System.out.println(p.getTotalproductprice());
+//            System.out.println("  ");
+//
+//        }
 
 
     }
