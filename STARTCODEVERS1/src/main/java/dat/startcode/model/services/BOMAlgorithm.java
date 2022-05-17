@@ -213,12 +213,12 @@ public class BOMAlgorithm {
         return returnList;
     }
 
-    public double calculateTotalProductPrice (List<ProductDTO> allproducts, int productID, int amount, int length) {
+    public double calculateTotalProductPrice(List<ProductDTO> allproducts, int productID, int amount, int length) {
         double totalProductPrice = 0;
 
         double priceMeasurment = 0;
-        for(ProductDTO p: allproducts) {
-            if(p.getIdproduct() == productID) {
+        for (ProductDTO p : allproducts) {
+            if (p.getIdproduct() == productID) {
                 priceMeasurment = p.getPricemeasurment();
             }
 
@@ -226,7 +226,11 @@ public class BOMAlgorithm {
 
         double lengthDouble = (double) length;
         double amountDouble = (double) amount;
-        totalProductPrice = priceMeasurment*(lengthDouble/100)*amountDouble;
+        if (length == 0) {
+            totalProductPrice = priceMeasurment * amountDouble;
+        } else {
+            totalProductPrice = priceMeasurment * (lengthDouble / 100) * amountDouble;
+        }
 
         return totalProductPrice;
     }
