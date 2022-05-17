@@ -14,6 +14,11 @@ import java.util.HashMap;
 import java.util.List;
 
 public class BOMAlgorithm {
+    private int spærHeight = 0;
+    private int spærAntal = 0;
+    private int tagHeight = 0;
+    private int antalStolper = 0;
+    private double length = 0;
     private ConnectionPool connectionPool;
 
     public BOMAlgorithm() {
@@ -146,25 +151,21 @@ public class BOMAlgorithm {
     private List<ProductLine> calculateStolpeProductLines(List<ProductDTO> allproducts, double carportHeight, double carportWidth, double carportLength) {
         List<ProductLine> returnList = new ArrayList<>();
         List<ProductDTO> allStolper = getAllNeededProducts(allproducts, "stolpe");
-        double carportLengthWithoutExtra = carportLength-1.1;
-        int stolperHeight =
-        int antalStolper = 0;
-        double length = 0;
+
+        double carportLengthWithoutExtra = carportLength - 1.1;
+        int stolpeLength = (int)carportHeight - spærHeight - tagHeight;
+
         while (true) {
             length += 3;
             if (length < carportLengthWithoutExtra) {
                 antalStolper++;
-            }
-            else{
+            } else {
                 break;
             }
         }
-        int productId = getAllNeededProducts();
-        ProductLine stolpeTid = new ProductLine(6, antalStolper, , null);
-
-        ProductLine beslag = new ProductLine();
+//        int productId = getAllNeededProducts();
+        ProductLine stolpeTid = new ProductLine(, antalStolper, stolpeLength, null);
         returnList.add(stolpeTid);
-        returnList.add(beslag);
         return returnList;
     }
 
@@ -192,8 +193,19 @@ public class BOMAlgorithm {
     private List<ProductLine> calculateHulbåndProductLines(List<ProductDTO> allproducts, double carportHeight, double carportWidth, double carportLength) {
         List<ProductLine> returnList = new ArrayList<>();
         List<ProductDTO> allStolper = getAllNeededProducts(allproducts, "hulbånd");
-        double maengdeHulbaand = ;
+        double maengdeHulbaand = 0;
+        int carportDiagonal = (int)(carportLength*carportHeight)*(int)(carportWidth*carportWidth);
+        if(carportDiagonal<5){
+            maengdeHulbaand = 1;
+        } else if (5 < carportDiagonal && carportDiagonal < 10){
+            maengdeHulbaand = 2;
+        }
 
+        ProductLine antalHulbaand = new ProductLine(, maengdeHulbaand, 0, );
+        returnList.add(antalHulbaand);
+        int antalBeslagsSkruer = spærAntal*4;
+        ProductLine beslagsskruer = new ProductLine(, antalBeslagsSkruer, 0, );
+        returnList.add(beslagsskruer);
         return returnList;
     }
 
