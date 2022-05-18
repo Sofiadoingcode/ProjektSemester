@@ -154,14 +154,25 @@ public class BOMMapper implements IBOMMapper{
     }
 
     @Override
-    public void saveFullBom(int orderid, List<ProductLine> fullBom) throws DatabaseException {
+    public void saveFullBom(int bomid, List<ProductLine> fullBom) throws DatabaseException {
 
         String sql = "insert into `fogarchive`.productionline (idproduct, amount, idbom, idlength, totalproductprice) VALUES (?, ?, ?, ?, ?)";
+
+
         try (Connection connection = connectionPool.getConnection()) {
             try (PreparedStatement ps = connection.prepareStatement(sql)) {
+
+                for(ProductLine p: fullBom) {
+                    ps.setInt(1,p.getProductID());
+                    ps.setInt(2,p.getAmount());
+                    ps.setInt(3, bomid);
+                    ps.setInt(4, p.getLengthID());
+                    ps.setDouble(5, p.getTotalproductprice());
+
+                    ps.executeQuery();
+
+                }
                 
-
-
             }
         } catch (SQLException ex) {
             throw new DatabaseException(ex, "Fejl under indlæsning fra databasen");
