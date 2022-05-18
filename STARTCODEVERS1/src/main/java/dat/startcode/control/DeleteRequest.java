@@ -25,6 +25,7 @@ public class DeleteRequest extends Command {
         String idDelete = request.getParameter("delete");
         int deleteId = Integer.parseInt(idDelete);
         CustomerMapper customerMapper = new CustomerMapper(connectionPool);
+
         try {
             customerMapper.deleteOrder(deleteId);
         } catch (DatabaseException e) {

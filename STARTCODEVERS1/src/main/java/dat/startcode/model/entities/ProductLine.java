@@ -1,27 +1,26 @@
 package dat.startcode.model.entities;
 
 public class ProductLine {
-    private String name;
+    private int productID;
     private int amount;
-    private double price;
-    private int length;
+    private int lengthID;
+    private double totalproductprice;
 
 
-    public ProductLine(String name, int amount, double price, int length) {
-        this.name = name;
+    public ProductLine(int productID, int amount, int lengthID, double totalproductprice) {
+        this.productID = productID;
         this.amount = amount;
-        this.price = price;
-        this.length = length;
+        this.lengthID = lengthID;
+        this.totalproductprice = totalproductprice;
     }
 
-    public String getName() {
-        return name;
+    public int getProductID() {
+        return productID;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setProductID(int productID) {
+        this.productID = productID;
     }
-
 
     public int getAmount() {
         return amount;
@@ -31,19 +30,30 @@ public class ProductLine {
         this.amount = amount;
     }
 
-    public double getPrice() {
-        return price;
+    public int getLengthID() {
+        return lengthID;
     }
 
-    public void setPrice(double price) {
-        this.price = price;
+    public void setLengthID(int lengthID) {
+        this.lengthID = lengthID;
     }
 
-    public double getLength() {
-        return length;
+    public double getTotalproductprice() {
+        return totalproductprice;
     }
 
-    public void setLength(int length) {
-        this.length = length;
+    public void setTotalproductprice(double totalproductprice) {
+        this.totalproductprice = totalproductprice;
+    }
+
+    @Override
+    public String toString() {
+        return "ProductLine{" +
+                "productID=" + productID +
+                ", amount=" + amount +
+                ", lengthID=" + lengthID +
+                ", totalproductprice=" + totalproductprice +
+                '}';
     }
 }
+

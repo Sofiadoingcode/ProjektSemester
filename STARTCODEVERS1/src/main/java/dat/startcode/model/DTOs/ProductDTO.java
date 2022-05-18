@@ -10,8 +10,9 @@ public class ProductDTO {
     double height;
     double width;
     int amount;
+    String producttype;
 
-    public ProductDTO(int idproduct, String name, String unit, int idcategory, double pricemeasurment, double height, double width, int amount) {
+    public ProductDTO(int idproduct, String name, String unit, int idcategory, double pricemeasurment, double height, double width, int amount, String producttype) {
         this.idproduct = idproduct;
         this.name = name;
         this.unit = unit;
@@ -20,6 +21,7 @@ public class ProductDTO {
         this.height = height;
         this.width = width;
         this.amount = amount;
+        this.producttype = producttype;
     }
 
     public int getIdproduct() {
@@ -84,5 +86,28 @@ public class ProductDTO {
 
     public void setAmount(int amount) {
         this.amount = amount;
+    }
+
+    public String getProducttype() {
+        return producttype;
+    }
+
+    public void setProducttype(String producttype) {
+        this.producttype = producttype;
+    }
+
+    @Override
+    public String toString() {
+        return "ProductDTO{" +
+                "idproduct=" + idproduct +
+                ", name='" + name + '\'' +
+                ", unit='" + unit + '\'' +
+                ", idcategory=" + idcategory +
+                ", pricemeasurment=" + pricemeasurment +
+                ", height=" + height +
+                ", width=" + width +
+                ", amount=" + amount +
+                ", producttype='" + producttype + '\'' +
+                '}';
     }
 }

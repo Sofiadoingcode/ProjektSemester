@@ -5,20 +5,17 @@ import java.util.List;
 
 public class BOM {
 
-    private double height;
-    private double width;
-    private double length;
-    private boolean wantsShed;
-    private double roofAngle;
+    int BOMID;
+    double totalprice;
+    String description;
 
 
 
+    public BOM (int BOMID, double totalprice, String description) {
+        this.BOMID = BOMID;
+        this.totalprice = totalprice;
+        this.description = description;
 
-    public BOM (double height, double width, double length, boolean wantsShed, double roofAngle) {
-        this.height = height;
-        this.width = width;
-        this.length = length;
-        this.wantsShed = wantsShed;
 
     }
 

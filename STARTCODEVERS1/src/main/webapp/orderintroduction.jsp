@@ -55,7 +55,7 @@
                                         <br>
                                         <br>
 
-                                        <form action="fc/showTempUser?command=showTempUser" method="post">
+                                        <form action="fc/generateBom?command=generateBom" method="post">
 
                                                 <div class="row align-items-start">
 
@@ -218,7 +218,7 @@
                                                         <div class="gy-6 row align-content-start">
                                                                 <!-- Button trigger modal -->
                                                                 <div class="col">
-                                                                        <button type="button" class=" btn-primary" >
+                                                                        <button type="submit" class=" btn-primary" >
                                                                                 Se tegning
                                                                         </button>
                                                                 </div>

@@ -23,6 +23,7 @@ abstract class Command
         commands.put("acceptRequest", new AcceptRequest());
         commands.put("unAcceptRequest", new unAcceptRequest());
         commands.put("BOMlist", new BOMList());
+        commands.put("generateBom", new GenerateBOM());
         commands.put("createAdminAccount", new CreateAdminAccount());
         commands.put("deleteAccount", new DeleteAccount());
         commands.put("ViewProducts", new ViewProducts());
@@ -31,6 +32,7 @@ abstract class Command
         commands.put("deleteproduct",new DeleteProduct());
         commands.put("createRequest", new CreateRequest());
         commands.put("tempLogin", new TempLogin());
+
 
     }
 
