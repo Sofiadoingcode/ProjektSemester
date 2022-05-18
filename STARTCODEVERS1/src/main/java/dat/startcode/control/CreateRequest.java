@@ -46,7 +46,7 @@ public class CreateRequest extends Command
 
         // LAV DESCRIPTION
         // REGN TOTALPRICE
-        
+
         String bomDescription = "";
         double bomTotalPrice = 0;
 
