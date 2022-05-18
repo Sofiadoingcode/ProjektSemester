@@ -50,6 +50,10 @@ public class BOMAlgorithm {
     private double calculateTotalBomPrice (List<ProductLine> fullbom) {
         double totalPrice = 0;
 
+        for(ProductLine p: fullbom) {
+            totalPrice += p.getTotalproductprice();
+        }
+
         return totalPrice;
     }
 
