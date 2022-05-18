@@ -190,7 +190,7 @@
                                     <button type="submit" name="pay" value="${sessionScope.usersRequest.idorder}"
                                             style="margin-left: 48.5%"
                                             formaction="fc/payForRequest?command=payForRequest" formmethod="post"
-                                            class="PayButton">Betal
+                                            class="payButton">Betal
                                     </button>
 
                                 </form>
