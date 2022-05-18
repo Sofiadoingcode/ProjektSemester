@@ -35,9 +35,12 @@ public class CreateRequest extends Command
         String bomDescription = "";
         double bomTotalPrice = 0;
         List<ProductLine> fullBomList = new ArrayList<>();
-        int height = Integer.parseInt(request.getParameter("height"));
-        int length = Integer.parseInt(request.getParameter("length"));
-        int width = Integer.parseInt(request.getParameter("width"));
+
+        double height = Double.parseDouble(request.getParameter("height"));
+        double length = Double.parseDouble(request.getParameter("length"));
+        double width = Double.parseDouble(request.getParameter("width"));
+
+
         String tagMateriale = request.getParameter("tagMateriale");
         String tag = request.getParameter("tag");
         int angle = Integer.parseInt(request.getParameter("angle"));
