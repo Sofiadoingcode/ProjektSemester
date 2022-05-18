@@ -10,7 +10,7 @@ public class CarportChoices {
     public CarportChoices (double height, double width, double length) {
         this.height = height;
         this.width = width;
-//        this.length = length;
+        this.length = length;
 //        this.wantsShed = wantsShed;
     }
 
