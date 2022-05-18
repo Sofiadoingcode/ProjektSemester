@@ -31,11 +31,6 @@ public class BOMAlgorithm {
 
     }
 
-    public BOMAlgorithm(ConnectionPool connectionPool) throws DatabaseException {
-        this.connectionPool = connectionPool;
-    }
-
-
     public List<ProductLine> generateBOM(CarportChoices carportChoice) {
 
         List<ProductLine> fullbom = new ArrayList<>();
@@ -263,8 +258,7 @@ public class BOMAlgorithm {
         int antalBeslagsSkruer = spærAntal * 4;
         int maengdeHulbaand = 0;
         double carportDiagonalIAnden = (double) (carportLength * carportLength) + (double) (carportWidth * carportWidth);
-        int carportDiagonal = (int)Math.sqrt(carportDiagonalIAnden); //I centimeter
-//        carportDiagonal /=100;
+        int carportDiagonal = (int)Math.sqrt(carportDiagonalIAnden); 
         if (carportDiagonal < 500) {
             maengdeHulbaand = 1;
         } else if (500 < carportDiagonal && carportDiagonal < 1000) {
@@ -421,8 +415,6 @@ public class BOMAlgorithm {
 
         double fullCarportAreaM = fullCarportWidth/100 * carportLength/100;
         int neededScrewsOverAll =  (int) Math.ceil(fullCarportAreaM * 12);
-
-        System.out.println(neededScrewsOverAll);
 
         amount = (int) Math.ceil(neededScrewsOverAll/productAmount);
 
