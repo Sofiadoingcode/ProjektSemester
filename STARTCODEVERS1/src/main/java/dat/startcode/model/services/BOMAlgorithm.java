@@ -202,13 +202,16 @@ public class BOMAlgorithm {
         }
 
         int[] arr = getLengthsNeeded(carportLength);
-        double price = arr[1]*2*theUpperStern.getPricemeasurment()*arr[0]/100;
+        double price = calculateTotalProductPrice(allproducts, theUpperStern.getIdproduct(), arr[1], arr[0] );
+
 
         ProductLine productLine = new ProductLine(theUpperStern.getIdproduct(), arr[1]*2, arr[2], price);
         returnList.add(productLine);
 
+
         arr = getLengthsNeeded(carportWidth);
-        productLine = new ProductLine(theUpperStern.getIdproduct(), arr[1]*2, arr[2]*2, price);
+        price = calculateTotalProductPrice(allproducts, theUpperStern.getIdproduct(), arr[1], arr[0] );
+        productLine = new ProductLine(theUpperStern.getIdproduct(), arr[1]*2, arr[2], price);
 
         returnList.add(productLine);
 
@@ -336,5 +339,26 @@ public class BOMAlgorithm {
 
     }
 
+    private double calculateTotalProductPrice(List<ProductDTO> allproducts, int productID, int amount, int length) {
+        double totalProductPrice = 0;
+
+        double priceMeasurment = 0;
+        for (ProductDTO p : allproducts) {
+            if (p.getIdproduct() == productID) {
+                priceMeasurment = p.getPricemeasurment();
+            }
+
+        }
+
+        double lengthDouble = (double) length;
+        double amountDouble = (double) amount;
+        if (length == 0) {
+            totalProductPrice = priceMeasurment * amountDouble;
+        } else {
+            totalProductPrice = priceMeasurment * (lengthDouble / 100) * amountDouble;
+        }
+
+        return totalProductPrice;
+    }
 
 }

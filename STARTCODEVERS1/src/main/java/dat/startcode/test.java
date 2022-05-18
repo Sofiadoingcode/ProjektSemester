@@ -28,7 +28,7 @@ public class test {
 
             //System.out.println(bomAlgorithm.getLengthsNeeded(1000)[0]);
 
-            CarportChoices carportChoices = new CarportChoices(500, 600, 700);
+            CarportChoices carportChoices = new CarportChoices(700, 700, 1000);
             
             List<ProductLine> productLines = bomAlgorithm.generateBOM(carportChoices);
 
