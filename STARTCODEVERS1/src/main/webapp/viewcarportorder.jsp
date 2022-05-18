@@ -181,7 +181,7 @@
                         <c:if test="${sessionScope.usersRequest.accepted && !sessionScope.usersRequest.paid}">
                             <div style="text-align: center">
                                 <p class="textPaymentMessageDecoration">Din forespørgsel er blevet accepteret!</p>
-                                <p class="textPaymentMessageDecoration">Betal nu!</p>
+                                <p class="textPaymentMessageDecoration">Betal nu og få den leveret hurtigst muligt!</p>
                             </div>
 
                             <div style="margin-bottom: 5%" class="col">
@@ -190,7 +190,7 @@
                                     <button type="submit" name="pay" value="${sessionScope.usersRequest.idorder}"
                                             style="margin-left: 48.5%"
                                             formaction="fc/payForRequest?command=payForRequest" formmethod="post"
-                                            class="btn-viewcarportorder-betal">Betal
+                                            class="PayButton">Betal
                                     </button>
 
                                 </form>
@@ -203,12 +203,12 @@
 
                             <div style="text-align: center">
                                 <p class="textPaymentMessageDecoration">Din betaling er modtaget</p>
-                                <p class="textPaymentMessageDecoration">Se din stykliste nu!!</p>
+                                <p class="textPaymentMessageDecoration">Se din stykliste!</p>
                             </div>
 
                             <div style="margin-bottom: 5%; text-align: right" class="col">
                                 <form>
-                                    <a href="${pageContext.request.contextPath}/#" style="margin-right: 46%"
+                                    <a href="${pageContext.request.contextPath}/#" style="margin-right: 46.5%"
                                        class="btn-viewcarportorder-betal">Se stykliste</a>
                                 </form>
                             </div>
