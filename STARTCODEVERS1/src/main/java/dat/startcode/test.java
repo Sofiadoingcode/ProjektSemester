@@ -1,5 +1,6 @@
 package dat.startcode;
 
+import dat.startcode.control.GenerateBOM;
 import dat.startcode.model.DTOs.ProductDTO;
 import dat.startcode.model.entities.Product;
 import dat.startcode.model.entities.ProductLine;

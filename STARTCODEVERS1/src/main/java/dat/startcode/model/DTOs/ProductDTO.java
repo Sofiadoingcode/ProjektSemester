@@ -95,4 +95,19 @@ public class ProductDTO {
     public void setProducttype(String producttype) {
         this.producttype = producttype;
     }
+
+    @Override
+    public String toString() {
+        return "ProductDTO{" +
+                "idproduct=" + idproduct +
+                ", name='" + name + '\'' +
+                ", unit='" + unit + '\'' +
+                ", idcategory=" + idcategory +
+                ", pricemeasurment=" + pricemeasurment +
+                ", height=" + height +
+                ", width=" + width +
+                ", amount=" + amount +
+                ", producttype='" + producttype + '\'' +
+                '}';
+    }
 }
