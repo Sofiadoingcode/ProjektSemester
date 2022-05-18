@@ -6,10 +6,7 @@ import dat.startcode.model.DTOs.ProductionlineDTO;
 import dat.startcode.model.entities.ProductLine;
 import dat.startcode.model.exceptions.DatabaseException;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -130,6 +127,48 @@ public class BOMMapper implements IBOMMapper{
         return productionLines;
     }
 
+    public int createBOMinDB (String description, double totalprice) throws DatabaseException {
+        int bomId = 0;
+
+        String sql = "insert into `fogarchive`.bom (totalprice, description) VALUES (?, ?)";
+
+        try (Connection connection = connectionPool.getConnection()) {
+            try (PreparedStatement ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+                ps.setDouble(1, totalprice);
+                ps.setString(2, description);
+                ps.executeQuery();
+
+                ResultSet generatedKeys = ps.getGeneratedKeys();
+                if (generatedKeys.next()) {
+                    bomId = generatedKeys.getInt(1);
+                }
+
+            }
+        } catch (SQLException ex) {
+            throw new DatabaseException(ex, "Fejl under indlæsning fra databasen");
+        }
+
+        return bomId;
+    }
+
+    @Override
+    public void saveFullBom(int orderid, List<ProductLine> fullBom) throws DatabaseException {
+
+        String sql = "insert into `fogarchive`.productionline (idproduct, amount, idbom, idlength, totalproductprice) VALUES (?, ?, ?, ?, ?)";
+        try (Connection connection = connectionPool.getConnection()) {
+            try (PreparedStatement ps = connection.prepareStatement(sql)) {
+
+
+
+
+
+            }
+        } catch (SQLException ex) {
+            throw new DatabaseException(ex, "Fejl under indlæsning fra databasen");
+        }
+
+
+    }
 
 
     private ProductDTO getFullProduct(int productID) throws DatabaseException {

@@ -51,7 +51,6 @@ public class BOMList extends Command {
             }
 
 
-
             request.setAttribute("fullbom", bomdtos);
             request.setAttribute("category1BOM", category1);
             request.setAttribute("category2BOM", category2);

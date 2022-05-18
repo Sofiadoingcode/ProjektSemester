@@ -1,8 +1,10 @@
 package dat.startcode.control;
 
 import dat.startcode.model.config.ApplicationStart;
+import dat.startcode.model.entities.ProductLine;
 import dat.startcode.model.entities.User;
 import dat.startcode.model.exceptions.DatabaseException;
+import dat.startcode.model.persistence.BOMMapper;
 import dat.startcode.model.persistence.RequestMapper;
 import dat.startcode.model.persistence.UserMapper;
 import dat.startcode.model.services.UserFacade;
@@ -11,6 +13,8 @@ import dat.startcode.model.persistence.ConnectionPool;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -28,6 +32,9 @@ public class CreateRequest extends Command
     String execute(HttpServletRequest request, HttpServletResponse response) throws DatabaseException
     {
 
+        String bomDescription = "";
+        double bomTotalPrice = 0;
+        List<ProductLine> fullBomList = new ArrayList<>();
         int height = Integer.parseInt(request.getParameter("height"));
         int length = Integer.parseInt(request.getParameter("length"));
         int width = Integer.parseInt(request.getParameter("width"));
@@ -43,15 +50,19 @@ public class CreateRequest extends Command
         User user;
         user=(User)request.getAttribute("tempUser");
 
+        BOMMapper bomMapper = new BOMMapper(connectionPool);
+        int bomId = bomMapper.createBOMinDB(bomDescription, bomTotalPrice);
+        bomMapper.saveFullBom(bomId, fullBomList);
+
         RequestMapper requestMapper= new RequestMapper(connectionPool);
         if(Objects.equals(request.getParameter("shedCheckbox"), "shed")) {
             int shedWidth = Integer.parseInt(request.getParameter("shedWidth"));
             int shedLength = Integer.parseInt(request.getParameter("shedLength"));
             String floorMaterial = request.getParameter("floorMaterial");
-            requestMapper.insertFullRequestShed(shedWidth, shedLength, floorMaterial, height, length, width, tagMateriale, tag, angle, name, zipCode, phoneNumber, email, user.getIdUser(), 1);
+            requestMapper.insertFullRequestShed(shedWidth, shedLength, floorMaterial, height, length, width, tagMateriale, tag, angle, name, zipCode, phoneNumber, email, user.getIdUser(), bomId);
         }
         else{
-            requestMapper.insertFullRequest(height, length, width, tagMateriale, tag, angle, name, zipCode, phoneNumber, email, user.getIdUser(), 1);
+            requestMapper.insertFullRequest(height, length, width, tagMateriale, tag, angle, name, zipCode, phoneNumber, email, user.getIdUser(), bomId);
         }
         request.setAttribute("tempUser", user);
         return "orderintroduction.jsp";
