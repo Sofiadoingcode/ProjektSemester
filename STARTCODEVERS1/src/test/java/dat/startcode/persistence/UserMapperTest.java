@@ -25,7 +25,7 @@ class UserMapperTest
 
     @BeforeAll
     public static void setUpClass() {
-            connectionPool = new ConnectionPool(USER, PASSWORD, URL);
+            connectionPool = new ConnectionPool();
     }
 
     @BeforeEach
@@ -36,8 +36,8 @@ class UserMapperTest
                 // Remove all rows from all tables
                 stmt.execute("delete from user");
                 // Indsæt et par brugere
-                stmt.execute("insert into user (username, password, role) " +
-                        "values ('user','1234','user'),('admin','1234','admin'), ('ben','1234','user')");
+                stmt.execute("insert into user (username, password, idrole) " +
+                        "values ('fog','123',1),('gues','password',2), ('ben','1234',2)");
             }
         } catch (SQLException throwables) {
             System.out.println(throwables.getMessage());
@@ -59,9 +59,11 @@ class UserMapperTest
     @Test
     void login() throws DatabaseException
     {
-        User expectedUser = new User("user","1234",2);
-        User actualUser = UserFacade.login("user","1234", connectionPool);
+        User expectedUser = new User("fog","123",1);
+        User actualUser = UserFacade.login("fog","123", connectionPool);
+        System.out.println(actualUser);
         assertEquals(expectedUser, actualUser);
+
     }
 
     @Test

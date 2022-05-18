@@ -54,7 +54,7 @@ public class RequestMapper {
         }
     }
 
-    public void insertCarportChoicesShed(int carportHeight, int carportLength, int carportWidth, String roofMaterial, String roofShape, int roofAngle) throws DatabaseException {
+    public int insertCarportChoicesShed(int carportHeight, int carportLength, int carportWidth, String roofMaterial, String roofShape, int roofAngle) throws DatabaseException {
 
 
         Logger.getLogger("web").log(Level.INFO, "");
@@ -82,6 +82,7 @@ public class RequestMapper {
         } catch (SQLException e) {
             throw new DatabaseException("Something went wrong with inserting request into database");
         }
+        return idCarport;
     }
 
     public void insertCarportChoices(int carportHeight, int carportLength, int carportWidth, String roofMaterial, String roofShape, int roofAngle) throws DatabaseException {

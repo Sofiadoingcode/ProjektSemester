@@ -6,15 +6,11 @@ public class User
 {
     private String username;
     private String password;
-    private String role;
+
     private int idRole;
     private int idUser;
 
-    public User(String username, String password)
-    {
-        this.username = username;
-        this.password = password;
-    }
+
 
     public User(String username, String password, int idRole)
     {
@@ -32,15 +28,7 @@ public class User
 
 
 
-    @Override
-    public String toString()
-    {
-        return "User{" +
-                "brugerNavn='" + username + '\'' +
-                ", kodeord='" + password + '\'' +
-                ", rolle='" + role + '\'' +
-                '}';
-    }
+
 
     public String getUsername()
     {
@@ -62,15 +50,6 @@ public class User
         this.password = password;
     }
 
-    public String getRole()
-    {
-        return role;
-    }
-
-    public void setRole(String role)
-    {
-        this.role = role;
-    }
 
     @Override
     public boolean equals(Object o)
@@ -79,13 +58,13 @@ public class User
         if (!(o instanceof User)) return false;
         User user = (User) o;
         return getUsername().equals(user.getUsername()) && getPassword().equals(user.getPassword()) &&
-                getRole().equals(user.getRole());
+                user.getIdRole() == getIdRole();
     }
 
     @Override
     public int hashCode()
     {
-        return Objects.hash(getUsername(), getPassword(), getRole());
+        return Objects.hash(getUsername(), getPassword(), getIdRole());
     }
 
     public int getIdRole() {

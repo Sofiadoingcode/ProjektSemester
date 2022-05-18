@@ -12,6 +12,7 @@ public class UserFacade
     public static User login(String username, String password, ConnectionPool connectionPool) throws DatabaseException
     {
         UserMapper userMapper = new UserMapper(connectionPool);
+
         return userMapper.login(username, password);
     }
 

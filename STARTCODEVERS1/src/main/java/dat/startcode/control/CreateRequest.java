@@ -40,10 +40,13 @@ public class CreateRequest extends Command
         String email = request.getParameter("email");
 
 
+
+
         User user;
         user=(User)request.getAttribute("tempUser");
 
         RequestMapper requestMapper= new RequestMapper(connectionPool);
+
         if(Objects.equals(request.getParameter("shedCheckbox"), "shed")) {
             int shedWidth = Integer.parseInt(request.getParameter("shedWidth"));
             int shedLength = Integer.parseInt(request.getParameter("shedLength"));
