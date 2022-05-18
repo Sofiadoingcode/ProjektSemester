@@ -17,24 +17,7 @@ import java.util.List;
 public class test {
 
     public static void main(String[] args) throws DatabaseException {
-        ConnectionPool connectionPool = new ConnectionPool();
-
-
-            BOMAlgorithm bomAlgorithm = new BOMAlgorithm(connectionPool);
-
-            List<ProductDTO> allproducts = bomAlgorithm.loadAllProducts();
-
-                List<ProductLine> yeet = bomAlgorithm.calculateHulbåndProductLines(allproducts, 400,300, 500);
-
-            for (ProductLine productLine: yeet) {
-                System.out.println("ProductID: " + productLine.getProductID());
-                System.out.println("LengthID: " + productLine.getLengthID());
-                System.out.println("ProductPrice: " + productLine.getTotalproductprice());
-                System.out.println("Amount: " + productLine.getAmount());
-            }
-
-
-
+        
     }
 
 }
