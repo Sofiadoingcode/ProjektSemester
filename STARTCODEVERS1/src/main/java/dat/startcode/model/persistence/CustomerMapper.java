@@ -213,6 +213,7 @@ public class CustomerMapper implements ICustomerMapper {
             String sql = "UPDATE `fogarchive`.`order` SET `isPaid` = '1' WHERE `idorder` = ?";
             try (PreparedStatement ps = connection.prepareStatement(sql)) {
                 ps.setInt(1, orderId);
+                System.out.println("OrderId: " + orderId);
                 ps.executeUpdate();
             } catch (Exception e) {
                 System.out.println(e);

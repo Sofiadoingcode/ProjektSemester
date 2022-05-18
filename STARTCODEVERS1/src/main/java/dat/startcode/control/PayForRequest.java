@@ -18,6 +18,7 @@ public class PayForRequest extends Command{
     @Override
     String execute(HttpServletRequest request, HttpServletResponse response) {
         String idPay = request.getParameter("pay");
+        System.out.println("idPay: " + idPay);
         int payId = Integer.parseInt(idPay);
         CustomerMapper customerMapper = new CustomerMapper(connectionPool);
         try {
