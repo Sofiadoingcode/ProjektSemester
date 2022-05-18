@@ -32,7 +32,7 @@ abstract class Command
         commands.put("deleteproduct",new DeleteProduct());
         commands.put("createRequest", new CreateRequest());
         commands.put("tempLogin", new TempLogin());
-
+        commands.put("showSvg", new ShowSVG());
 
     }
 
