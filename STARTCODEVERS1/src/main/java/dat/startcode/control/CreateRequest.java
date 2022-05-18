@@ -1,12 +1,14 @@
 package dat.startcode.control;
 
 import dat.startcode.model.config.ApplicationStart;
+import dat.startcode.model.entities.CarportChoices;
 import dat.startcode.model.entities.ProductLine;
 import dat.startcode.model.entities.User;
 import dat.startcode.model.exceptions.DatabaseException;
 import dat.startcode.model.persistence.BOMMapper;
 import dat.startcode.model.persistence.RequestMapper;
 import dat.startcode.model.persistence.UserMapper;
+import dat.startcode.model.services.BOMAlgorithm;
 import dat.startcode.model.services.UserFacade;
 import dat.startcode.model.persistence.ConnectionPool;
 
@@ -32,13 +34,21 @@ public class CreateRequest extends Command
     String execute(HttpServletRequest request, HttpServletResponse response) throws DatabaseException
     {
 
-        String bomDescription = "";
-        double bomTotalPrice = 0;
-        List<ProductLine> fullBomList = new ArrayList<>();
 
         double height = Double.parseDouble(request.getParameter("height"));
         double length = Double.parseDouble(request.getParameter("length"));
         double width = Double.parseDouble(request.getParameter("width"));
+
+        CarportChoices carportChoice = new CarportChoices(height, width, length);
+
+        BOMAlgorithm bomAlgorithm = new BOMAlgorithm();
+        List<ProductLine> fullBomList = bomAlgorithm.generateBOM(carportChoice);
+
+        // LAV DESCRIPTION
+        // REGN TOTALPRICE
+        
+        String bomDescription = "";
+        double bomTotalPrice = 0;
 
 
         String tagMateriale = request.getParameter("tagMateriale");
@@ -56,6 +66,7 @@ public class CreateRequest extends Command
         BOMMapper bomMapper = new BOMMapper(connectionPool);
         int bomId = bomMapper.createBOMinDB(bomDescription, bomTotalPrice);
         bomMapper.saveFullBom(bomId, fullBomList);
+
 
         RequestMapper requestMapper= new RequestMapper(connectionPool);
         if(Objects.equals(request.getParameter("shedCheckbox"), "shed")) {
