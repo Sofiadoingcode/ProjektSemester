@@ -16,6 +16,9 @@ import java.util.HashMap;
 import java.util.List;
 
 public class BOMAlgorithm {
+    private String description;
+    private double totalBomPrice;
+
     private double spærHeight;
     private int spærAntal;
     private double sternHeight;
@@ -34,8 +37,31 @@ public class BOMAlgorithm {
 
     }
 
+    public List<ProductLine> generateBOM (CarportChoices carportChoice) {
+        List<ProductLine> fullbom = generateBOMProductLines(carportChoice);
 
-    public List<ProductLine> generateBOM(CarportChoices carportChoice) {
+        this.totalBomPrice = calculateTotalBomPrice(fullbom);
+        this.description = createDescription();
+
+
+        return fullbom;
+    }
+
+    private double calculateTotalBomPrice (List<ProductLine> fullbom) {
+        double totalPrice = 0;
+
+        return totalPrice;
+    }
+
+    private String createDescription () {
+        String description = "";
+
+
+        return description;
+    }
+
+
+    private List<ProductLine> generateBOMProductLines(CarportChoices carportChoice) {
 
 
         List<ProductLine> fullbom = new ArrayList<>();
@@ -671,5 +697,11 @@ public class BOMAlgorithm {
 
     }
 
+    public String getDescription() {
+        return description;
+    }
 
+    public double getTotalBomPrice() {
+        return totalBomPrice;
+    }
 }

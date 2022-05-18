@@ -47,8 +47,8 @@ public class CreateRequest extends Command
         // LAV DESCRIPTION
         // REGN TOTALPRICE
 
-        String bomDescription = "";
-        double bomTotalPrice = 0;
+        String bomDescription = bomAlgorithm.getDescription();
+        double bomTotalPrice = bomAlgorithm.getTotalBomPrice();
 
 
         String tagMateriale = request.getParameter("tagMateriale");
