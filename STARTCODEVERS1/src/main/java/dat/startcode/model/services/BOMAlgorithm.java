@@ -259,12 +259,10 @@ public class BOMAlgorithm {
         int maengdeHulbaand = 0;
         double carportDiagonalIAnden = (double) (carportLength * carportLength) + (double) (carportWidth * carportWidth);
         int carportDiagonal = (int)Math.sqrt(carportDiagonalIAnden); 
-        if (carportDiagonal < 500) {
+        if (carportDiagonal <= 500) {
             maengdeHulbaand = 1;
-        } else if (500 < carportDiagonal && carportDiagonal < 1000) {
+        } else if (carportDiagonal <= 1000) {
             maengdeHulbaand = 2;
-        } else {
-            maengdeHulbaand = 0;
         }
 
         for (int i = 0; i < allHulbånd.size(); i++) {
@@ -289,6 +287,7 @@ public class BOMAlgorithm {
         double totalHulbåndPrice = calculateTotalProductPrice(allproducts, hulbåndId, maengdeHulbaand, 0);
         double totalBeslagsskruerPrice = calculateTotalProductPrice(allproducts, beslagsskrueId, antalBeslagsSkruer, 0);
 
+        System.out.println("MængdeHulbånd: " + maengdeHulbaand);
         ProductLine antalHulbaand = new ProductLine(hulbåndId, maengdeHulbaand, 0, totalHulbåndPrice);
         returnList.add(antalHulbaand);
         ProductLine beslagsskruer = new ProductLine(beslagsskrueId, antalBeslagsSkruer, 0, totalBeslagsskruerPrice);
