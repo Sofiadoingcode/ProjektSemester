@@ -16,9 +16,9 @@ import java.util.HashMap;
 import java.util.List;
 
 public class BOMAlgorithm {
-    private double spærHeight = 0;
-    private int spærAntal = 0;
-    private double sternHeight = 0;
+    private double spærHeight;
+    private int spærAntal;
+    private double sternHeight;
     private ConnectionPool connectionPool;
     private ProductDTO remField;
 
@@ -33,10 +33,6 @@ public class BOMAlgorithm {
         this.connectionPool = connectionPool;
 
     }
-
-
-
-
 
 
     public List<ProductLine> generateBOM(CarportChoices carportChoice) {
@@ -73,7 +69,7 @@ public class BOMAlgorithm {
     }
 
 
-    public List<ProductDTO> loadAllProducts() {
+    private List<ProductDTO> loadAllProducts() {
         List<ProductDTO> allproducts = new ArrayList<>();
 
         BOMMapper bomMapper = new BOMMapper(connectionPool);
@@ -89,7 +85,7 @@ public class BOMAlgorithm {
 
     }
 
-    public HashMap<Integer, Integer> loadAllLengths() {
+    private HashMap<Integer, Integer> loadAllLengths() {
         HashMap<Integer, Integer> lengths = new HashMap<>();
 
         ProductMapper p = new ProductMapper(connectionPool);
@@ -156,7 +152,7 @@ public class BOMAlgorithm {
         return onlyThisItemProductionlines;
     }
 
-    public List<ProductLine> calculateStolpeProductLines(List<ProductDTO> allproducts, double carportHeight, double carportWidth, double carportLength) {
+    private List<ProductLine> calculateStolpeProductLines(List<ProductDTO> allproducts, double carportHeight, double carportWidth, double carportLength) {
         List<ProductLine> returnList = new ArrayList<>();
         List<ProductDTO> allStolper = getAllNeededProducts(allproducts, "stolpe");
 
@@ -230,7 +226,7 @@ public class BOMAlgorithm {
         return returnList;
     }
 
-    public List<ProductLine> calculateRemProductLines(List<ProductDTO> allproducts, double carportHeight, double carportWidth, double carportLength) {
+    private List<ProductLine> calculateRemProductLines(List<ProductDTO> allproducts, double carportHeight, double carportWidth, double carportLength) {
         double carportLengthRem = carportLength;
         int maxLengthRem=0;
         int minLengthRem=0;
@@ -277,7 +273,7 @@ public class BOMAlgorithm {
     }
 
 
-    public List<ProductLine> calculateSpærProductLines(List<ProductDTO> allproducts, double carportHeight, double carportWidth, double carportLength) {
+    private List<ProductLine> calculateSpærProductLines(List<ProductDTO> allproducts, double carportHeight, double carportWidth, double carportLength) {
         double carportWidthSpær = carportWidth;
         double carportLengthSpær = carportLength;
         double carportLengthSpærCalc = 0;
@@ -342,7 +338,7 @@ public class BOMAlgorithm {
         return returnList;
     }
 
-    public List<ProductLine> calculateHulbåndProductLines(List<ProductDTO> allproducts, double carportHeight, double carportWidth, double carportLength) {
+    private List<ProductLine> calculateHulbåndProductLines(List<ProductDTO> allproducts, double carportHeight, double carportWidth, double carportLength) {
         List<ProductLine> returnList = new ArrayList<>();
         List<ProductDTO> allHulbånd = getAllNeededProducts(allproducts, "hulbånd");
         List<ProductDTO> allSkruer = getAllNeededProducts(allproducts, "skrue");
@@ -517,7 +513,7 @@ public class BOMAlgorithm {
     }
 
 
-    public List<ProductLine> calculateSternProductLines(List<ProductDTO> allproducts, double carportHeight, double carportWidth, double carportLength) {
+    private List<ProductLine> calculateSternProductLines(List<ProductDTO> allproducts, double carportHeight, double carportWidth, double carportLength) {
         List<ProductLine> returnList = new ArrayList<>();
         HashMap<Integer, Integer> lengths = loadAllLengths();
 
@@ -559,7 +555,7 @@ public class BOMAlgorithm {
     }
 
 
-    public List<ProductLine> calculateVandbrætProductLines(List<ProductDTO> allproducts, double carportHeight, double carportWidth, double carportLength) {
+    private List<ProductLine> calculateVandbrætProductLines(List<ProductDTO> allproducts, double carportHeight, double carportWidth, double carportLength) {
 
         List<ProductLine> returnList = new ArrayList<>();
         HashMap<Integer, Integer> lengths = loadAllLengths();
