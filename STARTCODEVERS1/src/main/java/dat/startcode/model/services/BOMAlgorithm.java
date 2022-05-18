@@ -42,7 +42,7 @@ public class BOMAlgorithm {
 
         List<String> shedNeededItems = returnNeededListShed();
 
-        for (int i = 0; i < carportNeededItems.size() + shedNeededItems.size() - 1; i++) {
+        for (int i = 0; i < carportNeededItems.size() + shedNeededItems.size(); i++) {
 
             String neededItem = carportNeededItems.get(i);
 

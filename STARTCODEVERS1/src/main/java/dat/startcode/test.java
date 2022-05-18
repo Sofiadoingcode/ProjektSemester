@@ -22,7 +22,7 @@ public class test {
 
        BOMAlgorithm bomAlgorithm = new BOMAlgorithm(connectionPool);
 
-        CarportChoices c = new CarportChoices(4, 6, 9);
+        CarportChoices c = new CarportChoices(4, 6, 8);
 
        List<ProductLine> fullbom = bomAlgorithm.generateBOM(c);
 
