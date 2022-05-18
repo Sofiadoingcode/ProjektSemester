@@ -575,24 +575,4 @@ public class BOMAlgorithm {
 
 
 
-//    private int getNeededProductID(List<ProductDTO> allproducts, String neededitem) {
-//
-//        if(neededitem.equals("stolpe")){
-//
-//
-//
-//        }
-//
-//        List<ProductDTO> onlyNeededItems = new ArrayList<>();
-//        for(ProductDTO p: allproducts) {
-//            if(p.getProducttype().equals())
-//
-//
-//        }
-//
-//
-//        return 0;
-//    }
-
-
 }
