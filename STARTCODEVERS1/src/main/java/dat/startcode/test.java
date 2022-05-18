@@ -32,15 +32,11 @@ public class test {
         } catch (DatabaseException e) {
             e.printStackTrace();
         }
-        rems = bomAlgorithm.calculateRemProductLines(allproducts, 8, 8, 200);
+        rems = bomAlgorithm.calculateRemProductLines(allproducts, 8, 800, 800);
 
-        spærs = bomAlgorithm.calculateSpærProductLines(allproducts, 8, 450, 220);
+        spærs = bomAlgorithm.calculateSpærProductLines(allproducts, 8, 800, 320);
 
         HashMap<Integer, Integer> lengths = bomAlgorithm.loadAllLengths();
-
-        for (Integer value : lengths.values()) {
-            System.out.println(value);
-        }
 
         for (ProductLine spær : spærs) {
             System.out.println(spær.getLengthID());

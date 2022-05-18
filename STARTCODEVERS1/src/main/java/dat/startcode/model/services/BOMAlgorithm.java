@@ -185,14 +185,13 @@ public class BOMAlgorithm {
         }
 
         while(carportLengthRem>0){
+            minLengthRem = maxLengthRem;
             for (Integer i : lengths.keySet()){
-                if (lengths.get(i)>carportLengthRem) {
+                if (lengths.get(i)<=minLengthRem && lengths.get(i)>=carportLengthRem){
                     minLengthRem = lengths.get(i);
-                    if (lengths.get(i)<=minLengthRem){
-                        minLengthRem = lengths.get(i);
-                        minLengthRemId = i;
-                    }
+                    minLengthRemId = i;
                 }
+
             }
             ProductLine productLineRem = new ProductLine(rem.getIdproduct(),remMultiplier, minLengthRemId, calculateTotalProductPrice(allproducts, rem.getIdproduct(), remMultiplier, minLengthRem));
             returnList.add(productLineRem);
@@ -219,6 +218,7 @@ public class BOMAlgorithm {
         int spærMultiplier=0;
         double spærWidth=0;
         List<ProductDTO> spærProducts = new ArrayList<>();
+        List<ProductDTO> beslagProducts = new ArrayList<>();
         List<ProductLine> returnList = new ArrayList<>();
 
         HashMap<Integer, Integer> lengths = loadAllLengths();
@@ -226,9 +226,14 @@ public class BOMAlgorithm {
         for (int i=0 ; i<allproducts.size(); i++){
             if(allproducts.get(i).getProducttype().equals("rem")){
                 spærProducts.add(allproducts.get(i));
+            } if(allproducts.get(i).getProducttype().equals("beslag")){
+                beslagProducts.add(allproducts.get(i));
             }
         }
         ProductDTO spær = spærProducts.get(0);
+        ProductDTO beslagHøjre = beslagProducts.get(0);
+        ProductDTO beslagVenstre = beslagProducts.get(1);
+
         spærWidth = spær.getWidth();
         spærWidth=spærWidth/10;
         carportLengthSpærCalc=carportLengthSpær-spærWidth;
@@ -249,14 +254,13 @@ public class BOMAlgorithm {
         }
 
         while(carportWidthSpær>0){
+            minLengthSpær = maxLengthSpær;
             for (Integer i : lengths.keySet()){
-                if (lengths.get(i)>=carportWidthSpær) {
-                    minLengthSpær = lengths.get(i);
-                    if (lengths.get(i)<=minLengthSpær){
+                    if (lengths.get(i)<=minLengthSpær && lengths.get(i)>=carportWidthSpær){
                         minLengthSpær = lengths.get(i);
                         minLengthSpærId = i;
                     }
-                }
+
             }
             ProductLine productLineSpær = new ProductLine(spær.getIdproduct(),spærMultiplier, minLengthSpærId, calculateTotalProductPrice(allproducts, spær.getIdproduct(), spærMultiplier, minLengthSpær));
             returnList.add(productLineSpær);
