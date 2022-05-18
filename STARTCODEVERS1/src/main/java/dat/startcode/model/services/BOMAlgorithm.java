@@ -1,8 +1,10 @@
 package dat.startcode.model.services;
 
 import dat.startcode.model.DTOs.ProductDTO;
+import dat.startcode.model.DTOs.ProductionlineDTO;
 import dat.startcode.model.config.ApplicationStart;
 import dat.startcode.model.entities.CarportChoices;
+import dat.startcode.model.entities.Product;
 import dat.startcode.model.entities.ProductLine;
 import dat.startcode.model.exceptions.DatabaseException;
 import dat.startcode.model.persistence.BOMMapper;
@@ -19,8 +21,10 @@ public class BOMAlgorithm {
     private int tagHeight = 0;
     private ConnectionPool connectionPool;
     private double carportLength;
+    private ProductDTO rem;
 
-    public BOMAlgorithm() {
+
+    public BOMAlgorithm() throws DatabaseException {
         this.connectionPool = ApplicationStart.getConnectionPool();
 
 
@@ -29,12 +33,14 @@ public class BOMAlgorithm {
     public BOMAlgorithm(ConnectionPool connectionPool) throws DatabaseException {
         this.connectionPool = connectionPool;
 
-
-
     }
 
-    public List<ProductLine> generateBOM(CarportChoices carportChoice) {
 
+
+
+
+
+    public List<ProductLine> generateBOM(CarportChoices carportChoice) {
 
 
         List<ProductLine> fullbom = new ArrayList<>();
@@ -42,7 +48,6 @@ public class BOMAlgorithm {
         List<ProductDTO> allproducts = loadAllProducts();
 
         List<String> carportNeededItems = returnNeededListCarport();
-
 
         List<String> shedNeededItems = returnNeededListShed();
 
@@ -61,7 +66,6 @@ public class BOMAlgorithm {
                 fullbom.add(pl);
 
             }
-
 
         }
 
@@ -248,7 +252,7 @@ public class BOMAlgorithm {
             }
         }
         ProductDTO rem = remProducts.get(0);
-
+        this.rem = rem;
         for (Integer i : lengths.keySet()){
             if (lengths.get(i)>maxLengthRem) {
                 maxLengthRem = lengths.get(i);
@@ -394,13 +398,6 @@ public class BOMAlgorithm {
         return returnList;
     }
 
-    private List<ProductLine> calculateSternProductLines(List<ProductDTO> allproducts, double carportHeight,
-                                                         double carportWidth, double carportLength) {
-        List<ProductLine> returnList = new ArrayList<>();
-
-
-        return returnList;
-    }
 
     private List<ProductLine> calculateTagProductLines(List<ProductDTO> allproducts, double carportWidth, double carportLength) {
         List<ProductLine> returnList = new ArrayList<>();
@@ -529,13 +526,101 @@ public class BOMAlgorithm {
         return returnList;
     }
 
-    private List<ProductLine> calculateVandbrætProductLines(List<ProductDTO> allproducts, double carportHeight,
-                                                            double carportWidth, double carportLength) {
+
+
+    public List<ProductLine> calculateSternProductLines(List<ProductDTO> allproducts, double carportHeight, double carportWidth, double carportLength) {
+        List<ProductLine> returnList = new ArrayList<>();
+        HashMap<Integer, Integer> lengths = loadAllLengths();
+
+        List<ProductDTO> sterns = getAllNeededProducts(allproducts, "stern");
+        //todo:replace rem
+        ProductDTO rem = new ProductDTO(1, "lol", "stk", 0, 0, 0, 0, 0, "String");
+        List<ProductDTO> upperStern = new ArrayList<>();
+        ProductDTO theUpperStern = null;
+        for (ProductDTO product : sterns) {
+
+            if (product.getWidth() >= rem.getWidth()) {
+                upperStern.add(product);
+                try {
+                    if (theUpperStern.getPricemeasurment() < product.getPricemeasurment())
+                        theUpperStern = product;
+
+                } catch (NullPointerException e) {
+                    theUpperStern = product;
+                }
+            }
+
+        }
+
+        int[] arr = getLengthsNeeded(carportLength);
+        double price = calculateTotalProductPrice(allproducts, theUpperStern.getIdproduct(), arr[1], arr[0] );
+
+
+        ProductLine productLine = new ProductLine(theUpperStern.getIdproduct(), arr[1]*2, arr[2], price);
+        returnList.add(productLine);
+
+
+        arr = getLengthsNeeded(carportWidth);
+        price = calculateTotalProductPrice(allproducts, theUpperStern.getIdproduct(), arr[1], arr[0] );
+        productLine = new ProductLine(theUpperStern.getIdproduct(), arr[1]*2, arr[2], price);
+
+        returnList.add(productLine);
+
+        return returnList;
+    }
+
+
+    private List<ProductLine> calculateTagProductLines(List<ProductDTO> allproducts, double carportHeight, double carportWidth, double carportLength) {
         List<ProductLine> returnList = new ArrayList<>();
 
 
         return returnList;
     }
+
+    public List<ProductLine> calculateVandbrætProductLines(List<ProductDTO> allproducts, double carportHeight, double carportWidth, double carportLength) {
+
+        List<ProductLine> returnList = new ArrayList<>();
+        HashMap<Integer, Integer> lengths = loadAllLengths();
+        List<ProductDTO> allUssableProducts = getAllNeededProducts(allproducts, "brædt");
+
+        for (int i = 0; i < allUssableProducts.size(); i++) {
+            ProductDTO temp = allUssableProducts.get(i);
+
+
+            if (temp.getWidth() <= 25) {
+                allUssableProducts.remove(i);
+                i--;
+            }
+        }
+        ProductDTO theVandBrad = null;
+
+        for (ProductDTO product : allUssableProducts) {
+            try {
+                if (product.getPricemeasurment() < theVandBrad.getPricemeasurment())
+                    theVandBrad = product;
+
+            } catch (NullPointerException e) {
+                theVandBrad = product;
+            }
+        }
+        System.out.println("carport length " + carportLength);
+        int[] vandBradSide = getLengthsNeeded( carportLength);
+        int[] vandBradFront = getLengthsNeeded( carportWidth);
+
+        int vandBradSideAmount = vandBradSide[1]*2;
+        int vandBradFrontAmount = vandBradFront[1];
+
+
+
+        ProductLine vandBradSideProductLine = new ProductLine(theVandBrad.getIdproduct(), vandBradSide[1]*2,vandBradSide[2],vandBradSideAmount*theVandBrad.getPricemeasurment()*vandBradSide[0]/100);
+        ProductLine vandBradFrontProductLine = new ProductLine(theVandBrad.getIdproduct(), vandBradFront[1], vandBradFront[2], vandBradFrontAmount*theVandBrad.getPricemeasurment()*vandBradFront[0]/100 );
+
+        returnList.add(vandBradFrontProductLine);
+        returnList.add(vandBradSideProductLine);
+
+        return returnList;
+    }
+
 
     private List<ProductDTO> getAllNeededProducts(List<ProductDTO> allproducts, String type) {
         List<ProductDTO> returnList = new ArrayList<>();
@@ -573,6 +658,40 @@ public class BOMAlgorithm {
         return totalProductPrice;
     }
 
+    private int[] getLengthsNeeded(double length) {
+        //calculates the number of equally long planks
+
+        HashMap<Integer, Integer> lengths = loadAllLengths();
+        int max_lengths = lengths.get(1);
+        for (int i = 1; i <= lengths.size(); i++) {
+            int templength = lengths.get(i);
+
+            if (templength > max_lengths) {
+                max_lengths = templength;
+            }
+        }
+
+
+        double numberNeeded = 1;
+        numberNeeded =  Math.ceil(length / max_lengths);
+        int delta_l = max_lengths;
+        int theLength = lengths.get(1);
+        int k = 0;
+        for (int i = 1; i <= lengths.size(); i++) {
+            int templength = (int) (lengths.get(i) * numberNeeded);
+            double tempDelta_l = lengths.get(i) * numberNeeded - length;
+
+            if (delta_l > tempDelta_l && tempDelta_l >= 0) {
+                delta_l = (int) tempDelta_l;
+                theLength = lengths.get(i);
+                k = i;
+            }
+            System.out.println(numberNeeded);
+
+        }
+        return new int[]{theLength,(int) numberNeeded, k};
+
+    }
 
 
 }
