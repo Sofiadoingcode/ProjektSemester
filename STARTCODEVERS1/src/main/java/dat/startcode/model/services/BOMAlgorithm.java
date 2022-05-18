@@ -46,7 +46,7 @@ public class BOMAlgorithm {
 
         List<String> shedNeededItems = returnNeededListShed();
 
-        for (int i = 0; i < carportNeededItems.size() + shedNeededItems.size() - 1; i++) {
+        for (int i = 0; i < carportNeededItems.size() + shedNeededItems.size(); i++) {
 
             String neededItem = carportNeededItems.get(i);
 
@@ -178,7 +178,7 @@ public class BOMAlgorithm {
         return returnList;
     }
 
-    private List<ProductLine> calculateSternProductLines(List<ProductDTO> allproducts, double carportHeight, double carportWidth, double carportLength) {
+    public List<ProductLine> calculateSternProductLines(List<ProductDTO> allproducts, double carportHeight, double carportWidth, double carportLength) {
         List<ProductLine> returnList = new ArrayList<>();
 
         List<ProductDTO> sterns = getAllNeededProducts(allproducts, "stern");
@@ -199,11 +199,18 @@ public class BOMAlgorithm {
                 }
             }
 
-            int [] arr = getLengthsNeeded(carportLength);
-            ProductionlineDTO productionlineDTO = new ProductionlineDTO(theUpperStern.getIdproduct(),theUpperStern.getName(),arr[1], arr[0],theUpperStern.getIdcategory(),theUpperStern.getUnit(),
-
-
         }
+
+        int[] arr = getLengthsNeeded(carportLength);
+        double price = arr[1]*2*theUpperStern.getPricemeasurment()*arr[0]/100;
+
+        ProductLine productLine = new ProductLine(theUpperStern.getIdproduct(), arr[1]*2, arr[2], price);
+        returnList.add(productLine);
+
+        arr = getLengthsNeeded(carportWidth);
+        productLine = new ProductLine(theUpperStern.getIdproduct(), arr[1]*2, arr[2]*2, price);
+
+        returnList.add(productLine);
 
         return returnList;
     }
@@ -216,16 +223,46 @@ public class BOMAlgorithm {
         return returnList;
     }
 
-    private List<ProductLine> calculateVandbrætProductLines(List<ProductDTO> allproducts, double carportHeight, double carportWidth, double carportLength) {
+    public List<ProductLine> calculateVandbrætProductLines(List<ProductDTO> allproducts, double carportHeight, double carportWidth, double carportLength) {
 
         List<ProductLine> returnList = new ArrayList<>();
 
-        List<ProductDTO> allUssableProducts = getAllNeededProducts(allproducts,"brædt");
+        List<ProductDTO> allUssableProducts = getAllNeededProducts(allproducts, "brædt");
+
+        for (int i = 0; i < allUssableProducts.size(); i++) {
+            ProductDTO temp = allUssableProducts.get(i);
+
+
+            if (temp.getWidth() <= 25) {
+                allUssableProducts.remove(i);
+                i--;
+            }
+        }
+        ProductDTO theVandBrad = null;
+
+        for (ProductDTO product : allUssableProducts) {
+            try {
+                if (product.getPricemeasurment() < theVandBrad.getPricemeasurment())
+                    theVandBrad = product;
+
+            } catch (NullPointerException e) {
+                theVandBrad = product;
+            }
+        }
+        System.out.println("carport length " + carportLength);
+        int[] vandBradSide = getLengthsNeeded( carportLength);
+        int[] vandBradFront = getLengthsNeeded( carportWidth);
+
+        int vandBradSideAmount = vandBradSide[1]*2;
+        int vandBradFrontAmount = vandBradFront[1];
 
 
 
+        ProductLine vandBradSideProductLine = new ProductLine(theVandBrad.getIdproduct(), vandBradSide[1]*2,vandBradSide[2],vandBradSideAmount*theVandBrad.getPricemeasurment()*vandBradSide[0]/100);
+        ProductLine vandBradFrontProductLine = new ProductLine(theVandBrad.getIdproduct(), vandBradFront[1], vandBradFront[2], vandBradFrontAmount*theVandBrad.getPricemeasurment()*vandBradFront[0]/100 );
 
-
+        returnList.add(vandBradFrontProductLine);
+        returnList.add(vandBradSideProductLine);
 
         return returnList;
     }
@@ -265,9 +302,9 @@ public class BOMAlgorithm {
 //    }
 
 
-    public int[] getLengthsNeeded(double length) {
+    private int[] getLengthsNeeded(double length) {
         //calculates the number of equally long planks
-
+        System.out.println("length" + length);
         int max_lengths = lengths.get(1);
         for (int i = 1; i <= lengths.size(); i++) {
             int templength = lengths.get(i);
@@ -277,22 +314,25 @@ public class BOMAlgorithm {
             }
         }
 
-        int numberNeeded = 1;
-        numberNeeded = (int) Math.ceil(length / max_lengths);
+        System.out.println(max_lengths);
+        double numberNeeded = 1;
+        numberNeeded =  Math.ceil(length / max_lengths);
         int delta_l = max_lengths;
         int theLength = lengths.get(1);
-
+        int k = 0;
         for (int i = 1; i <= lengths.size(); i++) {
-            int templength = lengths.get(i)*numberNeeded;
-            double tempDelta_l =lengths.get(i)*numberNeeded - length;
+            int templength = (int) (lengths.get(i) * numberNeeded);
+            double tempDelta_l = lengths.get(i) * numberNeeded - length;
 
-            if (delta_l > tempDelta_l && tempDelta_l>=0){
-                delta_l = (int)tempDelta_l;
+            if (delta_l > tempDelta_l && tempDelta_l >= 0) {
+                delta_l = (int) tempDelta_l;
                 theLength = lengths.get(i);
+                k = i;
             }
+            System.out.println(numberNeeded);
 
         }
-        return new int[]{theLength, numberNeeded};
+        return new int[]{theLength,(int) numberNeeded, k};
 
     }
 

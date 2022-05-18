@@ -45,4 +45,14 @@ public class ProductLine {
     public void setTotalproductprice(double totalproductprice) {
         this.totalproductprice = totalproductprice;
     }
+
+    @Override
+    public String toString() {
+        return "ProductLine{" +
+                "productID=" + productID +
+                ", amount=" + amount +
+                ", lengthID=" + lengthID +
+                ", totalproductprice=" + totalproductprice +
+                '}';
+    }
 }

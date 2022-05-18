@@ -4,15 +4,18 @@ public class CarportChoices {
     private double height;
     private double width;
     private double length;
+
 //    private boolean wantsShed;
 //    private double roofAngle;
 
     public CarportChoices (double height, double width, double length) {
         this.height = height;
         this.width = width;
-//        this.length = length;
+        this.length = length;
 //        this.wantsShed = wantsShed;
     }
+
+
 
 
     public double getHeight() {
