@@ -34,6 +34,7 @@ public class GenerateBOM extends Command {
         List<ProductLine> BOMProductlines = new ArrayList<>();
         BOMProductlines = bomAlgorithm.generateBOM(carportChoice);
 
+        String description = bomAlgorithm.getDescription();
 
 
         //NOT CORRECT JUST FOR NOW

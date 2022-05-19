@@ -225,8 +225,8 @@
 
                                                                 <div class="col">
 
-                                                                        <button type="submit" class="">
-                                                                                Submit
+                                                                        <button type="submit" class="" formaction="fc/createRequest?command=createRequest" formmethod="post">
+                                                                                Se Forespørgsel
                                                                         </button>
                                                                 </div>
 
