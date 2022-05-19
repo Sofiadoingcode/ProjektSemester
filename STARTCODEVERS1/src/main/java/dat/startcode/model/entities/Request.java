@@ -6,11 +6,11 @@ public class Request {
     private int idbom;
     private boolean isAccepted;
     private boolean isPaid;
-    private int finalPrice;
+    private double finalPrice;
     private int iduser;
     private int idcarportchoices;
 
-    public Request(int idorder, int idcustomer, int idbom, boolean isAccepted, boolean isPaid, int finalPrice, int iduser, int idcarportchoices) {
+    public Request(int idorder, int idcustomer, int idbom, boolean isAccepted, boolean isPaid, double finalPrice, int iduser, int idcarportchoices) {
         this.idorder = idorder;
         this.idcustomer = idcustomer;
         this.idbom = idbom;
@@ -61,7 +61,7 @@ public class Request {
         isPaid = paid;
     }
 
-    public int getFinalPrice() {
+    public double getFinalPrice() {
         return finalPrice;
     }
 

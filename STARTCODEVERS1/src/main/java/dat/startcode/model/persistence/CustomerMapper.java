@@ -22,7 +22,7 @@ public class CustomerMapper implements ICustomerMapper {
     @Override
     public List<Customer> getAllNonAcceptedRequests() throws DatabaseException {
         List<Customer> customerList = new ArrayList<>();
-        String sql = "SELECT idcustomer, name, zipcode, phonenumber, email, c.city, o.isAccepted, o.idorder FROM `customer` INNER JOIN city c USING(zipcode) INNER JOIN `order` o USING(idCustomer) WHERE isAccepted = '0'";
+        String sql = "SELECT idcustomer, name, zipcode, phonenumber, email, c.city, o.isAccepted, o.idorder, o.finalprice FROM `customer` INNER JOIN city c USING(zipcode) INNER JOIN `order` o USING(idCustomer) WHERE isAccepted = '0'";
         try (Connection connection = connectionPool.getConnection()) {
             try (PreparedStatement ps = connection.prepareStatement(sql)) {
                 ResultSet rs = ps.executeQuery();
@@ -34,8 +34,9 @@ public class CustomerMapper implements ICustomerMapper {
                     String phoneNumber = rs.getString("phoneNumber");
                     String email = rs.getString("email");
                     int idorder = rs.getInt("idorder");
+                    double finalprice = rs.getDouble("finalprice");
 
-                    Customer customer = new Customer(customerID, name, zipcode, city, phoneNumber, email, idorder);
+                    Customer customer = new Customer(customerID, name, zipcode, city, phoneNumber, email, idorder, finalprice);
                     customerList.add(customer);
 
                 }
@@ -52,7 +53,7 @@ public class CustomerMapper implements ICustomerMapper {
 
         List<Customer> customerList = new ArrayList<>();
 
-        String sql = "SELECT idcustomer, name, zipcode, phonenumber, email, c.city, o.isAccepted, o.isPaid, o.idorder FROM `customer` INNER JOIN city c USING(zipcode) INNER JOIN `order` o USING(idCustomer) WHERE isAccepted='1' AND isPaid='0'";
+        String sql = "SELECT idcustomer, name, zipcode, phonenumber, email, c.city, o.isAccepted, o.isPaid, o.idorder, o.finalprice FROM `customer` INNER JOIN city c USING(zipcode) INNER JOIN `order` o USING(idCustomer) WHERE isAccepted='1' AND isPaid='0'";
 
         try (Connection connection = connectionPool.getConnection()) {
             try (PreparedStatement ps = connection.prepareStatement(sql)) {
@@ -65,8 +66,9 @@ public class CustomerMapper implements ICustomerMapper {
                     String phoneNumber = rs.getString("phoneNumber");
                     String email = rs.getString("email");
                     int idorder = rs.getInt("idorder");
+                    double finalprice = rs.getDouble("finalprice");
 
-                    Customer customer = new Customer(customerID, name, zipcode, city, phoneNumber, email, idorder);
+                    Customer customer = new Customer(customerID, name, zipcode, city, phoneNumber, email, idorder, finalprice);
                     customerList.add(customer);
 
 
@@ -86,7 +88,7 @@ public class CustomerMapper implements ICustomerMapper {
 
         List<Customer> customerList = new ArrayList<>();
 
-        String sql = "SELECT idcustomer, name, zipcode, phonenumber, email, c.city, o.isPaid, o.idorder FROM `customer` INNER JOIN city c USING(zipcode) INNER JOIN `order` o USING(idCustomer) WHERE isPaid='1'";
+        String sql = "SELECT idcustomer, name, zipcode, phonenumber, email, c.city, o.isPaid, o.idorder, o.finalprice FROM `customer` INNER JOIN city c USING(zipcode) INNER JOIN `order` o USING(idCustomer) WHERE isPaid='1'";
 
         try (Connection connection = connectionPool.getConnection()) {
             try (PreparedStatement ps = connection.prepareStatement(sql)) {
@@ -99,8 +101,9 @@ public class CustomerMapper implements ICustomerMapper {
                     String phoneNumber = rs.getString("phoneNumber");
                     String email = rs.getString("email");
                     int idorder = rs.getInt("idorder");
+                    double finalprice = rs.getDouble("finalprice");
 
-                    Customer customer = new Customer(customerID, name, zipcode, city, phoneNumber, email, idorder);
+                    Customer customer = new Customer(customerID, name, zipcode, city, phoneNumber, email, idorder, finalprice);
                     customerList.add(customer);
 
                 }
@@ -197,6 +200,23 @@ public class CustomerMapper implements ICustomerMapper {
             System.out.println(orderId);
             try (PreparedStatement ps = connection.prepareStatement(sql)) {
                 ps.setInt(1, orderId);
+                ps.executeUpdate();
+            } catch (Exception e) {
+                System.out.println(e);
+            }
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return isPaid;
+    }
+
+    public boolean payForRequest(int orderId) throws DatabaseException {
+        boolean isPaid = false;
+        try (Connection connection = connectionPool.getConnection()) {
+            String sql = "UPDATE `fogarchive`.`order` SET `isPaid` = '1' WHERE `idorder` = ?";
+            try (PreparedStatement ps = connection.prepareStatement(sql)) {
+                ps.setInt(1, orderId);
+                System.out.println("OrderId: " + orderId);
                 ps.executeUpdate();
             } catch (Exception e) {
                 System.out.println(e);

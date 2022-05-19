@@ -33,23 +33,25 @@ public class BOMList extends Command {
         try {
 
             BOMDTO bomdto = bomMapper.getBOM(orderId);
+
+
             List<BOMDTO> bomdtos = new ArrayList<>();
             bomdtos.add(bomdto);
 
             List<ProductionlineDTO> productionlines = bomMapper.getBOMProductlines(bomdto);
+            
+
             List<ProductionlineDTO> category1 = new ArrayList<>();
             List<ProductionlineDTO> category2 = new ArrayList<>();
             for(ProductionlineDTO dto: productionlines) {
                 if (dto.getCategory() == 1) {
                     category1.add(dto);
-                } else if (dto.getCategory() == 2) {
+                } else {
                     category2.add(dto);
-
                 }
 
 
             }
-
 
 
             request.setAttribute("fullbom", bomdtos);

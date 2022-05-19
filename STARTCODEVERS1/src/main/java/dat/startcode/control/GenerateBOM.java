@@ -30,14 +30,17 @@ public class GenerateBOM extends Command {
 
         CarportChoices carportChoice = new CarportChoices(height, width, length);
 
-
         BOMAlgorithm bomAlgorithm = new BOMAlgorithm();
         List<ProductLine> BOMProductlines = new ArrayList<>();
         BOMProductlines = bomAlgorithm.generateBOM(carportChoice);
 
+        String description = bomAlgorithm.getDescription();
+
 
         //NOT CORRECT JUST FOR NOW
         return "orderintroduction.jsp";
+
+
     }
 }
 

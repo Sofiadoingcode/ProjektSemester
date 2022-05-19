@@ -3,11 +3,11 @@ package dat.startcode.model.entities;
 public class ProductLine {
     private int productID;
     private int amount;
-    private int lengthID;
+    private Integer lengthID;
     private double totalproductprice;
 
 
-    public ProductLine(int productID, int amount, int lengthID, double totalproductprice) {
+    public ProductLine(int productID, int amount, Integer lengthID, double totalproductprice) {
         this.productID = productID;
         this.amount = amount;
         this.lengthID = lengthID;
@@ -30,7 +30,7 @@ public class ProductLine {
         this.amount = amount;
     }
 
-    public int getLengthID() {
+    public Integer getLengthID() {
         return lengthID;
     }
 

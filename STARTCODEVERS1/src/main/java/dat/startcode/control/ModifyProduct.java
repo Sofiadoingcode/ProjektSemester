@@ -28,8 +28,6 @@ public class ModifyProduct extends Command {
         String category = request.getParameter("product_category2");
         String productType = request.getParameter("product_producttype");
 
-        System.out.println(productType);
-
         int id = Integer.parseInt(request.getParameter("product_id"));
         int idname = productMapper.getNameID(name);
         int idunit = productMapper.getUnitTypeID(unit);
@@ -43,6 +41,6 @@ public class ModifyProduct extends Command {
         productMapper.modifyProduct(id, idname,idunit,idcategory,price,heihgt,width,amount,idproductType);
 
 
-        return "/fc/ViewProducts?command=ViewProducts";
+        return "/fc/viewProducts?command=viewProducts";
     }
 }
