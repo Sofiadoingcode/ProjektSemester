@@ -35,7 +35,6 @@ abstract class Command
         commands.put("showSvg", new ShowSVG());
         commands.put("payForRequest", new PayForRequest());
 
-
     }
 
     static Command from( HttpServletRequest request ) {
@@ -46,7 +45,7 @@ abstract class Command
         return commands.getOrDefault(commandName, new UnknownCommand() );   // unknowncommand er default.
     }
 
-    abstract String execute( HttpServletRequest request, HttpServletResponse response )
+    abstract String execute( HttpServletRequest request, HttpServletResponse response ) 
             throws DatabaseException;
 
 }
