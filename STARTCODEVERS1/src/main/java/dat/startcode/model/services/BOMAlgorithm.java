@@ -621,6 +621,27 @@ public class BOMAlgorithm {
 
         returnList.add(productLine);
 
+
+        List<ProductDTO> neededScrews = getAllNeededProducts("skrue");
+        ProductDTO productDTO =null;
+
+
+        for (ProductDTO product : neededScrews) {
+            if (product.getHeight() == 4.5 && product.getWidth() == 60)
+            productDTO = product;
+
+        }
+        if (productDTO == null){
+            productDTO = neededScrews.get(0);
+
+        }
+
+        int amount = 1;
+
+        ProductLine screw = new ProductLine(productDTO.getIdproduct(),amount,null,amount*productDTO.getPricemeasurment());
+
+        returnList.add(screw);
+
         return returnList;
     }
 
