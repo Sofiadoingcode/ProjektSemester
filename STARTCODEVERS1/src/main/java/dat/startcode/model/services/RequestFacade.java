@@ -20,7 +20,6 @@ public class RequestFacade {
         try {
 
 
-
             requestMapper.insertShedChoices(shedWidth, shedLength, floorMaterial);
             requestMapper.insertCarportChoicesShed(carportHeight, carportLength, carportWidth, roofMaterial, roofShape, roofAngle);
             requestMapper.insertCustomer(name, zipCode, phoneNumber, email);
@@ -37,6 +36,7 @@ public class RequestFacade {
 
         RequestMapper requestMapper = new RequestMapper(connectionPool);
         CustomerMapper customerMapper = new CustomerMapper(connectionPool);
+
 
         try {
             requestMapper.insertCarportChoices(carportHeight, carportLength, carportWidth, roofMaterial, roofShape, roofAngle);

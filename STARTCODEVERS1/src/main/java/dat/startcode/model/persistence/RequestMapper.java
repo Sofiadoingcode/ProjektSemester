@@ -62,6 +62,8 @@ public class RequestMapper {
 
         try (Connection connection = connectionPool.getConnection()) {
 
+            System.out.println(" ASdasdasfkaksbfak ");
+
             String sql = "INSERT INTO `fogarchive`.`carport choices` (height, length, width, roofmateriel, roofshape, roofangle, idshed) VALUES (?, ?, ?, ?, ?, ?, ?) ";
             try (PreparedStatement ps1 = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
                 ps1.setInt(1, carportHeight);
@@ -146,7 +148,7 @@ public class RequestMapper {
 
 
         Logger.getLogger("web").log(Level.INFO, "");
-
+        System.out.println("id customer:" + idCustomer + " idbom: " + idBom + " bomPrice: " + bomPrice + " idUser: " + idUser + " idCardport: " + idCarport );
 
         try (Connection connection = connectionPool.getConnection()) {
 

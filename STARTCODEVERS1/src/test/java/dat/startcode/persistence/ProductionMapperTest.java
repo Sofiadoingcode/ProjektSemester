@@ -15,26 +15,35 @@ import org.junit.jupiter.api.Test;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class UserMapperTest {
+class ProductionMapperTest {
     private final static String USER = "root";
     private final static String PASSWORD = "root";
     private final static String URL = "jdbc:mysql://localhost:3306/startcode_test?serverTimezone=CET&allowPublicKeyRetrieval=true&useSSL=false";
 
     private static ConnectionPool connectionPool;
-
-
+    static private ProductMapper productMapper;
+    private static Product product;
 
     @BeforeAll
     public static void setUpClass() {
         connectionPool = new ConnectionPool();
+        productMapper = new ProductMapper(connectionPool);
+        product = new Product(0, "testBolt", "Beslag & Skruer", "stk", 100);
+        product.setProductType("skruer");
+        product.setWidth(10);
+        product.setHeight(5);
+        product.setAmount(1);
+
 
     }
 
     @BeforeEach
     void setUp() {
+
 
     }
 
@@ -48,34 +57,23 @@ class UserMapperTest {
     }
 
     @Test
-    void login() throws DatabaseException {
+    void insertProduct() throws DatabaseException {
 
+      List<Product> products = productMapper.getAllProducts();
 
+      assertEquals(product,products.get(products.size()-1));
 
-        User expectedUser = new User("fog", "123", 1);
-        User actualUser = UserFacade.login("fog", "123", connectionPool);
-        System.out.println(actualUser);
-        assertEquals(expectedUser, actualUser);
-    }
-
-    @Test
-    void invalidPasswordLogin() throws DatabaseException {
-        assertThrows(DatabaseException.class, () -> UserFacade.login("user", "123", connectionPool));
 
     }
 
-    @Test
-    void invalidUserNameLogin() throws DatabaseException {
-        assertThrows(DatabaseException.class, () -> UserFacade.login("bob", "1234", connectionPool));
-    }
 
     @Test
-    void createUser() throws DatabaseException {
-        User newUser = UserFacade.createUser("jill", "1234", 2, connectionPool);
-        User logInUser = UserFacade.login("jill", "1234", connectionPool);
-        User expectedUser = new User("jill", "1234", 2);
-        assertEquals(expectedUser, newUser);
-        assertEquals(expectedUser, logInUser);
+    void insertPro()throws DatabaseException{
+
+        List<Product> products = productMapper.getAllProducts();
+        assertDoesNotThrow(()-> products.get(0));
+
+
 
     }
 }

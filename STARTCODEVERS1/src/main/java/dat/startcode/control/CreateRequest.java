@@ -5,6 +5,7 @@ import dat.startcode.model.entities.User;
 import dat.startcode.model.exceptions.DatabaseException;
 import dat.startcode.model.persistence.RequestMapper;
 import dat.startcode.model.persistence.UserMapper;
+import dat.startcode.model.services.RequestFacade;
 import dat.startcode.model.services.UserFacade;
 import dat.startcode.model.persistence.ConnectionPool;
 
@@ -51,10 +52,11 @@ public class CreateRequest extends Command
             int shedWidth = Integer.parseInt(request.getParameter("shedWidth"));
             int shedLength = Integer.parseInt(request.getParameter("shedLength"));
             String floorMaterial = request.getParameter("floorMaterial");
-            requestMapper.insertFullRequestShed(shedWidth, shedLength, floorMaterial, height, length, width, tagMateriale, tag, angle, name, zipCode, phoneNumber, email, user.getIdUser(), 1);
+
+            RequestFacade.insertFullRequestShed(shedWidth, shedLength, floorMaterial, height, length, width, tagMateriale, tag, angle, name, zipCode, phoneNumber, email, user.getIdUser(), 1,connectionPool);
         }
         else{
-            requestMapper.insertFullRequest(height, length, width, tagMateriale, tag, angle, name, zipCode, phoneNumber, email, user.getIdUser(), 1);
+            RequestFacade.insertFullRequest(height, length, width, tagMateriale, tag, angle, name, zipCode, phoneNumber, email, user.getIdUser(), 1,connectionPool);
         }
         request.setAttribute("tempUser", user);
         return "orderintroduction.jsp";
