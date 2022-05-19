@@ -1,4 +1,4 @@
-.btn-viewcarportorder-betal:link, .btn-viewcarportorder-betal:visited {
+.btn-viewcarportorder-submit:link, .btn-viewcarportorder-submit:visited {
     display: inline-block;
     text-decoration: none;
     letter-spacing: 0.02px;
@@ -11,11 +11,11 @@
     color: white;
 }
 
-.btn-viewcarportorder-betal:hover, .btn-viewcarportorder-betal:active{
+.btn-viewcarportorder-submit:hover, .btn-viewcarportorder-submit:active{
     background-color: darkgreen;
 }
 
-.btn-viewcarportorder-submit:link, .btn-viewcarportorder-betal:visited {
+.btn-viewcarportorder-betal:link, .btn-viewcarportorder-betal:visited {
     display: inline-block;
     text-decoration: none;
     letter-spacing: 0.02px;
@@ -28,6 +28,9 @@
     color: white;
 }
 
+.btn-viewcarportorder-betal:hover, .btn-viewcarportorder-betal:active{
+    background-color: darkblue;
+}
 
 .textDecorationViewCarportOrder{
     font-size: 2rem;
@@ -37,4 +40,19 @@
 .textPaymentMessageDecoration{
     font-size: 2rem;
     font-weight: 300;
+}
+
+
+.payButton{
+    display: inline-block;
+    text-decoration: none;
+    letter-spacing: 0.02px;
+    font-size: 1.25rem;
+    font-weight: 500;
+    padding: 0.5rem 1rem;
+    border-radius: 2px;
+    border-width: 0px;
+    transition: all 0.3s;
+    background-color: green;
+    color: white;
 }

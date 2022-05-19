@@ -207,4 +207,21 @@ public class CustomerMapper implements ICustomerMapper {
         return isPaid;
     }
 
+    public boolean payForRequest(int orderId) throws DatabaseException {
+        boolean isPaid = false;
+        try (Connection connection = connectionPool.getConnection()) {
+            String sql = "UPDATE `fogarchive`.`order` SET `isPaid` = '1' WHERE `idorder` = ?";
+            try (PreparedStatement ps = connection.prepareStatement(sql)) {
+                ps.setInt(1, orderId);
+                System.out.println("OrderId: " + orderId);
+                ps.executeUpdate();
+            } catch (Exception e) {
+                System.out.println(e);
+            }
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return isPaid;
+    }
+
 }

@@ -63,16 +63,17 @@ public class BOMMapper implements IBOMMapper{
 
     @Override
     public List<ProductionlineDTO> getBOMProductlines(BOMDTO bomdto) throws DatabaseException {
-        System.out.println("AAAA");
+
+
         List<ProductionlineDTO> productionLines = new ArrayList<>();
 
         int bomid = bomdto.getIdbom();
 
 
         String sql = "SELECT idproductionline, idproduct, amount, idbom, l.length, totalproductprice\n" +
-                "FROM productionline\n" +
-                "INNER JOIN length l USING (idlength)\n" +
-                "WHERE idbom = ?";
+                "                FROM productionline\n" +
+                "                left join length l on productionline.idlength=l.idlength\n" +
+                "                WHERE idbom = ?";
 
         try (Connection connection = connectionPool.getConnection()) {
             try (PreparedStatement ps = connection.prepareStatement(sql)) {
@@ -99,8 +100,14 @@ public class BOMMapper implements IBOMMapper{
 
                     int amount = rs.getInt("amount");
 
+                    int length;
 
-                    int length = rs.getInt("length");
+                    if(rs.getObject("length") == null) {
+                        length = 0;
+
+                    } else {
+                        length = rs.getInt("length");
+                    }
 
 
                     int category = productDTO.getIdcategory();

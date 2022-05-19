@@ -26,12 +26,13 @@ abstract class Command
         commands.put("generateBom", new GenerateBOM());
         commands.put("createAdminAccount", new CreateAdminAccount());
         commands.put("deleteAccount", new DeleteAccount());
-        commands.put("ViewProducts", new ViewProducts());
+        commands.put("viewProducts", new ViewProducts());
         commands.put("saveproduct",new SaveProduct());
         commands.put("modifyproduct",new ModifyProduct());
         commands.put("deleteproduct",new DeleteProduct());
         commands.put("createRequest", new CreateRequest());
         commands.put("tempLogin", new TempLogin());
+        commands.put("payForRequest", new PayForRequest());
 
 
     }
