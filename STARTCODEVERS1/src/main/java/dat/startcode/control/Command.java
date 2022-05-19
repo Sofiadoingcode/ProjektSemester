@@ -25,7 +25,7 @@ abstract class Command
         commands.put("BOMlist", new BOMList());
         commands.put("createAdminAccount", new CreateAdminAccount());
         commands.put("deleteAccount", new DeleteAccount());
-        commands.put("ViewProducts", new ViewProducts());
+        commands.put("viewProducts", new ViewProducts());
         commands.put("saveproduct",new SaveProduct());
         commands.put("modifyproduct",new ModifyProduct());
         commands.put("deleteproduct",new DeleteProduct());
