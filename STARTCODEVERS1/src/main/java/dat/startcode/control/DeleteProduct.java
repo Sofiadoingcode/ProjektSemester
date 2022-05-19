@@ -27,7 +27,7 @@ public class DeleteProduct extends Command {
         productMapper.deleteProduct(deleteId);
 
 
-        return "fc/ViewProducts?command=ViewProducts";
+        return "fc/viewProducts?command=viewProducts";
     }
 
 }
