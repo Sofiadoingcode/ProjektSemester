@@ -132,7 +132,7 @@ public class BOMMapper implements IBOMMapper{
     public int createBOMinDB (String description, double totalprice) throws DatabaseException {
         int bomId = 0;
 
-        String sql = "insert into `fogarchive`.bom (totalprice, description) VALUES (?, ?)";
+        String sql = "INSERT INTO `fogarchive`.`bom` (`totalprice`,`description`) VALUES (?,?)";
 
         System.out.println("cb1");
 
@@ -143,7 +143,7 @@ public class BOMMapper implements IBOMMapper{
                 System.out.println("cb2");
                 ps.setString(2, description);
                 System.out.println("cb3");
-                int rowsAffected = ps.executeUpdate();
+                ps.executeQuery();
                 System.out.println("cb4");
                 ResultSet generatedKeys = ps.getGeneratedKeys();
                 if (generatedKeys.next()) {

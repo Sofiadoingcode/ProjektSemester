@@ -247,7 +247,7 @@ public class BOMAlgorithm {
 
         while (true) {
             lengthBack += 300;
-            if (lengthBack < carportWidth) {
+            if (lengthBack < carportWidth - 70) { // 70 CM fra kanten
                 antalStolperBack++;
             } else {
                 break;
@@ -397,13 +397,13 @@ public class BOMAlgorithm {
         beslagSkruerAmount =(int) beslagSkruerAmountCalc;
 
 
-        ProductLine productLineBeslagHøjre = new ProductLine(beslagHøjre.getIdproduct(),beslagAmount, beslagLængdeId, calculateTotalProductPrice(beslagHøjre.getIdproduct(), beslagAmount, beslagLængdeId));
+        ProductLine productLineBeslagHøjre = new ProductLine(beslagHøjre.getIdproduct(),beslagAmount, beslagLængdeId, calculateTotalProductPrice(beslagHøjre.getIdproduct(), beslagAmount, 0));
         returnList.add(productLineBeslagHøjre);
 
-        ProductLine productLineBeslagVenstre = new ProductLine(beslagVenstre.getIdproduct(),beslagAmount, beslagLængdeId, calculateTotalProductPrice(beslagVenstre.getIdproduct(), beslagAmount, beslagLængdeId));
+        ProductLine productLineBeslagVenstre = new ProductLine(beslagVenstre.getIdproduct(),beslagAmount, beslagLængdeId, calculateTotalProductPrice(beslagVenstre.getIdproduct(), beslagAmount, 0));
         returnList.add(productLineBeslagVenstre);
 
-        ProductLine productLineBeslagSkruer = new ProductLine(beslagSkruer.getIdproduct(),beslagSkruerAmount, beslagSkruerLængdeId, calculateTotalProductPrice(beslagSkruer.getIdproduct(), beslagSkruerAmount, beslagSkruerLængdeId));
+        ProductLine productLineBeslagSkruer = new ProductLine(beslagSkruer.getIdproduct(),beslagSkruerAmount, beslagSkruerLængdeId, calculateTotalProductPrice(beslagSkruer.getIdproduct(), beslagSkruerAmount, 0));
         returnList.add(productLineBeslagSkruer);
 
         return returnList;
