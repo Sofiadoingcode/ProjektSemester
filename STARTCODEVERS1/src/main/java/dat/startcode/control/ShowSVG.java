@@ -13,9 +13,23 @@ public class ShowSVG extends Command
     {
         SVG svg = new SVG(0,0, "0 0 800 600", 100, 100);
 
-        for(int x = 0; x < 14 ; x++) {
-            svg.addRect(100 + 50 * x, 0, 600, 4.5);
+        svg.addRect(100, 35, 4, 800);
+        svg.addRect(100, 600-35, 4, 800);
+
+        for(int x = 0 ; x < 15 ; x++) {
+            svg.addRect(100 + 57 * x, 0, 600, 4);
         }
+
+        for (int x = 0 ; x < 15 ; x++) {
+        svg.addRect(100 + 57 * x, 0, 600, 4);
+        }
+
+        for(int x = 0 ; x < 15 ; x++) {
+        svg.addRect(100 + 57 * x, 0, 600, 4);
+        }
+
+        svg.addDottedLine(100, 35, 900, 600-35, 3);
+        svg.addDottedLine(100, 600-35, 900, 35, 3);
 
         HttpSession session = request.getSession();
         request.setAttribute("svgdrawing", svg.toString());
