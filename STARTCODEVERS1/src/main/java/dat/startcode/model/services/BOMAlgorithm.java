@@ -204,7 +204,7 @@ public class BOMAlgorithm {
 
         double carportLengthWithoutExtra = carportLength - 1.1;
 
-        int stolpeLength = (int) carportHeight - (int) spærHeight - (int) sternHeight;
+        int stolpeLength = (int) carportHeight - (int) sternHeight + 1; //1 = 1 meter under jorden
         int stolpeId = 0;
 
         for (Integer key : lengths.keySet()) {
