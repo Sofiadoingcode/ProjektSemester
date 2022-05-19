@@ -39,10 +39,7 @@ public class BOMList extends Command {
             bomdtos.add(bomdto);
 
             List<ProductionlineDTO> productionlines = bomMapper.getBOMProductlines(bomdto);
-            for(ProductionlineDTO pr: productionlines) {
-                System.out.println(pr.getCategory());
-            }
-
+            
 
             List<ProductionlineDTO> category1 = new ArrayList<>();
             List<ProductionlineDTO> category2 = new ArrayList<>();

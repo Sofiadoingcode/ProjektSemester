@@ -141,26 +141,26 @@ public class BOMMapper implements IBOMMapper{
 
         String sql = "INSERT INTO `fogarchive`.`bom` (`totalprice`,`description`) VALUES (?,?)";
 
-        System.out.println("cb1");
+
 
         try (Connection connection = connectionPool.getConnection()) {
             try (PreparedStatement ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
-                System.out.println("cb1");
+
                 ps.setDouble(1, totalprice);
-                System.out.println("cb2");
+
                 ps.setString(2, description);
-                System.out.println("cb3");
+
                 ps.executeUpdate();
-                System.out.println("cb4");
+
                 ResultSet generatedKeys = ps.getGeneratedKeys();
                 if (generatedKeys.next()) {
                     bomId = generatedKeys.getInt(1);
                 }
-                System.out.println("cb5");
+
 
             }
         } catch (SQLException ex) {
-            System.out.println("ERROROOROR");
+
             throw new DatabaseException(ex, "Fejl under indlæsning fra databasen");
         }
 
@@ -170,7 +170,7 @@ public class BOMMapper implements IBOMMapper{
     @Override
     public void saveFullBom(int bomId, List<ProductLine> fullBom) throws DatabaseException {
 
-        System.out.println("SF1");
+
 
         String sql = "insert into `fogarchive`.productionline (idproduct, amount, idbom, idlength, totalproductprice) VALUES (?, ?, ?, ?, ?)";
 
@@ -178,7 +178,7 @@ public class BOMMapper implements IBOMMapper{
         try (Connection connection = connectionPool.getConnection()) {
             try (PreparedStatement ps = connection.prepareStatement(sql)) {
 
-                System.out.println("SF2");
+
 
                 for(ProductLine p: fullBom) {
                     ps.setInt(1,p.getProductID());
@@ -192,14 +192,14 @@ public class BOMMapper implements IBOMMapper{
                     }
 
                     ps.setDouble(5, p.getTotalproductprice());
-                    System.out.println("SF3");
+
                     ps.executeUpdate();
 
                 }
 
             }
         } catch (SQLException ex) {
-            System.out.println("ERRORORORO");
+
             throw new DatabaseException(ex, "Fejl under indlæsning fra databasen");
         }
     }

@@ -34,7 +34,7 @@ public class CreateRequest extends Command
     String execute(HttpServletRequest request, HttpServletResponse response) throws DatabaseException
     {
 
-        System.out.println("AAAA");
+
         double height = Double.parseDouble(request.getParameter("height"));
         double length = Double.parseDouble(request.getParameter("length"));
         double width = Double.parseDouble(request.getParameter("width"));
@@ -43,13 +43,13 @@ public class CreateRequest extends Command
 
         BOMAlgorithm bomAlgorithm = new BOMAlgorithm();
         List<ProductLine> fullBomList = bomAlgorithm.generateBOM(carportChoice);
-        System.out.println("BBBB");
+
 
 
         String bomDescription = bomAlgorithm.getDescription();
         double bomTotalPrice = bomAlgorithm.getTotalBomPrice();
 
-        System.out.println("CCCC");
+
 
         String tagMateriale = request.getParameter("tagMateriale");
         String tag = request.getParameter("tag");
@@ -59,21 +59,19 @@ public class CreateRequest extends Command
         int phoneNumber = Integer.parseInt(request.getParameter("phoneNumber"));
         String email = request.getParameter("email");
 
-        System.out.println("DDDD");
+
         User user;
         user=(User)request.getAttribute("tempUser");
 
-        System.out.println("D1");
-        BOMMapper bomMapper = new BOMMapper(connectionPool);
-        System.out.println("D2");
-        System.out.println(bomDescription);
-        System.out.println(bomTotalPrice);
-        int bomId = bomMapper.createBOMinDB(bomDescription, bomTotalPrice);
-        System.out.println("D3");
-        bomMapper.saveFullBom(bomId, fullBomList);
-        System.out.println("D4");
 
-        System.out.println("EEEE");
+        BOMMapper bomMapper = new BOMMapper(connectionPool);
+
+        int bomId = bomMapper.createBOMinDB(bomDescription, bomTotalPrice);
+
+        bomMapper.saveFullBom(bomId, fullBomList);
+
+
+
         RequestMapper requestMapper= new RequestMapper(connectionPool);
         if(Objects.equals(request.getParameter("shedCheckbox"), "shed")) {
             int shedWidth = Integer.parseInt(request.getParameter("shedWidth"));
@@ -85,7 +83,7 @@ public class CreateRequest extends Command
             requestMapper.insertFullRequest(height, length, width, tagMateriale, tag, angle, name, zipCode, phoneNumber, email, user.getIdUser(), bomId);
         }
         request.setAttribute("tempUser", user);
-        System.out.println("FFFF");
+
 
         return "orderintroduction.jsp";
 
