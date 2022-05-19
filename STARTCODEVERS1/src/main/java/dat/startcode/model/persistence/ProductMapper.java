@@ -25,7 +25,7 @@ public class ProductMapper {
         String sql = "\tSELECT * from(((product \n" +
                 "    inner join productname on product.idname = productname.idname)\n" +
                 "    inner join unit on product.idunit = unit.idunit)\n" +
-                "inner join producttype on product.idproducttype = producttype.idproducttype"+
+                "inner join producttype on product.idproducttype = producttype.idproducttype" +
                 "    inner join category on product.idcategory = category.idcategory)" +
                 " order by idProduct";
 
@@ -71,7 +71,7 @@ public class ProductMapper {
         return products;
     }
 
-    public void deleteProduct(int id) throws DatabaseException{
+    public void deleteProduct(int id) throws DatabaseException {
 
 
         Logger.getLogger("web").log(Level.INFO, "");
@@ -120,7 +120,7 @@ public class ProductMapper {
 
                     int id = rs.getInt("idlength");
                     int length = rs.getInt("length");
-                    lengths.put(id,length);
+                    lengths.put(id, length);
 
 
                 }
@@ -197,7 +197,6 @@ public class ProductMapper {
         } catch (SQLException E) {
             throw new DatabaseException(E, "Could not get product type from database");
         }
-        System.out.println(typeID);
         return typeID;
     }
 
@@ -211,7 +210,7 @@ public class ProductMapper {
                 ResultSet rs = ps.executeQuery();
                 if (rs.next()) {
                     nameID = rs.getInt("idname");
-                    System.out.println(nameID);
+
                 }
                 if (nameID == 0) {
                     String sql4 = "INSERT INTO `fogarchive`.`productname` (`name`) VALUES (?)";
@@ -234,7 +233,7 @@ public class ProductMapper {
     }
 
     public void createProduct(int name, int category, int unit, int amount, int height, int width,
-                               int price, int productType) throws DatabaseException {
+                              int price, int productType) throws DatabaseException {
         Logger.getLogger("web").log(Level.INFO, "");
 
 
@@ -276,7 +275,7 @@ public class ProductMapper {
                 if (rs.next()) {
 
                     categoryID = rs.getInt("idcategory");
-                    System.out.println(categoryID);
+
                 } else {
                     throw new DatabaseException("Something went wrong looking for category");
                 }
@@ -288,7 +287,7 @@ public class ProductMapper {
                 ResultSet rs = ps.executeQuery();
                 if (rs.next()) {
                     unitID = rs.getInt("idunit");
-                    System.out.println(unitID);
+
                 } else {
                     throw new DatabaseException("Something went wrong looking for unit");
                 }
@@ -300,7 +299,6 @@ public class ProductMapper {
                 ResultSet rs = ps.executeQuery();
                 if (rs.next()) {
                     nameID = rs.getInt("idproductnames");
-                    System.out.println(nameID);
                 } else {
 
                     String sql4 = "INSERT INTO `fogarchive`.`productname` (`name`) VALUES (?)";
@@ -321,18 +319,17 @@ public class ProductMapper {
             }
 
 
-                String sql5 = "insert into product (`idname`, `idunit`, `idcategory`, `priceprmeasurment`, `height`, `width`, `amount`) values (?,?,?,?,?,?,?)";
-                try (PreparedStatement ps = connection.prepareStatement(sql5)) {
+            String sql5 = "insert into product (`idname`, `idunit`, `idcategory`, `priceprmeasurment`, `height`, `width`, `amount`) values (?,?,?,?,?,?,?)";
+            try (PreparedStatement ps = connection.prepareStatement(sql5)) {
 
-                    ps.setInt(1, nameID);
-                    ps.setInt(2, unitID);
-                    ps.setInt(3, categoryID);
-                    ps.setInt(4, price);
-                    ps.setInt(5, height);
-                    ps.setInt(6, width);
-                    ps.setInt(7, amount);
-                    ps.executeUpdate();
-
+                ps.setInt(1, nameID);
+                ps.setInt(2, unitID);
+                ps.setInt(3, categoryID);
+                ps.setInt(4, price);
+                ps.setInt(5, height);
+                ps.setInt(6, width);
+                ps.setInt(7, amount);
+                ps.executeUpdate();
 
 
             }
@@ -344,29 +341,30 @@ public class ProductMapper {
     }
 
 
-    public void modifyProduct(int id, int idname, int idunit, int idcategory, int price, int height, int width, int amount, int idtype) throws DatabaseException{
+    public void modifyProduct(int id, int idname, int idunit, int idcategory, int price, int height, int width, int amount, int idtype) throws DatabaseException {
 
-        String sql= "UPDATE `fogarchive`.`product` SET `idname` = ?, `idunit` = ?, `idcategory` = ?, `priceprmeasurment` = ?, `height` = ?, `width` = ?, `amount` = ? , `idproducttype` = ?  WHERE (`idProduct` = ?)";
+        String sql = "UPDATE `fogarchive`.`product` SET `idname` = ?, `idunit` = ?, `idcategory` = ?, `priceprmeasurment` = ?, `height` = ?, `width` = ?, `amount` = ? , `idproducttype` = ?  WHERE (`idProduct` = ?)";
         try (Connection connection = connectionPool.getConnection()) {
-        try (PreparedStatement ps = connection.prepareStatement(sql)) {
+            try (PreparedStatement ps = connection.prepareStatement(sql)) {
 
-            ps.setInt(1, idname);
-            ps.setInt(2, idunit);
-            ps.setInt(3, idcategory);
-            ps.setInt(4, price);
-            ps.setInt(5, height);
-            ps.setInt(6, width);
-            ps.setInt(7, amount);
-            ps.setInt(8, idtype);
-            ps.setInt(9,id);
-            ps.executeUpdate();
+                ps.setInt(1, idname);
+                ps.setInt(2, idunit);
+                ps.setInt(3, idcategory);
+                ps.setInt(4, price);
+                ps.setInt(5, height);
+                ps.setInt(6, width);
+                ps.setInt(7, amount);
+                ps.setInt(8, idtype);
+                ps.setInt(9, id);
+                ps.executeUpdate();
 
-        }}catch (SQLException EX){
+            }
+        } catch (SQLException EX) {
             throw new DatabaseException(EX, "didnt work");
         }
     }
 
-    public HashMap<Integer, String> getProductTypes() throws DatabaseException{
+    public HashMap<Integer, String> getProductTypes() throws DatabaseException {
         String sql = "SELECT * FROM fogarchive.producttype";
         HashMap<Integer, String> productTypes = new HashMap<>();
 
@@ -377,7 +375,7 @@ public class ProductMapper {
                 while (rs.next()) {
                     int id = rs.getInt("idproducttype");
                     String category = rs.getString("producttype");
-                    productTypes.put(id,category);
+                    productTypes.put(id, category);
                 }
             }
         } catch (SQLException ex) {
@@ -403,7 +401,7 @@ public class ProductMapper {
                 while (rs.next()) {
                     int id = rs.getInt("idcategory");
                     String category = rs.getString("category");
-                    categories.put(id,category);
+                    categories.put(id, category);
 
                 }
 
@@ -431,7 +429,7 @@ public class ProductMapper {
                 while (rs.next()) {
                     int id = rs.getInt("idunit");
                     String unit = rs.getString("type");
-                    units.put(id,unit);
+                    units.put(id, unit);
 
                 }
 

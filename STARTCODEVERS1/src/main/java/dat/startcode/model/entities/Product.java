@@ -86,6 +86,16 @@ public class Product {
     }
 
     @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (!(obj instanceof Product)) return false;
+        Product product = (Product) obj;
+
+        return (product.getProductType().equals(productType) && product.getWidth()== getWidth() && product.getHeight()==getHeight() && product.getPrice()==getPrice());
+
+    }
+
+    @Override
     public String toString() {
         return "Product{" +
                 "productID=" + productID +

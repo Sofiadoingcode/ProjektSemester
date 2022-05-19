@@ -7,6 +7,7 @@ import dat.startcode.model.exceptions.DatabaseException;
 import dat.startcode.model.persistence.ConnectionPool;
 import dat.startcode.model.persistence.ProductMapper;
 import dat.startcode.model.persistence.UserMapper;
+import dat.startcode.model.services.ProductionFacade;
 import dat.startcode.model.services.UserFacade;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
@@ -33,7 +34,7 @@ class ProductionMapperTest {
         connectionPool = new ConnectionPool();
         productMapper = new ProductMapper(connectionPool);
         product = new Product(0, "testBolt", "Beslag & Skruer", "stk", 100);
-        product.setProductType("skruer");
+        product.setProductType("skrue");
         product.setWidth(10);
         product.setHeight(5);
         product.setAmount(1);
@@ -43,8 +44,6 @@ class ProductionMapperTest {
 
     @BeforeEach
     void setUp() {
-
-
     }
 
     @Test
@@ -57,23 +56,56 @@ class ProductionMapperTest {
     }
 
     @Test
-    void insertProduct() throws DatabaseException {
+    void productFacade() throws DatabaseException{
 
-      List<Product> products = productMapper.getAllProducts();
+        ProductionFacade.createProduct(product.getName(),product.getCategory(),product.getUnit(),product.getAmount(),product.getHeight(),product.getWidth(),product.getPrice(),product.getProductType(),connectionPool);
 
-      assertEquals(product,products.get(products.size()-1));
+        List<Product> testProductList = productMapper.getAllProducts();
 
+        assert (testProductList.contains(product));
+    }
+
+
+    @Test
+    void getAllProducts() throws DatabaseException {
+
+        List<Product> products = productMapper.getAllProducts();
+        assertDoesNotThrow(() -> products.get(0));
+        assert (products.size() >= 21);
+
+    }
+
+    @Test
+    void getType() throws DatabaseException {
+        //check if getProductType id returns id = 2 when product type is "skrue"
+
+        System.out.println(product.getProductType());
+        int i = productMapper.getProductTypeID(product.getProductType());
+        assert (i == 2);
 
     }
 
 
     @Test
-    void insertPro()throws DatabaseException{
+    void delete() throws DatabaseException {
 
-        List<Product> products = productMapper.getAllProducts();
-        assertDoesNotThrow(()-> products.get(0));
+        List<Product> array = productMapper.getAllProducts();
+        int size1 = array.size();
+        int id =0;
+        for (Product tempProduct: array) {
 
+            if (tempProduct.equals(this.product))
+            id = tempProduct.getProductID();
+        }
 
+        productMapper.deleteProduct(id);
+
+        array = productMapper.getAllProducts();
+        int size2 = array.size();
+
+        assert (size1 == size2 +1);
 
     }
+
+
 }
