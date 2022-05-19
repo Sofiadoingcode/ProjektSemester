@@ -33,7 +33,7 @@ abstract class Command
         commands.put("createRequest", new CreateRequest());
         commands.put("tempLogin", new TempLogin());
         commands.put("payForRequest", new PayForRequest());
-
+        commands.put("seebom", new SeeBOM());
 
     }
 

@@ -49,8 +49,6 @@ public class BOMList extends Command {
                 } else {
                     category2.add(dto);
                 }
-
-
             }
 
 
