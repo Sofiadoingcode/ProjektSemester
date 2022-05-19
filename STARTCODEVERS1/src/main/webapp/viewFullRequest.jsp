@@ -27,7 +27,7 @@
         <section class="orderlist-tablesection" style="font-weight: bold;">
             <br>
             <div class="tables-title">
-                <h2 class="requestlist-tables-title">TRÆ...</h2>
+                <h2 class="requestlist-tables-title">TRÆ OG TAGPLADER</h2>
             </div>
 
             <div class="orderlist-tablediv ">
@@ -37,7 +37,6 @@
                     <td class="tableHeader-RequestList">Længde</td>
                     <td class="tableHeader-RequestList">Antal</td>
                     <td class="tableHeader-RequestList">Enhed</td>
-                    <td class="tableHeader-RequestList">Beskrivelse</td>
 
                     </thead>
 
@@ -48,7 +47,6 @@
                             <td class="tableRows-RequestList">${category1.length}</td>
                             <td class="tableRows-RequestList">${category1.amount}</td>
                             <td class="tableRows-RequestList">${category1.unit}</td>
-                            <td class="tableRows-RequestList"></td>
 
 
 
@@ -63,7 +61,7 @@
         <section class="orderlist-tablesection" style="font-weight: bold;">
             <br>
             <div class="tables-title">
-                <h2 class="requestlist-tables-title">BESLAG...</h2>
+                <h2 class="requestlist-tables-title">BESLAG OG SKRUER</h2>
             </div>
 
             <div class="orderlist-tablediv ">
@@ -73,7 +71,6 @@
                     <td class="tableHeader-RequestList">Længde</td>
                     <td class="tableHeader-RequestList">Antal</td>
                     <td class="tableHeader-RequestList">Enhed</td>
-                    <td class="tableHeader-RequestList">Beskrivelse</td>
 
                     </thead>
 
@@ -81,11 +78,9 @@
                         <tr class="orders-tr">
 
                             <td class="tableRows-RequestList">${category2.name}</td>
-                            <td class="tableRows-RequestList">${category2.length}</td>
+                            <td class="tableRows-RequestList">Ingen</td>
                             <td class="tableRows-RequestList">${category2.amount}</td>
                             <td class="tableRows-RequestList">${category2.unit}</td>
-                            <td class="tableRows-RequestList"></td>
-
 
 
                         </tr>

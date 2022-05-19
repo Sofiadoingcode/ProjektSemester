@@ -8,8 +8,9 @@ public class Customer {
     private String phonenumber;
     private String email;
     private int idorder;
+    private double finalprice;
 
-    public Customer(int id, String name, int zipcode, String city, String phonenumber, String email, int idorder) {
+    public Customer(int id, String name, int zipcode, String city, String phonenumber, String email, int idorder, double finalprice) {
         this.id = id;
         this.name = name;
         this.zipcode = zipcode;
@@ -17,6 +18,7 @@ public class Customer {
         this.phonenumber = phonenumber;
         this.email = email;
         this.idorder = idorder;
+        this.finalprice = finalprice;
     }
 
     public int getId() {
@@ -73,5 +75,13 @@ public class Customer {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public double getFinalprice() {
+        return finalprice;
+    }
+
+    public void setFinalprice(double finalprice) {
+        this.finalprice = finalprice;
     }
 }

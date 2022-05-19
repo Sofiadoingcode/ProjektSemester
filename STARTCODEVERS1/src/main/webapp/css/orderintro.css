@@ -20,7 +20,7 @@
 }
 
 .ointro-about-header{
-    font-size: 30px;
+    font-size: 4rem;
 
 }
 
@@ -44,4 +44,32 @@
     font-size: 30px;
     font-weight: bolder;
 
+}
+
+.SubmitButton{
+    display: inline-block;
+    text-decoration: none;
+    letter-spacing: 0.02px;
+    font-size: 1.25rem;
+    font-weight: 500;
+    padding: 0.5rem 1rem;
+    border-radius: 2px;
+    border-width: 0px;
+    transition: all 0.3s;
+    background-color: #193f76;
+    color: white;
+}
+
+.SeeDrawingButton{
+    display: inline-block;
+    text-decoration: none;
+    letter-spacing: 0.02px;
+    font-size: 1.25rem;
+    font-weight: 500;
+    padding: 0.5rem 1rem;
+    border-radius: 2px;
+    border-width: 0px;
+    transition: all 0.3s;
+    background-color: #5e799f;
+    color: white;
 }

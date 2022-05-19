@@ -20,8 +20,8 @@
                 <td class="tableHeader-RequestList">Pris</td>
                 <td class="tableHeader-RequestList">Antal</td>
                 <td class="tableHeader-RequestList">Højde</td>
-                <td class="tableHeader-RequestList">Bredte</td>
-                <td class="tableHeader-RequestList">Product type</td>
+                <td class="tableHeader-RequestList">Bredde</td>
+                <td class="tableHeader-RequestList">Produkt Type</td>
                 <td class="tableHeader-RequestList"> </td>
                 </thead>
 

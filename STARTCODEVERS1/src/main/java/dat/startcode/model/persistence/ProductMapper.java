@@ -71,7 +71,7 @@ public class ProductMapper {
         return products;
     }
 
-    public void deleteProduct(int id) throws DatabaseException{
+    public boolean deleteProduct(int id) throws DatabaseException{
 
 
         Logger.getLogger("web").log(Level.INFO, "");
@@ -102,7 +102,7 @@ public class ProductMapper {
         } catch (SQLException e) {
             throw new DatabaseException("");
         }
-        //return isDeleted;
+        return isDeleted;
     }
 
     public HashMap<Integer, Integer> getLengths() throws DatabaseException {

@@ -45,7 +45,10 @@
                 <div class="navbar-nav">
 
                     <c:if test="${sessionScope.user.getIdRole()==1}">
+                        <a class="nav-item nav-link" href="${pageContext.request.contextPath}/fc/viewProducts?command=viewProducts" style="color: white; padding-left: 25px; padding-right: 25px;">Materialer</a>
+
                         <a class="nav-item nav-link" href="${pageContext.request.contextPath}/fc/requestList?command=requestList" style="color: white; padding-left: 25px; padding-right: 25px;">Anmodninger</a>
+
                         <a class="nav-item nav-link" href="${pageContext.request.contextPath}/createnewadminspage.jsp" style="color: white; padding-left: 25px; padding-right: 25px;">Konti</a>
                     </c:if>
                         <a class="nav-item nav-link" href="${pageContext.request.contextPath}/fc/about?command=about" style="color: white; padding-left: 25px; padding-right: 25px;">Om os</a>
