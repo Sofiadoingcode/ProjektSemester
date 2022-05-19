@@ -323,10 +323,17 @@ public class BOMAlgorithm {
         int minLengthSpær=0;
         int maxLengthSpærId=0;
         int minLengthSpærId=0;
-        int spærMultiplier=0;
+        int spærAmount=0;
+        int beslagLængdeId=0;
+        int beslagAmount=0;
+        double beslagSkruerMultiplier=9;
+        double beslagSkruerAmountCalc=0;
+        int beslagSkruerAmount=0;
+        int beslagSkruerLængdeId=0;
         double spærWidth=0;
         List<ProductDTO> spærProducts = new ArrayList<>();
         List<ProductDTO> beslagProducts = new ArrayList<>();
+        List<ProductDTO> beslagSkruerProducts = new ArrayList<>();
         List<ProductLine> returnList = new ArrayList<>();
 
         HashMap<Integer, Integer> lengths = loadAllLengths();
@@ -337,17 +344,21 @@ public class BOMAlgorithm {
             } if(allProducts.get(i).getProducttype().equals("beslag")){
                 beslagProducts.add(allProducts.get(i));
             }
+            if(allproducts.get(i).getName().equals("beslagskruer")){
+                beslagSkruerProducts.add(allproducts.get(i));
+            }
         }
         ProductDTO spær = spærProducts.get(0);
         spærHeight = spær.getHeight();
         ProductDTO beslagHøjre = beslagProducts.get(0);
         ProductDTO beslagVenstre = beslagProducts.get(1);
+        ProductDTO beslagSkruer = beslagSkruerProducts.get(0);
 
         spærWidth = spær.getWidth();
         spærWidth=spærWidth/10;
         carportLengthSpærCalc=carportLengthSpær-spærWidth;
         carportLengthSpærCalc=carportLengthSpærCalc/(60+spærWidth)+1;
-        spærMultiplier = (int) Math.ceil(carportLengthSpærCalc);
+        spærAmount = (int) Math.ceil(carportLengthSpærCalc);
 
         for (Integer i : lengths.keySet()){
             if (lengths.get(i)>maxLengthSpær) {
@@ -357,7 +368,7 @@ public class BOMAlgorithm {
         }
 
         while(carportWidthSpær>=maxLengthSpær){
-            ProductLine productLineSpær = new ProductLine(spær.getIdproduct(),spærMultiplier, maxLengthSpærId, calculateTotalProductPrice(spær.getIdproduct(), spærMultiplier, maxLengthSpær));
+            ProductLine productLineSpær = new ProductLine(spær.getIdproduct(),spærAmount, maxLengthSpærId, calculateTotalProductPrice(allproducts, spær.getIdproduct(), spærAmount, maxLengthSpær));
             returnList.add(productLineSpær);
             carportWidthSpær=carportWidthSpær-maxLengthSpær;
         }
@@ -371,11 +382,27 @@ public class BOMAlgorithm {
                     }
 
             }
-            spærAntal = spærMultiplier;
-            ProductLine productLineSpær = new ProductLine(spær.getIdproduct(),spærMultiplier, minLengthSpærId, calculateTotalProductPrice(spær.getIdproduct(), spærMultiplier, minLengthSpær));
+            ProductLine productLineSpær = new ProductLine(spær.getIdproduct(),spærAmount, minLengthSpærId, calculateTotalProductPrice(allproducts, spær.getIdproduct(), spærAmount, minLengthSpær));
             returnList.add(productLineSpær);
             carportWidthSpær=carportWidthSpær-minLengthSpær;
         }
+        for (ProductLine productLine : returnList) {
+            beslagAmount+=productLine.getAmount();
+        }
+
+        beslagSkruerAmountCalc = (int) Math.ceil(beslagAmount*beslagSkruerMultiplier);
+        beslagSkruerAmountCalc = (int) Math.ceil(beslagSkruerAmountCalc/beslagSkruer.getAmount());
+        beslagSkruerAmount =(int) beslagSkruerAmountCalc;
+
+
+        ProductLine productLineBeslagHøjre = new ProductLine(beslagHøjre.getIdproduct(),beslagAmount, beslagLængdeId, calculateTotalProductPrice(allproducts, beslagHøjre.getIdproduct(), beslagAmount, beslagLængdeId));
+        returnList.add(productLineBeslagHøjre);
+
+        ProductLine productLineBeslagVenstre = new ProductLine(beslagVenstre.getIdproduct(),beslagAmount, beslagLængdeId, calculateTotalProductPrice(allproducts, beslagVenstre.getIdproduct(), beslagAmount, beslagLængdeId));
+        returnList.add(productLineBeslagVenstre);
+
+        ProductLine productLineBeslagSkruer = new ProductLine(beslagSkruer.getIdproduct(),beslagSkruerAmount, beslagSkruerLængdeId, calculateTotalProductPrice(allproducts, beslagSkruer.getIdproduct(), beslagSkruerAmount, beslagSkruerLængdeId));
+        returnList.add(productLineBeslagSkruer);
 
         return returnList;
     }
