@@ -143,7 +143,7 @@ public class BOMMapper implements IBOMMapper{
                 System.out.println("cb2");
                 ps.setString(2, description);
                 System.out.println("cb3");
-                ps.executeQuery();
+                ps.executeUpdate();
                 System.out.println("cb4");
                 ResultSet generatedKeys = ps.getGeneratedKeys();
                 if (generatedKeys.next()) {
