@@ -72,6 +72,7 @@
 	marker-end: url(#endArrow)"/>
   <text style="text-anchor: middle" transform="translate(30,300) rotate(-90)">690 cm</text>
   <text style="text-anchor: middle" transform="translate(427,630)">855 cm</text>
+  <rect height="10" width="10"/>
 </svg>
 
 </body>

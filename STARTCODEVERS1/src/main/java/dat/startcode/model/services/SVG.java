@@ -19,6 +19,9 @@ public class SVG {
     private final String rectTemplate = "<rect x=\"%d\" y=\"%d\" height=\"%d\" width=\"%d\"\n" +
             "          style=\"stroke:#000000; fill: #ffffff\"/>";
 
+    private final String rectTemplateStolpe = "<rect x=\"%d\" y=\"%d\" height=\"%d\" width=\"%d\"\n" +
+            "          transform=\"translate(-%d, -%d)\" style=\"stroke:#000000; fill: #ffffff\"/>";
+
     private final String dottedLineTemplate = "<line x1=\"%d\" y1=\"%d\" x2=\"%d\" y2=\"%d\" stroke=\"black\" stroke-dasharray=\"%d\"/>";
 
     public SVG(int x, int y, String viewBox, int width, int height) {
@@ -32,6 +35,10 @@ public class SVG {
 
     public void addRect(int x, int y, int height, int width){
         svg.append(String.format(rectTemplate, x, y, height, width));
+    }
+
+    public void addRectStolpe(int x, int y, int height, int width){
+        svg.append(String.format(rectTemplateStolpe, x, y, height, width, (height/3), width/3   ));
     }
 
     public void addDottedLine(int x1, int y1, int x2, int y2, int dashArray){
