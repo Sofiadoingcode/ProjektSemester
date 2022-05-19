@@ -273,5 +273,28 @@ public class RequestMapper {
         return shed;
     }
 
+    public void modifyFinalPrice(int orderID, double modifiedPrice) throws DatabaseException {
+
+        String sql = "UPDATE `fogarchive`.`order` SET `finalPrice` = ? WHERE idorder = ?";
+
+
+        try (Connection connection = connectionPool.getConnection()) {
+            try (PreparedStatement ps = connection.prepareStatement(sql)) {
+
+                ps.setDouble(1, modifiedPrice);
+                ps.setInt(2, orderID);
+
+                ps.executeUpdate();
+
+
+            }
+        } catch (SQLException ex) {
+
+            throw new DatabaseException(ex, "Fejl under indlæsning fra databasen");
+        }
+
+
+    }
+
 
 }
