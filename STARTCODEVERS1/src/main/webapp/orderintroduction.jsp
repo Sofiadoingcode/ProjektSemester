@@ -226,7 +226,7 @@
                                                                 <div class="col">
 
                                                                         <button type="submit" class="" formaction="fc/createRequest?command=createRequest" formmethod="post">
-                                                                                Se Forespørgsel
+                                                                                Send Forespørgsel
                                                                         </button>
                                                                 </div>
 

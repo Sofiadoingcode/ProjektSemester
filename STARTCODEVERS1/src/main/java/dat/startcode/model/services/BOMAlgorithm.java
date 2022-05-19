@@ -112,7 +112,6 @@ public class BOMAlgorithm {
         return fullBom;
     }
 
-
     private List<ProductDTO> loadAllProducts() {
         List<ProductDTO> allproducts = new ArrayList<>();
 
@@ -228,7 +227,7 @@ public class BOMAlgorithm {
 
         }
 
-        int lengthID = minimumValueKey;
+        Integer lengthID = minimumValueKey;
         double lengthSide = 0;
         double lengthBack = 0;
         int antalStolperCorner = 4;
@@ -274,8 +273,8 @@ public class BOMAlgorithm {
         double carportLengthRem = carportLength;
         int maxLengthRem=0;
         int minLengthRem=0;
-        int maxLengthRemId=0;
-        int minLengthRemId=0;
+        Integer maxLengthRemId=0;
+        Integer minLengthRemId=0;
         int remMultiplier=2;
         List<ProductDTO> remProducts = new ArrayList<>();
         List<ProductLine> returnList = new ArrayList<>();
@@ -323,15 +322,15 @@ public class BOMAlgorithm {
         double carportLengthSpærCalc = 0;
         int maxLengthSpær=0;
         int minLengthSpær=0;
-        int maxLengthSpærId=0;
-        int minLengthSpærId=0;
+        Integer maxLengthSpærId=0;
+        Integer minLengthSpærId=0;
         int spærAmount=0;
-        int beslagLængdeId=0;
+        Integer beslagLængdeId=null;
         int beslagAmount=0;
         double beslagSkruerMultiplier=9;
         double beslagSkruerAmountCalc=0;
         int beslagSkruerAmount=0;
-        int beslagSkruerLængdeId=0;
+        Integer beslagSkruerLængdeId= null;
         double spærWidth=0;
         List<ProductDTO> spærProducts = new ArrayList<>();
         List<ProductDTO> beslagProducts = new ArrayList<>();
@@ -410,6 +409,7 @@ public class BOMAlgorithm {
         return returnList;
     }
 
+
     private List<ProductLine> calculateHulbåndProductLines(double carportWidth, double carportLength) {
         List<ProductLine> returnList = new ArrayList<>();
         List<ProductDTO> allHulbånd = getAllNeededProducts("hulbånd");
@@ -448,10 +448,10 @@ public class BOMAlgorithm {
         double totalHulbåndPrice = calculateTotalProductPrice(hulbåndId, maengdeHulbaand, 0);
         double totalBeslagsskruerPrice = calculateTotalProductPrice(beslagsskrueId, antalBeslagsSkruer, 0);
 
-        System.out.println("MængdeHulbånd: " + maengdeHulbaand);
-        ProductLine antalHulbaand = new ProductLine(hulbåndId, maengdeHulbaand, 0, totalHulbåndPrice);
+
+        ProductLine antalHulbaand = new ProductLine(hulbåndId, maengdeHulbaand, null, totalHulbåndPrice);
         returnList.add(antalHulbaand);
-        ProductLine beslagsskruer = new ProductLine(beslagsskrueId, antalBeslagsSkruer, 0, totalBeslagsskruerPrice);
+        ProductLine beslagsskruer = new ProductLine(beslagsskrueId, antalBeslagsSkruer, null, totalBeslagsskruerPrice);
         returnList.add(beslagsskruer);
         return returnList;
     }
@@ -466,7 +466,7 @@ public class BOMAlgorithm {
 
         int productID = 0;
         int amount = 0;
-        int lengthID = 0;
+        Integer lengthID = 0;
         double totalproductprice = 0;
 
         double overlap = 20;
@@ -542,7 +542,6 @@ public class BOMAlgorithm {
                 lengthID = minimumValueKey;
 
                 totalproductprice = calculateTotalProductPrice(productID, amount,minimumValue);
-                System.out.println("TT: " + totalproductprice);
                 ProductLine pr = new ProductLine(productID, amount, lengthID, totalproductprice);
 
                 returnList.add(pr);
@@ -571,7 +570,7 @@ public class BOMAlgorithm {
 
         amount = (int) Math.ceil(neededScrewsOverAll/productAmount);
 
-        lengthID = 0;
+        lengthID = null;
 
         totalproductprice = calculateTotalProductPrice(productID, amount, 0);
 
@@ -652,7 +651,7 @@ public class BOMAlgorithm {
                 theVandBrad = product;
             }
         }
-        System.out.println("carport length " + carportLength);
+
         int[] vandBradSide = getLengthsNeeded( carportLength);
         int[] vandBradFront = getLengthsNeeded( carportWidth);
 
@@ -735,7 +734,6 @@ public class BOMAlgorithm {
                 theLength = lengths.get(i);
                 k = i;
             }
-            System.out.println(numberNeeded);
 
         }
         return new int[]{theLength,(int) numberNeeded, k};
