@@ -14,7 +14,7 @@
                 </div>
 
                 <div class="col index-logoimg22-box index-col-header">
-                    <img src="${pageContext.request.contextPath}/images/FOGLOGO22.png" class="foglogo22"/>
+                    <img src="${pageContext.request.contextPath}/images/FrontPageIMG/FOGLOGO22.png" class="foglogo22"/>
                 </div>
 
                 <div class="col index-col-header">
@@ -28,14 +28,16 @@
             <div class="index-box">
                 <div class="index-text-box">
                     <p class="index-description"> Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum hase like Aldus PageMaker including versions of Lorem Ipsum.</p>
+                    <c:if test="${sessionScope.user == null }">
+                        <a href="${pageContext.request.contextPath}/orderintroduction.jsp" class="btn-index btn-index--full">Lav din egen Carport</a>
 
-                        <a href="${pageContext.request.contextPath}/#" class="btn-index btn-index--full">Lav din egen Carport</a>
                         <a href="${pageContext.request.contextPath}/login.jsp" class="btn-index btn-index--login">Log Ind</a>
+                    </c:if>
 
 
                 </div>
                 <div class="index-image-box">
-                    <img src="${pageContext.request.contextPath}/images/fogFlagImg.JPG" class="fogflagImg"/>
+                    <img src="${pageContext.request.contextPath}/images/FrontPageIMG/fogFlagImg.JPG" class="fogflagImg"/>
 
                 </div>
             </div>
@@ -46,7 +48,7 @@
             <div class="row">
                 <div class="col-lg-4 col-md-12 mb-4 mb-lg-0">
                     <img
-                            src="${pageContext.request.contextPath}/images/CARPORT4.JPG"
+                            src="${pageContext.request.contextPath}/images/FrontPageIMG/CARPORT4.JPG"
                             class="w-100 shadow-1-strong rounded mb-4"
                             alt="Boat on Calm Water"
                     />
@@ -55,7 +57,7 @@
 
                 <div class="col-lg-4 mb-4 mb-lg-0">
                     <img
-                            src="${pageContext.request.contextPath}/images/CARPORT3.JPG"
+                            src="${pageContext.request.contextPath}/images/FrontPageIMG/CARPORT3.JPG"
                             class="w-100 shadow-1-strong rounded mb-4"
                             alt="Mountains in the Clouds"
                     />
@@ -64,7 +66,7 @@
 
                 <div class="col-lg-4 mb-4 mb-lg-0">
                     <img
-                            src="${pageContext.request.contextPath}/images/CARPORT1.JPG"
+                            src="${pageContext.request.contextPath}/images/FrontPageIMG/CARPORT1.JPG"
                             class="w-100 shadow-1-strong rounded mb-4"
                             alt="Waves at Sea"
                     />

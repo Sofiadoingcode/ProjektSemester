@@ -1,0 +1,40 @@
+.btn-viewcarportorder-betal:link, .btn-viewcarportorder-betal:visited {
+    display: inline-block;
+    text-decoration: none;
+    letter-spacing: 0.02px;
+    font-size: 1.25rem;
+    font-weight: 500;
+    padding: 0.5rem 1rem;
+    border-radius: 2px;
+    transition: all 0.3s;
+    background-color: green;
+    color: white;
+}
+
+.btn-viewcarportorder-betal:hover, .btn-viewcarportorder-betal:active{
+    background-color: darkgreen;
+}
+
+.btn-viewcarportorder-submit:link, .btn-viewcarportorder-betal:visited {
+    display: inline-block;
+    text-decoration: none;
+    letter-spacing: 0.02px;
+    font-size: 1.25rem;
+    font-weight: 500;
+    padding: 0.5rem 1rem;
+    border-radius: 2px;
+    transition: all 0.3s;
+    background-color: #193f76;
+    color: white;
+}
+
+
+.textDecorationViewCarportOrder{
+    font-size: 2rem;
+    font-weight: 200;
+}
+
+.textPaymentMessageDecoration{
+    font-size: 2rem;
+    font-weight: 300;
+}

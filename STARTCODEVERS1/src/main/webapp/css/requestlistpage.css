@@ -1,0 +1,197 @@
+
+.orders-header-box {
+
+    margin-bottom: 3.2rem;
+}
+
+.orders-header {
+    font-size: 5rem;
+    font-weight: 700;
+    line-height: 1.05;
+    color: black;
+    letter-spacing: -0.5px;
+}
+
+.orders-btn-Checkmark {
+    border: none;
+    color: green;
+    padding: 7px 8px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    border-radius: 7px;
+    background-color: #d1d9e4;
+    transition: all 0.3s;
+}
+
+.orders-btn-DeleteX {
+    border: none;
+    color: red;
+    padding: 7px 8px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    border-radius: 7px;
+    background-color: #d1d9e4;
+    transition: all 0.3s;
+}
+
+.orders-btn-ArrowUp {
+    border: none;
+    color: blue;
+    padding: 7px 8px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    border-radius: 7px;
+    background-color: #d1d9e4;
+    transition: all 0.3s;
+}
+
+.orders-complete:hover, .orders-complete:active{
+    background-color: #28a428;
+
+}
+.orders-delete:hover, .orders-delete:active{
+    background-color: #cc0000;
+}
+
+.orders-undoCompletion:hover, .orders-undoCompletion:active{
+    background-color: lightblue;
+}
+
+.orderlist-btn--uncomplete:hover, .orderlist-btn--uncomplete:active{
+    background-color: darkblue;
+}
+
+
+.seeOrder-btn {
+    border: none;
+    color: white;
+    padding: 7px 8px;
+    /*text-align: center;*/
+    text-decoration: none;
+    /*display: inline-block;*/
+    border-radius: 7px;
+    font-size: 1.5rem;
+    /*background-color: #634380;*/
+    transition: all 0.3s;
+}
+
+.seeOrder-back {
+    background-color: #775b90;
+    width: 10rem;
+    height: 5rem;
+}
+
+.seeOrder-back:hover, .seeOrder-back:active {
+    background-color: #502c70;
+}
+
+.gobackButton {
+    margin: 5rem;
+
+}
+
+
+
+.orderlist-collapsible {
+    background-color: #d1d9e4;
+    color: #444;
+    cursor: pointer;
+    padding: 18px;
+    width: 100%;
+    border: none;
+    text-align: left;
+    outline: none;
+    font-size: 15px;
+}
+
+/* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
+.orderlist-active, .orderlist-collapsible:hover {
+    background-color: #e8ecf1;
+}
+
+/* Style the collapsible content. Note: hidden by default */
+.orderlist-content {
+    padding: 0 18px;
+    display: none;
+    overflow: hidden;
+    transition: max-height 0.2s ease-out;
+    background-color: #f1f1f1;
+}
+
+.orderlist-collapsible:after {
+    content: '\002B';
+    color: white;
+    font-weight: bold;
+    float: right;
+    margin-left: 5px;
+}
+
+.orderlist-active:after {
+    content: "\2212";
+}
+
+
+.orderlist-collapsablesection{
+    max-width: 100%;
+    margin-top: 50px;
+}
+
+
+.tableHeader-RequestList {
+    /*Changes to text*/
+    font-size: 1.5rem;
+    text-align: center;
+    background-color: #8c9fbb;
+
+    /*Changes to border*/
+    border-left: 2px solid #000;
+    border-top: 2px solid #000;
+    border-bottom: 2px solid #000;
+    border-right: 2px solid #000;
+}
+
+
+.tableRows-RequestList {
+    width: 250px;
+    font-size: 1.25rem;
+    text-align: center;
+    border-left: 1px solid #000;
+    border-top: 1px solid #000;
+    border-bottom: 1px solid #000;
+    border-right: 1px solid #000;
+}
+
+.tableStyle{
+    border-collapse: collapse;
+    border: 2px solid;
+    margin-left: auto;
+    margin-right: auto;
+    width: 90%;
+}
+
+.tables-title{
+    max-width: 500rem;
+    text-align: center;
+    background-color: #193f76;
+}
+
+.requestlist-tables-title{
+    font-size: 20px;
+    font-weight: bolder;
+    color: white;
+
+}
+
+.orders-header-box {
+    max-width: 500rem;
+    text-align: center;
+    background-color: #e8ecf1;
+}
+
+.orders-header {
+    font-weight: bolder;
+
+}

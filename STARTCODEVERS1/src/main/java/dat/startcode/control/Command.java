@@ -1,5 +1,6 @@
 package dat.startcode.control;
 
+import dat.startcode.model.entities.Product;
 import dat.startcode.model.exceptions.DatabaseException;
 
 import javax.servlet.http.HttpServletRequest;
@@ -16,6 +17,23 @@ abstract class Command
         commands.put("login", new Login());
         commands.put("logout", new Logout());
         commands.put("about", new About());
+        commands.put("requestList", new RequestList());
+        commands.put("showTempUser", new ShowTempUser());
+        commands.put("deleteRequest", new DeleteRequest());
+        commands.put("acceptRequest", new AcceptRequest());
+        commands.put("unAcceptRequest", new unAcceptRequest());
+        commands.put("BOMlist", new BOMList());
+        commands.put("generateBom", new GenerateBOM());
+        commands.put("createAdminAccount", new CreateAdminAccount());
+        commands.put("deleteAccount", new DeleteAccount());
+        commands.put("ViewProducts", new ViewProducts());
+        commands.put("saveproduct",new SaveProduct());
+        commands.put("modifyproduct",new ModifyProduct());
+        commands.put("deleteproduct",new DeleteProduct());
+        commands.put("createRequest", new CreateRequest());
+        commands.put("tempLogin", new TempLogin());
+
+
     }
 
     static Command from( HttpServletRequest request ) {
