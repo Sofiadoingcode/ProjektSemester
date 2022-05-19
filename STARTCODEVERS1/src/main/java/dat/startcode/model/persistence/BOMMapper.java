@@ -163,25 +163,36 @@ public class BOMMapper implements IBOMMapper{
     @Override
     public void saveFullBom(int bomId, List<ProductLine> fullBom) throws DatabaseException {
 
+        System.out.println("SF1");
+
         String sql = "insert into `fogarchive`.productionline (idproduct, amount, idbom, idlength, totalproductprice) VALUES (?, ?, ?, ?, ?)";
 
 
         try (Connection connection = connectionPool.getConnection()) {
             try (PreparedStatement ps = connection.prepareStatement(sql)) {
 
+                System.out.println("SF2");
+
                 for(ProductLine p: fullBom) {
                     ps.setInt(1,p.getProductID());
                     ps.setInt(2,p.getAmount());
                     ps.setInt(3, bomId);
-                    ps.setInt(4, p.getLengthID());
-                    ps.setDouble(5, p.getTotalproductprice());
 
-                    ps.executeQuery();
+                    if(p.getLengthID() == null) {
+                        ps.setNull(4, Types.INTEGER);
+                    } else {
+                        ps.setInt(4, p.getLengthID());
+                    }
+
+                    ps.setDouble(5, p.getTotalproductprice());
+                    System.out.println("SF3");
+                    ps.executeUpdate();
 
                 }
 
             }
         } catch (SQLException ex) {
+            System.out.println("ERRORORORO");
             throw new DatabaseException(ex, "Fejl under indlæsning fra databasen");
         }
     }
