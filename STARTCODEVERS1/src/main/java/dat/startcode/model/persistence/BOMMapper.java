@@ -134,19 +134,26 @@ public class BOMMapper implements IBOMMapper{
 
         String sql = "insert into `fogarchive`.bom (totalprice, description) VALUES (?, ?)";
 
+        System.out.println("cb1");
+
         try (Connection connection = connectionPool.getConnection()) {
             try (PreparedStatement ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+                System.out.println("cb1");
                 ps.setDouble(1, totalprice);
+                System.out.println("cb2");
                 ps.setString(2, description);
-                ps.executeQuery();
-
+                System.out.println("cb3");
+                int rowsAffected = ps.executeUpdate();
+                System.out.println("cb4");
                 ResultSet generatedKeys = ps.getGeneratedKeys();
                 if (generatedKeys.next()) {
                     bomId = generatedKeys.getInt(1);
                 }
+                System.out.println("cb5");
 
             }
         } catch (SQLException ex) {
+            System.out.println("ERROROOROR");
             throw new DatabaseException(ex, "Fejl under indlæsning fra databasen");
         }
 
