@@ -38,6 +38,9 @@ public class GenerateBOM extends Command {
 
         String description = bomAlgorithm.getDescription();
 
+        request.setAttribute("description", description);
+
+
         request.setAttribute("svg", svg);
         //NOT CORRECT JUST FOR NOW
         return "orderintroduction.jsp";
