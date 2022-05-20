@@ -12,8 +12,8 @@ public class SVG {
     private final String headerTemplate = "<svg height=\"%s%%\" " +
             "width=\"%s%%\" " +
             "viewBox=\"%s\"" +
-            "x=\"%s\"" +
-            "y=\"%s\"" +
+            "x=\"%s%%\"" +
+            "y=\"%s%%\"" +
             "preserveAspectRatio=\"xMinYMin\">";
 
     private final String rectTemplate = "<rect x=\"%d\" y=\"%d\" height=\"%d\" width=\"%d\"\n" +

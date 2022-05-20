@@ -240,9 +240,7 @@
                                                                                 Se tegning
                                                                         </button>
                                                                 </div>
-                                                            <div class="col">
-                                                                ${requestScope.svg}
-                                                            </div>
+
 
                                                                 <div class="col">
 
@@ -261,6 +259,7 @@
 
 
                     </form>
+
                 </div>
 
                 <!-- Modal -->
