@@ -141,14 +141,7 @@
                                 </form>
                             </td>
 
-                            <td class="tableRows-RequestList">
-                                <form method="post">
-                                    <input type="number" class="form-control"
-                                           value="${requests.finalprice}" name="product_height">
-
-                                </form>
-
-                            </td>
+                            <td class="tableRows-RequestList">${requests.finalprice}</td>
 
                             <td class="tableRows-RequestList">
                                 <form method="post">
@@ -209,14 +202,7 @@
                                     </button>
                                 </form>
                             </td>
-                            <td class="tableRows-RequestList">
-                                <form method="post">
-                                    <input type="number" class="form-control"
-                                           value="${requests.finalprice}" name="product_height">
-
-                                </form>
-
-                            </td>
+                            <td class="tableRows-RequestList">${requests.finalprice}</td>
 
                             <td class="tableRows-RequestList">
                                 <form method="post">

@@ -71,17 +71,19 @@ public class CreateRequest extends Command
         bomMapper.saveFullBom(bomId, fullBomList);
 
 
-
         RequestMapper requestMapper= new RequestMapper(connectionPool);
+
         if(Objects.equals(request.getParameter("shedCheckbox"), "shed")) {
             int shedWidth = Integer.parseInt(request.getParameter("shedWidth"));
             int shedLength = Integer.parseInt(request.getParameter("shedLength"));
             String floorMaterial = request.getParameter("floorMaterial");
-            requestMapper.insertFullRequestShed(shedWidth, shedLength, floorMaterial, height, length, width, tagMateriale, tag, angle, name, zipCode, phoneNumber, email, user.getIdUser(), bomId);
+            requestMapper.insertFullRequestShed(shedWidth, shedLength, floorMaterial, height, length, width, tagMateriale, tag, angle, name, zipCode, phoneNumber, email, user.getIdUser(), bomId, bomTotalPrice);
         }
         else{
-            requestMapper.insertFullRequest(height, length, width, tagMateriale, tag, angle, name, zipCode, phoneNumber, email, user.getIdUser(), bomId);
+            requestMapper.insertFullRequest(height, length, width, tagMateriale, tag, angle, name, zipCode, phoneNumber, email, user.getIdUser(), bomId, bomTotalPrice);
         }
+
+
         request.setAttribute("tempUser", user);
 
 

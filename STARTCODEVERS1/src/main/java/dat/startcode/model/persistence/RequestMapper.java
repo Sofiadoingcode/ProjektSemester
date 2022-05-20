@@ -17,7 +17,6 @@ public class RequestMapper {
     private int idShed = 0;
     private int idCarport = 0;
     private int idCustomer = 0;
-    private double bomPrice = 0;
 
     ConnectionPool connectionPool;
 
@@ -141,7 +140,7 @@ public class RequestMapper {
         }
     }
 
-    public void insertRequest(int idUser, int idBom) throws DatabaseException {
+    public void insertRequest(int idUser, int idBom, double finalPrice) throws DatabaseException {
 
 
         Logger.getLogger("web").log(Level.INFO, "");
@@ -155,7 +154,7 @@ public class RequestMapper {
                 ps1.setInt(2, idBom);
                 ps1.setInt(3, 0);
                 ps1.setInt(4, 0);
-                ps1.setDouble(5, bomPrice);
+                ps1.setDouble(5, finalPrice);
                 ps1.setInt(6, idUser);
                 ps1.setInt(7, idCarport);
                 ps1.executeUpdate();
@@ -165,22 +164,22 @@ public class RequestMapper {
         }
     }
 
-    public void insertFullRequestShed(double shedWidth, double shedLength, String floorMaterial, double carportHeight, double carportLength, double carportWidth, String roofMaterial, String roofShape, int roofAngle, String name, int zipCode, int phoneNumber, String email, int idUser, int idBom) {
+    public void insertFullRequestShed(double shedWidth, double shedLength, String floorMaterial, double carportHeight, double carportLength, double carportWidth, String roofMaterial, String roofShape, int roofAngle, String name, int zipCode, int phoneNumber, String email, int idUser, int idBom, double finalPrice) {
         try {
             insertShedChoices(shedWidth, shedLength, floorMaterial);
             insertCarportChoicesShed(carportHeight, carportLength, carportWidth, roofMaterial, roofShape, roofAngle);
             insertCustomer(name, zipCode, phoneNumber, email);
-            insertRequest(idUser, idBom);
+            insertRequest(idUser, idBom, finalPrice);
         } catch (DatabaseException e) {
             e.printStackTrace();
         }
     }
 
-    public void insertFullRequest(double carportHeight, double carportLength, double carportWidth, String roofMaterial, String roofShape, int roofAngle, String name, int zipCode, int phoneNumber, String email, int idUser, int idBom) {
+    public void insertFullRequest(double carportHeight, double carportLength, double carportWidth, String roofMaterial, String roofShape, int roofAngle, String name, int zipCode, int phoneNumber, String email, int idUser, int idBom, double finalPrice) {
         try {
             insertCarportChoices(carportHeight, carportLength, carportWidth, roofMaterial, roofShape, roofAngle);
             insertCustomer(name, zipCode, phoneNumber, email);
-            insertRequest(idUser, idBom);
+            insertRequest(idUser, idBom, finalPrice);
         } catch (DatabaseException e) {
             e.printStackTrace();
         }
