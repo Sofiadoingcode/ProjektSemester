@@ -729,6 +729,7 @@ public class BOMAlgorithm {
         return totalProductPrice;
     }
 
+
     private int[] getLengthsNeeded(double length) {
         //calculates the number of equally long planks
 
