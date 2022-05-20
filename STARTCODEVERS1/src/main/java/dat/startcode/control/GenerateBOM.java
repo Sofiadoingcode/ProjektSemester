@@ -7,6 +7,7 @@ import dat.startcode.model.entities.ProductLine;
 import dat.startcode.model.exceptions.DatabaseException;
 import dat.startcode.model.persistence.BOMMapper;
 import dat.startcode.model.services.BOMAlgorithm;
+import dat.startcode.model.services.SVG;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -33,10 +34,11 @@ public class GenerateBOM extends Command {
         BOMAlgorithm bomAlgorithm = new BOMAlgorithm();
         List<ProductLine> BOMProductlines = new ArrayList<>();
         BOMProductlines = bomAlgorithm.generateBOM(carportChoice);
+        SVG svg = bomAlgorithm.getSvg();
 
         String description = bomAlgorithm.getDescription();
 
-
+        request.setAttribute("svg", svg);
         //NOT CORRECT JUST FOR NOW
         return "orderintroduction.jsp";
 

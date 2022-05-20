@@ -236,10 +236,13 @@
                                                         <div class="gy-6 row align-content-start">
                                                                 <!-- Button trigger modal -->
                                                                 <div class="col">
-                                                                        <button type="submit" class=" btn-primary" >
+                                                                        <button type="submit" formaction="fc/GenerateBOM?command=GenerateBOM" formmethod="post" class=" btn-primary" >
                                                                                 Se tegning
                                                                         </button>
                                                                 </div>
+                                                            <div class="col">
+                                                                ${requestScope.svg}
+                                                            </div>
 
                                                                 <div class="col">
 

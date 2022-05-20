@@ -9,6 +9,7 @@ import dat.startcode.model.persistence.BOMMapper;
 import dat.startcode.model.persistence.RequestMapper;
 import dat.startcode.model.persistence.UserMapper;
 import dat.startcode.model.services.BOMAlgorithm;
+import dat.startcode.model.services.SVG;
 import dat.startcode.model.services.UserFacade;
 import dat.startcode.model.persistence.ConnectionPool;
 
@@ -48,6 +49,7 @@ public class CreateRequest extends Command
 
         String bomDescription = bomAlgorithm.getDescription();
         double bomTotalPrice = bomAlgorithm.getTotalBomPrice();
+        SVG svg = bomAlgorithm.getSvg();
 
 
 
@@ -83,6 +85,7 @@ public class CreateRequest extends Command
             requestMapper.insertFullRequest(height, length, width, tagMateriale, tag, angle, name, zipCode, phoneNumber, email, user.getIdUser(), bomId);
         }
         request.setAttribute("tempUser", user);
+        request.setAttribute("svg", svg);
 
 
         return "orderintroduction.jsp";

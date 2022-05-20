@@ -842,5 +842,7 @@ public class BOMAlgorithm {
         
         return svg;
     }
-
+    public SVG getSvg(){
+        return svg;
+    }
 }       
