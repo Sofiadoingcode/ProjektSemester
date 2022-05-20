@@ -182,6 +182,7 @@
                             <div style="text-align: center">
                                 <p class="textPaymentMessageDecoration">Din forespørgsel er blevet accepteret!</p>
                                 <p class="textPaymentMessageDecoration">Betal nu og få den leveret hurtigst muligt!</p>
+                                <p class="textPaymentMessageDecoration boldFontCarport">Carport Fuld Pris: ${sessionScope.usersRequest.finalPrice}</p>
                             </div>
 
                             <div style="margin-bottom: 5%" class="col">

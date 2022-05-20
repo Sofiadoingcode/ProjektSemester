@@ -43,6 +43,13 @@
 }
 
 
+.boldFontCarport{
+    font-size: 35px;
+    font-weight: bold;
+
+}
+
+
 .payButton{
     display: inline-block;
     text-decoration: none;
