@@ -59,9 +59,9 @@
                                 </form>
                             </td>
                             <td class="tableRows-RequestList">
-                                <form method="post">
+                                <form method="post" action="fc/modifyFinalPrice?command=modifyFinalPrice">
                                     <div class="input-group">
-                                        <button class="input-group-addon" id="sizing-addon2" class="orders-btn-Checkmark orders-complete orders-btn--right-margin">
+                                        <button type="submit" class="input-group-addon" id="sizing-addon2" class="orders-btn-Checkmark orders-complete orders-btn--right-margin" name="modifyFP" value="${request.idorder}">
 
                                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                                  class="bi bi-check" viewBox="0 0 16 16">
@@ -69,7 +69,7 @@
                                             </svg>
 
                                         </button>
-                                        <input type="number" class="form-control"
+                                        <input type="number" class="form-control" name="finalPriceText"
                                                value="${request.finalprice}">
                                     </div>
 
@@ -135,20 +135,13 @@
                             <td class="tableRows-RequestList">${requests.city}</td>
                             <td class="tableRows-RequestList">
                                 <form>
-                                    <button type="submit" name="seeOrder" formaction="seeOrder.jsp" class="seeorder-btn">
-                                        Se Stykliste
+                                    <button type="submit" name="seeStykliste" value="${requests.idorder}" formaction="fc/BOMlist?command=BOMlist" formmethod="post"
+                                            class="seeorder-btn">Se Stykliste
                                     </button>
                                 </form>
                             </td>
 
-                            <td class="tableRows-RequestList">
-                                <form method="post">
-                                    <input type="number" class="form-control"
-                                           value="${requests.finalprice}" name="product_height">
-
-                                </form>
-
-                            </td>
+                            <td class="tableRows-RequestList">${requests.finalprice}</td>
 
                             <td class="tableRows-RequestList">
                                 <form method="post">
@@ -204,19 +197,12 @@
                             <td class="tableRows-RequestList">${requests.city}</td>
                             <td class="tableRows-RequestList">
                                 <form>
-                                    <button type="submit" name="seeOrder" formaction="seeOrder.jsp" class="seeorder-btn">
-                                        Se Stykliste
+                                    <button type="submit" name="seeStykliste" value="${requests.idorder}" formaction="fc/BOMlist?command=BOMlist" formmethod="post"
+                                            class="seeorder-btn">Se Stykliste
                                     </button>
                                 </form>
                             </td>
-                            <td class="tableRows-RequestList">
-                                <form method="post">
-                                    <input type="number" class="form-control"
-                                           value="${requests.finalprice}" name="product_height">
-
-                                </form>
-
-                            </td>
+                            <td class="tableRows-RequestList">${requests.finalprice}</td>
 
                             <td class="tableRows-RequestList">
                                 <form method="post">
