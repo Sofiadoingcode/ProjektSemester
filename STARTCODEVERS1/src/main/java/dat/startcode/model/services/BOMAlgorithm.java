@@ -787,13 +787,17 @@ public class BOMAlgorithm {
         int stolpeAmountLength = 0;
         int distanceBewteenStolpeWidth = 0;
         int distanceBewteenStolpeLength = 0;
+        int svgDisplacementLength = carportLengthCM/10;
+        int svgDisplacementWidth = carportWidthCM/10;
 
         SVG svg = new SVG(0, 0, "0 0 " + carportLengthCM + " " + carportWidthCM, 100, 100);
 
-        SVG innerSvg = new SVG(10, 10, "0 0 " + carportLengthCM + " " + carportWidthCM, 89, 80);
+        SVG innerSvg = new SVG(svgDisplacementLength, svgDisplacementWidth, "0 0 " + carportLengthCM + " " + carportWidthCM, 89, 80);
 
 
         svg.addRect(0, 0, carportWidthCM, carportLengthCM);
+
+
         /*Square*/
         
         innerSvg.addRect(0, 0, carportWidthCM, carportLengthCM);
