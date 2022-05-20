@@ -17,7 +17,6 @@ public class RequestMapper {
     private int idShed = 0;
     private int idCarport = 0;
     private int idCustomer = 0;
-    private int bomPrice = 0;
 
     ConnectionPool connectionPool;
 
@@ -25,7 +24,7 @@ public class RequestMapper {
         this.connectionPool = connectionPool;
     }
 
-    public void insertShedChoices(int shedWidth, int shedLength, String floorMaterial) throws DatabaseException {
+    public void insertShedChoices(double shedWidth, double shedLength, String floorMaterial) throws DatabaseException {
 
 
         Logger.getLogger("web").log(Level.INFO, "");
@@ -36,8 +35,8 @@ public class RequestMapper {
             String sql = "INSERT INTO `fogarchive`.`shed choices` (width, length, floormateriel) VALUES (?, ?,?) ";
             try (PreparedStatement ps1 = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
 
-                ps1.setInt(1, shedWidth);
-                ps1.setInt(2, shedLength);
+                ps1.setDouble(1, shedWidth);
+                ps1.setDouble(2, shedLength);
                 ps1.setString(3, floorMaterial);
                 ps1.executeUpdate();
 
@@ -54,7 +53,7 @@ public class RequestMapper {
         }
     }
 
-    public int insertCarportChoicesShed(int carportHeight, int carportLength, int carportWidth, String roofMaterial, String roofShape, int roofAngle) throws DatabaseException {
+    public void insertCarportChoicesShed(double carportHeight, double carportLength, double carportWidth, String roofMaterial, String roofShape, int roofAngle) throws DatabaseException {
 
 
         Logger.getLogger("web").log(Level.INFO, "");
@@ -62,13 +61,11 @@ public class RequestMapper {
 
         try (Connection connection = connectionPool.getConnection()) {
 
-            System.out.println(" ASdasdasfkaksbfak ");
-
             String sql = "INSERT INTO `fogarchive`.`carport choices` (height, length, width, roofmateriel, roofshape, roofangle, idshed) VALUES (?, ?, ?, ?, ?, ?, ?) ";
             try (PreparedStatement ps1 = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
-                ps1.setInt(1, carportHeight);
-                ps1.setInt(2, carportLength);
-                ps1.setInt(3, carportWidth);
+                ps1.setDouble(1, carportHeight);
+                ps1.setDouble(2, carportLength);
+                ps1.setDouble(3, carportWidth);
                 ps1.setString(4, roofMaterial);
                 ps1.setString(5, roofShape);
                 ps1.setInt(6, roofAngle);
@@ -84,10 +81,9 @@ public class RequestMapper {
         } catch (SQLException e) {
             throw new DatabaseException("Something went wrong with inserting request into database");
         }
-        return idCarport;
     }
 
-    public void insertCarportChoices(int carportHeight, int carportLength, int carportWidth, String roofMaterial, String roofShape, int roofAngle) throws DatabaseException {
+    public void insertCarportChoices(double carportHeight, double carportLength, double carportWidth, String roofMaterial, String roofShape, int roofAngle) throws DatabaseException {
 
 
         Logger.getLogger("web").log(Level.INFO, "");
@@ -97,9 +93,9 @@ public class RequestMapper {
 
             String sql = "INSERT INTO `fogarchive`.`carport choices` (height, length, width, roofmateriel, roofshape, roofangle) VALUES (?, ?, ?, ?, ?, ?) ";
             try (PreparedStatement ps1 = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
-                ps1.setInt(1, carportHeight);
-                ps1.setInt(2, carportLength);
-                ps1.setInt(3, carportWidth);
+                ps1.setDouble(1, carportHeight);
+                ps1.setDouble(2, carportLength);
+                ps1.setDouble(3, carportWidth);
                 ps1.setString(4, roofMaterial);
                 ps1.setString(5, roofShape);
                 ps1.setInt(6, roofAngle);
@@ -144,11 +140,11 @@ public class RequestMapper {
         }
     }
 
-    public void insertRequest(int idUser, int idBom) throws DatabaseException {
+    public void insertRequest(int idUser, int idBom, double finalPrice) throws DatabaseException {
 
 
         Logger.getLogger("web").log(Level.INFO, "");
-        System.out.println("id customer:" + idCustomer + " idbom: " + idBom + " bomPrice: " + bomPrice + " idUser: " + idUser + " idCardport: " + idCarport );
+
 
         try (Connection connection = connectionPool.getConnection()) {
 
@@ -158,7 +154,7 @@ public class RequestMapper {
                 ps1.setInt(2, idBom);
                 ps1.setInt(3, 0);
                 ps1.setInt(4, 0);
-                ps1.setInt(5, bomPrice);
+                ps1.setDouble(5, finalPrice);
                 ps1.setInt(6, idUser);
                 ps1.setInt(7, idCarport);
                 ps1.executeUpdate();
@@ -168,22 +164,22 @@ public class RequestMapper {
         }
     }
 
-    public void insertFullRequestShed(int shedWidth, int shedLength, String floorMaterial, int carportHeight, int carportLength, int carportWidth, String roofMaterial, String roofShape, int roofAngle, String name, int zipCode, int phoneNumber, String email, int idUser, int idBom) {
+    public void insertFullRequestShed(double shedWidth, double shedLength, String floorMaterial, double carportHeight, double carportLength, double carportWidth, String roofMaterial, String roofShape, int roofAngle, String name, int zipCode, int phoneNumber, String email, int idUser, int idBom, double finalPrice) {
         try {
             insertShedChoices(shedWidth, shedLength, floorMaterial);
             insertCarportChoicesShed(carportHeight, carportLength, carportWidth, roofMaterial, roofShape, roofAngle);
             insertCustomer(name, zipCode, phoneNumber, email);
-            insertRequest(idUser, idBom);
+            insertRequest(idUser, idBom, finalPrice);
         } catch (DatabaseException e) {
             e.printStackTrace();
         }
     }
 
-    public void insertFullRequest(int carportHeight, int carportLength, int carportWidth, String roofMaterial, String roofShape, int roofAngle, String name, int zipCode, int phoneNumber, String email, int idUser, int idBom) {
+    public void insertFullRequest(double carportHeight, double carportLength, double carportWidth, String roofMaterial, String roofShape, int roofAngle, String name, int zipCode, int phoneNumber, String email, int idUser, int idBom, double finalPrice) {
         try {
             insertCarportChoices(carportHeight, carportLength, carportWidth, roofMaterial, roofShape, roofAngle);
             insertCustomer(name, zipCode, phoneNumber, email);
-            insertRequest(idUser, idBom);
+            insertRequest(idUser, idBom, finalPrice);
         } catch (DatabaseException e) {
             e.printStackTrace();
         }
@@ -203,7 +199,7 @@ public class RequestMapper {
                     int idBom = rs.getInt("idbom");
                     boolean isAccepted = rs.getBoolean("isAccepted");
                     boolean isPaid = rs.getBoolean("isPaid");
-                    int finalPrice = rs.getInt("finalPrice");
+                    double finalPrice = rs.getDouble("finalPrice");
                     int idCarportChoices = rs.getInt("idcarportchoices");
                     request = new Request(idOrder, idCustomer, idBom, isAccepted, isPaid, finalPrice, idUser, idCarportChoices);
                 }
@@ -227,9 +223,9 @@ public class RequestMapper {
                 ps.setInt(1, carportChoicesId);
                 ResultSet rs = ps.executeQuery();
                 if (rs.next()) {
-                    int height = rs.getInt("height");
-                    int length = rs.getInt("length");
-                    int width = rs.getInt("width");
+                    double height = rs.getInt("height");
+                    double length = rs.getInt("length");
+                    double width = rs.getInt("width");
                     String roofMaterial = rs.getString("roofmateriel");
                     String roofShape = rs.getString("roofshape");
                     int roofAngle = rs.getInt("roofangle");
@@ -258,8 +254,8 @@ public class RequestMapper {
                 ps.setInt(1, shedId);
                 ResultSet rs = ps.executeQuery();
                 if (rs.next()) {
-                    int width = rs.getInt("width");
-                    int length = rs.getInt("length");
+                    double width = rs.getDouble("width");
+                    double length = rs.getDouble("length");
                     String floorMaterial = rs.getString("floormateriel");
                     shed = new Shed(width, length, floorMaterial);
                 }
@@ -274,6 +270,29 @@ public class RequestMapper {
             throw new DatabaseException(ex, "Error getting shed choices. Something went wrong with the database");
         }
         return shed;
+    }
+
+    public void modifyFinalPrice(int orderID, double modifiedPrice) throws DatabaseException {
+
+        String sql = "UPDATE `fogarchive`.`order` SET `finalPrice` = ? WHERE idorder = ?";
+
+
+        try (Connection connection = connectionPool.getConnection()) {
+            try (PreparedStatement ps = connection.prepareStatement(sql)) {
+
+                ps.setDouble(1, modifiedPrice);
+                ps.setInt(2, orderID);
+
+                ps.executeUpdate();
+
+
+            }
+        } catch (SQLException ex) {
+
+            throw new DatabaseException(ex, "Fejl under indlæsning fra databasen");
+        }
+
+
     }
 
 

@@ -1,20 +1,15 @@
-
-
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@taglib prefix="t" tagdir="/WEB-INF/tags" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@page errorPage="error.jsp" isErrorPage="false" %>
 
-
 <t:pagetemplate>
 
-    <jsp:attribute name="footer">
-                Requests site
-    </jsp:attribute>
+
     <jsp:body>
         <br>
-
+        <h1> Deres Stykliste</h1>
         <div class="orders-header-box">
             <c:forEach var="bom" items="${requestScope.fullbom}">
                 <p>Forespørgsel: ${bom.orderid}</p>
@@ -40,7 +35,7 @@
 
                     </thead>
 
-                    <c:forEach var="category1" items="${requestScope.category1BOM}">
+                    <c:forEach var="category1" items="${sessionScope.category1}">
                         <tr class="orders-tr">
 
                             <td class="tableRows-RequestList">${category1.name}</td>
@@ -74,7 +69,7 @@
 
                     </thead>
 
-                    <c:forEach var="category2" items="${requestScope.category2BOM}">
+                    <c:forEach var="category2" items="${sessionScope.category2}">
                         <tr class="orders-tr">
 
                             <td class="tableRows-RequestList">${category2.name}</td>

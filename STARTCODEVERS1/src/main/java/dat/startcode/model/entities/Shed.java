@@ -1,11 +1,11 @@
 package dat.startcode.model.entities;
 
 public class Shed {
-    private int width;
-    private int length;
+    private double width;
+    private double length;
     private String floorMaterial;
 
-    public Shed(int width, int length, String floorMaterial) {
+    public Shed(double width, double length, String floorMaterial) {
         this.width = width;
         this.length = length;
         this.floorMaterial = floorMaterial;
@@ -19,7 +19,7 @@ public class Shed {
         this.floorMaterial = floorMaterial;
     }
 
-    public int getLength() {
+    public double getLength() {
         return length;
     }
 
@@ -27,7 +27,7 @@ public class Shed {
         this.length = length;
     }
 
-    public int getWidth() {
+    public double getWidth() {
         return width;
     }
 

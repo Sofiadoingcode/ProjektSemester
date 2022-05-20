@@ -23,14 +23,19 @@ abstract class Command
         commands.put("acceptRequest", new AcceptRequest());
         commands.put("unAcceptRequest", new unAcceptRequest());
         commands.put("BOMlist", new BOMList());
+        commands.put("generateBom", new GenerateBOM());
         commands.put("createAdminAccount", new CreateAdminAccount());
         commands.put("deleteAccount", new DeleteAccount());
-        commands.put("ViewProducts", new ViewProducts());
+        commands.put("viewProducts", new ViewProducts());
         commands.put("saveproduct",new SaveProduct());
         commands.put("modifyproduct",new ModifyProduct());
         commands.put("deleteproduct",new DeleteProduct());
         commands.put("createRequest", new CreateRequest());
         commands.put("tempLogin", new TempLogin());
+        commands.put("showSvg", new ShowSVG());
+        commands.put("payForRequest", new PayForRequest());
+        commands.put("seebom", new SeeBOM());
+        commands.put("modifyFinalPrice", new ModifyFinalPrice());
 
     }
 

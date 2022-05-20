@@ -1,17 +1,23 @@
 package dat.startcode.control;
 
 import dat.startcode.model.config.ApplicationStart;
+import dat.startcode.model.entities.CarportChoices;
+import dat.startcode.model.entities.ProductLine;
 import dat.startcode.model.entities.User;
 import dat.startcode.model.exceptions.DatabaseException;
+import dat.startcode.model.persistence.BOMMapper;
 import dat.startcode.model.persistence.RequestMapper;
 import dat.startcode.model.persistence.UserMapper;
-import dat.startcode.model.services.RequestFacade;
+import dat.startcode.model.services.BOMAlgorithm;
+import dat.startcode.model.services.SVG;
 import dat.startcode.model.services.UserFacade;
 import dat.startcode.model.persistence.ConnectionPool;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -29,9 +35,24 @@ public class CreateRequest extends Command
     String execute(HttpServletRequest request, HttpServletResponse response) throws DatabaseException
     {
 
-        int height = Integer.parseInt(request.getParameter("height"));
-        int length = Integer.parseInt(request.getParameter("length"));
-        int width = Integer.parseInt(request.getParameter("width"));
+
+        double height = Double.parseDouble(request.getParameter("height"));
+        double length = Double.parseDouble(request.getParameter("length"));
+        double width = Double.parseDouble(request.getParameter("width"));
+
+        CarportChoices carportChoice = new CarportChoices(height, width, length);
+
+        BOMAlgorithm bomAlgorithm = new BOMAlgorithm();
+        List<ProductLine> fullBomList = bomAlgorithm.generateBOM(carportChoice);
+
+
+
+        String bomDescription = bomAlgorithm.getDescription();
+        double bomTotalPrice = bomAlgorithm.getTotalBomPrice();
+        SVG svg = bomAlgorithm.getSvg();
+
+
+
         String tagMateriale = request.getParameter("tagMateriale");
         String tag = request.getParameter("tag");
         int angle = Integer.parseInt(request.getParameter("angle"));
@@ -41,10 +62,16 @@ public class CreateRequest extends Command
         String email = request.getParameter("email");
 
 
-
-
         User user;
         user=(User)request.getAttribute("tempUser");
+
+
+        BOMMapper bomMapper = new BOMMapper(connectionPool);
+
+        int bomId = bomMapper.createBOMinDB(bomDescription, bomTotalPrice, svg.toString());
+
+        bomMapper.saveFullBom(bomId, fullBomList);
+
 
         RequestMapper requestMapper= new RequestMapper(connectionPool);
 
@@ -52,13 +79,17 @@ public class CreateRequest extends Command
             int shedWidth = Integer.parseInt(request.getParameter("shedWidth"));
             int shedLength = Integer.parseInt(request.getParameter("shedLength"));
             String floorMaterial = request.getParameter("floorMaterial");
-
-            RequestFacade.insertFullRequestShed(shedWidth, shedLength, floorMaterial, height, length, width, tagMateriale, tag, angle, name, zipCode, phoneNumber, email, user.getIdUser(), 1,connectionPool);
+            requestMapper.insertFullRequestShed(shedWidth, shedLength, floorMaterial, height, length, width, tagMateriale, tag, angle, name, zipCode, phoneNumber, email, user.getIdUser(), bomId, bomTotalPrice);
         }
         else{
-            RequestFacade.insertFullRequest(height, length, width, tagMateriale, tag, angle, name, zipCode, phoneNumber, email, user.getIdUser(), 1,connectionPool);
+            requestMapper.insertFullRequest(height, length, width, tagMateriale, tag, angle, name, zipCode, phoneNumber, email, user.getIdUser(), bomId, bomTotalPrice);
         }
+
+
         request.setAttribute("tempUser", user);
+        request.setAttribute("svg", svg);
+
+
         return "orderintroduction.jsp";
 
 

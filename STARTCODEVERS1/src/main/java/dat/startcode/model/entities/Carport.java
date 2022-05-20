@@ -1,16 +1,16 @@
 package dat.startcode.model.entities;
 
 public class Carport {
-    private int height;
-    private int length;
-    private int width;
+    private double height;
+    private double length;
+    private double width;
     private String roofMaterial;
     private String roofShape;
     private int roofAngle;
     private int idShed;
 
 
-    public Carport(int height, int length, int width, String roofMaterial, String roofShape, int roofAngle, int idShed) {
+    public Carport(double height, double length, double width, String roofMaterial, String roofShape, int roofAngle, int idShed) {
         this.height = height;
         this.length = length;
         this.width = width;
@@ -36,7 +36,7 @@ public class Carport {
         this.roofMaterial = roofMaterial;
     }
 
-    public int getWidth() {
+    public double getWidth() {
         return width;
     }
 
@@ -44,7 +44,7 @@ public class Carport {
         this.width = width;
     }
 
-    public int getLength() {
+    public double getLength() {
         return length;
     }
 
@@ -52,7 +52,7 @@ public class Carport {
         this.length = length;
     }
 
-    public int getHeight() {
+    public double getHeight() {
         return height;
     }
 
