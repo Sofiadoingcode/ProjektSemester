@@ -141,10 +141,10 @@ public class BOMMapper implements IBOMMapper{
     }
 
 
-    public int createBOMinDB (String description, double totalprice) throws DatabaseException {
+    public int createBOMinDB (String description, double totalprice, String svg) throws DatabaseException {
         int bomId = 0;
 
-        String sql = "INSERT INTO `fogarchive`.`bom` (`totalprice`,`description`) VALUES (?,?)";
+        String sql = "INSERT INTO `fogarchive`.`bom` (`totalprice`,`description`, `svgDrawing`) VALUES (?,?,?)";
 
 
 
@@ -154,6 +154,8 @@ public class BOMMapper implements IBOMMapper{
                 ps.setDouble(1, totalprice);
 
                 ps.setString(2, description);
+
+                ps.setString(3, svg);
 
                 ps.executeUpdate();
 
