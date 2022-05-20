@@ -363,7 +363,7 @@ public class BOMAlgorithm {
         carportLengthSpærCalc = carportLengthSpær - spærHeight;
         spærAmount = (int) Math.ceil(carportLengthSpærCalc / (60 + spærHeight) + 1);
         spærDistance=(int) carportLengthSpærCalc/(spærAmount-1);
-        //spærAmount = (int) Math.ceil(carportLengthSpærCalc);
+        
         spærFullAmount = spærAmount;
 
         for (Integer i : lengths.keySet()) {
