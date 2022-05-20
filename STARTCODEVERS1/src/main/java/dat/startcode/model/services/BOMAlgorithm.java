@@ -258,6 +258,7 @@ public class BOMAlgorithm {
             }
         }
         stolpeAmount = antalStolperCorner + antalStolperSide + antalStolperBack;
+        System.out.println("StolpeAmount: " + stolpeAmount);
 
         for (int i = 0; i < allStolper.size(); i++) {
 
@@ -815,7 +816,7 @@ public class BOMAlgorithm {
             }
         }
 
-        stolpeAmountLength = (stolpeAmount - stolpeAmountWidth) / 2;
+        stolpeAmountLength = (stolpeAmount - stolpeAmountWidth - 4) / 2;
 
         distanceBewteenStolpeWidth = carportWidthWithDisplacement / (stolpeAmountWidth + 1);
         distanceBewteenStolpeLength = carportLengthWithDisplacement / (stolpeAmountLength + 1);
@@ -842,7 +843,9 @@ public class BOMAlgorithm {
 
         svg.addDottedLine(0, stolpeDisplacementWidth, carportLengthCM, carportWidthCM - stolpeDisplacementWidth, 3);
         svg.addDottedLine(0, carportWidthCM - stolpeDisplacementWidth, carportLengthCM, stolpeDisplacementWidth, 3);
-        
+
+        System.out.println("Stolpe amount length: " + stolpeAmountLength);
+        System.out.println("Stolpe amount width: " +stolpeAmountWidth);
         return svg;
     }
     public SVG getSvg(){
