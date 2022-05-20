@@ -55,6 +55,10 @@
                     <c:if test="${sessionScope.user == null }">
                         <a class="nav-item nav-link" href="${pageContext.request.contextPath}/orderintroduction.jsp" style="color: white; padding-left: 25px; padding-right: 25px;">Bestil carport</a>
                     </c:if>
+                    <c:if test="${sessionScope.user != null }">
+                        <a class="nav-item nav-link" href="${pageContext.request.contextPath}/viewcarportorder.jsp" style="color: white; padding-left: 25px; padding-right: 25px;">Din Carport</a>
+                    </c:if>
+
                         <a class="nav-item nav-link" href="${pageContext.request.contextPath}/fc" style="color: white; padding-left: 25px; padding-right: 25px;">Kontakt os</a>
 
                     <c:if test="${sessionScope.user == null }">
