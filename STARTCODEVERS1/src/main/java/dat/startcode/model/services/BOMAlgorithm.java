@@ -777,28 +777,30 @@ public class BOMAlgorithm {
         int stolpeDisplacementLengthFront = 110;
         int stolpeDisplacementWidth = 35;
         int stolpeCounter = 0;
-        int carportWidthWithDisplacement = (int) carportWidth - (stolpeDisplacementWidth * 2); //Change 600 to carportWidth
-        int carportLengthWithDisplacement = (int) carportLength - (stolpeDisplacementLengthFront); //Change 800 to carportLength
+        int carportWidthCM=(int)(carportWidth*100);
+        int carportLengthCM=(int)(carportLength*100);
+        int carportWidthWithDisplacement =  carportWidthCM - (stolpeDisplacementWidth * 2); //Change 600 to carportWidth
+        int carportLengthWithDisplacement = carportLengthCM - (stolpeDisplacementLengthFront); //Change 800 to carportLength
         int stolpeAmountWidth = 0;
         int stolpeAmountLength = 0;
         int distanceBewteenStolpeWidth = 0;
         int distanceBewteenStolpeLength = 0;
 
-        SVG svg = new SVG(0, 0, "0 0 " + carportLength + " " + carportWidth, 100, 100);
+        SVG svg = new SVG(0, 0, "0 0 " + carportLengthCM + " " + carportWidthCM, 100, 100);
 
         /*Square*/
         
-        svg.addRect(0, 0, (int)carportWidth, (int)carportLength);
+        svg.addRect(0, 0, carportWidthCM, carportLengthCM);
 
         /*Rem*/
 
-        svg.addRect(0, stolpeDisplacementWidth, 4, (int)carportLength);
-        svg.addRect(0, (int)carportWidth - stolpeDisplacementWidth, 4, (int)carportLength);
+        svg.addRect(0, stolpeDisplacementWidth, 4, carportLengthCM);
+        svg.addRect(0, carportWidthCM - stolpeDisplacementWidth, 4, carportLengthCM);
 
         /*Spær*/
 
         for (int x = 0; x < spærFullAmount; x++) {
-            svg.addRect(57 * x, 0, (int)carportWidth, 4);
+            svg.addRect(57 * x, 0, carportWidthCM, 4);
         }
 
         /*Stolper*/
@@ -819,12 +821,12 @@ public class BOMAlgorithm {
 
 
         svg.addRectStolpe(stolpeDisplacementLengthFront, stolpeDisplacementWidth, 12, 12);
-        svg.addRectStolpe(stolpeDisplacementLengthFront, (int)carportWidth - stolpeDisplacementWidth, 12, 12);
-        svg.addRectStolpe((int)carportLength, stolpeDisplacementWidth, 12, 12);
-        svg.addRectStolpe((int)carportLength, (int)carportWidth - stolpeDisplacementWidth, 12, 12);
+        svg.addRectStolpe(stolpeDisplacementLengthFront, carportWidthCM - stolpeDisplacementWidth, 12, 12);
+        svg.addRectStolpe(carportLengthCM, stolpeDisplacementWidth, 12, 12);
+        svg.addRectStolpe(carportLengthCM, carportWidthCM - stolpeDisplacementWidth, 12, 12);
 
         for (int i = 1; i <= stolpeAmountWidth; i++) {
-            svg.addRectStolpe((int)carportLength, stolpeDisplacementWidth + distanceBewteenStolpeWidth * i, 12, 12); //Change 900 to carportLength
+            svg.addRectStolpe(carportLengthCM, stolpeDisplacementWidth + distanceBewteenStolpeWidth * i, 12, 12); //Change 900 to carportLength
         }
 
         for (int i = 1; i <= stolpeAmountLength; i++) {
@@ -832,13 +834,13 @@ public class BOMAlgorithm {
         }
 
         for (int i = 1; i <= stolpeAmountLength; i++) {
-            svg.addRectStolpe(stolpeDisplacementLengthFront + distanceBewteenStolpeLength * i, (int)carportWidth - stolpeDisplacementWidth, 12, 12); //Change 900 to carportLength
+            svg.addRectStolpe(stolpeDisplacementLengthFront + distanceBewteenStolpeLength * i, carportWidthCM - stolpeDisplacementWidth, 12, 12); //Change 900 to carportLength
         }
         
         /*Hulbånd*/
 
-        svg.addDottedLine(0, stolpeDisplacementWidth, (int)carportLength, (int)carportWidth - stolpeDisplacementWidth, 3);
-        svg.addDottedLine(0, (int)carportWidth - stolpeDisplacementWidth, (int)carportLength, stolpeDisplacementWidth, 3);
+        svg.addDottedLine(0, stolpeDisplacementWidth, carportLengthCM, carportWidthCM - stolpeDisplacementWidth, 3);
+        svg.addDottedLine(0, carportWidthCM - stolpeDisplacementWidth, carportLengthCM, stolpeDisplacementWidth, 3);
         
         return svg;
     }

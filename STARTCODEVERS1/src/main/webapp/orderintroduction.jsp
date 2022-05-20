@@ -236,7 +236,7 @@
                                                         <div class="gy-6 row align-content-start">
                                                                 <!-- Button trigger modal -->
                                                                 <div class="col">
-                                                                        <button type="submit" formaction="fc/GenerateBOM?command=GenerateBOM" formmethod="post" class=" btn-primary" >
+                                                                        <button type="submit" formaction="fc/generateBom?command=generateBom" formmethod="post" class=" btn-primary" >
                                                                                 Se tegning
                                                                         </button>
                                                                 </div>
