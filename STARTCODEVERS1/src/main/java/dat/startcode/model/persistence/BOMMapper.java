@@ -23,12 +23,9 @@ public class BOMMapper implements IBOMMapper{
     public BOMDTO getBOM(int orderID) throws DatabaseException {
 
 
-        BOMDTO bomdto = new BOMDTO(0, 0, "", 0);
+        BOMDTO bomdto = new BOMDTO(0, 0, "", 0, "");
 
-        String sql = "SELECT idbom, totalprice, `description`, o.idorder\n" +
-                "FROM BOM\n" +
-                "INNER JOIN `order` o USING (idbom)\n" +
-                "WHERE idorder = ?";
+        String sql = "SELECT idbom, totalprice, `description`, svgDrawing, o.idorder FROM BOM INNER JOIN `order` o USING (idbom) WHERE idorder = ?";
 
         try (Connection connection = connectionPool.getConnection()) {
             try (PreparedStatement ps = connection.prepareStatement(sql)) {
@@ -44,9 +41,11 @@ public class BOMMapper implements IBOMMapper{
 
                     String description = rs.getString("description");
 
+                    String svgDrawing = rs.getString("svgDrawing");
+
                     int orderid = rs.getInt("idorder");
 
-                    bomdto = new BOMDTO(bomid, totalprice, description, orderid);
+                    bomdto = new BOMDTO(bomid, totalprice, description, orderid, svgDrawing);
 
                 }
 
