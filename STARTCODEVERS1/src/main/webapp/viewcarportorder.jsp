@@ -209,7 +209,7 @@
 
                             <div style="margin-bottom: 5%; text-align: right" class="col">
                                 <form>
-                                    <a href="${pageContext.request.contextPath}/#" style="margin-right: 46.5%"
+                                    <a href="${pageContext.request.contextPath}/fc/seebom?command=seebom" style="margin-right: 46.5%"
                                        class="btn-viewcarportorder-betal">Se stykliste</a>
                                 </form>
                             </div>

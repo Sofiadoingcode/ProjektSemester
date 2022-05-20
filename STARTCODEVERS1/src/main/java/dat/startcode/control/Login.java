@@ -1,11 +1,9 @@
 package dat.startcode.control;
 
 import dat.startcode.model.config.ApplicationStart;
-import dat.startcode.model.entities.Carport;
-import dat.startcode.model.entities.Request;
-import dat.startcode.model.entities.Shed;
-import dat.startcode.model.entities.User;
+import dat.startcode.model.entities.*;
 import dat.startcode.model.exceptions.DatabaseException;
+import dat.startcode.model.persistence.BOMMapper;
 import dat.startcode.model.persistence.RequestMapper;
 import dat.startcode.model.services.UserFacade;
 import dat.startcode.model.persistence.ConnectionPool;
@@ -49,6 +47,12 @@ public class Login extends Command
             Request usersRequest = requestMapper.getRequestFromDB(user.getIdUser());
             Carport carport = null;
             Shed shed = null;
+
+
+
+
+
+
             if (usersRequest != null) {
                 carport = requestMapper.getCarportChoices(usersRequest.getIdcarportchoices());
                 if (carport.getIdShed() != 0) {
@@ -60,6 +64,9 @@ public class Login extends Command
             session.setAttribute("usersRequest", usersRequest);
             session.setAttribute("carportChoices", carport);
             session.setAttribute("shedChoices", shed);
+
+
+
         }
         if(user.getIdRole()==2){
             ret = "viewcarportorder.jsp";
