@@ -49,7 +49,7 @@ public class CreateRequest extends Command
 
         String bomDescription = bomAlgorithm.getDescription();
         double bomTotalPrice = bomAlgorithm.getTotalBomPrice();
-        //SVG svg = bomAlgorithm.getSvg();
+        SVG svg = bomAlgorithm.getSvg();
 
 
 
@@ -68,7 +68,7 @@ public class CreateRequest extends Command
 
         BOMMapper bomMapper = new BOMMapper(connectionPool);
 
-        int bomId = bomMapper.createBOMinDB(bomDescription, bomTotalPrice);
+        int bomId = bomMapper.createBOMinDB(bomDescription, bomTotalPrice, svg.toString());
 
         bomMapper.saveFullBom(bomId, fullBomList);
 
@@ -85,7 +85,7 @@ public class CreateRequest extends Command
             requestMapper.insertFullRequest(height, length, width, tagMateriale, tag, angle, name, zipCode, phoneNumber, email, user.getIdUser(), bomId);
         }
         request.setAttribute("tempUser", user);
-        //request.setAttribute("svg", svg);
+        request.setAttribute("svg", svg);
 
 
         return "orderintroduction.jsp";

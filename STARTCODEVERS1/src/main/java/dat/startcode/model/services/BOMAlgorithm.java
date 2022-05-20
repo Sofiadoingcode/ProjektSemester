@@ -23,13 +23,12 @@ public class BOMAlgorithm {
     List<ProductDTO> allProducts;
     private String description;
     private double totalBomPrice;
-
-    private double spærHeight;
     private int spærFullAmount;
     private double sternHeight;
     private int stolpeAmount;
     private ConnectionPool connectionPool;
     private ProductDTO remField;
+    private int spærDistance=0;
 
 
     public BOMAlgorithm() throws DatabaseException {
@@ -335,7 +334,7 @@ public class BOMAlgorithm {
         double beslagSkruerAmountCalc = 0;
         int beslagSkruerAmount = 0;
         Integer beslagSkruerLængdeId = null;
-        double spærWidth = 0;
+        double spærHeight = 0;
         List<ProductDTO> spærProducts = new ArrayList<>();
         List<ProductDTO> beslagProducts = new ArrayList<>();
         List<ProductDTO> beslagSkruerProducts = new ArrayList<>();
@@ -355,16 +354,16 @@ public class BOMAlgorithm {
             }
         }
         ProductDTO spær = spærProducts.get(0);
-        spærHeight = spær.getHeight();
         ProductDTO beslagHøjre = beslagProducts.get(0);
         ProductDTO beslagVenstre = beslagProducts.get(1);
         ProductDTO beslagSkruer = beslagSkruerProducts.get(0);
 
-        spærWidth = spær.getWidth();
-        spærWidth = spærWidth / 10;
-        carportLengthSpærCalc = carportLengthSpær - spærWidth;
-        carportLengthSpærCalc = carportLengthSpærCalc / (60 + spærWidth) + 1;
-        spærAmount = (int) Math.ceil(carportLengthSpærCalc);
+        spærHeight = spær.getHeight();
+        spærHeight = spærHeight / 10;
+        carportLengthSpærCalc = carportLengthSpær - spærHeight;
+        spærAmount = (int) Math.ceil(carportLengthSpærCalc / (60 + spærHeight) + 1);
+        spærDistance=(int) carportLengthSpærCalc/(spærAmount-1);
+        //spærAmount = (int) Math.ceil(carportLengthSpærCalc);
         spærFullAmount = spærAmount;
 
         for (Integer i : lengths.keySet()) {
@@ -800,7 +799,7 @@ public class BOMAlgorithm {
         /*Spær*/
 
         for (int x = 0; x < spærFullAmount; x++) {
-            svg.addRect(57 * x, 0, carportWidthCM, 4);
+            svg.addRect(spærDistance * x, 0, carportWidthCM, 4);
         }
 
         /*Stolper*/
