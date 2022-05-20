@@ -39,6 +39,7 @@
                     <td class="tableHeader-RequestList">Telefonnummer</td>
                     <td class="tableHeader-RequestList">By</td>
                     <td class="tableHeader-RequestList">Bestilling</td>
+                    <td class="tableHeader-RequestList">Pris</td>
                     <td class="tableHeader-RequestList">Handling</td>
 
                     </thead>
@@ -57,6 +58,24 @@
                                     </button>
                                 </form>
                             </td>
+                            <td class="tableRows-RequestList">
+                                <form method="post" action="fc/modifyFinalPrice?command=modifyFinalPrice">
+                                    <div class="input-group">
+                                        <button type="submit" class="input-group-addon" id="sizing-addon2" class="orders-btn-Checkmark orders-complete orders-btn--right-margin" name="modifyFP" value="${request.idorder}">
+
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                                 class="bi bi-check" viewBox="0 0 16 16">
+                                                <path d="M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.267.267 0 0 1 .02-.022z"/>
+                                            </svg>
+
+                                        </button>
+                                        <input type="number" class="form-control" name="finalPriceText"
+                                               value="${request.finalprice}">
+                                    </div>
+
+                                </form>
+                            </td>
+
                             <td class="tableRows-RequestList">
                                 <form method="post">
                                     <button type="submit" name="accept" value="${request.idorder}" formaction="fc/acceptRequest?command=acceptRequest" formmethod="post"
@@ -103,6 +122,7 @@
                     <td class="tableHeader-RequestList">Telefonnummer</td>
                     <td class="tableHeader-RequestList">By</td>
                     <td class="tableHeader-RequestList">Bestilling</td>
+                    <td class="tableHeader-RequestList">Pris</td>
                     <td class="tableHeader-RequestList">Handling</td>
 
                     </thead>
@@ -115,11 +135,14 @@
                             <td class="tableRows-RequestList">${requests.city}</td>
                             <td class="tableRows-RequestList">
                                 <form>
-                                    <button type="submit" name="seeOrder" formaction="seeOrder.jsp" class="seeorder-btn">
-                                        Se Stykliste
+                                    <button type="submit" name="seeStykliste" value="${requests.idorder}" formaction="fc/BOMlist?command=BOMlist" formmethod="post"
+                                            class="seeorder-btn">Se Stykliste
                                     </button>
                                 </form>
                             </td>
+
+                            <td class="tableRows-RequestList">${requests.finalprice}</td>
+
                             <td class="tableRows-RequestList">
                                 <form method="post">
                                     <button type="submit" name="unAccept" value="${requests.idorder}" formaction="fc/unAcceptRequest?command=unAcceptRequest" formmethod="post"
@@ -161,6 +184,7 @@
                     <td class="tableHeader-RequestList">Telefonnummer</td>
                     <td class="tableHeader-RequestList">By</td>
                     <td class="tableHeader-RequestList">Bestilling</td>
+                    <td class="tableHeader-RequestList">Pris</td>
                     <td class="tableHeader-RequestList">Handling</td>
 
                     </thead>
@@ -173,11 +197,13 @@
                             <td class="tableRows-RequestList">${requests.city}</td>
                             <td class="tableRows-RequestList">
                                 <form>
-                                    <button type="submit" name="seeOrder" formaction="seeOrder.jsp" class="seeorder-btn">
-                                        Se Stykliste
+                                    <button type="submit" name="seeStykliste" value="${requests.idorder}" formaction="fc/BOMlist?command=BOMlist" formmethod="post"
+                                            class="seeorder-btn">Se Stykliste
                                     </button>
                                 </form>
                             </td>
+                            <td class="tableRows-RequestList">${requests.finalprice}</td>
+
                             <td class="tableRows-RequestList">
                                 <form method="post">
 

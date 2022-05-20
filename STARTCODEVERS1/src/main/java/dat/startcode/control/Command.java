@@ -34,6 +34,8 @@ abstract class Command
         commands.put("tempLogin", new TempLogin());
         commands.put("payForRequest", new PayForRequest());
         commands.put("seebom", new SeeBOM());
+        commands.put("modifyFinalPrice", new ModifyFinalPrice());
+
 
     }
 
