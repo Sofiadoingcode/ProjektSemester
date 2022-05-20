@@ -8,22 +8,20 @@
 
     <jsp:body>
         <div class="container">
-
-            <h1> Din Carport</h1>
+            <div class="ointro-header-box">
+                <h1 class="ointro-header"> Din Carport</h1>
+            </div>
 
             <div class="row">
-                <div class="col-md-3">
-                    <p>
-                        Description
-                    </p>
-
-
-                </div>
-
-                <div>
-                    <p>
-                        ${sessionScope.bom.svgDrawing}
-                    </p>
+                <div class="index-box">
+                    <div class="">
+                        <p>
+                            ${sessionScope.bom.svgDrawing}
+                        </p>
+                    </div>
+                    <div>
+                        <p class="index-description">${sessionScope.bom.description}</p>
+                    </div>
                 </div>
 
                 <div class="container align-items-center">
@@ -156,7 +154,8 @@
                             <div style="text-align: center">
                                 <p class="textPaymentMessageDecoration">Din forespørgsel er blevet accepteret!</p>
                                 <p class="textPaymentMessageDecoration">Betal nu og få den leveret hurtigst muligt!</p>
-                                <p class="textPaymentMessageDecoration boldFontCarport">Carport Fuld Pris: ${sessionScope.usersRequest.finalPrice}</p>
+                                <p class="textPaymentMessageDecoration boldFontCarport">Carport Fuld
+                                    Pris: ${sessionScope.usersRequest.finalPrice}</p>
                             </div>
 
                             <div style="margin-bottom: 5%" class="col">
@@ -183,7 +182,8 @@
 
                             <div style="margin-bottom: 5%; text-align: right" class="col">
                                 <form>
-                                    <a href="${pageContext.request.contextPath}/fc/seebom?command=seebom" style="margin-right: 46.5%"
+                                    <a href="${pageContext.request.contextPath}/fc/seebom?command=seebom"
+                                       style="margin-right: 46.5%"
                                        class="btn-viewcarportorder-betal">Se stykliste</a>
                                 </form>
                             </div>

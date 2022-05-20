@@ -71,13 +71,14 @@ public class BOMAlgorithm {
         double carportWidth = carportChoice.getWidth();
         double carportLength = carportChoice.getLength();
 
-        description += "Carport: " + carportWidth + " x " + carportLength + " m\n";
-
-        description += "\nSpærtype: Fladt";
-
-        description += "\nRemtype: Spærtræ 45x195 mm";
-
-        description += "\nTagmateriale: Plastmo Ecolite blåtonet";
+        description += "<strong>Carport: " + carportWidth + " x " + carportLength + " m</strong>";
+        description += "<br>";
+        description += "<br>";
+        description += "<strong>Spærtype:</strong> Fladt";
+        description += "<br>";
+        description += "<strong>Remtype: </strong>Spærtræ 45x195 mm";
+        description += "<br>";
+        description += "<strong>Tagmateriale: </strong>Plastmo Ecolite blåtonet";
 
 
         return description;
