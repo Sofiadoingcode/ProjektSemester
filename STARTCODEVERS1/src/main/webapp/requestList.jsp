@@ -135,8 +135,8 @@
                             <td class="tableRows-RequestList">${requests.city}</td>
                             <td class="tableRows-RequestList">
                                 <form>
-                                    <button type="submit" name="seeOrder" formaction="seeOrder.jsp" class="seeorder-btn">
-                                        Se Stykliste
+                                    <button type="submit" name="seeStykliste" value="${requests.idorder}" formaction="fc/BOMlist?command=BOMlist" formmethod="post"
+                                            class="seeorder-btn">Se Stykliste
                                     </button>
                                 </form>
                             </td>
@@ -197,8 +197,8 @@
                             <td class="tableRows-RequestList">${requests.city}</td>
                             <td class="tableRows-RequestList">
                                 <form>
-                                    <button type="submit" name="seeOrder" formaction="seeOrder.jsp" class="seeorder-btn">
-                                        Se Stykliste
+                                    <button type="submit" name="seeStykliste" value="${requests.idorder}" formaction="fc/BOMlist?command=BOMlist" formmethod="post"
+                                            class="seeorder-btn">Se Stykliste
                                     </button>
                                 </form>
                             </td>
