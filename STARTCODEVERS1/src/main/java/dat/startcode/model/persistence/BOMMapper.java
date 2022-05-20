@@ -21,17 +21,21 @@ public class BOMMapper implements IBOMMapper{
 
     @Override
     public BOMDTO getBOM(int orderID) throws DatabaseException {
-
+        System.out.println("1");
 
         BOMDTO bomdto = new BOMDTO(0, 0, "", 0, "");
+        System.out.println("2");
 
         String sql = "SELECT idbom, totalprice, `description`, svgDrawing, o.idorder FROM BOM INNER JOIN `order` o USING (idbom) WHERE idorder = ?";
+        System.out.println("3");
 
         try (Connection connection = connectionPool.getConnection()) {
             try (PreparedStatement ps = connection.prepareStatement(sql)) {
+                System.out.println("4");
 
                 ps.setInt(1, orderID);
                 ResultSet rs = ps.executeQuery();
+                    System.out.println("5");
 
                 while (rs.next()) {
 
@@ -46,11 +50,13 @@ public class BOMMapper implements IBOMMapper{
                     int orderid = rs.getInt("idorder");
 
                     bomdto = new BOMDTO(bomid, totalprice, description, orderid, svgDrawing);
+                    System.out.println("6");
 
                 }
 
             }
         } catch (SQLException ex) {
+                    System.out.println("ERRRORORRRROROROOR");
             throw new DatabaseException(ex, "Fejl under indlæsning fra databasen");
         }
 
