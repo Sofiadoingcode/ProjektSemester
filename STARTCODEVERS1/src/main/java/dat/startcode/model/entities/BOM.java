@@ -16,7 +16,6 @@ public class BOM {
         this.totalprice = totalprice;
         this.description = description;
 
-
     }
 
 

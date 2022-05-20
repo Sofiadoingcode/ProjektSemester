@@ -8,47 +8,19 @@
 
     <jsp:body>
         <div class="container">
-
-            <h1> Din Carport</h1>
+            <div class="ointro-header-box">
+                <h1 class="ointro-header"> Din Carport</h1>
+            </div>
 
             <div class="row">
-                <div class="col-md-3">
-                    <p>
-                        Description
-                    </p>
-
-
-                </div>
-                <div class="col-md-9">
-                    <p>
-                        <button class="btn btn-primary" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#multiCollapseExample1" aria-expanded="false"
-                                aria-controls="multiCollapseExample2">
-                            Se tegning 1
-                        </button>
-                        <button class="btn btn-primary" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#multiCollapseExample2" aria-expanded="false"
-                                aria-controls="multiCollapseExample2">
-                            Se tegning 2
-                        </button>
-
-                    </p>
-
-
-                    <div>
-                        <div class="collapse multi-collapse" id="multiCollapseExample1">
-                            <div class="card card-body">
-                                <img src="https://pbs.twimg.com/media/FR9W2eDXoAAMv-j?format=png&name=medium"
-                                     width="100rem">
-
-                            </div>
-                        </div>
+                <div class="index-box">
+                    <div class="">
+                        <p>
+                            ${sessionScope.bom.svgDrawing}
+                        </p>
                     </div>
-                    <div class="collapse multi-collapse" id="multiCollapseExample2">
-                        <div class="card card-body">
-                            <img src="https://walfiegif.files.wordpress.com/2021/12/out-transparent-1.gif?w=1000"
-                                 width="100rem">
-                        </div>
+                    <div>
+                        <p class="index-description">${sessionScope.bom.description}</p>
                     </div>
                 </div>
 
@@ -182,7 +154,8 @@
                             <div style="text-align: center">
                                 <p class="textPaymentMessageDecoration">Din forespørgsel er blevet accepteret!</p>
                                 <p class="textPaymentMessageDecoration">Betal nu og få den leveret hurtigst muligt!</p>
-                                <p class="textPaymentMessageDecoration boldFontCarport">Carport Fuld Pris: ${sessionScope.usersRequest.finalPrice}</p>
+                                <p class="textPaymentMessageDecoration boldFontCarport">Carport Fuld
+                                    Pris: ${sessionScope.usersRequest.finalPrice}</p>
                             </div>
 
                             <div style="margin-bottom: 5%" class="col">
@@ -209,7 +182,8 @@
 
                             <div style="margin-bottom: 5%; text-align: right" class="col">
                                 <form>
-                                    <a href="${pageContext.request.contextPath}/fc/seebom?command=seebom" style="margin-right: 46.5%"
+                                    <a href="${pageContext.request.contextPath}/fc/seebom?command=seebom"
+                                       style="margin-right: 46.5%"
                                        class="btn-viewcarportorder-betal">Se stykliste</a>
                                 </form>
                             </div>

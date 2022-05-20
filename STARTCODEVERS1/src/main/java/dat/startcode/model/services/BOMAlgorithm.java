@@ -71,13 +71,14 @@ public class BOMAlgorithm {
         double carportWidth = carportChoice.getWidth();
         double carportLength = carportChoice.getLength();
 
-        description += "Carport: " + carportWidth + " x " + carportLength + " m\n";
-
-        description += "\nSpærtype: Fladt";
-
-        description += "\nRemtype: Spærtræ 45x195 mm";
-
-        description += "\nTagmateriale: Plastmo Ecolite blåtonet";
+        description += "<strong>Carport: " + carportWidth + " x " + carportLength + " m</strong>";
+        description += "<br>";
+        description += "<br>";
+        description += "<strong>Spærtype:</strong> Fladt";
+        description += "<br>";
+        description += "<strong>Remtype: </strong>Spærtræ 45x195 mm";
+        description += "<br>";
+        description += "<strong>Tagmateriale: </strong>Plastmo Ecolite blåtonet";
 
 
         return description;
@@ -257,6 +258,7 @@ public class BOMAlgorithm {
             }
         }
         stolpeAmount = antalStolperCorner + antalStolperSide + antalStolperBack;
+        System.out.println("StolpeAmount: " + stolpeAmount);
 
         for (int i = 0; i < allStolper.size(); i++) {
 
@@ -818,7 +820,7 @@ public class BOMAlgorithm {
             }
         }
 
-        stolpeAmountLength = (stolpeAmount - stolpeAmountWidth) / 2;
+        stolpeAmountLength = (stolpeAmount - stolpeAmountWidth - 4) / 2;
 
         distanceBewteenStolpeWidth = carportWidthWithDisplacement / (stolpeAmountWidth + 1);
         distanceBewteenStolpeLength = carportLengthWithDisplacement / (stolpeAmountLength + 1);
@@ -843,10 +845,12 @@ public class BOMAlgorithm {
         
         /*Hulbånd*/
 
+
         innerSvg.addDottedLine(0, stolpeDisplacementWidth, carportLengthCM, carportWidthCM - stolpeDisplacementWidth, 3);
         innerSvg.addDottedLine(0, carportWidthCM - stolpeDisplacementWidth, carportLengthCM, stolpeDisplacementWidth, 3);
 
         svg.addSvg(innerSvg);
+
 
         return svg;
     }
