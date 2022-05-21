@@ -74,6 +74,6 @@
   <text style="text-anchor: middle" transform="translate(427,630)">855 cm</text>
   <rect height="10" width="10"/>
 </svg>
-
+<p style="text-anchor: middle ;font-size: 1.375rem"></p>
 </body>
 </html>
