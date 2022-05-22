@@ -48,7 +48,7 @@ public class SVG {
             "  </defs>";
 
     private final String lineTemplate = "<line x1=\"%d\"  y1=\"%d\" x2=\"%d\"   y2=\"%d\"\n" +
-            "    style=\"stroke: #006600;\n" +
+            "    style=\"stroke: #000000;\n" +
             "    marker-start: %s\n" +
             "    marker-end: %s\"/>";
 

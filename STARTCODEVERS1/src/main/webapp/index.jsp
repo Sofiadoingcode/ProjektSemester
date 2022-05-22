@@ -11,8 +11,6 @@
             <div class="row mt-4 index-header-box">
                 <div class="col index-col-header">
                     <h1 class="index-heading-primary">BOLIG OG DESIGN</h1>
-                    <a href="${pageContext.request.contextPath}/fc/showSvg?command=showSvg">SVG Tegning</a>
-                    <a href="${pageContext.request.contextPath}/svg.jsp">svg</a>
                 </div>
 
                 <div class="col index-logoimg22-box index-col-header">

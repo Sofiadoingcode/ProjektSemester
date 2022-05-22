@@ -32,7 +32,6 @@ abstract class Command
         commands.put("deleteproduct",new DeleteProduct());
         commands.put("createRequest", new CreateRequest());
         commands.put("tempLogin", new TempLogin());
-        commands.put("showSvg", new ShowSVG());
         commands.put("payForRequest", new PayForRequest());
         commands.put("seebom", new SeeBOM());
         commands.put("modifyFinalPrice", new ModifyFinalPrice());

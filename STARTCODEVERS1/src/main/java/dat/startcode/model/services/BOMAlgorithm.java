@@ -796,15 +796,15 @@ public class BOMAlgorithm {
 
         svg.addRect(0, 0, carportWidthCM, carportLengthCM);
 
-        svg.addLine((int) (svgDisplacementLength*0.75), svgDisplacementWidth, (int) (svgDisplacementLength*0.75), (int) (carportWidthCM-(svgDisplacementWidth*0.75)), "url(#beginArrow);", "none");
-        svg.addLine((int) (svgDisplacementLength*0.75), (int) (carportWidthCM-(svgDisplacementWidth*0.75)), carportLengthCM-svgDisplacementLength, (int) (carportWidthCM-(svgDisplacementWidth*0.75)), "none;", "url(#endArrow)");
+        svg.addLine((int) (svgDisplacementLength*0.75), svgDisplacementWidth, (int) (svgDisplacementLength*0.75), carportWidthCM-svgDisplacementWidth, "url(#beginArrow);", "none");
+        svg.addLine(svgDisplacementLength, (int) (carportWidthCM-(svgDisplacementWidth*0.75)), carportLengthCM-svgDisplacementLength, (int) (carportWidthCM-(svgDisplacementWidth*0.75)), "none;", "url(#endArrow)");
 
         svg.addText(1.375, svgDisplacementLength/2, carportWidthCM/2, -90, carportWidthCM/100 +" m");
 
         svg.addText(1.375, carportLengthCM/2, carportWidthCM-(svgDisplacementWidth/2), 0, carportLengthCM/100 + " m");
 
         for (int x = 0; x < spærFullAmount-1; x++) {
-            svg.addText(1, svgDisplacementLength+4+(spærDistance/2)+(spærDistance*x), svgDisplacementWidth/2, 0, spærDistance + " cm");
+            svg.addText(0.875, (int) (svgDisplacementLength+(spærDistance/2)+((0.80*spærDistance)*x)-4), (int) (svgDisplacementWidth*0.75), 0, spærDistance + " cm");
         }
 
         /*Square*/
