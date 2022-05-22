@@ -318,7 +318,7 @@
                                         <button type="submit" class="btn btn-primary" name="loginCredentials"
                                                 formaction="fc/tempLogin?command=tempLogin" formmethod="post"
                                                 value="${requestScope.tempUser.username} ${requestScope.tempUser.password}">
-                                            Login
+                                            Log Ind
                                         </button>
                                     </form>
                                 </div>

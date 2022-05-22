@@ -29,8 +29,9 @@
         <div class="index-section">
             <div class="index-box">
                 <div class="index-text-box">
-                    <p class="index-description"> Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum hase like Aldus PageMaker including versions of Lorem Ipsum.</p>
-                    <c:if test="${sessionScope.user == null }">
+                    <p style="font-size: 30px" class="index-description"> Velkommen til fog!</p>
+                    <p class="index-description"> Efter mange års erfaring, har vi kreeret en algoritme, som ud fra dine mål og specifikationer, danner din drømme carport. Tror du ikke på os? Prøv selv</p>
+                    <c:if test="${sessionScope.user == null }">l
                         <a href="${pageContext.request.contextPath}/orderintroduction.jsp" class="btn-index btn-index--full">Lav din egen Carport</a>
 
                         <a href="${pageContext.request.contextPath}/login.jsp" class="btn-index btn-index--login">Log Ind</a>
