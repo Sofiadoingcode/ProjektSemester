@@ -164,7 +164,6 @@ public class BOMMapper implements IBOMMapper{
                     bomId = generatedKeys.getInt(1);
                 }
 
-
             }
         } catch (SQLException ex) {
 

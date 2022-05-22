@@ -61,6 +61,7 @@
                     </div>
 
                     <h3>Tag</h3>
+                    <br>
                     <div class="row">
                         <div class=" col-md-4">
                             <div class="input-group">
@@ -90,16 +91,6 @@
                     <br>
                     <c:if test="${sessionScope.shedChoices != null}">
                         <h3>Skur</h3>
-
-                        <br>
-
-
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                            <label class="form-check-label" for="flexCheckDefault">
-                                Skur
-                            </label>
-                        </div>
 
                         <br>
 
