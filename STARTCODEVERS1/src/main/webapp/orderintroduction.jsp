@@ -85,7 +85,10 @@
                                                    aria-label="Recipient's username" aria-describedby="basic-addon2"
                                                    required
                                                    oninvalid="this.setCustomValidity('Indtast højde')"
-                                                   oninput="this.setCustomValidity('')">
+                                                   oninput="this.setCustomValidity('')"
+                                                   step="any"
+                                                   min="2"
+                                                   max="5">
                                             <span class="input-group-text" id="height">m</span>
                                         </div>
                                     </div>
@@ -95,7 +98,10 @@
                                                    aria-label="Recipient's username" aria-describedby="basic-addon2" value="${requestScope.length}"
                                                    required
                                                    oninvalid="this.setCustomValidity('Indtast længde')"
-                                                   oninput="this.setCustomValidity('')">
+                                                   oninput="this.setCustomValidity('')"
+                                                   step="any"
+                                                   min="3"
+                                                   max="8">
                                             <span class="input-group-text" id="length">m</span>
                                         </div>
                                     </div>
@@ -105,7 +111,10 @@
                                                    aria-label="Recipient's username" aria-describedby="basic-addon2" value="${requestScope.width}"
                                                    required
                                                    oninvalid="this.setCustomValidity('Indtast bredde')"
-                                                   oninput="this.setCustomValidity('')">
+                                                   oninput="this.setCustomValidity('')"
+                                                   step="any"
+                                                   min="2.5"
+                                                   max="8">
                                             <span class="input-group-text" id="width">m</span>
                                         </div>
                                     </div>
@@ -122,8 +131,8 @@
                                                     required
                                                     oninvalid="this.setCustomValidity('Vælg tag materiale')"
                                                     oninput="this.setCustomValidity('')">
-                                                <option value="" selected disabled>Vælg</option>
-                                                <option value="Plasttrapez">Plasttrapez</option>
+                                                <option value="" disabled>Vælg</option>
+                                                <option value="Plasttrapez" selected>Plasttrapez</option>
                                             </select>
                                         </div>
                                     </div>
@@ -134,7 +143,7 @@
                                                     oninvalid="this.setCustomValidity('Vælg tag')"
                                                     oninput="this.setCustomValidity('')">
                                                 <option value="" selected disabled>Vælg</option>
-                                                <option value="Flat tag">Flat tag</option>
+                                                <option value="Flat tag" selected>Flat tag</option>
                                             </select>
                                         </div>
                                     </div>
