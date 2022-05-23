@@ -28,7 +28,7 @@ public class SeeBOM extends Command {
         BOMMapper bomMapper = new BOMMapper(connectionPool);
         HttpSession session = request.getSession();
         Request usersRequest = (Request) session.getAttribute("usersRequest");
-        BOMDTO bomdto = bomMapper.getBOM(usersRequest.getIdbom());
+        BOMDTO bomdto = bomMapper.getBOM(usersRequest.getIdorder());
         List<ProductionlineDTO> productionlines = bomMapper.getBOMProductlines(bomdto);
 
         List<ProductionlineDTO> category1 = new ArrayList<>();
