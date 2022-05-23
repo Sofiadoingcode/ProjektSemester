@@ -45,6 +45,6 @@ public class SeeBOM extends Command {
         session.setAttribute("category2",category2);
 
 
-        return "viewBOMCustomer.jsp";
+        return "viewbomcustomer.jsp";
     }
 }

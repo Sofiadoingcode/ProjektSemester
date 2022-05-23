@@ -325,14 +325,14 @@ public class BOMAlgorithm {
         int spærAmount = 0;
         Integer beslagLængdeId = null;
         int beslagAmount = 0;
-        double beslagSkruerMultiplier = 9;
-        double beslagSkruerAmountCalc = 0;
-        int beslagSkruerAmount = 0;
-        Integer beslagSkruerLængdeId = null;
+        double beslagsSkruerMultiplier = 9;
+        double beslagsSkruerAmountCalc = 0;
+        int beslagsSkruerAmount = 0;
+        Integer beslagsSkruerLængdeId = null;
         double spærHeight = 0;
         List<ProductDTO> spærProducts = new ArrayList<>();
         List<ProductDTO> beslagProducts = new ArrayList<>();
-        List<ProductDTO> beslagSkruerProducts = new ArrayList<>();
+        List<ProductDTO> beslagsSkruerProducts = new ArrayList<>();
         List<ProductLine> returnList = new ArrayList<>();
 
         HashMap<Integer, Integer> lengths = loadAllLengths();
@@ -345,13 +345,14 @@ public class BOMAlgorithm {
                 beslagProducts.add(allProducts.get(i));
             }
             if (allProducts.get(i).getName().equals("beslagskruer")) {
-                beslagSkruerProducts.add(allProducts.get(i));
+                beslagsSkruerProducts.add(allProducts.get(i));
             }
         }
+
         ProductDTO spær = spærProducts.get(0);
         ProductDTO beslagRight = beslagProducts.get(0);
         ProductDTO beslagLeft = beslagProducts.get(1);
-        ProductDTO beslagSkruer = beslagSkruerProducts.get(0);
+        ProductDTO beslagsSkruer = beslagsSkruerProducts.get(0);
 
         spærHeight = spær.getHeight();
         spærHeight = spærHeight / 10;
@@ -391,9 +392,9 @@ public class BOMAlgorithm {
             beslagAmount += productLine.getAmount();
         }
 
-        beslagSkruerAmountCalc = (int) Math.ceil(beslagAmount * beslagSkruerMultiplier);
-        beslagSkruerAmountCalc = (int) Math.ceil(beslagSkruerAmountCalc / beslagSkruer.getAmount());
-        beslagSkruerAmount = (int) beslagSkruerAmountCalc;
+        beslagsSkruerAmountCalc = (int) Math.ceil(beslagAmount * beslagsSkruerMultiplier);
+        beslagsSkruerAmountCalc = (int) Math.ceil(beslagsSkruerAmountCalc / beslagsSkruer.getAmount());
+        beslagsSkruerAmount = (int) beslagsSkruerAmountCalc;
 
 
         ProductLine productLineBeslagRight = new ProductLine(beslagRight.getIdProduct(), beslagAmount, beslagLængdeId, calculateTotalProductPrice(beslagRight.getIdProduct(), beslagAmount, 0));
@@ -402,8 +403,8 @@ public class BOMAlgorithm {
         ProductLine productLineBeslagLeft = new ProductLine(beslagLeft.getIdProduct(), beslagAmount, beslagLængdeId, calculateTotalProductPrice(beslagLeft.getIdProduct(), beslagAmount, 0));
         returnList.add(productLineBeslagLeft);
 
-        ProductLine productLineBeslagSkruer = new ProductLine(beslagSkruer.getIdProduct(), beslagSkruerAmount, beslagSkruerLængdeId, calculateTotalProductPrice(beslagSkruer.getIdProduct(), beslagSkruerAmount, 0));
-        returnList.add(productLineBeslagSkruer);
+        ProductLine productLineBeslagsSkruer = new ProductLine(beslagsSkruer.getIdProduct(), beslagsSkruerAmount, beslagsSkruerLængdeId, calculateTotalProductPrice(beslagsSkruer.getIdProduct(), beslagsSkruerAmount, 0));
+        returnList.add(productLineBeslagsSkruer);
 
         return returnList;
     }
@@ -413,16 +414,16 @@ public class BOMAlgorithm {
         List<ProductLine> returnList = new ArrayList<>();
         List<ProductDTO> allHulbaand = getAllNeededProducts("hulbånd");
         List<ProductDTO> allSkruer = getAllNeededProducts("skrue");
-        int beslagsskrueId = 0;
+        int beslagsSkrueId = 0;
         int hulbaandId = 0;
-        int BeslagsSkruerAmount = spærFullAmount * 4;
-        int HulbaandAmount = 0;
-        double carportDiagonalSquared = (double) (carportLength * carportLength) + (double) (carportWidth * carportWidth);
+        int beslagsSkruerAmount = spærFullAmount * 4;
+        int hulbaandAmount = 0;
+        double carportDiagonalSquared = carportLength * carportLength + carportWidth * carportWidth;
         int carportDiagonal = (int) Math.sqrt(carportDiagonalSquared);
         if (carportDiagonal <= 500) {
-            HulbaandAmount = 1;
+            hulbaandAmount = 1;
         } else if (carportDiagonal <= 1000) {
-            HulbaandAmount = 2;
+            hulbaandAmount = 2;
         }
 
         for (int i = 0; i < allHulbaand.size(); i++) {
@@ -437,21 +438,21 @@ public class BOMAlgorithm {
         for (int i = 0; i < allSkruer.size(); i++) {
 
             if (allSkruer.get(i).getName().equals("beslagskruer")) {
-                beslagsskrueId = allSkruer.get(i).getIdProduct();
+                beslagsSkrueId = allSkruer.get(i).getIdProduct();
                 break;
             }
         }
 
-        BeslagsSkruerAmount = (int) Math.ceil((double) BeslagsSkruerAmount / 200);
+        beslagsSkruerAmount = (int) Math.ceil((double) beslagsSkruerAmount / 200);
 
-        double totalHulbaandPrice = calculateTotalProductPrice(hulbaandId, HulbaandAmount, 0);
-        double totalBeslagsskruerPrice = calculateTotalProductPrice(beslagsskrueId, BeslagsSkruerAmount, 0);
+        double totalHulbaandPrice = calculateTotalProductPrice(hulbaandId, hulbaandAmount, 0);
+        double totalBeslagsSkruerPrice = calculateTotalProductPrice(beslagsSkrueId, beslagsSkruerAmount, 0);
 
 
-        ProductLine HulbaandLine = new ProductLine(hulbaandId, HulbaandAmount, null, totalHulbaandPrice);
+        ProductLine HulbaandLine = new ProductLine(hulbaandId, hulbaandAmount, null, totalHulbaandPrice);
         returnList.add(HulbaandLine);
-        ProductLine beslagsskruer = new ProductLine(beslagsskrueId, BeslagsSkruerAmount, null, totalBeslagsskruerPrice);
-        returnList.add(beslagsskruer);
+        ProductLine beslagsSkruer = new ProductLine(beslagsSkrueId, beslagsSkruerAmount, null, totalBeslagsSkruerPrice);
+        returnList.add(beslagsSkruer);
         return returnList;
     }
 
@@ -463,16 +464,16 @@ public class BOMAlgorithm {
 
         double carportLengthLeft = carportLength + 5;
 
-        int productID = 0;
+        int productId = 0;
         int amount = 0;
-        Integer lengthID = 0;
+        Integer lengthId = 0;
         double totalProductPrice = 0;
 
         double overlap = 20;
 
         for (ProductDTO p : neededItemsOnly) {
             if (p.getIdProduct() == 8) {
-                productID = p.getIdProduct();
+                productId = p.getIdProduct();
             }
         }
 
@@ -513,12 +514,12 @@ public class BOMAlgorithm {
 
             if (allLargerLengths.isEmpty()) {
 
-                lengthID = biggestValueKey;
+                lengthId = biggestValueKey;
                 carportLengthLeft = carportLengthLeft - biggestValue + overlap;
 
-                totalProductPrice = calculateTotalProductPrice(productID, amount, biggestValue);
+                totalProductPrice = calculateTotalProductPrice(productId, amount, biggestValue);
 
-                ProductLine pr = new ProductLine(productID, amount, lengthID, totalProductPrice);
+                ProductLine pr = new ProductLine(productId, amount, lengthId, totalProductPrice);
 
                 returnList.add(pr);
 
@@ -538,10 +539,10 @@ public class BOMAlgorithm {
                 }
 
 
-                lengthID = minimumValueKey;
+                lengthId = minimumValueKey;
 
-                totalProductPrice = calculateTotalProductPrice(productID, amount, minimumValue);
-                ProductLine pr = new ProductLine(productID, amount, lengthID, totalProductPrice);
+                totalProductPrice = calculateTotalProductPrice(productId, amount, minimumValue);
+                ProductLine pr = new ProductLine(productId, amount, lengthId, totalProductPrice);
 
                 returnList.add(pr);
 
@@ -559,21 +560,21 @@ public class BOMAlgorithm {
 
         for (ProductDTO p : neededScrews) {
             if (p.getIdProduct() == 9) {
-                productID = p.getIdProduct();
+                productId = p.getIdProduct();
                 productAmount = p.getAmount();
             }
         }
 
         double fullCarportAreaM = fullCarportWidth / 100 * carportLength / 100;
-        int neededScrewsOverAll = (int) Math.ceil(fullCarportAreaM * 12);
+        int neededScrewsOverall = (int) Math.ceil(fullCarportAreaM * 12);
 
-        amount = (int) Math.ceil(neededScrewsOverAll / productAmount);
+        amount = (int) Math.ceil(neededScrewsOverall / productAmount);
 
-        lengthID = null;
+        lengthId = null;
 
-        totalProductPrice = calculateTotalProductPrice(productID, amount, 0);
+        totalProductPrice = calculateTotalProductPrice(productId, amount, 0);
 
-        ProductLine pr = new ProductLine(productID, amount, lengthID, totalProductPrice);
+        ProductLine pr = new ProductLine(productId, amount, lengthId, totalProductPrice);
 
         returnList.add(pr);
 
@@ -584,7 +585,6 @@ public class BOMAlgorithm {
 
     private List<ProductLine> calculateSternProductLines(double carportWidth, double carportLength) {
         List<ProductLine> returnList = new ArrayList<>();
-        HashMap<Integer, Integer> lengths = loadAllLengths();
 
         List<ProductDTO> sterns = getAllNeededProducts("stern");
         ProductDTO rem = remField;
@@ -647,42 +647,41 @@ public class BOMAlgorithm {
     private List<ProductLine> calculateVandbrætProductLines(double carportWidth, double carportLength) {
 
         List<ProductLine> returnList = new ArrayList<>();
-        HashMap<Integer, Integer> lengths = loadAllLengths();
-        List<ProductDTO> allUssableProducts = getAllNeededProducts("brædt");
+        List<ProductDTO> allUsableProducts = getAllNeededProducts("brædt");
 
-        for (int i = 0; i < allUssableProducts.size(); i++) {
-            ProductDTO temp = allUssableProducts.get(i);
+        for (int i = 0; i < allUsableProducts.size(); i++) {
+            ProductDTO temp = allUsableProducts.get(i);
 
 
             if (temp.getWidth() <= 25) {
-                allUssableProducts.remove(i);
+                allUsableProducts.remove(i);
                 i--;
             }
         }
-        ProductDTO theVandBrad = null;
+        ProductDTO vandbræt = null;
 
-        for (ProductDTO product : allUssableProducts) {
+        for (ProductDTO product : allUsableProducts) {
             try {
-                if (product.getPriceMeasurement() < theVandBrad.getPriceMeasurement())
-                    theVandBrad = product;
+                if (product.getPriceMeasurement() < vandbræt.getPriceMeasurement())
+                    vandbræt = product;
 
             } catch (NullPointerException e) {
-                theVandBrad = product;
+                vandbræt = product;
             }
         }
 
-        int[] vandBradSide = getLengthsNeeded(carportLength);
-        int[] vandBradFront = getLengthsNeeded(carportWidth);
+        int[] vandbrætSide = getLengthsNeeded(carportLength);
+        int[] vandbrætFront = getLengthsNeeded(carportWidth);
 
-        int vandBradSideAmount = vandBradSide[1] * 2;
-        int vandBradFrontAmount = vandBradFront[1];
+        int vandbrætSideAmount = vandbrætSide[1] * 2;
+        int vandbrætFrontAmount = vandbrætFront[1];
 
 
-        ProductLine vandBradSideProductLine = new ProductLine(theVandBrad.getIdProduct(), vandBradSide[1] * 2, vandBradSide[2], vandBradSideAmount * theVandBrad.getPriceMeasurement() * vandBradSide[0] / 100);
-        ProductLine vandBradFrontProductLine = new ProductLine(theVandBrad.getIdProduct(), vandBradFront[1], vandBradFront[2], vandBradFrontAmount * theVandBrad.getPriceMeasurement() * vandBradFront[0] / 100);
+        ProductLine vandbrætSideProductLine = new ProductLine(vandbræt.getIdProduct(), vandbrætSide[1] * 2, vandbrætSide[2], vandbrætSideAmount * vandbræt.getPriceMeasurement() * vandbrætSide[0] / 100);
+        ProductLine vandbrætFrontProductLine = new ProductLine(vandbræt.getIdProduct(), vandbrætFront[1], vandbrætFront[2], vandbrætFrontAmount * vandbræt.getPriceMeasurement() * vandbrætFront[0] / 100);
 
-        returnList.add(vandBradFrontProductLine);
-        returnList.add(vandBradSideProductLine);
+        returnList.add(vandbrætFrontProductLine);
+        returnList.add(vandbrætSideProductLine);
 
         return returnList;
     }
@@ -702,13 +701,13 @@ public class BOMAlgorithm {
         return returnList;
     }
 
-    private double calculateTotalProductPrice(int productID, int amount, int length) {
+    private double calculateTotalProductPrice(int productId, int amount, int length) {
         double totalProductPrice;
 
-        double priceMeasurment = 0;
+        double priceMeasurement = 0;
         for (ProductDTO p : allProducts) {
-            if (p.getIdProduct() == productID) {
-                priceMeasurment = p.getPriceMeasurement();
+            if (p.getIdProduct() == productId) {
+                priceMeasurement = p.getPriceMeasurement();
             }
 
         }
@@ -716,9 +715,9 @@ public class BOMAlgorithm {
         double lengthDouble = (double) length;
         double amountDouble = (double) amount;
         if (length == 0) {
-            totalProductPrice = priceMeasurment * amountDouble;
+            totalProductPrice = priceMeasurement * amountDouble;
         } else {
-            totalProductPrice = priceMeasurment * (lengthDouble / 100) * amountDouble;
+            totalProductPrice = priceMeasurement * (lengthDouble / 100) * amountDouble;
         }
 
         return totalProductPrice;
@@ -729,23 +728,23 @@ public class BOMAlgorithm {
         //calculates the number of equally long planks
 
         HashMap<Integer, Integer> lengths = loadAllLengths();
-        int max_lengths = lengths.get(1);
+        int maxLengths = lengths.get(1);
         for (int i = 1; i <= lengths.size(); i++) {
-            int templength = lengths.get(i);
+            int tempLength = lengths.get(i);
 
-            if (templength > max_lengths) {
-                max_lengths = templength;
+            if (tempLength > maxLengths) {
+                maxLengths = tempLength;
             }
         }
 
 
         double numberNeeded = 1;
-        numberNeeded = Math.ceil(length / max_lengths);
-        int delta_l = max_lengths;
+        numberNeeded = Math.ceil(length / maxLengths);
+        int delta_l = maxLengths;
         int theLength = lengths.get(1);
         int k = 0;
         for (int i = 1; i <= lengths.size(); i++) {
-            int templength = (int) (lengths.get(i) * numberNeeded);
+            //int templength = (int) (lengths.get(i) * numberNeeded);
             double tempDelta_l = lengths.get(i) * numberNeeded - length;
 
             if (delta_l > tempDelta_l && tempDelta_l >= 0) {
@@ -778,8 +777,8 @@ public class BOMAlgorithm {
         int carportLengthWithDisplacement = carportLengthCM - (stolpeDisplacementLengthFront); //Change 800 to carportLength
         int stolpeAmountWidth = 0;
         int stolpeAmountLength = 0;
-        int distanceBewteenStolpeWidth = 0;
-        int distanceBewteenStolpeLength = 0;
+        int distanceBetweenStolpeWidth = 0;
+        int distanceBetweenStolpeLength = 0;
         int svgDisplacementLength = carportLengthCM/10;
         int svgDisplacementWidth = carportWidthCM/10;
 
@@ -829,8 +828,8 @@ public class BOMAlgorithm {
 
         stolpeAmountLength = (stolpeAmount - stolpeAmountWidth - 4) / 2;
 
-        distanceBewteenStolpeWidth = carportWidthWithDisplacement / (stolpeAmountWidth + 1);
-        distanceBewteenStolpeLength = carportLengthWithDisplacement / (stolpeAmountLength + 1);
+        distanceBetweenStolpeWidth = carportWidthWithDisplacement / (stolpeAmountWidth + 1);
+        distanceBetweenStolpeLength = carportLengthWithDisplacement / (stolpeAmountLength + 1);
 
 
         innerSvg.addRectStolpe(stolpeDisplacementLengthFront, stolpeDisplacementWidth, 12, 12);
@@ -839,15 +838,15 @@ public class BOMAlgorithm {
         innerSvg.addRectStolpe(carportLengthCM, carportWidthCM - stolpeDisplacementWidth, 12, 12);
 
         for (int i = 1; i <= stolpeAmountWidth; i++) {
-            innerSvg.addRectStolpe(carportLengthCM, stolpeDisplacementWidth + distanceBewteenStolpeWidth * i, 12, 12); //Change 900 to carportLength
+            innerSvg.addRectStolpe(carportLengthCM, stolpeDisplacementWidth + distanceBetweenStolpeWidth * i, 12, 12); //Change 900 to carportLength
         }
 
         for (int i = 1; i <= stolpeAmountLength; i++) {
-            innerSvg.addRectStolpe(stolpeDisplacementLengthFront + distanceBewteenStolpeLength * i, stolpeDisplacementWidth, 12, 12); //Change 900 to carportLength
+            innerSvg.addRectStolpe(stolpeDisplacementLengthFront + distanceBetweenStolpeLength * i, stolpeDisplacementWidth, 12, 12); //Change 900 to carportLength
         }
 
         for (int i = 1; i <= stolpeAmountLength; i++) {
-            innerSvg.addRectStolpe(stolpeDisplacementLengthFront + distanceBewteenStolpeLength * i, carportWidthCM - stolpeDisplacementWidth, 12, 12); //Change 900 to carportLength
+            innerSvg.addRectStolpe(stolpeDisplacementLengthFront + distanceBetweenStolpeLength * i, carportWidthCM - stolpeDisplacementWidth, 12, 12); //Change 900 to carportLength
         }
         
         /*Hulbånd*/

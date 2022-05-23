@@ -61,7 +61,7 @@ public class BOMList extends Command {
             System.out.println(e);
         }
 
-        return "viewFullRequest.jsp";
+        return "viewfullrequest.jsp";
     }
 
 
