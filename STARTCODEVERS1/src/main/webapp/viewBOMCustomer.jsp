@@ -10,13 +10,7 @@
     <jsp:body>
         <br>
         <h1> Deres Stykliste</h1>
-        <div class="orders-header-box">
-            <c:forEach var="bom" items="${requestScope.fullbom}">
-                <p>Forespørgsel: ${bom.orderid}</p>
-                <p>Navn: </p>
-                <p>Bruger: </p>
-            </c:forEach>
-        </div>
+
 
 
         <section class="orderlist-tablesection" style="font-weight: bold;">
