@@ -21,7 +21,6 @@ public class DeleteRequest extends Command {
 
     @Override
     String execute(HttpServletRequest request, HttpServletResponse response) throws DatabaseException {
-        HttpSession session = request.getSession();
         String idDelete = request.getParameter("delete");
         int deleteId = Integer.parseInt(idDelete);
         CustomerMapper customerMapper = new CustomerMapper(connectionPool);

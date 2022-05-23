@@ -14,10 +14,10 @@ public class ProductionFacade {
                                      int price, String productType, ConnectionPool connectionPool) throws DatabaseException {
         ProductMapper productMapper = new ProductMapper(connectionPool);
 
-        int categoryID = productMapper.getCategoryID(category);
-        int unitID = productMapper.getUnitTypeID(unit);
-        int nameID = productMapper.getNameID(name);
-        int productTypeId = productMapper.getProductTypeID(productType);
+        int categoryID = productMapper.getCategoryId(category);
+        int unitID = productMapper.getUnitTypeId(unit);
+        int nameID = productMapper.getNameId(name);
+        int productTypeId = productMapper.getProductTypeId(productType);
         productMapper.createProduct(nameID, categoryID, unitID, amount, height, width, price, productTypeId);
 
 

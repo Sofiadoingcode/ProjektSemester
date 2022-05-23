@@ -2,34 +2,34 @@ package dat.startcode.model.DTOs;
 
 public class ProductDTO {
 
-    int idproduct;
+    int idProduct;
     String name;
     String unit;
-    int idcategory;
-    double pricemeasurment;
+    int idCategory;
+    double priceMeasurement;
     double height;
     double width;
     int amount;
-    String producttype;
+    String productType;
 
-    public ProductDTO(int idproduct, String name, String unit, int idcategory, double pricemeasurment, double height, double width, int amount, String producttype) {
-        this.idproduct = idproduct;
+    public ProductDTO(int idProduct, String name, String unit, int idCategory, double priceMeasurement, double height, double width, int amount, String productType) {
+        this.idProduct = idProduct;
         this.name = name;
         this.unit = unit;
-        this.idcategory = idcategory;
-        this.pricemeasurment = pricemeasurment;
+        this.idCategory = idCategory;
+        this.priceMeasurement = priceMeasurement;
         this.height = height;
         this.width = width;
         this.amount = amount;
-        this.producttype = producttype;
+        this.productType = productType;
     }
 
-    public int getIdproduct() {
-        return idproduct;
+    public int getIdProduct() {
+        return idProduct;
     }
 
-    public void setIdproduct(int idproduct) {
-        this.idproduct = idproduct;
+    public void setIdProduct(int idProduct) {
+        this.idProduct = idProduct;
     }
 
     public String getName() {
@@ -48,20 +48,20 @@ public class ProductDTO {
         this.unit = unit;
     }
 
-    public int getIdcategory() {
-        return idcategory;
+    public int getIdCategory() {
+        return idCategory;
     }
 
-    public void setIdcategory(int idcategory) {
-        this.idcategory = idcategory;
+    public void setIdCategory(int idCategory) {
+        this.idCategory = idCategory;
     }
 
-    public double getPricemeasurment() {
-        return pricemeasurment;
+    public double getPriceMeasurement() {
+        return priceMeasurement;
     }
 
-    public void setPricemeasurment(double pricemeasurment) {
-        this.pricemeasurment = pricemeasurment;
+    public void setPriceMeasurement(double priceMeasurement) {
+        this.priceMeasurement = priceMeasurement;
     }
 
     public double getHeight() {
@@ -88,26 +88,26 @@ public class ProductDTO {
         this.amount = amount;
     }
 
-    public String getProducttype() {
-        return producttype;
+    public String getProductType() {
+        return productType;
     }
 
-    public void setProducttype(String producttype) {
-        this.producttype = producttype;
+    public void setProductType(String productType) {
+        this.productType = productType;
     }
 
     @Override
     public String toString() {
         return "ProductDTO{" +
-                "idproduct=" + idproduct +
+                "idproduct=" + idProduct +
                 ", name='" + name + '\'' +
                 ", unit='" + unit + '\'' +
-                ", idcategory=" + idcategory +
-                ", pricemeasurment=" + pricemeasurment +
+                ", idcategory=" + idCategory +
+                ", pricemeasurment=" + priceMeasurement +
                 ", height=" + height +
                 ", width=" + width +
                 ", amount=" + amount +
-                ", producttype='" + producttype + '\'' +
+                ", producttype='" + productType + '\'' +
                 '}';
     }
 }

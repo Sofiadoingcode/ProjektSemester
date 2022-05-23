@@ -2,8 +2,7 @@ package dat.startcode.model.persistence;
 
 import dat.startcode.model.DTOs.BOMDTO;
 import dat.startcode.model.DTOs.ProductDTO;
-import dat.startcode.model.DTOs.ProductionlineDTO;
-import dat.startcode.model.entities.CarportChoices;
+import dat.startcode.model.DTOs.ProductionLineDTO;
 import dat.startcode.model.entities.ProductLine;
 import dat.startcode.model.exceptions.DatabaseException;
 
@@ -20,43 +19,37 @@ public class BOMMapper implements IBOMMapper{
     }
 
     @Override
-    public BOMDTO getBOM(int orderID) throws DatabaseException {
-        System.out.println("1");
+    public BOMDTO getBOM(int orderId) throws DatabaseException {
 
         BOMDTO bomdto = new BOMDTO(0, 0, "", 0, "");
-        System.out.println("2");
 
         String sql = "SELECT idbom, totalprice, `description`, svgDrawing, o.idorder FROM BOM INNER JOIN `order` o USING (idbom) WHERE idorder = ?";
-        System.out.println("3");
 
         try (Connection connection = connectionPool.getConnection()) {
             try (PreparedStatement ps = connection.prepareStatement(sql)) {
-                System.out.println("4");
 
-                ps.setInt(1, orderID);
+                ps.setInt(1, orderId);
                 ResultSet rs = ps.executeQuery();
-                    System.out.println("5");
 
                 while (rs.next()) {
 
-                    double totalprice = rs.getDouble("totalprice");
+                    double totalPrice = rs.getDouble("totalprice");
 
-                    int bomid = rs.getInt("idbom");
+                    int bomId = rs.getInt("idbom");
 
                     String description = rs.getString("description");
 
                     String svgDrawing = rs.getString("svgDrawing");
 
-                    int orderid = rs.getInt("idorder");
+                    int idOrder = rs.getInt("idorder");
 
-                    bomdto = new BOMDTO(bomid, totalprice, description, orderid, svgDrawing);
-                    System.out.println("6");
+                    bomdto = new BOMDTO(bomId, totalPrice, description, idOrder, svgDrawing);
 
                 }
 
             }
         } catch (SQLException ex) {
-                    System.out.println("ERRRORORRRROROROOR");
+                    System.out.println(" ");
             throw new DatabaseException(ex, "Fejl under indlæsning fra databasen");
         }
 
@@ -67,12 +60,12 @@ public class BOMMapper implements IBOMMapper{
 
 
     @Override
-    public List<ProductionlineDTO> getBOMProductlines(BOMDTO bomdto) throws DatabaseException {
+    public List<ProductionLineDTO> getBOMProductLines(BOMDTO bomdto) throws DatabaseException {
 
 
-        List<ProductionlineDTO> productionLines = new ArrayList<>();
+        List<ProductionLineDTO> productionLines = new ArrayList<>();
 
-        int bomid = bomdto.getIdbom();
+        int bomId = bomdto.getIdBOM();
 
 
         String sql = "SELECT idproductionline, idproduct, amount, idbom, l.length, totalproductprice\n" +
@@ -84,7 +77,7 @@ public class BOMMapper implements IBOMMapper{
             try (PreparedStatement ps = connection.prepareStatement(sql)) {
 
 
-                ps.setInt(1, bomid);
+                ps.setInt(1, bomId);
                 ResultSet rs = ps.executeQuery();
 
 
@@ -93,10 +86,9 @@ public class BOMMapper implements IBOMMapper{
                     int productionLineID = rs.getInt("idproductionline");
 
 
-                    // FEJL SKER HER
-                    int idproduct = rs.getInt("idproduct");
+                    int idProduct = rs.getInt("idproduct");
 
-                    ProductDTO productDTO = getFullProduct(idproduct);
+                    ProductDTO productDTO = getFullProduct(idProduct);
 
 
 
@@ -115,18 +107,18 @@ public class BOMMapper implements IBOMMapper{
                     }
 
 
-                    int category = productDTO.getIdcategory();
+                    int category = productDTO.getIdCategory();
 
 
                     String unit = productDTO.getUnit();
 
 
 
-                    double totalproductprice = rs.getDouble("totalproductprice");
+                    double totalProductPrice = rs.getDouble("totalproductprice");
 
 
 
-                    ProductionlineDTO productLine = new ProductionlineDTO(productionLineID, name, amount, length, category, unit, totalproductprice);
+                    ProductionLineDTO productLine = new ProductionLineDTO(productionLineID, name, amount, length, category, unit, totalProductPrice);
                     productionLines.add(productLine);
 
                 }
@@ -141,7 +133,7 @@ public class BOMMapper implements IBOMMapper{
     }
 
 
-    public int createBOMinDB (String description, double totalprice, String svg) throws DatabaseException {
+    public int createBOMInDB(String description, double totalPrice, String svg) throws DatabaseException {
         int bomId = 0;
 
         String sql = "INSERT INTO `fogarchive`.`bom` (`totalprice`,`description`, `svgDrawing`) VALUES (?,?,?)";
@@ -151,7 +143,7 @@ public class BOMMapper implements IBOMMapper{
         try (Connection connection = connectionPool.getConnection()) {
             try (PreparedStatement ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
 
-                ps.setDouble(1, totalprice);
+                ps.setDouble(1, totalPrice);
 
                 ps.setString(2, description);
 
@@ -174,7 +166,7 @@ public class BOMMapper implements IBOMMapper{
     }
 
     @Override
-    public void saveFullBom(int bomId, List<ProductLine> fullBom) throws DatabaseException {
+    public void saveFullBom(int orderId, List<ProductLine> fullBom) throws DatabaseException {
 
 
 
@@ -187,17 +179,17 @@ public class BOMMapper implements IBOMMapper{
 
 
                 for(ProductLine p: fullBom) {
-                    ps.setInt(1,p.getProductID());
+                    ps.setInt(1,p.getProductId());
                     ps.setInt(2,p.getAmount());
-                    ps.setInt(3, bomId);
+                    ps.setInt(3, orderId);
 
-                    if(p.getLengthID() == null) {
+                    if(p.getLengthId() == null) {
                         ps.setNull(4, Types.INTEGER);
                     } else {
-                        ps.setInt(4, p.getLengthID());
+                        ps.setInt(4, p.getLengthId());
                     }
 
-                    ps.setDouble(5, p.getTotalproductprice());
+                    ps.setDouble(5, p.getTotalProductPrice());
 
                     ps.executeUpdate();
 
@@ -227,9 +219,9 @@ public class BOMMapper implements IBOMMapper{
 
                 ResultSet rs = ps.executeQuery();
                 while (rs.next()) {
-                    int productid = rs.getInt("idProduct");
+                    int productId = rs.getInt("idProduct");
 
-                    ProductDTO productDTO = getFullProduct(productid);
+                    ProductDTO productDTO = getFullProduct(productId);
 
                     allProductDTOs.add(productDTO);
 
@@ -245,7 +237,7 @@ public class BOMMapper implements IBOMMapper{
     }
 
 
-    private ProductDTO getFullProduct(int productID) throws DatabaseException {
+    private ProductDTO getFullProduct(int productId) throws DatabaseException {
 
 
         ProductDTO productDTO = new ProductDTO(0,"","", 0,0,0,0,0, "");
@@ -260,20 +252,20 @@ public class BOMMapper implements IBOMMapper{
         try (Connection connection = connectionPool.getConnection()) {
             try (PreparedStatement ps = connection.prepareStatement(sql)) {
 
-                ps.setInt(1, productID);
+                ps.setInt(1, productId);
                 ResultSet rs = ps.executeQuery();
                 while (rs.next()) {
-                    int idproduct = rs.getInt("idproduct");
+                    int idProduct = rs.getInt("idproduct");
                     String name = rs.getString("name");
                     String unit = rs.getString("type");
                     int category = rs.getInt("idcategory");
-                    double priceprmeasurment = rs.getDouble("priceprmeasurment");
+                    double pricePrMeasurement = rs.getDouble("priceprmeasurment");
                     double height = rs.getDouble("height");
                     double width = rs.getDouble("width");
                     int amount = rs.getInt("amount");
-                    String producttype = rs.getString("producttype");
+                    String productType = rs.getString("producttype");
 
-                    productDTO = new ProductDTO(idproduct, name, unit, category, priceprmeasurment, height, width, amount, producttype);
+                    productDTO = new ProductDTO(idProduct, name, unit, category, pricePrMeasurement, height, width, amount, productType);
 
 
                 }

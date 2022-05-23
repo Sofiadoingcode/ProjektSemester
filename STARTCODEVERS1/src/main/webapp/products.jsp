@@ -26,11 +26,11 @@
                 </thead>
 
 
-                <c:forEach var="product" items="${applicationScope.ProductsList}">
+                <c:forEach var="product" items="${applicationScope.productsList}">
 
                     <tr class="orders-tr">
                         <form>
-                            <td class="tableRows-RequestList"> ${product.productID}
+                            <td class="tableRows-RequestList"> ${product.productId}
 
                             </td>
 
@@ -46,7 +46,7 @@
                                 <div class="form-floating">
                                     <select class="form-select" name="product_category2"
                                             aria-label="Floating label select example">
-                                        <c:forEach var="option" items="${applicationScope.CategoryList}">
+                                        <c:forEach var="option" items="${applicationScope.categoryList}">
                                             <c:choose>
                                                 <c:when test="${option.value.equals(product.category)}">
                                                     <option value="${option.value}" selected> ${option.value} </option>
@@ -67,7 +67,7 @@
                                 <div class="form-floating">
                                     <select class="form-select" name="product_unit"
                                             aria-label="Floating label select example">
-                                        <c:forEach var="option" items="${applicationScope.UnitList}">
+                                        <c:forEach var="option" items="${applicationScope.unitList}">
                                             <c:choose>
                                                 <c:when test="${option.value.equals(product.unit)}">
                                                     <option value="${option.value}" selected> ${option.value} </option>
@@ -107,7 +107,7 @@
                                 <div class="form-floating">
                                     <select class="form-select" name="product_producttype"
                                             aria-label="Floating label select example">
-                                        <c:forEach var="option" items="${applicationScope.ProductTypeList}">
+                                        <c:forEach var="option" items="${applicationScope.productTypeList}">
                                             <c:choose>
                                                 <c:when test="${option.value.equals(product.productType)}">
                                                     <option value="${option.value}" selected> ${option.value} </option>
@@ -124,7 +124,7 @@
 
                             </td>
                             <td class="tableRows-RequestList">
-                                <button type="submit" name="product_id" value="${product.productID}"
+                                <button type="submit" name="product_id" value="${product.productId}"
                                         formaction="fc/modifyproduct?command=modifyproduct" formmethod="post"
                                         class="orders-btn-Checkmark orders-complete orders-btn--right-margin">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
@@ -132,7 +132,7 @@
                                         <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
                                     </svg>
                                 </button>
-                                <button type="submit" name="product_id" value="${product.productID}" formaction="fc/deleteproduct?command=deleteproduct" formmethod="post"
+                                <button type="submit" name="product_id" value="${product.productId}" formaction="fc/deleteproduct?command=deleteproduct" formmethod="post"
                                         class="orders-btn-DeleteX orders-delete">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                          class="bi bi-x" viewBox="0 0 16 16">
@@ -210,7 +210,7 @@
                 <div class="form-floating">
                     <select class="form-select" name="product_producttype"
                             aria-label="Floating label select example">
-                        <c:forEach var="option" items="${applicationScope.ProductTypeList}">
+                        <c:forEach var="option" items="${applicationScope.productTypeList}">
                             <option value="${option.value}"> ${option.value} </option>
                         </c:forEach>
                     </select>

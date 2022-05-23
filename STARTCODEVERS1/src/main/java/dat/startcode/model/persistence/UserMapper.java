@@ -50,7 +50,7 @@ public class UserMapper implements IUserMapper
     {
         Logger.getLogger("web").log(Level.INFO, "");
 
-        User user = null;
+        User user;
 
         String sql = "SELECT * FROM user WHERE username = ? AND password = ?";
 
@@ -112,7 +112,6 @@ public class UserMapper implements IUserMapper
 
     public void createAdmin(String username, String password) throws DatabaseException
     {
-        System.out.println("Ko");
         Logger.getLogger("web").log(Level.INFO, "");
         String sql = "insert into user (username, password, idrole) values (?,?,1)";
         try (Connection connection = connectionPool.getConnection())

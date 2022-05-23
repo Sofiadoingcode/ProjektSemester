@@ -29,16 +29,16 @@ public class ModifyProduct extends Command {
         String productType = request.getParameter("product_producttype");
 
         int id = Integer.parseInt(request.getParameter("product_id"));
-        int idname = productMapper.getNameID(name);
-        int idunit = productMapper.getUnitTypeID(unit);
-        int idcategory = productMapper.getCategoryID(category);
+        int idName = productMapper.getNameId(name);
+        int idUnit = productMapper.getUnitTypeId(unit);
+        int idCategory = productMapper.getCategoryId(category);
         int price = Integer.parseInt(request.getParameter("product_price"));
-        int heihgt = Integer.parseInt(request.getParameter("product_height"));
+        int height = Integer.parseInt(request.getParameter("product_height"));
         int width = Integer.parseInt(request.getParameter("product_width"));
         int amount = Integer.parseInt(request.getParameter("product_amount"));
-        int idproductType = productMapper.getProductTypeID(productType);
+        int idProductType = productMapper.getProductTypeId(productType);
 
-        productMapper.modifyProduct(id, idname,idunit,idcategory,price,heihgt,width,amount,idproductType);
+        productMapper.modifyProduct(id, idName,idUnit,idCategory,price,height,width,amount,idProductType);
 
 
         return "/fc/viewProducts?command=viewProducts";

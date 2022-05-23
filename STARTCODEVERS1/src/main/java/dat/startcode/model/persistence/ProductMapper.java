@@ -34,10 +34,10 @@ public class ProductMapper {
                 ResultSet rs = ps.executeQuery();
 
                 while (rs.next()) {
-                    int productID, pricePerMeasurement, amount, height, width;
+                    int productId, pricePerMeasurement, amount, height, width;
                     String name, type, category, productType;
 
-                    productID = rs.getInt("idProduct");
+                    productId = rs.getInt("idProduct");
                     name = rs.getString("name");
                     height = rs.getInt("height");
                     width = rs.getInt("width");
@@ -48,7 +48,7 @@ public class ProductMapper {
                     productType = rs.getString("producttype");
 
 
-                    Product product = new Product(productID, name, category, type, pricePerMeasurement);
+                    Product product = new Product(productId, name, category, type, pricePerMeasurement);
 
                     if (!(amount == 0)) {
                         product.setAmount(amount);
@@ -106,7 +106,6 @@ public class ProductMapper {
     }
 
     public HashMap<Integer, Integer> getLengths() throws DatabaseException {
-        List<Product> products = new ArrayList<>();
 
         String sql = "SELECT * FROM fogarchive.length";
         HashMap<Integer, Integer> lengths = new HashMap<>();
@@ -117,12 +116,9 @@ public class ProductMapper {
 
                 while (rs.next()) {
 
-
                     int id = rs.getInt("idlength");
                     int length = rs.getInt("length");
                     lengths.put(id,length);
-
-
                 }
 
 
@@ -137,9 +133,9 @@ public class ProductMapper {
         return lengths;
     }
 
-    public int getCategoryID(String category) throws DatabaseException {
+    public int getCategoryId(String category) throws DatabaseException {
 
-        int categoryID = 0;
+        int categoryId = 0;
         try (Connection connection = connectionPool.getConnection()) {
             String sql1 = "SELECT * FROM  fogarchive.category where category=?";
             try (PreparedStatement ps = connection.prepareStatement(sql1)) {
@@ -147,7 +143,7 @@ public class ProductMapper {
                 ResultSet rs = ps.executeQuery();
                 if (rs.next()) {
 
-                    categoryID = rs.getInt("idcategory");
+                    categoryId = rs.getInt("idcategory");
                 } else {
                     throw new DatabaseException("Something went wrong looking for category");
                 }
@@ -156,11 +152,11 @@ public class ProductMapper {
             throw new DatabaseException(E, "Couldnt find category");
         }
 
-        return categoryID;
+        return categoryId;
     }
 
-    public int getUnitTypeID(String unit) throws DatabaseException {
-        int unitID = 0;
+    public int getUnitTypeId(String unit) throws DatabaseException {
+        int unitId = 0;
 
         try (Connection connection = connectionPool.getConnection()) {
             String sql2 = "SELECT * FROM fogarchive.unit where type=?";
@@ -168,7 +164,7 @@ public class ProductMapper {
                 ps.setString(1, unit);
                 ResultSet rs = ps.executeQuery();
                 if (rs.next()) {
-                    unitID = rs.getInt("idunit");
+                    unitId = rs.getInt("idunit");
                 } else {
                     throw new DatabaseException("Something went wrong looking for unit");
                 }
@@ -177,11 +173,11 @@ public class ProductMapper {
             throw new DatabaseException(E, "Couldnt find category");
         }
 
-        return unitID;
+        return unitId;
     }
 
-    public int getProductTypeID(String type) throws DatabaseException {
-        int typeID;
+    public int getProductTypeId(String type) throws DatabaseException {
+        int typeId;
 
         try (Connection connection = connectionPool.getConnection()) {
             String sql2 = "SELECT * FROM fogarchive.producttype where producttype= ? ";
@@ -189,7 +185,7 @@ public class ProductMapper {
                 ps.setString(1, type);
                 ResultSet rs = ps.executeQuery();
                 if (rs.next()) {
-                    typeID = rs.getInt("idproducttype");
+                    typeId = rs.getInt("idproducttype");
                 } else {
                     throw new DatabaseException("Couldnt get type");
                 }
@@ -197,12 +193,11 @@ public class ProductMapper {
         } catch (SQLException E) {
             throw new DatabaseException(E, "Could not get product type from database");
         }
-        System.out.println(typeID);
-        return typeID;
+        return typeId;
     }
 
-    public int getNameID(String name) throws DatabaseException {
-        int nameID = 0;
+    public int getNameId(String name) throws DatabaseException {
+        int nameId = 0;
 
         try (Connection connection = connectionPool.getConnection()) {
             String sql3 = "SELECT * FROM fogarchive.productname where name=?";
@@ -210,19 +205,18 @@ public class ProductMapper {
                 ps.setString(1, name);
                 ResultSet rs = ps.executeQuery();
                 if (rs.next()) {
-                    nameID = rs.getInt("idname");
-                    System.out.println(nameID);
+                    nameId = rs.getInt("idname");
                 }
-                if (nameID == 0) {
+                if (nameId == 0) {
                     String sql4 = "INSERT INTO `fogarchive`.`productname` (`name`) VALUES (?)";
                     try (PreparedStatement ps1 = connection.prepareStatement(sql4, Statement.RETURN_GENERATED_KEYS)) {
 
                         ps1.setString(1, name);
-                        int rowsAffected = ps1.executeUpdate();
+                        ps1.executeUpdate();
 
                         ResultSet generatedKeys = ps1.getGeneratedKeys();
                         if (generatedKeys.next()) {
-                            nameID = generatedKeys.getInt(1);
+                            nameId = generatedKeys.getInt(1);
                         }
                     }
                 }
@@ -230,7 +224,7 @@ public class ProductMapper {
         } catch (SQLException ex) {
             throw new DatabaseException(ex, "Could not insert name into database");
         }
-        return nameID;
+        return nameId;
     }
 
     public void createProduct(int name, int category, int unit, int amount, int height, int width,
@@ -344,20 +338,20 @@ public class ProductMapper {
     }
 
 
-    public void modifyProduct(int id, int idname, int idunit, int idcategory, int price, int height, int width, int amount, int idtype) throws DatabaseException{
+    public void modifyProduct(int id, int idName, int idUnit, int idCategory, int price, int height, int width, int amount, int idType) throws DatabaseException{
 
         String sql= "UPDATE `fogarchive`.`product` SET `idname` = ?, `idunit` = ?, `idcategory` = ?, `priceprmeasurment` = ?, `height` = ?, `width` = ?, `amount` = ? , `idproducttype` = ?  WHERE (`idProduct` = ?)";
         try (Connection connection = connectionPool.getConnection()) {
         try (PreparedStatement ps = connection.prepareStatement(sql)) {
 
-            ps.setInt(1, idname);
-            ps.setInt(2, idunit);
-            ps.setInt(3, idcategory);
+            ps.setInt(1, idName);
+            ps.setInt(2, idUnit);
+            ps.setInt(3, idCategory);
             ps.setInt(4, price);
             ps.setInt(5, height);
             ps.setInt(6, width);
             ps.setInt(7, amount);
-            ps.setInt(8, idtype);
+            ps.setInt(8, idType);
             ps.setInt(9,id);
             ps.executeUpdate();
 

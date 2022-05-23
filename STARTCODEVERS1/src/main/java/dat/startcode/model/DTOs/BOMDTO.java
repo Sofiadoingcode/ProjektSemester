@@ -2,19 +2,19 @@ package dat.startcode.model.DTOs;
 
 public class BOMDTO {
 
-    int idbom;
-    double totalprice;
+    int idBOM;
+    double totalPrice;
     String description;
     String svgDrawing;
-    int orderid;
+    int orderId;
 
 
-    public BOMDTO(int idbom, double totalprice, String description, int orderid, String svgDrawing) {
-        this.idbom = idbom;
-        this.totalprice = totalprice;
+    public BOMDTO(int idBOM, double totalPrice, String description, int orderId, String svgDrawing) {
+        this.idBOM = idBOM;
+        this.totalPrice = totalPrice;
         this.description = description;
         this.svgDrawing = svgDrawing;
-        this.orderid = orderid;
+        this.orderId = orderId;
 
     }
 
@@ -22,20 +22,20 @@ public class BOMDTO {
     
 
 
-    public int getIdbom() {
-        return idbom;
+    public int getIdBOM() {
+        return idBOM;
     }
 
-    public void setIdbom(int idbom) {
-        this.idbom = idbom;
+    public void setIdBOM(int idBOM) {
+        this.idBOM = idBOM;
     }
 
-    public double getTotalprice() {
-        return totalprice;
+    public double getTotalPrice() {
+        return totalPrice;
     }
 
-    public void setTotalprice(double totalprice) {
-        this.totalprice = totalprice;
+    public void setTotalPrice(double totalPrice) {
+        this.totalPrice = totalPrice;
     }
 
     public String getDescription() {
@@ -54,11 +54,11 @@ public class BOMDTO {
         this.svgDrawing = svgDrawing;
     }
 
-    public int getOrderid() {
-        return orderid;
+    public int getOrderId() {
+        return orderId;
     }
 
-    public void setOrderid(int orderid) {
-        this.orderid = orderid;
+    public void setOrderId(int orderId) {
+        this.orderId = orderId;
     }
 }

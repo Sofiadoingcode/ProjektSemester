@@ -20,7 +20,6 @@ ConnectionPool connectionPool;
 
     @Override
     String execute(HttpServletRequest request, HttpServletResponse response) throws DatabaseException {
-        HttpSession session = request.getSession();
 
         String name = request.getParameter("name");
 

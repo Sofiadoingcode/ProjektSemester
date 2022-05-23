@@ -27,14 +27,14 @@ public class ViewProducts extends Command {
         List<Product> products = ProductionFacade.getProducts(connectionPool);
 
         ProductMapper productMapper = new ProductMapper(connectionPool);
-        HashMap<Integer, String> Unitlist= productMapper.getUnits();
-        HashMap<Integer, String> CategoryList= productMapper.getCategories();
+        HashMap<Integer, String> unitList= productMapper.getUnits();
+        HashMap<Integer, String> categoryList= productMapper.getCategories();
         HashMap<Integer, String> productTypeList = productMapper.getProductTypes();
 
-        request.getServletContext().setAttribute("ProductsList", products);
-        request.getServletContext().setAttribute("UnitList",Unitlist);
-        request.getServletContext().setAttribute("CategoryList",CategoryList);
-        request.getServletContext().setAttribute("ProductTypeList",productTypeList);
+        request.getServletContext().setAttribute("productsList", products);
+        request.getServletContext().setAttribute("unitList",unitList);
+        request.getServletContext().setAttribute("categoryList",categoryList);
+        request.getServletContext().setAttribute("productTypeList",productTypeList);
         return "products.jsp";
     }
 }

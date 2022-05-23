@@ -26,7 +26,6 @@ public class PayForRequest extends Command {
         HttpSession session = request.getSession();
         User user = (User) session.getAttribute("user");
         String idPay = request.getParameter("pay");
-        System.out.println("idPay: " + idPay);
         int payId = Integer.parseInt(idPay);
         CustomerMapper customerMapper = new CustomerMapper(connectionPool);
         RequestMapper requestMapper = new RequestMapper(connectionPool);
@@ -37,7 +36,7 @@ public class PayForRequest extends Command {
         try {
             customerMapper.payForRequest(payId);
             if (usersRequest != null) {
-                carport = requestMapper.getCarportChoices(usersRequest.getIdcarportchoices());
+                carport = requestMapper.getCarportChoices(usersRequest.getIdCarportChoices());
                 if (carport.getIdShed() != 0) {
                     shed = requestMapper.getShedChoices(carport.getIdShed());
                 }
