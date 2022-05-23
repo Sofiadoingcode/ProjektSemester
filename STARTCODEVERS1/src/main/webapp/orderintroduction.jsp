@@ -79,7 +79,9 @@
 
                                     <div class="col">
                                         <div class="input-group mb-3">
-                                            <input type="number" class="form-control" name="height" placeholder="Højde"
+                                            <input type="number" class="form-control" name="height"
+                                                   value="${requestScope.height}"
+                                                   placeholder="Højde"
                                                    aria-label="Recipient's username" aria-describedby="basic-addon2"
                                                    required
                                                    oninvalid="this.setCustomValidity('Indtast højde')"
@@ -90,7 +92,7 @@
                                     <div class="col">
                                         <div class="input-group mb-3">
                                             <input type="number" class="form-control" name="length" placeholder="Længde"
-                                                   aria-label="Recipient's username" aria-describedby="basic-addon2"
+                                                   aria-label="Recipient's username" aria-describedby="basic-addon2" value="${requestScope.length}"
                                                    required
                                                    oninvalid="this.setCustomValidity('Indtast længde')"
                                                    oninput="this.setCustomValidity('')">
@@ -100,7 +102,7 @@
                                     <div class="col">
                                         <div class="input-group mb-3">
                                             <input type="number" class="form-control" name="width" placeholder="Bredde"
-                                                   aria-label="Recipient's username" aria-describedby="basic-addon2"
+                                                   aria-label="Recipient's username" aria-describedby="basic-addon2" value="${requestScope.width}"
                                                    required
                                                    oninvalid="this.setCustomValidity('Indtast bredde')"
                                                    oninput="this.setCustomValidity('')">
@@ -140,7 +142,7 @@
                                         <div class="input-group mb-3">
                                             <label class="input-group-text" for="angle">Hældning</label>
                                             <input type="number" class="form-control" id="angle" name="angle"
-                                                   placeholder="0"
+                                                   placeholder="0" value="${requestScope.angle}"
                                                    aria-label="" aria-describedby="" required
                                                    oninvalid="this.setCustomValidity('Indtast hældning på tag')"
                                                    oninput="this.setCustomValidity('')">
@@ -200,7 +202,8 @@
                                         <div class="col-md-2">
                                             <div class="form-floating">
                                                 <input type="text" class="form-control" name="name" id="floatingName"
-                                                       placeholder="Password" required
+                                                       placeholder="Password" value="${requestScope.name}"
+                                                       required
                                                        oninvalid="this.setCustomValidity('Indtast navn')"
                                                        oninput="this.setCustomValidity('')">
                                                 <label for="floatingName">Navn</label>
@@ -210,7 +213,8 @@
                                         <div class="col-md-2">
                                             <div class="form-floating mb-3">
                                                 <input type="email" class="form-control" id="floatingInput" name="email"
-                                                       placeholder="name@example.com" required
+                                                       placeholder="name@example.com" value="${requestScope.email}"
+                                                       required
                                                        oninvalid="this.setCustomValidity('Indtast email')"
                                                        oninput="this.setCustomValidity('')">
                                                 <label for="floatingInput">Email adresse</label>
@@ -219,7 +223,8 @@
                                         <div class="col-md-2">
                                             <div class="form-floating mb-3">
                                                 <input type="text" pattern="[0-9]{4}" class="form-control"
-                                                       id="floatingzipCode" name="zipCode" placeholder="" required
+                                                       id="floatingzipCode" name="zipCode" placeholder="" value="${requestScope.zipCode}"
+                                                       required
                                                        oninvalid="this.setCustomValidity('Indtast postnummer')"
                                                        oninput="this.setCustomValidity('')">
                                                 <label for="floatingzipCode">Postnummer</label>
@@ -228,7 +233,7 @@
                                         <div class="col-md-2">
                                             <div class="form-floating mb-3">
                                                 <input type="text" pattern="[0-9]{8}" class="form-control"
-                                                       id="floatingPhoneNumber" name="phoneNumber" placeholder=""
+                                                       id="floatingPhoneNumber" name="phoneNumber" placeholder="" value="${requestScope.phoneNumber}"
                                                        required
                                                        oninvalid="this.setCustomValidity('Indtast telefonnummer')"
                                                        oninput="this.setCustomValidity('')">

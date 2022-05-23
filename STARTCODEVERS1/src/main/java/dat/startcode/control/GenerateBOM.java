@@ -29,6 +29,16 @@ public class GenerateBOM extends Command {
         String widthString = request.getParameter("width");
         double width = Double.parseDouble(widthString);
 
+        int angle = Integer.parseInt(request.getParameter("angle"));
+
+        String name = request.getParameter("name");
+
+        String email = request.getParameter("email");
+
+        String zipCode = request.getParameter("zipCode");
+
+        String phoneNumber = request.getParameter("phoneNumber");
+
         CarportChoices carportChoice = new CarportChoices(height, width, length);
 
         BOMAlgorithm bomAlgorithm = new BOMAlgorithm();
@@ -40,7 +50,14 @@ public class GenerateBOM extends Command {
 
         request.setAttribute("description", description);
 
-
+        request.setAttribute("height", height);
+        request.setAttribute("length", length);
+        request.setAttribute("width", width);
+        request.setAttribute("angle", angle);
+        request.setAttribute("name", name);
+        request.setAttribute("email", email);
+        request.setAttribute("zipCode", zipCode);
+        request.setAttribute("phoneNumber", phoneNumber);
         request.setAttribute("svg", svg);
         //NOT CORRECT JUST FOR NOW
         return "orderintroduction.jsp";
