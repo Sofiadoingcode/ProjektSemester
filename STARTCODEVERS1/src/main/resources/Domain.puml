@@ -1,19 +1,68 @@
 @startuml
 'https://plantuml.com/class-diagram
+left to right direction
 
 object customer
 object admin
-object order
-object bom
 object user
+object bom
+object product
+object request
+object carport
+object shed
+object productionline
 
-user *-- customer
-customer *-- order
-order *-- bom
+user : String username
+user : String password
+user : String role
+
+customer : String name
+customer : int zipcode
+customer : String city
+customer : String phonenumber
+customer : String email
+
+request : boolean isAccepted
+request : boolean isPaid
+
+carport : double height
+carport : double length
+carport : double width
+carport : String roofMaterial
+carport : String roofShape
+carport : int roofAngle
+
+shed : double length
+shed : double width
+shed : String floorMaterial
+
+bom : double totalprice
+bom : String description
+bom : String svgDrawing
+
+productionline : int amount
+productionline : double totalproductprice
+
+
+
+product : String name
+product : String category
+product : String unit
+product : String productType
+product : double height
+product : double width
+product : double priceprmeasurment
+product : int amount
+
+
+carport o-- shed
 user *-- admin
-admin *-- customer
-
-
-
+user *-- customer
+request o-- bom
+bom o-- productionline
+productionline o-- product
+customer o-- request
+admin --- request
+request o-- carport
 
 @enduml
