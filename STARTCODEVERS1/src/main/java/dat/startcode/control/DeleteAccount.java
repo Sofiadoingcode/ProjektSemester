@@ -1,19 +1,13 @@
 package dat.startcode.control;
 
-import com.mysql.cj.Session;
 import dat.startcode.model.config.ApplicationStart;
-import dat.startcode.model.entities.User;
 import dat.startcode.model.exceptions.DatabaseException;
 import dat.startcode.model.persistence.ConnectionPool;
 import dat.startcode.model.persistence.CustomerMapper;
-import dat.startcode.model.persistence.UserMapper;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
 
 public class DeleteAccount extends Command{
     private ConnectionPool connectionPool;
@@ -34,7 +28,7 @@ public class DeleteAccount extends Command{
         CustomerMapper customerMapper = new CustomerMapper(connectionPool);
         try {
             int userIdInDB = customerMapper.checkDeletedId(username, password);
-            customerMapper.deleteAccount(username, password);
+            customerMapper.deleteAccountUsingLogin(username, password);
             if(userIdInDB == idToDelete){
                 session.invalidate();
             }

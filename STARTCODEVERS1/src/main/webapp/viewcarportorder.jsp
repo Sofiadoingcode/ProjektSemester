@@ -70,7 +70,6 @@
                                        placeholder="${sessionScope.carportChoices.roofMaterial}" disabled>
                             </div>
                         </div>
-                        <br>
                         <div class="col-md-4">
                             <div class="input-group">
                                 <label class="input-group-text" for="tag">Tag</label>
