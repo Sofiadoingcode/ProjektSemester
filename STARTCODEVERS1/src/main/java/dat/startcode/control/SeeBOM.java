@@ -29,11 +29,11 @@ public class SeeBOM extends Command {
         HttpSession session = request.getSession();
         Request usersRequest = (Request) session.getAttribute("usersRequest");
         BOMDTO bomdto = bomMapper.getBOM(usersRequest.getIdOrder());
-        List<ProductionLineDTO> productionlines = bomMapper.getBOMProductLines(bomdto);
+        List<ProductionLineDTO> productionLines = bomMapper.getBOMProductLines(bomdto);
 
         List<ProductionLineDTO> category1 = new ArrayList<>();
         List<ProductionLineDTO> category2 = new ArrayList<>();
-        for(ProductionLineDTO dto: productionlines) {
+        for(ProductionLineDTO dto: productionLines) {
             if (dto.getCategory() == 1) {
                 category1.add(dto);
             } else {
@@ -46,6 +46,6 @@ public class SeeBOM extends Command {
         session.setAttribute("category2",category2);
 
 
-        return "viewBOMCustomer.jsp";
+        return "viewbomcustomer.jsp";
     }
 }

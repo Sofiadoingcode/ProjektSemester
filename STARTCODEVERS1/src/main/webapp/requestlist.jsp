@@ -49,11 +49,11 @@
 
                             <td class="tableRows-RequestList">${request.name}</td>
                             <td class="tableRows-RequestList">${request.email}</td>
-                            <td class="tableRows-RequestList">${request.phonenumber}</td>
+                            <td class="tableRows-RequestList">${request.phoneNumber}</td>
                             <td class="tableRows-RequestList">${request.city}</td>
                             <td class="tableRows-RequestList">
                                 <form>
-                                    <button type="submit" name="seeStykliste" value="${request.idorder}" formaction="fc/BOMlist?command=BOMlist" formmethod="post"
+                                    <button type="submit" name="seeStykliste" value="${request.idOrder}" formaction="fc/BOMlist?command=BOMlist" formmethod="post"
                                             class="seeorder-btn">Se Stykliste
                                     </button>
                                 </form>
@@ -61,7 +61,7 @@
                             <td class="tableRows-RequestList">
                                 <form method="post" action="fc/modifyFinalPrice?command=modifyFinalPrice">
                                     <div class="input-group">
-                                        <button type="submit" class="input-group-addon" id="sizing-addon2" class="orders-btn-Checkmark orders-complete orders-btn--right-margin" name="modifyFP" value="${request.idorder}">
+                                        <button type="submit" class="input-group-addon" id="sizing-addon2" class="orders-btn-Checkmark orders-complete orders-btn--right-margin" name="modifyFP" value="${request.idOrder}">
 
                                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                                  class="bi bi-check" viewBox="0 0 16 16">
@@ -70,7 +70,7 @@
 
                                         </button>
                                         <input type="number" class="form-control" name="finalPriceText"
-                                               value="${request.finalprice}">
+                                               value="${request.finalPrice}">
                                     </div>
 
                                 </form>
@@ -78,7 +78,7 @@
 
                             <td class="tableRows-RequestList">
                                 <form method="post">
-                                    <button type="submit" name="accept" value="${request.idorder}" formaction="fc/acceptRequest?command=acceptRequest" formmethod="post"
+                                    <button type="submit" name="accept" value="${request.idOrder}" formaction="fc/acceptRequest?command=acceptRequest" formmethod="post"
                                             class="orders-btn-Checkmark orders-complete orders-btn--right-margin">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                              class="bi bi-check" viewBox="0 0 16 16">
@@ -86,7 +86,7 @@
                                         </svg>
                                     </button>
 
-                                    <button type="submit" name="delete" value="${request.idorder}" formaction="fc/deleteRequest?command=deleteRequest" formmethod="post"
+                                    <button type="submit" name="delete" value="${request.idOrder}" formaction="fc/deleteRequest?command=deleteRequest" formmethod="post"
                                             class="orders-btn-DeleteX orders-delete">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                              class="bi bi-x" viewBox="0 0 16 16">
@@ -131,21 +131,21 @@
 
                             <td class="tableRows-RequestList">${requests.name}</td>
                             <td class="tableRows-RequestList">${requests.email}</td>
-                            <td class="tableRows-RequestList">${requests.phonenumber}</td>
+                            <td class="tableRows-RequestList">${requests.phoneNumber}</td>
                             <td class="tableRows-RequestList">${requests.city}</td>
                             <td class="tableRows-RequestList">
                                 <form>
-                                    <button type="submit" name="seeStykliste" value="${requests.idorder}" formaction="fc/BOMlist?command=BOMlist" formmethod="post"
+                                    <button type="submit" name="seeStykliste" value="${requests.idOrder}" formaction="fc/BOMlist?command=BOMlist" formmethod="post"
                                             class="seeorder-btn">Se Stykliste
                                     </button>
                                 </form>
                             </td>
 
-                            <td class="tableRows-RequestList">${requests.finalprice}</td>
+                            <td class="tableRows-RequestList">${requests.finalPrice}</td>
 
                             <td class="tableRows-RequestList">
                                 <form method="post">
-                                    <button type="submit" name="unAccept" value="${requests.idorder}" formaction="fc/unAcceptRequest?command=unAcceptRequest" formmethod="post"
+                                    <button type="submit" name="unAccept" value="${requests.idOrder}" formaction="fc/unAcceptRequest?command=unAcceptRequest" formmethod="post"
                                             class="orders-btn orders-btn-ArrowUp orders-undoCompletion orders-btn--right-margin">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                              class="bi bi-arrow-up" viewBox="0 0 16 16">
@@ -154,7 +154,7 @@
                                         </svg>
                                     </button>
 
-                                    <button type="submit" name="delete" value="${requests.idorder}" formaction="fc/deleteRequest?command=deleteRequest" formmethod="post"
+                                    <button type="submit" name="delete" value="${requests.idOrder}" formaction="fc/deleteRequest?command=deleteRequest" formmethod="post"
                                             class="orders-btn orders-btn-DeleteX orders-delete">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                              class="bi bi-x" viewBox="0 0 16 16">
@@ -193,21 +193,21 @@
 
                             <td class="tableRows-RequestList">${requests.name}</td>
                             <td class="tableRows-RequestList">${requests.email}</td>
-                            <td class="tableRows-RequestList">${requests.phonenumber}</td>
+                            <td class="tableRows-RequestList">${requests.phoneNumber}</td>
                             <td class="tableRows-RequestList">${requests.city}</td>
                             <td class="tableRows-RequestList">
                                 <form>
-                                    <button type="submit" name="seeStykliste" value="${requests.idorder}" formaction="fc/BOMlist?command=BOMlist" formmethod="post"
+                                    <button type="submit" name="seeStykliste" value="${requests.idOrder}" formaction="fc/BOMlist?command=BOMlist" formmethod="post"
                                             class="seeorder-btn">Se Stykliste
                                     </button>
                                 </form>
                             </td>
-                            <td class="tableRows-RequestList">${requests.finalprice}</td>
+                            <td class="tableRows-RequestList">${requests.finalPrice}</td>
 
                             <td class="tableRows-RequestList">
                                 <form method="post">
 
-                                    <button type="submit" name="delete" value="${requests.idorder}" formaction="fc/deleteRequest?command=deleteRequest" formmethod="post"
+                                    <button type="submit" name="delete" value="${requests.idOrder}" formaction="fc/deleteRequest?command=deleteRequest" formmethod="post"
                                             class="orders-btn orders-btn-DeleteX orders-delete">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                              class="bi bi-x" viewBox="0 0 16 16">
