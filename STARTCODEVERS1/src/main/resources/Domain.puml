@@ -2,67 +2,67 @@
 'https://plantuml.com/class-diagram
 left to right direction
 
-object customer
-object admin
-object user
-object bom
-object product
-object request
-object carport
-object shed
-object productionline
+object Customer
+object Admin
+object User
+object Bom
+object Product
+object Request
+object Carport
+object Shed
+object ProductionLine
 
-user : String username
-user : String password
-user : String role
+User : String username
+User : String password
+User : String role
 
-customer : String name
-customer : int zipcode
-customer : String city
-customer : String phonenumber
-customer : String email
+Customer : String name
+Customer : int zipCode
+Customer : String city
+Customer : String phoneNumber
+Customer : String email
 
-request : boolean isAccepted
-request : boolean isPaid
+Request : boolean isAccepted
+Request : boolean isPaid
 
-carport : double height
-carport : double length
-carport : double width
-carport : String roofMaterial
-carport : String roofShape
-carport : int roofAngle
+Carport : double height
+Carport : double length
+Carport : double width
+Carport : String roofMaterial
+Carport : String roofShape
+Carport : int roofAngle
 
-shed : double length
-shed : double width
-shed : String floorMaterial
+Shed : double length
+Shed : double width
+Shed : String floorMaterial
 
-bom : double totalprice
-bom : String description
-bom : String svgDrawing
+Bom : double totalPrice
+Bom : String description
+Bom : String svgDrawing
 
-productionline : int amount
-productionline : double totalproductprice
-
-
-
-product : String name
-product : String category
-product : String unit
-product : String productType
-product : double height
-product : double width
-product : double priceprmeasurment
-product : int amount
+ProductionLine : int amount
+ProductionLine : double totalProductPrice
 
 
-carport o-- shed
-user *-- admin
-user *-- customer
-request o-- bom
-bom o-- productionline
-productionline o-- product
-customer o-- request
-admin --- request
-request o-- carport
+
+Product : String name
+Product : String category
+Product : String unit
+Product : String productType
+Product : double height
+Product : double width
+Product : double pricePrMeasurment
+Product : int amount
+
+
+Carport o-- Shed
+User *-- Admin
+User *-- Customer
+Request o-- Bom
+Bom o-- ProductionLine
+ProductionLine o-- Product
+Customer o-- Request
+Admin --- Request
+Request o-- Carport
 
 @enduml
