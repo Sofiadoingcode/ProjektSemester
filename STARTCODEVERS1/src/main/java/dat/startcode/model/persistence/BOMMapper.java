@@ -23,7 +23,7 @@ public class BOMMapper implements IBOMMapper{
 
         BOMDTO bomdto = new BOMDTO(0, 0, "", 0, "");
 
-        String sql = "SELECT idbom, totalprice, `description`, svgDrawing, o.idorder FROM BOM INNER JOIN `order` o USING (idbom) WHERE idorder = ?";
+        String sql = "SELECT idbom, totalprice, `description`, svgDrawing, o.idorder FROM bom INNER JOIN `order` o USING (idbom) WHERE idorder = ?";
 
         try (Connection connection = connectionPool.getConnection()) {
             try (PreparedStatement ps = connection.prepareStatement(sql)) {
