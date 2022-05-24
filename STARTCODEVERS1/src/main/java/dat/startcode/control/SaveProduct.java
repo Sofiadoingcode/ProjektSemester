@@ -31,11 +31,11 @@ ConnectionPool connectionPool;
 
         int amount = Integer.parseInt(request.getParameter("amount"));
 
-        int height = Integer.parseInt(request.getParameter("height"));
+        double height =Double.parseDouble(request.getParameter("height"));
 
-        int width = Integer.parseInt(request.getParameter("width"));
+        double width = Double.parseDouble(request.getParameter("width"));
 
-        int price = Integer.parseInt(request.getParameter("price"));
+        double price = Double.parseDouble(request.getParameter("price"));
 
 
         ProductionFacade.createProduct(name,category,unit,amount,height,width,price,productType,connectionPool);

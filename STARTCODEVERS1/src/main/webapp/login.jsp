@@ -45,10 +45,11 @@
                 </form>
             </div>
             </div>
-                <div id="loginFlag-div">
-                    <img id="loginFlag" src="images/FogFlag.png">
+                <div>
+                    <div class="loginFlag-div">
+                        <img src="${pageContext.request.contextPath}/images/FrontPageIMG/fogFlagImg.JPG" class="loginFlag" >
+                    </div>
                 </div>
-
         </div>
 
     </jsp:body>

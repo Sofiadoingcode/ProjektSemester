@@ -1,16 +1,12 @@
 package dat.startcode.control;
 
 import dat.startcode.model.config.ApplicationStart;
-import dat.startcode.model.entities.Customer;
 import dat.startcode.model.exceptions.DatabaseException;
 import dat.startcode.model.persistence.ConnectionPool;
 import dat.startcode.model.persistence.CustomerMapper;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class DeleteRequest extends Command {
     private ConnectionPool connectionPool;
@@ -22,11 +18,14 @@ public class DeleteRequest extends Command {
     @Override
     String execute(HttpServletRequest request, HttpServletResponse response) throws DatabaseException {
         String idDelete = request.getParameter("delete");
-        int deleteId = Integer.parseInt(idDelete);
+        int orderDeleteId = Integer.parseInt(idDelete);
         CustomerMapper customerMapper = new CustomerMapper(connectionPool);
+        int userId = customerMapper.checkIdOfUserFromOrderId(orderDeleteId);
+
 
         try {
-            customerMapper.deleteOrder(deleteId);
+            customerMapper.deleteOrder(orderDeleteId);
+            customerMapper.deleteAccountUsingId(userId);
         } catch (DatabaseException e) {
             System.out.println(e);
         }

@@ -228,8 +228,8 @@ public class ProductMapper {
         return nameId;
     }
 
-    public void createProduct(int name, int category, int unit, int amount, int height, int width,
-                               int price, int productType) throws DatabaseException {
+    public void createProduct(int name, int category, int unit, int amount, double height, double width,
+                               double price, int productType) throws DatabaseException {
         Logger.getLogger("web").log(Level.INFO, "");
 
 

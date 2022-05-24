@@ -10,8 +10,8 @@ import java.util.List;
 public class ProductionFacade {
 
 
-    public static void createProduct(String name, String category, String unit, int amount, int height, int width,
-                                     int price, String productType, ConnectionPool connectionPool) throws DatabaseException {
+    public static void createProduct(String name, String category, String unit, int amount, double height, double width,
+                                     double price, String productType, ConnectionPool connectionPool) throws DatabaseException {
         ProductMapper productMapper = new ProductMapper(connectionPool);
 
         int categoryId = productMapper.getCategoryId(category);

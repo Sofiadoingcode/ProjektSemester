@@ -18,8 +18,6 @@
         <div class="orders-header-box">
             <c:forEach var="bom" items="${requestScope.fullbom}">
                 <p>Forespørgsel: ${bom.orderId}</p>
-                <p>Navn: </p>
-                <p>Bruger: </p>
             </c:forEach>
         </div>
 

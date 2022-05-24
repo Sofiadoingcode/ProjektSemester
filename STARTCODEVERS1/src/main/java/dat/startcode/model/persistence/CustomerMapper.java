@@ -136,7 +136,7 @@ public class CustomerMapper implements ICustomerMapper {
         return isDeleted;
     }
 
-    public boolean deleteAccount(String username, String password) throws DatabaseException {
+    public boolean deleteAccountUsingLogin(String username, String password) throws DatabaseException {
         boolean isDeleted = false;
 
         try (Connection connection = connectionPool.getConnection()) {
@@ -173,6 +173,45 @@ public class CustomerMapper implements ICustomerMapper {
             }
         } catch (SQLException e) {
             throw new DatabaseException("Adminen blev ikke fjernet3 ");
+        }
+        return idUser;
+    }
+
+    public boolean deleteAccountUsingId(int accountId) throws DatabaseException {
+        boolean isDeleted = false;
+
+        try (Connection connection = connectionPool.getConnection()) {
+
+            String sql = "delete from `user` where iduser = ?";
+            try (PreparedStatement ps = connection.prepareStatement(sql)) {
+                ps.setInt(1, accountId);
+                ps.executeUpdate();
+                isDeleted = true;
+            } catch (Exception E) {
+                System.out.println(E);
+            }
+        } catch (SQLException e) {
+            throw new DatabaseException("Kontoen blev ikke fjernet ");
+        }
+        return isDeleted;
+    }
+
+    public int checkIdOfUserFromOrderId(int orderId) throws DatabaseException {
+        String sql = "SELECT idorder, iduser FROM fogarchive.order WHERE idorder = ?";
+        int idUser = 0;
+        try (Connection connection = connectionPool.getConnection()) {
+            try (PreparedStatement ps = connection.prepareStatement(sql)) {
+                ps.setInt(1, orderId);
+                ResultSet rs = ps.executeQuery();
+                while (rs.next()) {
+                    idUser = rs.getInt("iduser");
+                }
+
+            } catch (Exception E) {
+                System.out.println(E);
+            }
+        } catch (SQLException e) {
+            throw new DatabaseException("kontoen blev ikke fundet");
         }
         return idUser;
     }

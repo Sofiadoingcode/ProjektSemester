@@ -69,7 +69,7 @@
                                             </svg>
 
                                         </button>
-                                        <input type="number" class="form-control" name="finalPriceText"
+                                        <input type="number" class="form-control" name="finalPriceText" step="any"
                                                value="${request.finalPrice}">
                                     </div>
 
