@@ -83,23 +83,23 @@
                                 </div>
                             </td>
                             <td class="tableRows-RequestList">
-                                <div class="input-group"><input type="text" class="form-control"
-                                                                value="${product.price}" name="product_price"> <span
+                                <div class="input-group"><input type="number" class="form-control"
+                                                                value="${product.price}" name="product_price" step = "0.01"> <span
                                         class="input-group-append"> </span></div>
                             </td>
                             <td class="tableRows-RequestList">
-                                <div class="input-group"><input type="text" class="form-control"
-                                                                value="${product.amount}" name="product_amount"> <span
+                                <div class="input-group"><input type="number" class="form-control"
+                                                                value="${product.amount}" name="product_amount" step = "1"> <span
                                         class="input-group-append"> </span></div>
                             </td>
                             <td class="tableRows-RequestList">
-                                <div class="input-group"><input type="text" class="form-control"
-                                                                value="${product.height}" name="product_height"> <span
+                                <div class="input-group"><input type="number" class="form-control"
+                                                                value="${product.height}" name="product_height" step = "0.01"> <span
                                         class="input-group-append"> </span></div>
                             </td>
                             <td class="tableRows-RequestList">
-                                <div class="input-group"><input type="text" class="form-control"
-                                                                value="${product.width}" name="product_width"> <span
+                                <div class="input-group"><input type="number" class="form-control"
+                                                                value="${product.width}" name="product_width" step = "0.01"> <span
                                         class="input-group-append"> </span></div>
                             </td>
 
@@ -152,7 +152,7 @@
         <br>
         <br>
 
-        <h1> Ny Produkt</h1>
+        <h1> Nyt Produkt</h1>
         <div class="d-flex justify-content-center">
 
             <br>
@@ -188,23 +188,23 @@
 
                 <br>
                 <div class="form-floating mb-3">
-                    <input type="number" class="form-control" name="amount" id="amount" placeholder="name@example.com">
+                    <input type="number" class="form-control" name="amount" id="amount" placeholder="name@example.com" step="1">
                     <label for="amount">amount</label>
                 </div>
                 <br>
                 <div class="form-floating mb-3">
-                    <input type="number" class="form-control" name="price" id="price" placeholder="name@example.com">
+                    <input type="number" class="form-control" name="price" id="price" placeholder="name@example.com" step="0.01">
                     <label for="price">pris</label>
                 </div>
                 <br>
                 <div class="form-floating mb-3">
-                    <input type="number" class="form-control" name="height" id="Height" placeholder="name@example.com">
+                    <input type="number" class="form-control" name="height" id="Height" placeholder="name@example.com" step="0.01">
                     <label for="Height">Højde</label>
                 </div>
                 <br>
                 <div class="form-floating mb-3">
-                    <input type="number" class="form-control" name="width" id="Width" placeholder="name@example.com">
-                    <label for="width">Længde</label>
+                    <input type="number" class="form-control" name="width" id="Width" placeholder="name@example.com" step="0.01">
+                    <label for="width">Bredde</label>
                 </div>
                 <br>
                 <div class="form-floating">
