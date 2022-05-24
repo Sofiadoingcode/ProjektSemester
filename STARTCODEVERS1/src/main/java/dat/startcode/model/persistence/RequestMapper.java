@@ -223,9 +223,9 @@ public class RequestMapper {
                 ps.setInt(1, carportChoicesId);
                 ResultSet rs = ps.executeQuery();
                 if (rs.next()) {
-                    double height = rs.getInt("height");
-                    double length = rs.getInt("length");
-                    double width = rs.getInt("width");
+                    double height = rs.getDouble("height");
+                    double length = rs.getDouble("length");
+                    double width = rs.getDouble("width");
                     String roofMaterial = rs.getString("roofmateriel");
                     String roofShape = rs.getString("roofshape");
                     int roofAngle = rs.getInt("roofangle");

@@ -35,7 +35,7 @@
                         <div class="col">
                             <div class="input-group mb-3">
                                 <label for="height" class="input-group-text">Højde</label>
-                                <input type="number" class="form-control" name="height"
+                                <input type="number" class="form-control" name="height" step="any"
                                        placeholder="${sessionScope.carportChoices.height}" disabled>
                                 <span class="input-group-text" id="height">m</span>
                             </div>
@@ -43,7 +43,7 @@
                         <div class="col">
                             <div class="input-group mb-3">
                                 <label for="length" class="input-group-text">Længde</label>
-                                <input type="number" class="form-control" name="length"
+                                <input type="number" class="form-control" name="length" step="any"
                                        placeholder="${sessionScope.carportChoices.length}" disabled>
                                 <span class="input-group-text" id="length">m</span>
                             </div>
@@ -51,7 +51,7 @@
                         <div class="col">
                             <div class="input-group mb-3">
                                 <label for="width" class="input-group-text">Bredde</label>
-                                <input type="number" class="form-control" name=width"
+                                <input type="number" class="form-control" name=width" step="any"
                                        placeholder="${sessionScope.carportChoices.width}" disabled>
                                 <span class="input-group-text" id="width">m</span>
                             </div>
@@ -81,7 +81,7 @@
                         <div class="col-md-4" id="inputCheck1">
                             <div class="input-group mb-3">
                                 <label class="input-group-text" for="angle">Hældning</label>
-                                <input type="number" class="form-control" name="angle" id="angle"
+                                <input type="number" class="form-control" name="angle" id="angle" step="any"
                                        placeholder="${sessionScope.carportChoices.roofAngle}"
                                        disabled>
                                 <span class="input-group-text" id="angleSymbol">°</span>
@@ -98,7 +98,7 @@
                             <div class="col-md-2">
                                 <div class="input-group mb-3">
                                     <label class="input-group-text" for="shedLength">Længde</label>
-                                    <input type="number" class="form-control" name="length" id="shedLength"
+                                    <input type="number" class="form-control" name="length" id="shedLength" step="any"
                                            placeholder="${sessionScope.shedChoices.length}"
                                            aria-label="" aria-describedby="" disabled>
                                     <span class="input-group-text" id="shedLengthm">m</span>
@@ -107,7 +107,7 @@
                             <div class="col-md-2">
                                 <div class="input-group mb-3">
                                     <label class="input-group-text" for="shedWidth">Bredde</label>
-                                    <input type="number" class="form-control" name=width" id="shedWidth"
+                                    <input type="number" class="form-control" name=width" id="shedWidth" step="any"
                                            placeholder="${sessionScope.shedChoices.width}"
                                            aria-label="" aria-describedby="" disabled>
                                     <span class="input-group-text" id="shedWidthm">m</span>

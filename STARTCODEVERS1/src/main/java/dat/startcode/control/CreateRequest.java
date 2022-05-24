@@ -41,8 +41,11 @@ public class CreateRequest extends Command
 
 
 
+
         String bomDescription = bomAlgorithm.getDescription();
+
         double bomTotalPrice = bomAlgorithm.getTotalBOMPrice();
+
         SVG svg = bomAlgorithm.getSvg();
 
 

@@ -771,10 +771,12 @@ public class BOMAlgorithm {
         int stolpeDisplacementLengthFront = 110;
         int stolpeDisplacementWidth = 35;
         int stolpeCounter = 0;
-        int carportWidthCM=(int)(carportWidth*100);
-        int carportLengthCM=(int)(carportLength*100);
-        int carportWidthWithDisplacement =  carportWidthCM - (stolpeDisplacementWidth * 2); //Change 600 to carportWidth
-        int carportLengthWithDisplacement = carportLengthCM - (stolpeDisplacementLengthFront); //Change 800 to carportLength
+        double carportWidthCMDouble = carportWidth*100;
+        double carportLengthCMDouble = carportLength*100;
+        int carportWidthCM = (int) (carportWidth*100);
+        int carportLengthCM =(int) (carportLength*100);
+        int carportWidthWithDisplacement = (int) carportWidthCM - (stolpeDisplacementWidth * 2); //Change 600 to carportWidth
+        int carportLengthWithDisplacement = (int) carportLengthCM - (stolpeDisplacementLengthFront); //Change 800 to carportLength
         int stolpeAmountWidth = 0;
         int stolpeAmountLength = 0;
         int distanceBetweenStolpeWidth = 0;
@@ -792,9 +794,9 @@ public class BOMAlgorithm {
         svg.addLine((int) (svgDisplacementLength*0.75), svgDisplacementWidth, (int) (svgDisplacementLength*0.75), carportWidthCM-svgDisplacementWidth, "url(#beginArrow);", "none");
         svg.addLine(svgDisplacementLength, (int) (carportWidthCM-(svgDisplacementWidth*0.75)), carportLengthCM-svgDisplacementLength, (int) (carportWidthCM-(svgDisplacementWidth*0.75)), "none;", "url(#endArrow)");
 
-        svg.addText(1.375, svgDisplacementLength/2, carportWidthCM/2, -90, carportWidthCM/100 +" m");
+        svg.addText(1.375, svgDisplacementLength/2, carportWidthCM/2, -90, carportWidthCMDouble/100 +" m");
 
-        svg.addText(1.375, carportLengthCM/2, carportWidthCM-(svgDisplacementWidth/2), 0, carportLengthCM/100 + " m");
+        svg.addText(1.375, carportLengthCM/2, carportWidthCM-(svgDisplacementWidth/2), 0, carportLengthCMDouble/100 + " m");
 
         for (int x = 0; x < spærFullAmount-1; x++) {
             svg.addText(0.875, (int) (svgDisplacementLength+(spærDistance/2)+((0.80*spærDistance)*x)-4), (int) (svgDisplacementWidth*0.75), 0, spærDistance + " cm");
