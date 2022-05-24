@@ -6,7 +6,6 @@
 package dat.startcode.control;
 
 import dat.startcode.model.exceptions.DatabaseException;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;

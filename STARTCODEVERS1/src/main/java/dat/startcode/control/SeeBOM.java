@@ -1,8 +1,9 @@
 package dat.startcode.control;
 
 import dat.startcode.model.DTOs.BOMDTO;
-import dat.startcode.model.DTOs.ProductionLineDTO;
+import dat.startcode.model.DTOs.ProductionlineDTO;
 import dat.startcode.model.config.ApplicationStart;
+import dat.startcode.model.entities.ProductLine;
 import dat.startcode.model.entities.Request;
 import dat.startcode.model.exceptions.DatabaseException;
 import dat.startcode.model.persistence.BOMMapper;
@@ -27,12 +28,12 @@ public class SeeBOM extends Command {
         BOMMapper bomMapper = new BOMMapper(connectionPool);
         HttpSession session = request.getSession();
         Request usersRequest = (Request) session.getAttribute("usersRequest");
-        BOMDTO bomdto = bomMapper.getBOM(usersRequest.getIdBOM());
-        List<ProductionLineDTO> productionLines = bomMapper.getBOMProductLines(bomdto);
+        BOMDTO bomdto = bomMapper.getBOM(usersRequest.getIdorder());
+        List<ProductionlineDTO> productionlines = bomMapper.getBOMProductlines(bomdto);
 
-        List<ProductionLineDTO> category1 = new ArrayList<>();
-        List<ProductionLineDTO> category2 = new ArrayList<>();
-        for(ProductionLineDTO dto: productionLines) {
+        List<ProductionlineDTO> category1 = new ArrayList<>();
+        List<ProductionlineDTO> category2 = new ArrayList<>();
+        for(ProductionlineDTO dto: productionlines) {
             if (dto.getCategory() == 1) {
                 category1.add(dto);
             } else {
@@ -45,6 +46,6 @@ public class SeeBOM extends Command {
         session.setAttribute("category2",category2);
 
 
-        return "viewbomcustomer.jsp";
+        return "viewBOMCustomer.jsp";
     }
 }
