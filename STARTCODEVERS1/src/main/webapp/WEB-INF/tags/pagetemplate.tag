@@ -55,7 +55,7 @@
                     <c:if test="${sessionScope.user == null }">
                         <a class="nav-item nav-link" href="${pageContext.request.contextPath}/orderintroduction.jsp" style="color: white; padding-left: 25px; padding-right: 25px;">Bestil Carport</a>
                     </c:if>
-                    <c:if test="${sessionScope.user != null }">
+                    <c:if test="${sessionScope.user.getIdRole() == 2}">
                         <a class="nav-item nav-link" href="${pageContext.request.contextPath}/viewcarportorder.jsp" style="color: white; padding-left: 25px; padding-right: 25px;">Din Carport</a>
                     </c:if>
 
