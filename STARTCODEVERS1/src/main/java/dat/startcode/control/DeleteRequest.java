@@ -30,7 +30,6 @@ public class DeleteRequest extends Command {
         } catch (DatabaseException e) {
             System.out.println(e);
         }
-
         return "fc/requestList?command=requestList";
     }
 }
