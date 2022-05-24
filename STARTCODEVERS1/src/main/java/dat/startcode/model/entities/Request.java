@@ -1,48 +1,48 @@
 package dat.startcode.model.entities;
 
 public class Request {
-    private int idorder;
-    private int idcustomer;
-    private int idbom;
+    private int idOrder;
+    private int idCustomer;
+    private int idBOM;
     private boolean isAccepted;
     private boolean isPaid;
     private double finalPrice;
-    private int iduser;
-    private int idcarportchoices;
+    private int idUser;
+    private int idCarportChoices;
 
-    public Request(int idorder, int idcustomer, int idbom, boolean isAccepted, boolean isPaid, double finalPrice, int iduser, int idcarportchoices) {
-        this.idorder = idorder;
-        this.idcustomer = idcustomer;
-        this.idbom = idbom;
+    public Request(int idOrder, int idCustomer, int idBOM, boolean isAccepted, boolean isPaid, double finalPrice, int idUser, int idCarportChoices) {
+        this.idOrder = idOrder;
+        this.idCustomer = idCustomer;
+        this.idBOM = idBOM;
         this.isAccepted = isAccepted;
         this.isPaid = isPaid;
         this.finalPrice = finalPrice;
-        this.iduser = iduser;
-        this.idcarportchoices = idcarportchoices;
+        this.idUser = idUser;
+        this.idCarportChoices = idCarportChoices;
     }
 
-    public int getIdorder() {
-        return idorder;
+    public int getIdOrder() {
+        return idOrder;
     }
 
-    public void setIdorder(int idorder) {
-        this.idorder = idorder;
+    public void setIdOrder(int idOrder) {
+        this.idOrder = idOrder;
     }
 
-    public int getIdcustomer() {
-        return idcustomer;
+    public int getIdCustomer() {
+        return idCustomer;
     }
 
-    public void setIdcustomer(int idcustomer) {
-        this.idcustomer = idcustomer;
+    public void setIdCustomer(int idCustomer) {
+        this.idCustomer = idCustomer;
     }
 
-    public int getIdbom() {
-        return idbom;
+    public int getIdBOM() {
+        return idBOM;
     }
 
-    public void setIdbom(int idbom) {
-        this.idbom = idbom;
+    public void setIdBOM(int idBOM) {
+        this.idBOM = idBOM;
     }
 
     public boolean isAccepted() {
@@ -69,33 +69,33 @@ public class Request {
         this.finalPrice = finalPrice;
     }
 
-    public int getIduser() {
-        return iduser;
+    public int getIdUser() {
+        return idUser;
     }
 
-    public void setIduser(int iduser) {
-        this.iduser = iduser;
+    public void setIdUser(int idUser) {
+        this.idUser = idUser;
     }
 
-    public int getIdcarportchoices() {
-        return idcarportchoices;
+    public int getIdCarportChoices() {
+        return idCarportChoices;
     }
 
-    public void setIdcarportchoices(int idcarportchoices) {
-        this.idcarportchoices = idcarportchoices;
+    public void setIdCarportChoices(int idCarportChoices) {
+        this.idCarportChoices = idCarportChoices;
     }
 
     @Override
     public String toString() {
         return "Request{" +
-                "idorder=" + idorder +
-                ", idcustomer=" + idcustomer +
-                ", idbom=" + idbom +
+                "idorder=" + idOrder +
+                ", idcustomer=" + idCustomer +
+                ", idbom=" + idBOM +
                 ", isAccepted=" + isAccepted +
                 ", isPaid=" + isPaid +
                 ", finalPrice=" + finalPrice +
-                ", iduser=" + iduser +
-                ", idcarportchoices=" + idcarportchoices +
+                ", iduser=" + idUser +
+                ", idcarportchoices=" + idCarportChoices +
                 '}';
     }
 }

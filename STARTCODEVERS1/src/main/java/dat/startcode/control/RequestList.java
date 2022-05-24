@@ -35,7 +35,7 @@ public class RequestList extends Command {
 
 
 
-        return "requestList.jsp";
+        return "requestlist.jsp";
 
     }
 }

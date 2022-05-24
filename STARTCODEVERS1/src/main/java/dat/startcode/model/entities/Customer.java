@@ -3,34 +3,34 @@ package dat.startcode.model.entities;
 public class Customer {
     private int id;
     private String name;
-    private int zipcode;
+    private int zipCode;
     private String city;
-    private String phonenumber;
+    private String phoneNumber;
     private String email;
-    private int idorder;
-    private double finalprice;
+    private int idOrder;
+    private double finalPrice;
 
-    public Customer(int id, String name, int zipcode, String city, String phonenumber, String email, int idorder, double finalprice) {
+    public Customer(int id, String name, int zipCode, String city, String phoneNumber, String email, int idOrder, double finalPrice) {
         this.id = id;
         this.name = name;
-        this.zipcode = zipcode;
+        this.zipCode = zipCode;
         this.city = city;
-        this.phonenumber = phonenumber;
+        this.phoneNumber = phoneNumber;
         this.email = email;
-        this.idorder = idorder;
-        this.finalprice = finalprice;
+        this.idOrder = idOrder;
+        this.finalPrice = finalPrice;
     }
 
     public int getId() {
         return id;
     }
 
-    public int getIdorder() {
-        return idorder;
+    public int getIdOrder() {
+        return idOrder;
     }
 
-    public void setIdorder(int idorder) {
-        this.idorder = idorder;
+    public void setIdOrder(int idOrder) {
+        this.idOrder = idOrder;
     }
 
     public void setId(int id) {
@@ -45,12 +45,12 @@ public class Customer {
         this.name = name;
     }
 
-    public int getZipcode() {
-        return zipcode;
+    public int getZipCode() {
+        return zipCode;
     }
 
-    public void setZipcode(int zipcode) {
-        this.zipcode = zipcode;
+    public void setZipCode(int zipCode) {
+        this.zipCode = zipCode;
     }
 
     public String getCity() {
@@ -61,12 +61,12 @@ public class Customer {
         this.city = city;
     }
 
-    public String getPhonenumber() {
-        return phonenumber;
+    public String getPhoneNumber() {
+        return phoneNumber;
     }
 
-    public void setPhonenumber(String phonenumber) {
-        this.phonenumber = phonenumber;
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
 
     public String getEmail() {
@@ -77,11 +77,11 @@ public class Customer {
         this.email = email;
     }
 
-    public double getFinalprice() {
-        return finalprice;
+    public double getFinalPrice() {
+        return finalPrice;
     }
 
-    public void setFinalprice(double finalprice) {
-        this.finalprice = finalprice;
+    public void setFinalPrice(double finalPrice) {
+        this.finalPrice = finalPrice;
     }
 }

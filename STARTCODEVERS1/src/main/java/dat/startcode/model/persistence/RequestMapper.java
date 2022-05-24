@@ -196,12 +196,12 @@ public class RequestMapper {
                 if (rs.next()) {
                     int idOrder = rs.getInt("idorder");
                     int idCustomer = rs.getInt("idcustomer");
-                    int idBom = rs.getInt("idbom");
+                    int idBOM = rs.getInt("idbom");
                     boolean isAccepted = rs.getBoolean("isAccepted");
                     boolean isPaid = rs.getBoolean("isPaid");
                     double finalPrice = rs.getDouble("finalPrice");
                     int idCarportChoices = rs.getInt("idcarportchoices");
-                    request = new Request(idOrder, idCustomer, idBom, isAccepted, isPaid, finalPrice, idUser, idCarportChoices);
+                    request = new Request(idOrder, idCustomer, idBOM, isAccepted, isPaid, finalPrice, idUser, idCarportChoices);
                 }
             } catch (Exception E) {
                 System.out.println(E);
@@ -214,7 +214,7 @@ public class RequestMapper {
     }
 
     public Carport getCarportChoices(int carportChoicesId) throws DatabaseException {
-        Carport carport = null;
+        Carport carport;
 
         String sql = "SELECT * FROM fogarchive.`carport choices` where `idcarport choices`=?";
 
@@ -245,7 +245,7 @@ public class RequestMapper {
         return carport;
     }
     public Shed getShedChoices(int shedId) throws DatabaseException {
-        Shed shed = null;
+        Shed shed;
 
         String sql = "SELECT * FROM fogarchive.`shed choices` where `idshed choices`=?";
 

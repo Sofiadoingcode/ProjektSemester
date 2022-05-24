@@ -9,16 +9,15 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-public class unAcceptRequest extends Command{
+public class UnAcceptRequest extends Command{
     private ConnectionPool connectionPool;
 
-    public unAcceptRequest() {
+    public UnAcceptRequest() {
         this.connectionPool = ApplicationStart.getConnectionPool();
     }
 
     @Override
     String execute(HttpServletRequest request, HttpServletResponse response) throws DatabaseException {
-        HttpSession session = request.getSession();
         String idUnAccept = request.getParameter("unAccept");
         int unAcceptId = Integer.parseInt(idUnAccept);
         CustomerMapper customerMapper = new CustomerMapper(connectionPool);

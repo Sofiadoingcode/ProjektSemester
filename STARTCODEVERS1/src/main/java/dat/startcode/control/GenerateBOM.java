@@ -1,18 +1,12 @@
 package dat.startcode.control;
 
-import dat.startcode.model.DTOs.BOMDTO;
-import dat.startcode.model.DTOs.ProductionlineDTO;
 import dat.startcode.model.entities.CarportChoices;
-import dat.startcode.model.entities.ProductLine;
 import dat.startcode.model.exceptions.DatabaseException;
-import dat.startcode.model.persistence.BOMMapper;
 import dat.startcode.model.services.BOMAlgorithm;
 import dat.startcode.model.services.SVG;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.util.ArrayList;
-import java.util.List;
 
 public class GenerateBOM extends Command {
 
@@ -42,8 +36,7 @@ public class GenerateBOM extends Command {
         CarportChoices carportChoice = new CarportChoices(height, width, length);
 
         BOMAlgorithm bomAlgorithm = new BOMAlgorithm();
-        List<ProductLine> BOMProductlines = new ArrayList<>();
-        BOMProductlines = bomAlgorithm.generateBOM(carportChoice);
+        bomAlgorithm.generateBOM(carportChoice);
         SVG svg = bomAlgorithm.getSvg();
 
         String description = bomAlgorithm.getDescription();
@@ -59,7 +52,7 @@ public class GenerateBOM extends Command {
         request.setAttribute("zipCode", zipCode);
         request.setAttribute("phoneNumber", phoneNumber);
         request.setAttribute("svg", svg);
-        //NOT CORRECT JUST FOR NOW
+
         return "orderintroduction.jsp";
 
 

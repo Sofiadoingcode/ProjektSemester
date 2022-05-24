@@ -1,32 +1,32 @@
 package dat.startcode.model.DTOs;
 
-public class ProductionlineDTO {
+public class ProductionLineDTO {
 
-    int idproductionline;
+    int idProductionLine;
     String name;
     int amount;
     int length;
     int category;
     String unit;
-    double totalproductprice;
+    double totalProductPrice;
 
-    public ProductionlineDTO (int idproductionline, String name, int amount, int length, int category, String unit, double totalproductprice) {
-        this.idproductionline = idproductionline;
+    public ProductionLineDTO(int idProductionLine, String name, int amount, int length, int category, String unit, double totalProductPrice) {
+        this.idProductionLine = idProductionLine;
         this.name = name;
         this.amount = amount;
-        this. length = length;
+        this.length = length;
         this.category = category;
         this.unit = unit;
-        this. totalproductprice = totalproductprice;
+        this.totalProductPrice = totalProductPrice;
 
     }
 
-    public int getIdproductionline() {
-        return idproductionline;
+    public int getIdProductionLine() {
+        return idProductionLine;
     }
 
-    public void setIdproductionline(int idproductionline) {
-        this.idproductionline = idproductionline;
+    public void setIdProductionLine(int idProductionLine) {
+        this.idProductionLine = idProductionLine;
     }
 
     public String getName() {
@@ -53,12 +53,12 @@ public class ProductionlineDTO {
         this.length = length;
     }
 
-    public double getTotalproductprice() {
-        return totalproductprice;
+    public double getTotalProductPrice() {
+        return totalProductPrice;
     }
 
-    public void setTotalproductprice(double totalproductprice) {
-        this.totalproductprice = totalproductprice;
+    public void setTotalProductPrice(double totalProductPrice) {
+        this.totalProductPrice = totalProductPrice;
     }
 
     public int getCategory() {

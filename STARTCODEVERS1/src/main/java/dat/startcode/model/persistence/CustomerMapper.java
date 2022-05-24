@@ -29,14 +29,14 @@ public class CustomerMapper implements ICustomerMapper {
                 while (rs.next()) {
                     int customerID = rs.getInt("idCustomer");
                     String name = rs.getString("name");
-                    int zipcode = rs.getInt("zipcode");
+                    int zipCode = rs.getInt("zipcode");
                     String city = rs.getString("city");
                     String phoneNumber = rs.getString("phoneNumber");
                     String email = rs.getString("email");
-                    int idorder = rs.getInt("idorder");
-                    double finalprice = rs.getDouble("finalprice");
+                    int idOrder = rs.getInt("idorder");
+                    double finalPrice = rs.getDouble("finalprice");
 
-                    Customer customer = new Customer(customerID, name, zipcode, city, phoneNumber, email, idorder, finalprice);
+                    Customer customer = new Customer(customerID, name, zipCode, city, phoneNumber, email, idOrder, finalPrice);
                     customerList.add(customer);
 
                 }
@@ -61,14 +61,14 @@ public class CustomerMapper implements ICustomerMapper {
                 while (rs.next()) {
                     int customerID = rs.getInt("idcustomer");
                     String name = rs.getString("name");
-                    int zipcode = rs.getInt("zipcode");
+                    int zipCode = rs.getInt("zipcode");
                     String city = rs.getString("city");
                     String phoneNumber = rs.getString("phoneNumber");
                     String email = rs.getString("email");
-                    int idorder = rs.getInt("idorder");
-                    double finalprice = rs.getDouble("finalprice");
+                    int idOrder = rs.getInt("idorder");
+                    double finalPrice = rs.getDouble("finalprice");
 
-                    Customer customer = new Customer(customerID, name, zipcode, city, phoneNumber, email, idorder, finalprice);
+                    Customer customer = new Customer(customerID, name, zipCode, city, phoneNumber, email, idOrder, finalPrice);
                     customerList.add(customer);
 
 
@@ -94,16 +94,16 @@ public class CustomerMapper implements ICustomerMapper {
             try (PreparedStatement ps = connection.prepareStatement(sql)) {
                 ResultSet rs = ps.executeQuery();
                 while (rs.next()) {
-                    int customerID = rs.getInt("idcustomer");
+                    int customerId = rs.getInt("idcustomer");
                     String name = rs.getString("name");
-                    int zipcode = rs.getInt("zipcode");
+                    int zipCode = rs.getInt("zipcode");
                     String city = rs.getString("city");
                     String phoneNumber = rs.getString("phoneNumber");
                     String email = rs.getString("email");
-                    int idorder = rs.getInt("idorder");
-                    double finalprice = rs.getDouble("finalprice");
+                    int idOrder = rs.getInt("idorder");
+                    double finalPrice = rs.getDouble("finalprice");
 
-                    Customer customer = new Customer(customerID, name, zipcode, city, phoneNumber, email, idorder, finalprice);
+                    Customer customer = new Customer(customerId, name, zipCode, city, phoneNumber, email, idOrder, finalPrice);
                     customerList.add(customer);
 
                 }
@@ -197,7 +197,6 @@ public class CustomerMapper implements ICustomerMapper {
         boolean isPaid = false;
         try (Connection connection = connectionPool.getConnection()) {
             String sql = "UPDATE `fogarchive`.`order` SET `isAccepted` = '0' WHERE `idorder` = ?";
-            System.out.println(orderId);
             try (PreparedStatement ps = connection.prepareStatement(sql)) {
                 ps.setInt(1, orderId);
                 ps.executeUpdate();
@@ -216,7 +215,6 @@ public class CustomerMapper implements ICustomerMapper {
             String sql = "UPDATE `fogarchive`.`order` SET `isPaid` = '1' WHERE `idorder` = ?";
             try (PreparedStatement ps = connection.prepareStatement(sql)) {
                 ps.setInt(1, orderId);
-                System.out.println("OrderId: " + orderId);
                 ps.executeUpdate();
             } catch (Exception e) {
                 System.out.println(e);

@@ -12,8 +12,6 @@ import dat.startcode.model.persistence.ConnectionPool;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class Login extends Command
 {
@@ -51,8 +49,8 @@ public class Login extends Command
             Shed shed = null;
             BOMDTO bom = null;
             if (usersRequest != null) {
-                carport = requestMapper.getCarportChoices(usersRequest.getIdcarportchoices());
-                bom = bomMapper.getBOM(usersRequest.getIdorder());
+                carport = requestMapper.getCarportChoices(usersRequest.getIdCarportChoices());
+                bom = bomMapper.getBOM(usersRequest.getIdOrder());
                 if (carport.getIdShed() != 0) {
                     shed = requestMapper.getShedChoices(carport.getIdShed());
                 }

@@ -86,7 +86,7 @@
                                         </svg>
                                     </button>
 
-                                    <button type="submit" name="delete" value="${request.idorder}" formaction="" formmethod="post"
+                                    <button type="submit" name="delete" value="${request.idorder}" formaction="fc/deleteRequest?command=deleteRequest" formmethod="post"
                                             class="orders-btn-DeleteX orders-delete">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                              class="bi bi-x" viewBox="0 0 16 16">

@@ -1,13 +1,13 @@
 package dat.startcode.model.entities;
 
 public class Product {
-    private int productID;
+    private int productId;
     private String name, category, unit, productType;
     private int height,width, price, amount;
 
 
     public Product(int id, String name, String category, String unit, int price) {
-        this.productID = id;
+        this.productId = id;
         this.name = name;
         this.category = category;
         this.unit = unit;
@@ -39,8 +39,8 @@ public class Product {
         this.unit = unit;
     }
 
-    public int getProductID() {
-        return productID;
+    public int getProductId() {
+        return productId;
     }
 
 
@@ -88,7 +88,7 @@ public class Product {
     @Override
     public String toString() {
         return "Product{" +
-                "productID=" + productID +
+                "productID=" + productId +
                 ", name='" + name + '\'' +
                 ", category='" + category + '\'' +
                 ", unit='" + unit + '\'' +

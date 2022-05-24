@@ -7,20 +7,14 @@ import dat.startcode.model.entities.User;
 import dat.startcode.model.exceptions.DatabaseException;
 import dat.startcode.model.persistence.BOMMapper;
 import dat.startcode.model.persistence.RequestMapper;
-import dat.startcode.model.persistence.UserMapper;
 import dat.startcode.model.services.BOMAlgorithm;
 import dat.startcode.model.services.SVG;
-import dat.startcode.model.services.UserFacade;
 import dat.startcode.model.persistence.ConnectionPool;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class CreateRequest extends Command
 {
@@ -48,13 +42,13 @@ public class CreateRequest extends Command
 
 
         String bomDescription = bomAlgorithm.getDescription();
-        double bomTotalPrice = bomAlgorithm.getTotalBomPrice();
+        double bomTotalPrice = bomAlgorithm.getTotalBOMPrice();
         SVG svg = bomAlgorithm.getSvg();
 
 
 
-        String tagMateriale = request.getParameter("tagMateriale");
-        String tag = request.getParameter("tag");
+        String roofMaterial = request.getParameter("tagMateriale");
+        String roof = request.getParameter("tag");
         int angle = Integer.parseInt(request.getParameter("angle"));
         String name = request.getParameter("name");
         int zipCode = Integer.parseInt(request.getParameter("zipCode"));
@@ -68,7 +62,7 @@ public class CreateRequest extends Command
 
         BOMMapper bomMapper = new BOMMapper(connectionPool);
 
-        int bomId = bomMapper.createBOMinDB(bomDescription, bomTotalPrice, svg.toString());
+        int bomId = bomMapper.createBOMInDB(bomDescription, bomTotalPrice, svg.toString());
 
         bomMapper.saveFullBom(bomId, fullBomList);
 
@@ -79,10 +73,10 @@ public class CreateRequest extends Command
             int shedWidth = Integer.parseInt(request.getParameter("shedWidth"));
             int shedLength = Integer.parseInt(request.getParameter("shedLength"));
             String floorMaterial = request.getParameter("floorMaterial");
-            requestMapper.insertFullRequestShed(shedWidth, shedLength, floorMaterial, height, length, width, tagMateriale, tag, angle, name, zipCode, phoneNumber, email, user.getIdUser(), bomId, bomTotalPrice);
+            requestMapper.insertFullRequestShed(shedWidth, shedLength, floorMaterial, height, length, width, roofMaterial, roof, angle, name, zipCode, phoneNumber, email, user.getIdUser(), bomId, bomTotalPrice);
         }
         else{
-            requestMapper.insertFullRequest(height, length, width, tagMateriale, tag, angle, name, zipCode, phoneNumber, email, user.getIdUser(), bomId, bomTotalPrice);
+            requestMapper.insertFullRequest(height, length, width, roofMaterial, roof, angle, name, zipCode, phoneNumber, email, user.getIdUser(), bomId, bomTotalPrice);
         }
 
 

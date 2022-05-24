@@ -152,7 +152,7 @@
                             <div style="margin-bottom: 5%" class="col">
                                 <form class="col">
 
-                                    <button type="submit" name="pay" value="${sessionScope.usersRequest.idorder}"
+                                    <button type="submit" name="pay" value="${sessionScope.usersRequest.idOrder}"
                                             style="margin-left: 48.5%"
                                             formaction="fc/payForRequest?command=payForRequest" formmethod="post"
                                             class="payButton">Betal
