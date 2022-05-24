@@ -13,8 +13,6 @@ public class ModifyProduct extends Command {
 
     public ModifyProduct() {
         this.connectionPool = ApplicationStart.getConnectionPool();
-
-
     }
 
     @Override
@@ -32,9 +30,9 @@ public class ModifyProduct extends Command {
         int idName = productMapper.getNameId(name);
         int idUnit = productMapper.getUnitTypeId(unit);
         int idCategory = productMapper.getCategoryId(category);
-        int price = Integer.parseInt(request.getParameter("product_price"));
-        int height = Integer.parseInt(request.getParameter("product_height"));
-        int width = Integer.parseInt(request.getParameter("product_width"));
+        double price = Double.parseDouble(request.getParameter("product_price"));
+        double height = Double.parseDouble(request.getParameter("product_height"));
+        double width = Double.parseDouble(request.getParameter("product_width"));
         int amount = Integer.parseInt(request.getParameter("product_amount"));
         int idProductType = productMapper.getProductTypeId(productType);
 

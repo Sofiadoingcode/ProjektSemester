@@ -3,7 +3,6 @@ package dat.startcode.control;
 import dat.startcode.model.DTOs.BOMDTO;
 import dat.startcode.model.DTOs.ProductionLineDTO;
 import dat.startcode.model.config.ApplicationStart;
-import dat.startcode.model.entities.ProductLine;
 import dat.startcode.model.entities.Request;
 import dat.startcode.model.exceptions.DatabaseException;
 import dat.startcode.model.persistence.BOMMapper;
@@ -13,7 +12,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
-import java.util.List;
+import java.util.List;import dat.startcode.model.entities.ProductLine;
+
 
 public class SeeBOM extends Command {
     ConnectionPool connectionPool;

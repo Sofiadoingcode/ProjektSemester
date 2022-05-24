@@ -1,12 +1,12 @@
 package dat.startcode.model.entities;
 
 public class Product {
-    private int productId;
+    private int productId, amount;
     private String name, category, unit, productType;
-    private int height,width, price, amount;
+    private double height,width, price;
 
 
-    public Product(int id, String name, String category, String unit, int price) {
+    public Product(int id, String name, String category, String unit, double price) {
         this.productId = id;
         this.name = name;
         this.category = category;
@@ -45,27 +45,27 @@ public class Product {
 
 
 
-    public int getHeight() {
+    public double getHeight() {
         return height;
     }
 
-    public void setHeight(int height) {
+    public void setHeight(double height) {
         this.height = height;
     }
 
-    public int getWidth() {
+    public double getWidth() {
         return width;
     }
 
-    public void setWidth(int width) {
+    public void setWidth(double width) {
         this.width = width;
     }
 
-    public int getPrice() {
+    public double getPrice() {
         return price;
     }
 
-    public void setPrice(int price) {
+    public void setPrice(double price) {
         this.price = price;
     }
 

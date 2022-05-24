@@ -34,16 +34,17 @@ public class ProductMapper {
                 ResultSet rs = ps.executeQuery();
 
                 while (rs.next()) {
-                    int productId, pricePerMeasurement, amount, height, width;
+                    int productId, amount;
+                    double height, width, pricePerMeasurement;
                     String name, type, category, productType;
 
                     productId = rs.getInt("idProduct");
                     name = rs.getString("name");
-                    height = rs.getInt("height");
-                    width = rs.getInt("width");
+                    height = rs.getDouble("height");
+                    width = rs.getDouble("width");
                     amount = rs.getInt("amount");
                     category = rs.getString("category");
-                    pricePerMeasurement = rs.getInt("priceprmeasurment");
+                    pricePerMeasurement = rs.getDouble  ("priceprmeasurment");
                     type = rs.getString("type");
                     productType = rs.getString("producttype");
 
@@ -240,9 +241,9 @@ public class ProductMapper {
                 ps.setInt(1, name);
                 ps.setInt(2, unit);
                 ps.setInt(3, category);
-                ps.setInt(4, price);
-                ps.setInt(5, height);
-                ps.setInt(6, width);
+                ps.setDouble(4, price);
+                ps.setDouble(5, height);
+                ps.setDouble(6, width);
                 ps.setInt(7, amount);
                 ps.setInt(8, productType);
                 ps.executeUpdate();
@@ -251,6 +252,8 @@ public class ProductMapper {
         } catch (SQLException ex) {
             throw new DatabaseException(ex, "Trouble inserting product");
         }
+
+
 
     }
 
@@ -338,7 +341,7 @@ public class ProductMapper {
     }
 
 
-    public void modifyProduct(int id, int idName, int idUnit, int idCategory, int price, int height, int width, int amount, int idType) throws DatabaseException{
+    public void modifyProduct(int id, int idName, int idUnit, int idCategory, double price, double height, double width, int amount, int idType) throws DatabaseException{
 
         String sql= "UPDATE `fogarchive`.`product` SET `idname` = ?, `idunit` = ?, `idcategory` = ?, `priceprmeasurment` = ?, `height` = ?, `width` = ?, `amount` = ? , `idproducttype` = ?  WHERE (`idProduct` = ?)";
         try (Connection connection = connectionPool.getConnection()) {
@@ -347,9 +350,9 @@ public class ProductMapper {
             ps.setInt(1, idName);
             ps.setInt(2, idUnit);
             ps.setInt(3, idCategory);
-            ps.setInt(4, price);
-            ps.setInt(5, height);
-            ps.setInt(6, width);
+            ps.setDouble(4, price);
+            ps.setDouble(5, height);
+            ps.setDouble(6, width);
             ps.setInt(7, amount);
             ps.setInt(8, idType);
             ps.setInt(9,id);
