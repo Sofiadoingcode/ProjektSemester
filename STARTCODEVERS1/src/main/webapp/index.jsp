@@ -30,7 +30,7 @@
                     <p style="font-size: 30px" class="index-description"> Velkommen til fog!</p>
                     <p class="index-description"> Efter mange års erfaring, har vi kreeret en algoritme, som ud fra dine mål og specifikationer, danner din drømme carport. Tror du ikke på os? Prøv selv</p>
                     <c:if test="${sessionScope.user == null }">l
-                        <a href="${pageContext.request.contextPath}/orderintroduction.jsp" class="btn-index btn-index--full">Lav din egen Carport</a>
+                        <a href="${pageContext.request.contextPath}/WEB-INF/orderintroduction.jsp" class="btn-index btn-index--full">Lav din egen Carport</a>
 
                         <a href="${pageContext.request.contextPath}/login.jsp" class="btn-index btn-index--login">Log Ind</a>
                     </c:if>

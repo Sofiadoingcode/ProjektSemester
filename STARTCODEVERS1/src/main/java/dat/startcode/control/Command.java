@@ -34,7 +34,7 @@ abstract class Command
         commands.put("payForRequest", new PayForRequest());
         commands.put("seebom", new SeeBOM());
         commands.put("modifyFinalPrice", new ModifyFinalPrice());
-
+        commands.put("redirectCommand", new RedirectCommand());
     }
 
     static Command from( HttpServletRequest request ) {
