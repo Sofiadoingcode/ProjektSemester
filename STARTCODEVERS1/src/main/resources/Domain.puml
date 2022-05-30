@@ -56,8 +56,8 @@ Product : int amount
 
 
 Carport o-- Shed
-User *-- Admin
-User *-- Customer
+User <|-- Admin
+User <|-- Customer
 Request o-- Bom
 Bom o-- ProductionLine
 ProductionLine o-- Product
