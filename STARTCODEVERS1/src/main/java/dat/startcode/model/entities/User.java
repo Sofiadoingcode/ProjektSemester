@@ -72,20 +72,18 @@ public class User
         this.role = role;
     }
 
+
     @Override
-    public boolean equals(Object o)
-    {
+    public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof User)) return false;
         User user = (User) o;
-        return getUsername().equals(user.getUsername()) && getPassword().equals(user.getPassword()) &&
-                getRole().equals(user.getRole());
+        return getIdRole() == user.getIdRole() && Objects.equals(getUsername(), user.getUsername()) && Objects.equals(getPassword(), user.getPassword()) && Objects.equals(getRole(), user.getRole());
     }
 
     @Override
-    public int hashCode()
-    {
-        return Objects.hash(getUsername(), getPassword(), getRole());
+    public int hashCode() {
+        return Objects.hash(getUsername(), getPassword(), getRole(), getIdRole());
     }
 
     public int getIdRole() {

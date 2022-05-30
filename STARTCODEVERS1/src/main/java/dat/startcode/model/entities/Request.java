@@ -1,5 +1,7 @@
 package dat.startcode.model.entities;
 
+import java.util.Objects;
+
 public class Request {
     private int idOrder;
     private int idCustomer;
@@ -83,6 +85,20 @@ public class Request {
 
     public void setIdCarportChoices(int idCarportChoices) {
         this.idCarportChoices = idCarportChoices;
+    }
+
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Request)) return false;
+        Request request = (Request) o;
+        return getIdCustomer() == request.getIdCustomer() && getIdBOM() == request.getIdBOM() && isAccepted() == request.isAccepted() && isPaid() == request.isPaid() && Double.compare(request.getFinalPrice(), getFinalPrice()) == 0 && getIdUser() == request.getIdUser() && getIdCarportChoices() == request.getIdCarportChoices();
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getIdCustomer(), getIdBOM(), isAccepted(), isPaid(), getFinalPrice(), getIdUser(), getIdCarportChoices());
     }
 
     @Override
