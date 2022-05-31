@@ -86,11 +86,11 @@ class RequestAndBOMMapperTest {
                 "Plasttrapez","Flat tag",0,"Charlie",2800,11223344,user.getUsername(),user.getIdUser(),BOMId,bomAlgorithm.getTotalBOMPrice()));
 
 
-       int nonAcceptedRequestsSize2 = customerMapper.getAllNonAcceptedRequests().size();
-       int acceptedRequestsSize2 = customerMapper.getAllAcceptedRequests().size();
+       int expectedNonAcceptedRequestsSize2 = customerMapper.getAllNonAcceptedRequests().size()-1;
+       int expectedAcceptedRequestsSize2 = customerMapper.getAllAcceptedRequests().size();
 
-        assertEquals(nonAcceptedRequestsSize, nonAcceptedRequestsSize2 -1);
-        assertEquals(acceptedRequestsSize,acceptedRequestsSize2);
+        assertEquals(nonAcceptedRequestsSize, expectedNonAcceptedRequestsSize2);
+        assertEquals(acceptedRequestsSize,expectedAcceptedRequestsSize2);
 
     }
 
@@ -103,11 +103,11 @@ class RequestAndBOMMapperTest {
 
         customerMapper.acceptRequest(21);
 
-        int nonAcceptedRequestsSize2 = customerMapper.getAllNonAcceptedRequests().size();
-        int acceptedRequestsSize2 = customerMapper.getAllAcceptedRequests().size();
+        int nonAcceptedRequestsSize2 = customerMapper.getAllNonAcceptedRequests().size()+1;
+        int acceptedRequestsSize2 = customerMapper.getAllAcceptedRequests().size()-1;
 
-        assertEquals(nonAcceptedRequestsSize,nonAcceptedRequestsSize2 + 1);
-        assertEquals(acceptedRequestsSize,acceptedRequestsSize2 -1);
+        assertEquals(nonAcceptedRequestsSize,nonAcceptedRequestsSize2);
+        assertEquals(acceptedRequestsSize,acceptedRequestsSize2);
 
         customerMapper.unAcceptRequest(21);
 
@@ -122,10 +122,13 @@ class RequestAndBOMMapperTest {
     void deleteRequest() throws DatabaseException{
 
 
-        int size = customerMapper.getAllNonAcceptedRequests().size() + customerMapper.getAllAcceptedRequests().size() + customerMapper.getAllPaidRequests().size();
+        int expectedSize = customerMapper.getAllNonAcceptedRequests().size() + customerMapper.getAllAcceptedRequests().size() + customerMapper.getAllPaidRequests().size() -1;
 
 
+        assert(customerMapper.deleteOrder(21));
 
+        int newSize = customerMapper.getAllNonAcceptedRequests().size() +customerMapper.getAllAcceptedRequests().size() + customerMapper.getAllPaidRequests().size();
+        assertEquals(newSize,expectedSize);
 
     }
 

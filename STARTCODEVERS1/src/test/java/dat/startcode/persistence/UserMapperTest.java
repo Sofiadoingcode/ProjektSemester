@@ -69,9 +69,5 @@ class UserMapperTest {
         assertThrows(DatabaseException.class, () -> UserFacade.login("bob", "1234", connectionPool));
     }
 
-    @Test
-    void createUser() throws DatabaseException {
 
-
-    }
 }
