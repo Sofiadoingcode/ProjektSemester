@@ -9,8 +9,9 @@ public class RedirectCommand extends Command
     @Override
     String execute(HttpServletRequest request, HttpServletResponse response)
     {
+        String ret="";
+        ret="WEB-INF/orderintroduction.jsp";
 
-
-        return "WEB-INF/orderintroduction.jsp";
+        return ret;
     }
 }
