@@ -51,9 +51,9 @@
 
                         <a class="nav-item nav-link" href="${pageContext.request.contextPath}/createnewadminspage.jsp" style="color: white; padding-left: 25px; padding-right: 25px;">Konti</a>
                     </c:if>
-                        <a class="nav-item nav-link" href="${pageContext.request.contextPath}/aboutUs.jsp" style="color: white; padding-left: 25px; padding-right: 25px;">Om Os</a>
+                        <a class="nav-item nav-link" href="${pageContext.request.contextPath}/fc/redirectCommand?command=redirectCommand&page=WEB-INF/aboutUs.jsp" style="color: white; padding-left: 25px; padding-right: 25px;">Om Os</a>
                     <c:if test="${sessionScope.user == null }">
-                        <a class="nav-item nav-link" href="${pageContext.request.contextPath}/fc/redirectCommand?command=redirectCommand" style="color: white; padding-left: 25px; padding-right: 25px;">Bestil Carport</a>
+                        <a class="nav-item nav-link" href="${pageContext.request.contextPath}/fc/redirectCommand?command=redirectCommand&page=WEB-INF/orderintroduction.jsp" style="color: white; padding-left: 25px; padding-right: 25px;">Bestil Carport</a>
                     </c:if>
                     <c:if test="${sessionScope.user.getIdRole() == 2}">
                         <a class="nav-item nav-link" href="${pageContext.request.contextPath}/viewcarportorder.jsp" style="color: white; padding-left: 25px; padding-right: 25px;">Din Carport</a>
