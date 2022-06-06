@@ -1,5 +1,7 @@
 package dat.startcode.model.entities;
 
+import java.util.Objects;
+
 public class ProductLine {
     private int productId;
     private int amount;
@@ -44,6 +46,19 @@ public class ProductLine {
 
     public void setTotalProductPrice(double totalProductPrice) {
         this.totalProductPrice = totalProductPrice;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof ProductLine)) return false;
+        ProductLine that = (ProductLine) o;
+        return getProductId() == that.getProductId() && getAmount() == that.getAmount() && Double.compare(that.getTotalProductPrice(), getTotalProductPrice()) == 0 && Objects.equals(getLengthId(), that.getLengthId());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getProductId(), getAmount(), getLengthId(), getTotalProductPrice());
     }
 
     @Override

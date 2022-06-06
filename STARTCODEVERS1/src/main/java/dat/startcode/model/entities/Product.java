@@ -1,5 +1,7 @@
 package dat.startcode.model.entities;
 
+import java.util.Objects;
+
 public class Product {
     private int productId, amount;
     private String name, category, unit, productType;
@@ -69,6 +71,10 @@ public class Product {
         this.price = price;
     }
 
+    public void setProductId(int productId) {
+        this.productId = productId;
+    }
+
     public int getAmount() {
         return amount;
     }
@@ -85,6 +91,13 @@ public class Product {
         this.productType = productType;
     }
 
+
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getAmount(), getName(), getCategory(), getUnit(), getProductType(), getHeight(), getWidth(), getPrice());
+    }
+
     @Override
     public String toString() {
         return "Product{" +
@@ -98,4 +111,13 @@ public class Product {
                 ", amount=" + amount +
                 '}';
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Product)) return false;
+        Product product = (Product) o;
+        return getAmount() == product.getAmount() && Double.compare(product.getHeight(), getHeight()) == 0 && Double.compare(product.getWidth(), getWidth()) == 0 && Double.compare(product.getPrice(), getPrice()) == 0 && getName().equals(product.getName()) && getCategory().equals(product.getCategory()) && getUnit().equals(product.getUnit()) && getProductType().equals(product.getProductType());
+    }
+
 }

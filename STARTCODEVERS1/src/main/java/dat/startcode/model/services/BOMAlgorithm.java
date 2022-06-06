@@ -33,7 +33,7 @@ public class BOMAlgorithm {
 
     public BOMAlgorithm(ConnectionPool connectionPool) throws DatabaseException {
         this.connectionPool = connectionPool;
-
+        this.allProducts = loadAllProducts();
     }
 
     public List<ProductLine> generateBOM(CarportChoices carportChoice) {

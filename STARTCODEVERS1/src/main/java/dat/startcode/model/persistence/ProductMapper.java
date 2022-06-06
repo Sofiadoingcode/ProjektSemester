@@ -81,7 +81,7 @@ public class ProductMapper {
 
         try (Connection connection = connectionPool.getConnection()) {
 
-            String sql1 = "delete from orderline where idOrder= ?";
+            String sql1 = "delete from productionline where idproduct= ?";
             try (PreparedStatement ps = connection.prepareStatement(sql1)) {
                 ps.setInt(1, id);
                 ps.executeUpdate();
@@ -97,11 +97,12 @@ public class ProductMapper {
                 if (rowsAffected == 1) {
                     isDeleted = true;
                 } else {
-                    throw new DatabaseException("Database exception");
+                    throw new DatabaseException("Database exception" + id);
                 }
             }
         } catch (SQLException e) {
-            throw new DatabaseException("");
+            throw new DatabaseException(e.getMessage());
+
         }
         return isDeleted;
     }
@@ -120,6 +121,7 @@ public class ProductMapper {
                     int id = rs.getInt("idlength");
                     int length = rs.getInt("length");
                     lengths.put(id,length);
+
                 }
 
 
