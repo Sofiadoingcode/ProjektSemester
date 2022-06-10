@@ -14,13 +14,14 @@ public class ConnectionPool
     private static String USER = "cupcakeUser";
     private static String PASSWORD = "dragebadtacoh4j";
     private static String URL = "jdbc:mysql://localhost:3306/fogarchive";
+    private static ConnectionPool connectionPool = null;
 
-    public ConnectionPool()
+   private ConnectionPool()
     {
         this(USER, PASSWORD, URL);
     }
 
-    public ConnectionPool(String USER, String PASSWORD, String URL)
+    private ConnectionPool(String USER, String PASSWORD, String URL)
     {
         String deployed = System.getenv("DEPLOYED");
         if (deployed != null)
@@ -49,6 +50,13 @@ public class ConnectionPool
     {
         Logger.getLogger("web").log(Level.INFO, ": get data connection");
         return ds.getConnection();
+    }
+
+    public static ConnectionPool connectionPool(){
+        if (connectionPool == null)
+            connectionPool = new ConnectionPool();
+
+        return connectionPool;
     }
 
     public void close()

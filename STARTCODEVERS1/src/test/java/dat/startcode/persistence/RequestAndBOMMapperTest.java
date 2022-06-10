@@ -34,7 +34,7 @@ class RequestAndBOMMapperTest {
 
     @BeforeAll
     public static void setUpClass() throws Exception {
-        connectionPool = new ConnectionPool();
+        connectionPool = ConnectionPool.connectionPool();
 
         carportChoices = new CarportChoices(3.3, 3.5,5);
         user = new User("Charlie", "password",1 );

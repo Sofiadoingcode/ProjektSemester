@@ -35,7 +35,7 @@ public class BOMAlgorithmTest {
 
     @BeforeAll
     public static void setUpClass() throws SQLException, DatabaseException {
-        connectionPool = new ConnectionPool();
+        connectionPool = ConnectionPool.connectionPool();
 
         carportChoices = new CarportChoices(3.2, 6, 7.1);
 

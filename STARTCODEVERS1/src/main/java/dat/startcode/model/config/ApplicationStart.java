@@ -29,7 +29,7 @@ public class ApplicationStart implements ServletContextListener
         try
         {
             Class.forName("org.slf4j.impl.StaticLoggerBinder");
-            connectionPool = new ConnectionPool();
+            connectionPool = ConnectionPool.connectionPool();
         }
         catch (ClassNotFoundException e)
         {

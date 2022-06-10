@@ -29,7 +29,9 @@ class UserMapperTest {
 
     @BeforeAll
     public static void setUpClass() {
-        connectionPool = new ConnectionPool();
+        connectionPool = ConnectionPool.connectionPool();
+
+
 
     }
 
@@ -41,6 +43,8 @@ class UserMapperTest {
     @Test
     void testConnection() throws SQLException {
         Connection connection = connectionPool.getConnection();
+
+        assert(connection!=null);
         assertNotNull(connection);
         if (connection != null) {
             connection.close();
@@ -49,8 +53,6 @@ class UserMapperTest {
 
     @Test
     void login() throws DatabaseException {
-
-
 
         User expectedUser = new User("fog", "123", 1);
         User actualUser = UserFacade.login("fog", "123", connectionPool);
@@ -61,6 +63,7 @@ class UserMapperTest {
     @Test
     void invalidPasswordLogin() throws DatabaseException {
         assertThrows(DatabaseException.class, () -> UserFacade.login("user", "123", connectionPool));
+
 
     }
 

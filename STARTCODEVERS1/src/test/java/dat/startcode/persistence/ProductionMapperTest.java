@@ -21,9 +21,6 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 class ProductionMapperTest {
-    private final static String USER = "root";
-    private final static String PASSWORD = "root";
-    private final static String URL = "jdbc:mysql://localhost:3306/startcode_test?serverTimezone=CET&allowPublicKeyRetrieval=true&useSSL=false";
 
     private static ConnectionPool connectionPool;
     static private ProductMapper productMapper;
@@ -31,7 +28,7 @@ class ProductionMapperTest {
 
     @BeforeAll
     public static void setUpClass() {
-        connectionPool = new ConnectionPool();
+        connectionPool = ConnectionPool.connectionPool();
         productMapper = new ProductMapper(connectionPool);
         product = new Product(0, "testBolt", "Beslag & Skruer", "stk", 100);
         product.setProductType("skrue");
@@ -103,7 +100,7 @@ class ProductionMapperTest {
         productMapper.deleteProduct(id);
         array = productMapper.getAllProducts();
         int size2 = array.size();
-        assert (size1 == size2 +1);
+        assert (size1 == size2 +1 );
 
     }
 
