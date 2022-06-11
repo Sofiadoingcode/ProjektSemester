@@ -27,9 +27,12 @@ public class Login extends Command
     String execute(HttpServletRequest request, HttpServletResponse response) throws DatabaseException
     {
         HttpSession session = request.getSession();
+
         String ret="index";
         boolean wrongLogin=false;
-        session.setAttribute("user", null); // adding empty user object to session scope
+
+        session.setAttribute("user", null);
+
         String username = request.getParameter("username");
         String password = request.getParameter("password");
         User user = new User(" "," ",0);
@@ -44,10 +47,13 @@ public class Login extends Command
         if(!wrongLogin) {
             RequestMapper requestMapper = new RequestMapper(connectionPool);
             BOMMapper bomMapper = new BOMMapper(connectionPool);
+
             Request usersRequest = requestMapper.getRequestFromDB(user.getIdUser());
+
             Carport carport = null;
             Shed shed = null;
             BOMDTO bom = null;
+
             if (usersRequest != null) {
                 carport = requestMapper.getCarportChoices(usersRequest.getIdCarportChoices());
                 bom = bomMapper.getBOM(usersRequest.getIdOrder());
