@@ -39,7 +39,7 @@ public class UserMapper implements IUserMapper
                 }
             }
         } catch (SQLException ex) {
-            throw new DatabaseException(ex, "Something went wrong");
+            throw new DatabaseException(ex, "Something went wrong with creating a temporary user");
 
         }
         return user;

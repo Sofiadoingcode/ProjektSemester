@@ -33,6 +33,9 @@ public class CreateRequest extends Command
         double height = Double.parseDouble(request.getParameter("height"));
         double length = Double.parseDouble(request.getParameter("length"));
         double width = Double.parseDouble(request.getParameter("width"));
+        String roofMaterial = request.getParameter("tagMateriale");
+        String roof = request.getParameter("tag");
+        int angle = Integer.parseInt(request.getParameter("angle"));
 
         CarportChoices carportChoice = new CarportChoices(height, width, length);
 
@@ -50,9 +53,7 @@ public class CreateRequest extends Command
 
 
 
-        String roofMaterial = request.getParameter("tagMateriale");
-        String roof = request.getParameter("tag");
-        int angle = Integer.parseInt(request.getParameter("angle"));
+
         String name = request.getParameter("name");
         int zipCode = Integer.parseInt(request.getParameter("zipCode"));
         int phoneNumber = Integer.parseInt(request.getParameter("phoneNumber"));
